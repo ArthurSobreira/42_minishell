@@ -34,4 +34,13 @@
 void	readlines(t_minishell *core);
 void	built_in_array(t_minishell *core);
 void	input_analysis(t_minishell *core);
+void	unset(t_minishell *core);
+void	change_directory(t_minishell *core);
+void	echo(t_minishell *core);
+void	environment(t_minishell *core);
+void	exit_shell(t_minishell *core);
+void	export(t_minishell *core);
+void	print_working_directory(t_minishell *core);
+void	unset(t_minishell *core);
+
 #endif
