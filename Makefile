@@ -1,69 +1,89 @@
 NAME = minishell
 LIBFT = libs/libft/libft.a
 CFLAGS = -Wall -Werror -Wextra -O3 -g3 -I/usr/include/readline
-LDFLAGS = -lreadline -lhistory
-LIBFT_PATH = libs/libft
-OBJ_PATH = bin/
-SRC_PATH = src/
-TEMP_PATH = temp/
+RFLAGS = -lreadline -lhistory
+TEMP_PATH = ./temp/
 
-GREEN = \033[1;32m
-RED = \033[1;31m
-CYAN = \033[1;35m
-RESET = \033[0m
+# Paths for libraries
+LIB_PATH = ./libs/libft
+LIB_NAME = libft.a
 
-CFILES = main.c \
-		readlines.c \
-		start.c \
-		input.c \
+# Colors Definition 
+GREEN = "\033[32;1m"
+RED = "\033[31;1m"
+CYAN = "\033[36;1;3;208m"
+WHITE = "\033[37;1;4m"
+COLOR_LIMITER = "\033[0m"
 
+# Paths Definitions
+HEADER_PATH = ./includes
+BIN_PATH = ./bin/
+SOURCES_PATH = ./src/
+BUILTINS_PATH = built-in/
 
-OBJECTS = $(addprefix $(OBJ_PATH), $(CFILES:.c=.o))
+SOURCES = \
+	$(BUILTINS_PATH)cd.c \
+	$(BUILTINS_PATH)echo.c \
+	$(BUILTINS_PATH)env.c \
+	$(BUILTINS_PATH)exit.c \
+	$(BUILTINS_PATH)export.c \
+	$(BUILTINS_PATH)pwd.c \
+	$(BUILTINS_PATH)unset.c \
+	input.c \
+	main.c \
+	readlines.c \
+	start.c \
+	tool_box.c \
 
-INCLUDES = -I ./includes
+OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
 
-all: libft $(OBJ_PATH) $(NAME)
+all: libft $(BIN_PATH) $(NAME)
 
 libft:
-	@make -C $(LIBFT_PATH) --no-print-directory
+ifeq ($(wildcard $(LIB_PATH)/$(LIB_NAME)),)
+	@make -C $(LIB_PATH) --no-print-directory
+	@make get_next_line -C $(LIB_PATH) --no-print-directory
+	@make ft_printf -C $(LIB_PATH) --no-print-directory
+endif
 
+$(BIN_PATH)%.o: $(SOURCES_PATH)%.c
+	@echo $(GREEN)[Compiling]$(COLOR_LIMITER) $(WHITE)$(notdir $(<))...$(COLOR_LIMITER)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER_PATH)
+	@echo " "
 
 $(NAME): $(OBJECTS)
-	@printf "\n$(CYAN)Creating $(NAME)$(RESET)\n\n"
-	@$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) -o $(NAME) $(INCLUDES) $(LDFLAGS)
+	@echo $(CYAN)" --------------------------------------------------"$(COLOR_LIMITER)
+	@echo $(CYAN)"| MINISHELL executable was created successfully!! |"$(COLOR_LIMITER)
+	@echo $(CYAN)"--------------------------------------------------"$(COLOR_LIMITER)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(RFLAGS) -L $(LIB_PATH) -lft
+	@echo " "
 
-$(OBJECTS): $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@printf "$(GREEN)Compiling $(notdir $(<))$(RESET)\n"
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
-
-$(OBJ_PATH):
-	@mkdir -p $(OBJ_PATH)
+$(BIN_PATH):
+	@mkdir -p $(BIN_PATH)
+	@mkdir -p $(BIN_PATH)$(BUILTINS_PATH)
 
 clean:
-	@if [ -d $(OBJ_PATH) ]; then \
-		printf "$(RED)Cleaning $(OBJ_PATH)$(RESET)\n"; \
-		rm -f $(OBJECTS) -r $(OBJ_PATH); \
-	fi
-	@make -C $(LIBFT_PATH) clean --no-print-directory
+	@echo $(RED)[Removing Objects]$(COLOR_LIMITER)
+	@make clean -C $(LIB_PATH) --no-print-directory
+	@rm -rf $(BIN_PATH)
 
 fclean: clean
-	@printf "$(RED)Cleaning $(NAME)$(RESET)\n"
+	@echo $(RED)[Removing $(NAME) executable]$(COLOR_LIMITER)
+	@make fclean -C $(LIB_PATH) --no-print-directory
 	@rm -rf $(NAME)
-	@if [ -d $(TEMP_PATH) ]; then \
-		printf "$(RED)Cleaning $(TEMP_PATH)$(RESET)\n"; \
-		rm -fr $(TEMP_PATH); \
-	fi
-	@make -C $(LIBFT_PATH) fclean --no-print-directory
 
 re: fclean all
 
 make_temp:
 	@mkdir -p $(TEMP_PATH)
 
-n: all
+run: all
 	./$(NAME)
 
 tests: make_temp all
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=./sup/sup.sup --verbose --log-file=$(TEMP_PATH)valgrind.log ./$(NAME)
+	valgrind --leak-check=full -\
+	-show-leak-kinds=all --track-origins=yes \
+	--suppressions=./sup/sup.sup \
+	--verbose --log-file=$(TEMP_PATH)valgrind.log ./$(NAME)
 
-.PHONY: all clean fclean re libft make_temp tests n
+.PHONY: all clean fclean re libft make_temp tests run
