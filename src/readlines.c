@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readlines.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/18 10:24:54 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:23:48 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ static void	parse_input(char *input, t_minishell *core)
 
 	i = -1;
 	commands = ft_split(input, ' ');
-	len = ft_matrixlen(commands);
+	len = 0;
+	while (commands[len])
+		len++;
 	while (++i < len)
 		core->input[i].value = commands[i];
 	core->input[i].value = NULL;
