@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:07:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/17 12:13:07 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:48:46 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	built_in_array(t_minishell *core)
 	core->built_in[5] = "env";
 	core->built_in[6] = "exit";
 	core->built_in[7] = NULL;
+	
 }
