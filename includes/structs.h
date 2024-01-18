@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/18 17:07:50 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:26:51 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 # define STRUCTS_H
 
 # include "minishell.h"
+# define QUOTE "'\""
 
+typedef enum e_bool
+{
+	FALSE,
+	TRUE
+}						t_bool;
 /**
  * @brief Estrutura que representa um comando
 

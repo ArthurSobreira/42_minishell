@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:20:07 by phenriq2          #+#    #+#             */
-/*   Updated: 2023/10/26 15:42:29 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:58:02 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
 void	ft_extract_line(t_gnl **list_of_char, char **line, int counter)
 {

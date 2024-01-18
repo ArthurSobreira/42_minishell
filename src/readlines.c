@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/18 17:07:05 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:35:08 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ static void	parse_input(char *input, t_minishell *core)
 
 	i = -1;
 	commands = ft_split(input, ' ');
-	len = ft_matrixlen(commands);
+	len = 0;
+	while (commands[len])
+		len++;
 	while (++i < len)
 		core->input[i].value = commands[i];
 	core->input[i].value = NULL;
