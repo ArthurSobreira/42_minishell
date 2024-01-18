@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/18 10:24:54 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:07:05 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ static void	token_type(t_minishell *core, int capacity)
 			core->input[i].type = TOKEN_REDIRECTION;
 		else if (ft_strcmp(core->input[i].value, "&") == 0)
 			core->input[i].type = TOKEN_BACKGROUND;
+		else if (ft_strcmp(core->input[i].value, "<<") == 0)
+			core->input[i].type = TOKEN_HERE_DOC;
+		else if (ft_strcmp(core->input[i].value, "||") == 0)
+			core->input[i].type = TOKEN_OR;
+		else if (ft_strcmp(core->input[i].value, "&&") == 0)
+			core->input[i].type = TOKEN_AND;
 		else
 			core->input[i].type = TOKEN_WORD;
 	}
