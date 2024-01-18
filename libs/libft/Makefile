@@ -42,6 +42,7 @@ LIB_SOURCES = \
 	ft_putstr_fd.c \
 	ft_split.c \
 	ft_strchr.c \
+	ft_strcmp.c \
 	ft_strdup.c \
 	ft_striteri.c \
 	ft_strjoin.c \
