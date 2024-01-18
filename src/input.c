@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/18 10:32:13 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:22:20 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	input_analysis(t_minishell *core)
 
 	command = core->input[0].value;
 	if (!ft_strcmp(command, core->built_in[0]))
-		ft_putstr_fd("ok\n", 0);
+		echo(core);
 	else if (!ft_strcmp(command, core->built_in[1]))
 		ft_putstr_fd("ok\n", 0);
 	else if (!ft_strcmp(command, core->built_in[2]))
