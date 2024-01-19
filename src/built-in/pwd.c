@@ -6,10 +6,14 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:56 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/18 16:32:40 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:01:36 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	print_working_directory(t_minishell *core);
+void	print_working_directory(t_minishell *core)
+{
+	(void)core;
+	exit(0);
+}

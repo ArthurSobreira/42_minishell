@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/18 16:08:58 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:19:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # include <termcap.h>
 # include <termios.h>
 # include <unistd.h>
+# define PROMPT_COLOR "\033[1;35m"
+# define PROMPT_COLOR_RESET "\033[0m"
 
 void	readlines(t_minishell *core);
 void	built_in_array(t_minishell *core);
@@ -39,7 +41,7 @@ void	change_directory(t_minishell *core);
 void	echo(t_minishell *core);
 void	environment(t_minishell *core);
 void	exit_shell(t_minishell *core);
-void	export(t_minishell *core);
+void	export_variables(t_minishell *core);
 void	print_working_directory(t_minishell *core);
 void	unset(t_minishell *core);
 
