@@ -6,10 +6,14 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:58 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/18 16:33:10 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:01:41 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	unset(t_minishell *core);
+void	unset(t_minishell *core)
+{
+	(void)core;
+	exit(0);
+}
