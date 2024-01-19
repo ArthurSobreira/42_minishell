@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/19 11:23:27 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:30:42 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	readlines(t_minishell *core)
 	while (1)
 	{
 		tmp = ft_strjoin(getenv("USER"), "@minishell: ");
-		prompt = ft_strjoin(PROMPT_COLOR, tmp);
-		prompt = ft_strjoin(prompt, PROMPT_COLOR_RESET);
+		prompt = ft_strjoin(COLOR_LIGHT_MAGENTA, tmp);
+		prompt = ft_strjoin(prompt, COLOR_RESET);
 		free(tmp);
 		input = readline(prompt);
 		free(prompt);

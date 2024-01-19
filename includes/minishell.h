@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/19 11:19:53 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:42:33 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,16 @@
 # include <termcap.h>
 # include <termios.h>
 # include <unistd.h>
-# define PROMPT_COLOR "\033[1;35m"
-# define PROMPT_COLOR_RESET "\033[0m"
+# define COLOR_PINK "\033[1;35m"
+# define COLOR_RESET "\033[0m"
+# define COLOR_GREEN "\033[1;32m"
+# define COLOR_RED "\033[1;31m"
+# define COLOR_BLUE "\033[1;34m"
+# define COLOR_YELLOW "\033[1;33m"
+# define COLOR_CYAN "\033[1;36m"
+# define COLOR_WHITE "\033[1;37m"
+# define COLOR_BLACK "\033[1;30m"
+# define COLOR_GRAY "\033[1;90m"
 
 void	readlines(t_minishell *core);
 void	built_in_array(t_minishell *core);
