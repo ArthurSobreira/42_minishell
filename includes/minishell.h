@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/19 11:42:33 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/20 16:11:12 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 
 void	readlines(t_minishell *core);
 void	built_in_array(t_minishell *core);
-void	input_analysis(t_minishell *core);
+void	execute_builtin(t_minishell *core);
 void	unset(t_minishell *core);
 void	change_directory(t_minishell *core);
 void	echo(t_minishell *core);
@@ -52,5 +52,7 @@ void	exit_shell(t_minishell *core);
 void	export_variables(t_minishell *core);
 void	print_working_directory(t_minishell *core);
 void	unset(t_minishell *core);
+void	ft_strip(char *str);
+void	input_analysis(t_minishell *core);
 
 #endif

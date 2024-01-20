@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/18 17:26:51 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:05:11 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef enum e_bool
 {
 	FALSE,
 	TRUE
-}						t_bool;
+}					t_bool;
+
 /**
  * @brief Estrutura que representa um comando
 
@@ -29,14 +30,12 @@ typedef enum e_bool
  * @param background Flag que indica se o comando deve
  *  executado em background
 */
-typedef struct s_command
+typedef struct s_cmd
 {
-	char				*executable;
-	char				**arguments;
-	char				**env;
-	int					background;
-	struct s_command	*next;
-}						t_command;
+	char			*executable;
+	char			**arguments;
+	int				background;
+}					t_cmd;
 
 /**
  * @brief Enumeração que representa o tipo de token
@@ -53,14 +52,16 @@ typedef enum e_token_type
 	TOKEN_BACKGROUND,
 	TOKEN_HERE_DOC,
 	TOKEN_OR,
-	TOKEN_AND
-}						t_token_type;
+	TOKEN_AND,
+	TOKEN_NEWLINE,
+	TOKEN_EOF
+}					t_token_type;
 
 typedef struct s_token
 {
-	char				*value;
-	t_token_type		type;
-}						t_token;
+	char			*value;
+	t_token_type	type;
+}					t_token;
 
 /**
  * @brief Estrutura que representa uma pipeline
@@ -71,9 +72,9 @@ typedef struct s_token
 
 typedef struct s_pipeline
 {
-	t_command			**commands;
-	int					num_commands;
-}						t_pipeline;
+	t_cmd			**commands;
+	int				num_commands;
+}					t_pipeline;
 
 /**
  * @brief Estrutura que representa um redirecionamento
@@ -84,9 +85,9 @@ typedef struct s_pipeline
 
 typedef struct s_redirection
 {
-	char				*file;
-	int					type;
-}						t_redirection;
+	char			*file;
+	int				type;
+}					t_redirection;
 
 /**
  * @brief Estrutura que representa um job
@@ -98,10 +99,10 @@ typedef struct s_redirection
 
 typedef struct s_job
 {
-	t_pipeline			*pipeline;
-	t_redirection		*input;
-	t_redirection		*output;
-}						t_job;
+	t_pipeline		*pipeline;
+	t_redirection	*input;
+	t_redirection	*output;
+}					t_job;
 
 /**
  * @brief Estrutura que representa um ambiente
@@ -111,12 +112,12 @@ typedef struct s_job
  * @param capacity Capacidade máxima da lista de variáveis
 */
 
-typedef struct s_environment
+typedef struct s_env
 {
-	char				**variables;
-	int					size;
-	int					capacity;
-}						t_environment;
+	char			**variables;
+	int				size;
+	int				capacity;
+}					t_env;
 
 /**
  * @brief Estrutura que representa um processo
@@ -127,9 +128,9 @@ typedef struct s_environment
 
 typedef struct s_process
 {
-	pid_t				pid;
-	int					status;
-}						t_process;
+	pid_t			pid;
+	int				status;
+}					t_process;
 
 /**
  * @brief Estrutura que contem o signal
@@ -138,14 +139,15 @@ typedef struct s_process
 
 typedef struct s_minishell
 {
-	t_environment		*env;
-	t_command			*command;
-	t_pipeline			*pipeline;
-	t_redirection		*redirection;
-	t_job				*job;
-	t_process			*process;
-	t_token				input[1024];
-	char				*built_in[8];
-}						t_minishell;
+	t_env			*env;
+	t_pipeline		*pipeline;
+	t_redirection	*redirection;
+	t_job			*job;
+	t_process		*process;
+	t_list			*token_list;
+	t_list			*command_list;
+	char			*built_in[8];
+	char			*input;
+}					t_minishell;
 
 #endif
