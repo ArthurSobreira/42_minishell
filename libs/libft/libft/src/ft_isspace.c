@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 12:07:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/20 19:19:22 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/01/20 17:30:02 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/01/20 17:30:21 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	built_in_array(t_minishell *core)
+int	ft_isspace(int c)
 {
-	core->splited_input = NULL;
-	core->built_in[0] = "echo";
-	core->built_in[1] = "cd";
-	core->built_in[2] = "pwd";
-	core->built_in[3] = "export";
-	core->built_in[4] = "unset";
-	core->built_in[5] = "env";
-	core->built_in[6] = "exit";
-	core->built_in[7] = NULL;
+	if ((c == '\t') || (c == '\n') || (c == '\v') || (c == '\f') || (c == '\r')
+		|| (c == ' '))
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
 }

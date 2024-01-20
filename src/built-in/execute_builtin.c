@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:05:53 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/20 15:11:29 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:26:57 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	execute_builtin(t_minishell *core)
 {
 	char	*command;
 
-	command = ((t_cmd *)(core->command_list->content))->input;
+	command = ((t_cmd *)(core->command_list->content))->executable;
 	printf("command: %s\n", command);
 	if (!ft_strcmp(command, core->built_in[0]))
 		echo(core);

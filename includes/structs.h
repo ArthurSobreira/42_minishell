@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/20 17:05:11 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:02:52 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,91 +63,13 @@ typedef struct s_token
 	t_token_type	type;
 }					t_token;
 
-/**
- * @brief Estrutura que representa uma pipeline
-
- * @param commands Lista de comandos
- * @param num_commands Número de comandos na pipeline
-*/
-
-typedef struct s_pipeline
-{
-	t_cmd			**commands;
-	int				num_commands;
-}					t_pipeline;
-
-/**
- * @brief Estrutura que representa um redirecionamento
-
- * @param file Nome do arquivo para redirecionamento
- * @param type Tipo de redirecionamento (entrada/saída)
-*/
-
-typedef struct s_redirection
-{
-	char			*file;
-	int				type;
-}					t_redirection;
-
-/**
- * @brief Estrutura que representa um job
-
- * @param pipeline Sequência de comandos
- * @param input Redirecionamento de entrada
- * @param output Redirecionamento de saída
-*/
-
-typedef struct s_job
-{
-	t_pipeline		*pipeline;
-	t_redirection	*input;
-	t_redirection	*output;
-}					t_job;
-
-/**
- * @brief Estrutura que representa um ambiente
-
- * @param variables Lista de variáveis de ambiente
- * @param size Número de variáveis de ambiente
- * @param capacity Capacidade máxima da lista de variáveis
-*/
-
-typedef struct s_env
-{
-	char			**variables;
-	int				size;
-	int				capacity;
-}					t_env;
-
-/**
- * @brief Estrutura que representa um processo
-
- * @param pid PID do processo
- * @param status Status do processo
-*/
-
-typedef struct s_process
-{
-	pid_t			pid;
-	int				status;
-}					t_process;
-
-/**
- * @brief Estrutura que contem o signal
- * @param action Ação a ser executada
- */
-
 typedef struct s_minishell
 {
-	t_env			*env;
-	t_pipeline		*pipeline;
-	t_redirection	*redirection;
-	t_job			*job;
-	t_process		*process;
 	t_list			*token_list;
 	t_list			*command_list;
 	char			*built_in[8];
 	char			*input;
+	t_list			*splited_input;
 }					t_minishell;
 
 #endif
