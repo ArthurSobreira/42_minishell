@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/20 19:09:46 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:58:46 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include <termcap.h>
 # include <termios.h>
 # include <unistd.h>
+
 # define COLOR_PINK "\033[1;35m"
 # define COLOR_RESET "\033[0m"
 # define COLOR_GREEN "\033[1;32m"
