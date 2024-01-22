@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 10:22:43 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:13:13 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	readlines(t_minishell *core)
 	char	*tmp;
 
 	using_history();
-	while (1)
+	while (TRUE)
 	{
-		tmp = ft_strjoin(getenv("USER"), "@minishell: ");
+		tmp = ft_strjoin(getenv("USER"), "@minishell$ ");
 		prompt = ft_strjoin(COLOR_PINK, tmp);
 		prompt = ft_strjoin(prompt, COLOR_RESET);
 		free(tmp);
