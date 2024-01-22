@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/19 11:42:33 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/22 10:24:20 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include <termcap.h>
 # include <termios.h>
 # include <unistd.h>
+
 # define COLOR_PINK "\033[1;35m"
 # define COLOR_RESET "\033[0m"
 # define COLOR_GREEN "\033[1;32m"
