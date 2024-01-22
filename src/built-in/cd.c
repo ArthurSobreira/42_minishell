@@ -6,10 +6,14 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:41 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/18 16:29:09 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:01:09 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	change_directory(t_minishell *core);
+void	change_directory(t_minishell *core)
+{
+	(void)core;
+	exit(0);
+}

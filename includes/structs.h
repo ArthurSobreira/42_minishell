@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/17 16:00:16 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:26:51 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 # define STRUCTS_H
 
 # include "minishell.h"
+# define QUOTE "'\""
 
+typedef enum e_bool
+{
+	FALSE,
+	TRUE
+}						t_bool;
 /**
  * @brief Estrutura que representa um comando
 
@@ -45,7 +51,9 @@ typedef enum e_token_type
 	TOKEN_REDIRECTION,
 	TOKEN_PIPE,
 	TOKEN_BACKGROUND,
-	TOKEN_HERE_DOC
+	TOKEN_HERE_DOC,
+	TOKEN_OR,
+	TOKEN_AND
 }						t_token_type;
 
 typedef struct s_token

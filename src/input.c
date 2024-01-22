@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/18 16:22:20 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/19 10:59:47 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ void	input_analysis(t_minishell *core)
 	if (!ft_strcmp(command, core->built_in[0]))
 		echo(core);
 	else if (!ft_strcmp(command, core->built_in[1]))
-		ft_putstr_fd("ok\n", 0);
+		change_directory(core);
 	else if (!ft_strcmp(command, core->built_in[2]))
-		ft_putstr_fd("ok\n", 0);
+		print_working_directory(core);
 	else if (!ft_strcmp(command, core->built_in[3]))
-		ft_putstr_fd("ok\n", 0);
+		export_variables(core);
 	else if (!ft_strcmp(command, core->built_in[4]))
-		ft_putstr_fd("ok\n", 0);
+		unset(core);
 	else if (!ft_strcmp(command, core->built_in[5]))
-		ft_putstr_fd("ok\n", 0);
+		environment(core);
 	else if (!ft_strcmp(command, core->built_in[6]))
 		exit(0);
 	else
