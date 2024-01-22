@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 12:07:10 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:07:15 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,6 @@ void	splite_input(t_minishell *core)
 	ft_lstadd_back(&core->splited_input, ft_lstnew(ft_substr(spl, start, end
 				- start)));
 }
+
+
+
