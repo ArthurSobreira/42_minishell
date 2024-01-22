@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readlines.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 12:13:13 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:00:03 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ static void	parse_input(char *input, t_minishell *core)
 
 void	readlines(t_minishell *core)
 {
-	char	*input;
 	char	*prompt;
-	char	*tmp;
 
 	using_history();
 	while (TRUE)
@@ -73,15 +71,14 @@ void	readlines(t_minishell *core)
 		free(tmp);
 		input = readline(prompt);
 		free(prompt);
-		if (ft_strcmp(input, "") == 0)
-		{
-			printf("fodido\n");
-			input = ft_strdup("fodido");
-		}
-		add_history(input);
-		parse_input(input, core);
-		input_analysis(core);
-		free(input);
+		add_history(core->input);
+		ft_strip(core->input);
+		ft_printf("input: %s\n", core->input);
+		splite_input(core);
+		ft_lstclear(&core->splited_input, free);
 	}
 	rl_clear_history();
 }
+
+		// execute_builtin(core);
+		// get_first_cmd(core);

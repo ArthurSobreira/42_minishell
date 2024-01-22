@@ -1,6 +1,6 @@
 NAME = minishell
 LIBFT = libs/libft/libft.a
-CFLAGS = -Wall -Werror -Wextra -O3 -g3
+CFLAGS = -Wall -Wextra -O3 -g3
 RFLAGS = -lreadline -lhistory
 TEMP_PATH = ./temp/
 
@@ -29,6 +29,7 @@ SOURCES = \
 	$(BUILTINS_PATH)export.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
+	$(BUILTINS_PATH)execute_builtin.c \
 	input.c \
 	main.c \
 	readlines.c \
