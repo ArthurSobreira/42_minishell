@@ -3,34 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 10:22:50 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:07:10 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	input_analysis(t_minishell *core)
+void	splite_input(t_minishell *core)
 {
-	char	*command;
+	char	*spl;
+	t_bool	quote;
+	int		start;
+	int		end;
+	int		i;
 
-	command = core->input[0].value;
-	if (!ft_strcmp(command, core->built_in[0]))
-		echo(core);
-	else if (!ft_strcmp(command, core->built_in[1]))
-		change_directory(core);
-	else if (!ft_strcmp(command, core->built_in[2]))
-		print_working_directory(core);
-	else if (!ft_strcmp(command, core->built_in[3]))
-		export_variables(core);
-	else if (!ft_strcmp(command, core->built_in[4]))
-		unset(core);
-	else if (!ft_strcmp(command, core->built_in[5]))
-		environment(core);
-	else if (!ft_strcmp(command, core->built_in[6]))
-		exit(0);
-	else
-		ft_putstr_fd("is not a built-in command\n", 0);
+	quote = FALSE;
+	start = 0;
+	i = 0;
+	spl = core->input;
+	while (spl[i])
+	{
+		if (spl[i] == '\'' || spl[i] == '\"')
+			quote = !quote;
+		if (ft_isspace(spl[i]) && !quote && (ft_isspace(spl[i + 1])))
+		{
+			end = i;
+			ft_lstadd_back(&core->splited_input, ft_lstnew(ft_substr(spl, start,
+						end - start)));
+			start = i + 1;
+		}
+		i++;
+	}
+	ft_lstadd_back(&core->splited_input, ft_lstnew(ft_substr(spl, start, end
+				- start)));
 }

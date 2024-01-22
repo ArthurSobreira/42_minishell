@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 10:24:20 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:58:46 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 
 void	readlines(t_minishell *core);
 void	built_in_array(t_minishell *core);
-void	input_analysis(t_minishell *core);
+void	execute_builtin(t_minishell *core);
 void	unset(t_minishell *core);
 void	change_directory(t_minishell *core);
 void	echo(t_minishell *core);
@@ -53,5 +53,7 @@ void	exit_shell(t_minishell *core);
 void	export_variables(t_minishell *core);
 void	print_working_directory(t_minishell *core);
 void	unset(t_minishell *core);
+void	ft_strip(char *str);
+void	splite_input(t_minishell *core);
 
 #endif
