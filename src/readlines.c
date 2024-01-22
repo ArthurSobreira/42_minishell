@@ -63,11 +63,13 @@ void	readlines(t_minishell *core)
 	char	*prompt;
 
 	using_history();
-	while (1)
+	while (TRUE)
 	{
-		prompt = ft_strjoin(getenv("USER"), "@minishell: ");
-		prompt = ft_strjoin(ft_strjoin(COLOR_PINK, prompt), COLOR_RESET);
-		core->input = readline(prompt);
+		tmp = ft_strjoin(getenv("USER"), "@minishell$ ");
+		prompt = ft_strjoin(COLOR_PINK, tmp);
+		prompt = ft_strjoin(prompt, COLOR_RESET);
+		free(tmp);
+		input = readline(prompt);
 		free(prompt);
 		add_history(core->input);
 		ft_strip(core->input);
