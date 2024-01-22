@@ -6,8 +6,8 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/20 16:11:54 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:00:48 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
