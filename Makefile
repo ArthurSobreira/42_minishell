@@ -72,7 +72,8 @@ fclean: clean
 	@make fclean -C $(LIB_PATH) --no-print-directory
 	@rm -rf $(NAME)
 
-re: fclean all
+re: fclean
+	@make --no-print-directory
 
 make_temp:
 	@mkdir -p $(TEMP_PATH)
