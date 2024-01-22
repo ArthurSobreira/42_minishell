@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 11:58:57 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/01/20 17:30:02 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/01/20 17:30:21 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+int	ft_isspace(int c)
 {
-	t_minishell	*core;
-
-	(void)argv;
-	(void)envp;
-	if (argc != 1)
+	if ((c == '\t') || (c == '\n') || (c == '\v') || (c == '\f') || (c == '\r')
+		|| (c == ' '))
+	{
+		return (1);
+	}
+	else
+	{
 		return (0);
-	core = malloc(sizeof(t_minishell));
-	if (core == NULL)
-		return (0);
-	ft_bzero(core, sizeof(t_minishell));
-	built_in_array(core);
-	readlines(core);
-	return (0);
+	}
 }
