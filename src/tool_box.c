@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:34:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 13:09:18 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:23:59 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,3 @@ void	ft_strip(char *str)
 	str[end - start + 1] = '\0';
 }
 
-t_bool	has_squote(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'')
-			return (TRUE);
-		i++;
-	}
-	return (FALSE);
-}
-
-t_bool	has_dquote(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\"')
-			return (TRUE);
-		i++;
-	}
-	return (FALSE);
-}

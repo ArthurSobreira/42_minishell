@@ -6,20 +6,21 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/23 11:55:44 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:40:14 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_print_list(t_list *list)
+void ft_print_list(t_list *list)
 {
 	while (list)
 	{
-		printf("list: %s\n", (char *)list->content);
+		printf("%s\n", (char *)list->content);
 		list = list->next;
 	}
 }
+
 
 static void	add_to_list(t_minishell *core, int start, int end)
 {
