@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 18:00:00 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:13:54 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ void	readlines(t_minishell *core)
 	using_history();
 	while (TRUE)
 	{
-		tmp = ft_strjoin(getenv("USER"), "@minishell$ ");
-		prompt = ft_strjoin(COLOR_PINK, tmp);
-		prompt = ft_strjoin(prompt, COLOR_RESET);
-		free(tmp);
-		input = readline(prompt);
+		prompt = ft_strjoin(getenv("USER"), "@minishell$ ");
+		prompt = ft_strjoin(ft_strjoin(COLOR_PINK, prompt), COLOR_RESET);
+		core->input = readline(prompt);
 		free(prompt);
 		add_history(core->input);
 		ft_strip(core->input);
