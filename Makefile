@@ -72,6 +72,7 @@ fclean: clean
 	@echo $(RED)[Removing $(NAME) executable]$(COLOR_LIMITER)
 	@make fclean -C $(LIB_PATH) --no-print-directory
 	@rm -rf $(NAME)
+	@rm -rf $(TEMP_PATH)
 
 re: fclean all
 
