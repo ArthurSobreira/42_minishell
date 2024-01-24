@@ -32,6 +32,7 @@ LIB_SOURCES = \
 	ft_isprint.c \
 	ft_isspace.c \
 	ft_itoa.c \
+	ft_matrix_len.c \
 	ft_memchr.c \
 	ft_memcmp.c \
 	ft_memcpy.c \
