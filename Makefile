@@ -1,6 +1,6 @@
 NAME = minishell
 LIBFT = libs/libft/libft.a
-CFLAGS = -Wall -Wextra -O3 -g3
+CFLAGS = -Wall -Wextra -Werror -O3 -g3
 RFLAGS = -lreadline -lhistory
 TEMP_PATH = ./temp/
 
@@ -46,6 +46,10 @@ ifeq ($(wildcard $(LIB_PATH)/$(LIB_NAME)),)
 	@make -C $(LIB_PATH) --no-print-directory
 	@make get_next_line -C $(LIB_PATH) --no-print-directory
 	@make ft_printf -C $(LIB_PATH) --no-print-directory
+	@echo $(CYAN)" --------------------------------------"$(COLOR_LIMITER)
+	@echo $(CYAN)"|  LIBFT  Was Compiled Successfully!! |"$(COLOR_LIMITER)
+	@echo $(CYAN)"--------------------------------------"$(COLOR_LIMITER)
+	@echo " "
 endif
 
 $(BIN_PATH)%.o: $(SOURCES_PATH)%.c
@@ -76,7 +80,8 @@ fclean: clean
 	@rm -rf $(NAME)
 	@rm -rf $(TEMP_PATH)
 
-re: fclean all
+re: fclean
+	@make --no-print-directory
 
 make_temp:
 	@mkdir -p $(TEMP_PATH)

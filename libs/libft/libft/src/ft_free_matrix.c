@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 17:39:39 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/01/24 16:13:46 by arsobrei          #+#    #+#             */
+/*   Updated: 2024/01/24 16:25:54 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-t_minishell    *get_core(void)
+void	ft_free_matrix(char **matrix)
 {
-    static t_minishell    core;
+	size_t	index;
 
-    return (&core);
-}
-
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_minishell	*core;
-
-	(void)argv;
-	(void)envp;
-	if (argc == 1)
+	index = 0;
+	while (matrix[index] != NULL)
 	{
-		print_ascii();
-		core = get_core();
-		if (core == NULL)
-			return (EXIT_FAILURE);
-		built_in_array(core);
-		readlines(core);
-		return (EXIT_SUCCESS);
+		free(matrix[index]);
+		index++;
 	}
-	return (EXIT_FAILURE);
+	free(matrix);
 }

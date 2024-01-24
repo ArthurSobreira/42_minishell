@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin_three.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 17:39:39 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/01/24 15:41:00 by arsobrei          #+#    #+#             */
+/*   Updated: 2024/01/24 16:26:07 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-t_minishell    *get_core(void)
+char	*ft_strjoin_three(char const *s1, char const *s2, char const *s3)
 {
-    static t_minishell    core;
+	char	*result;
 
-    return (&core);
-}
-
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_minishell	*core;
-
-	(void)argv;
-	(void)envp;
-	if (argc == 1)
-	{
-		print_ascii();
-		core = get_core();
-		if (core == NULL)
-			return (EXIT_FAILURE);
-		built_in_array(core);
-		readlines(core);
-		return (EXIT_SUCCESS);
-	}
-	return (EXIT_FAILURE);
+	result = ft_strjoin(s1, s2);
+	result = ft_strjoin(result, s3);
+	return (result);
 }
