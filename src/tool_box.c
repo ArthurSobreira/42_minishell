@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:34:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 12:00:17 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:23:59 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,4 @@ void	ft_strip(char *str)
 	ft_memmove(str, str + start, end - start + 1);
 	str[end - start + 1] = '\0';
 }
+

@@ -72,15 +72,15 @@ void	readlines(t_minishell *core)
 		free(prompt);
 		add_history(core->input);
 		ft_strip(core->input);
-		ft_printf("input: %s\n", core->input);
-		
-		if (strcmp(core->input, "pwd") == 0)
-			print_working_directory(core);
-		else if (strcmp(core->input, "exit") == 0)
-			exit(0);
-
-		splite_input(core);
-		ft_lstclear(&core->splited_input, free);
+		printf("input: %s\n", core->input);
+		split_quote(core);
+		if (core->input[0] == '\0')
+			continue ;
+		if (ft_strcmp(core->input, "exit") == 0)
+			break ;
+		free(core->input);
+		if (core->splited_input)
+			ft_lstclear(&core->splited_input, free);
 	}
 	rl_clear_history();
 }

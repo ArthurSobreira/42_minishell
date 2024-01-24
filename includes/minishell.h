@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/24 16:48:23 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:27:55 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,13 @@ void	exit_shell(t_minishell *core);
 void	export_variables(t_minishell *core);
 void	unset(t_minishell *core);
 void	ft_strip(char *str);
-void	splite_input(t_minishell *core);
+void	split_quote(t_minishell *core);
+void	re_parse(t_minishell *core);
+t_bool	ispipe(int c);
+t_bool	isredir(int c);
+t_bool	isbackground(int c);
+t_bool	issemicolon(int c);
+t_bool	isnull(int c);
 
 // Built-in functions
 char	*get_working_directory(void);
