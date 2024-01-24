@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/24 15:08:30 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:19:33 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_minishell
 	t_list	*splited_input;
 	char	*built_in[8];
 	char	*input;
-  t_exits exit;
+	t_exits exits;
 }			t_minishell;
 
 typedef struct s_token
