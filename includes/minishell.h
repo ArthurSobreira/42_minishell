@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/23 15:32:40 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:27:55 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ void	unset(t_minishell *core);
 void	ft_strip(char *str);
 void	split_quote(t_minishell *core);
 void	re_parse(t_minishell *core);
-t_bool	has_pipe(char *str);
-t_bool	has_redirection(char *str);
-t_bool	has_background(char *str);
-t_bool	has_and(char *str);
-t_bool	has_or(char *str);
-t_bool	has_here_doc(char *str);
+t_bool	ispipe(int c);
+t_bool	isredir(int c);
+t_bool	isbackground(int c);
+t_bool	issemicolon(int c);
+t_bool	isnull(int c);
 
 #endif

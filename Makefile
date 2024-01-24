@@ -35,6 +35,7 @@ SOURCES = \
 	readlines.c \
 	start.c \
 	tool_box.c \
+	is.c
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
 
@@ -70,6 +71,7 @@ clean:
 
 fclean: clean
 	@echo $(RED)[Removing $(NAME) executable]$(COLOR_LIMITER)
+	@echo $(RED)[Removing $(TEMP_PATH)]$(COLOR_LIMITER)
 	@make fclean -C $(LIB_PATH) --no-print-directory
 	@rm -rf $(NAME)
 	@rm -rf $(TEMP_PATH)

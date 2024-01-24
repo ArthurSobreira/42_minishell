@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/23 11:55:28 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:08:30 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ typedef enum e_token_type
 	TOKEN_BACKGROUND,
 	TOKEN_HERE_DOC,
 	TOKEN_OR,
-	TOKEN_AND,
-	TOKEN_SINGLE_QUOTE,
-	TOKEN_DOUBLE_QUOTE,
+	TOKEN_AND
 }			t_token_type;
 typedef struct s_minishell
 {
