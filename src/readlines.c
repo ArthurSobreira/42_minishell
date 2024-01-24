@@ -6,57 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 12:00:03 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:13:54 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	token_type(t_minishell *core, int capacity)
-{
-	int	i;
-
-	i = -1;
-	while (++i < capacity)
-	{
-		if (ft_strcmp(core->input[i].value, "|") == 0)
-			core->input[i].type = TOKEN_PIPE;
-		else if (ft_strcmp(core->input[i].value, "<") == 0)
-			core->input[i].type = TOKEN_REDIRECTION;
-		else if (ft_strcmp(core->input[i].value, ">") == 0)
-			core->input[i].type = TOKEN_REDIRECTION;
-		else if (ft_strcmp(core->input[i].value, ">>") == 0)
-			core->input[i].type = TOKEN_REDIRECTION;
-		else if (ft_strcmp(core->input[i].value, "&") == 0)
-			core->input[i].type = TOKEN_BACKGROUND;
-		else if (ft_strcmp(core->input[i].value, "<<") == 0)
-			core->input[i].type = TOKEN_HERE_DOC;
-		else if (ft_strcmp(core->input[i].value, "||") == 0)
-			core->input[i].type = TOKEN_OR;
-		else if (ft_strcmp(core->input[i].value, "&&") == 0)
-			core->input[i].type = TOKEN_AND;
-		else
-			core->input[i].type = TOKEN_WORD;
-	}
-}
-
-static void	parse_input(char *input, t_minishell *core)
-{
-	char	**commands;
-	int		len;
-	int		i;
-
-	i = -1;
-	commands = ft_split(input, ' ');
-	len = 0;
-	while (commands[len])
-		len++;
-	while (++i < len)
-		core->input[i].value = commands[i];
-	core->input[i].value = NULL;
-	free(commands);
-	token_type(core, len);
-}
 
 void	readlines(t_minishell *core)
 {
@@ -65,20 +19,21 @@ void	readlines(t_minishell *core)
 	using_history();
 	while (TRUE)
 	{
-		tmp = ft_strjoin(getenv("USER"), "@minishell$ ");
-		prompt = ft_strjoin(COLOR_PINK, tmp);
-		prompt = ft_strjoin(prompt, COLOR_RESET);
-		free(tmp);
-		input = readline(prompt);
+		prompt = ft_strjoin(getenv("USER"), "@minishell$ ");
+		prompt = ft_strjoin(ft_strjoin(COLOR_PINK, prompt), COLOR_RESET);
+		core->input = readline(prompt);
 		free(prompt);
 		add_history(core->input);
 		ft_strip(core->input);
-		ft_printf("input: %s\n", core->input);
-		splite_input(core);
-		ft_lstclear(&core->splited_input, free);
+		printf("input: %s\n", core->input);
+		split_quote(core);
+		if (core->input[0] == '\0')
+			continue ;
+		if (ft_strcmp(core->input, "exit") == 0)
+			break ;
+		free(core->input);
+		if (core->splited_input)
+			ft_lstclear(&core->splited_input, free);
 	}
 	rl_clear_history();
 }
-
-		// execute_builtin(core);
-		// get_first_cmd(core);

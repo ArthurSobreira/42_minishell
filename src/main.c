@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 11:58:57 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:39:39 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_bzero(core, sizeof(t_minishell));
 	built_in_array(core);
 	readlines(core);
+	free(core->input);
+	free(core);
 	return (0);
 }

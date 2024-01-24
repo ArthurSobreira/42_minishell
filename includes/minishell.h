@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 11:58:46 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:27:55 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ void	export_variables(t_minishell *core);
 void	print_working_directory(t_minishell *core);
 void	unset(t_minishell *core);
 void	ft_strip(char *str);
-void	splite_input(t_minishell *core);
+void	split_quote(t_minishell *core);
+void	re_parse(t_minishell *core);
+t_bool	ispipe(int c);
+t_bool	isredir(int c);
+t_bool	isbackground(int c);
+t_bool	issemicolon(int c);
+t_bool	isnull(int c);
 
 #endif
