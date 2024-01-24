@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 11:58:46 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:48:23 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,18 @@
 # define COLOR_RESET "\033[0m"
 # define COLOR_GREEN "\033[1;32m"
 # define COLOR_RED "\033[1;31m"
-# define COLOR_BLUE "\033[1;34m"
+# define COLOR_BLUE "\033[34m"
 # define COLOR_YELLOW "\033[1;33m"
-# define COLOR_CYAN "\033[1;36m"
+# define COLOR_CYAN "\033[36m"
 # define COLOR_WHITE "\033[1;37m"
 # define COLOR_BLACK "\033[1;30m"
 # define COLOR_GRAY "\033[1;90m"
+
+# define EXIT_SUCCESS 0
+# define EXIT_FAILURE 1
+
+# define MAX_PATH_LEN 4096
+# define MAX_HOSTNAME_LEN 256
 
 void	readlines(t_minishell *core);
 void	built_in_array(t_minishell *core);
@@ -51,9 +57,14 @@ void	echo(t_minishell *core);
 void	environment(t_minishell *core);
 void	exit_shell(t_minishell *core);
 void	export_variables(t_minishell *core);
-void	print_working_directory(t_minishell *core);
 void	unset(t_minishell *core);
 void	ft_strip(char *str);
 void	splite_input(t_minishell *core);
+
+// Built-in functions
+char	*get_working_directory(void);
+void	print_working_directory(t_minishell *core);
+
+void	print_ascii(void);
 
 #endif

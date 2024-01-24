@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/20 19:02:52 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:05:41 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ typedef struct s_token
 	t_token_type	type;
 }					t_token;
 
+typedef	struct s_exits
+{
+	int				exit_code;
+	char			*exit_msg;
+}					t_exits;
+
 typedef struct s_minishell
 {
 	t_list			*token_list;
@@ -70,6 +76,7 @@ typedef struct s_minishell
 	char			*built_in[8];
 	char			*input;
 	t_list			*splited_input;
+	t_exits			exits;
 }					t_minishell;
 
 #endif
