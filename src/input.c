@@ -6,13 +6,13 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/23 15:40:14 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:48:59 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void ft_print_list(t_list *list)
+void	ft_print_list(t_list *list)
 {
 	while (list)
 	{
@@ -20,7 +20,6 @@ void ft_print_list(t_list *list)
 		list = list->next;
 	}
 }
-
 
 static void	add_to_list(t_minishell *core, int start, int end)
 {
@@ -36,7 +35,9 @@ static void	process_non_space(t_minishell *core, int *i)
 	char	quote;
 
 	start = *i;
-	while (core->input[*i] != ' ' && core->input[*i] != '\0')
+	while (!isspace(core->input[*i]) && !ispipe(core->input[*i])
+		&& !issemicolon((core->input[*i])) && !isredir(core->input[*i])
+		&& !isbackground(core->input[*i]) && !isnull(core->input[*i]))
 	{
 		if (core->input[*i] == '\'' || core->input[*i] == '\"')
 		{
@@ -48,6 +49,13 @@ static void	process_non_space(t_minishell *core, int *i)
 			(*i)++;
 	}
 	add_to_list(core, start, *i);
+	while (ispipe(core->input[*i]) || issemicolon(core->input[*i])
+		|| isredir(core->input[*i]) || isbackground(core->input[*i]))
+	{
+		add_to_list(core, *i, *i + 1);
+		(*i)++;
+	}
+	(*i)--;
 }
 
 void	split_quote(t_minishell *core)
