@@ -47,6 +47,7 @@ LIB_SOURCES = \
 	ft_strcmp.c \
 	ft_strdup.c \
 	ft_striteri.c \
+	ft_strjoin_three.c \
 	ft_strjoin.c \
 	ft_strlcat.c \
 	ft_strlcpy.c \
