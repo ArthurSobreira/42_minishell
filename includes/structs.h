@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/24 17:19:33 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:11:11 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ typedef enum e_bool
 {
 	FALSE,
 	TRUE
-}			t_bool;
+}					t_bool;
 
 typedef struct s_cmd
 {
-	char	*executable;
-	char	**arguments;
-	int		background;
-}			t_cmd;
+	char			*executable;
+	char			**arguments;
+	int				background;
+}					t_cmd;
 
-typedef	struct s_exits
+typedef struct s_exits
 {
 	int				exit_code;
 	char			*exit_msg;
@@ -43,18 +43,20 @@ typedef enum e_token_type
 	TOKEN_HERE_DOC,
 	TOKEN_OR,
 	TOKEN_AND
-}			t_token_type;
+}					t_token_type;
 
 typedef struct s_minishell
 {
-	t_list	*token_list;
-	t_list	*command_list;
-	t_list	*input_list;
-	t_list	*splited_input;
-	char	*built_in[8];
-	char	*input;
-	t_exits exits;
-}			t_minishell;
+	t_list			*token_list;
+	t_list			*command_list;
+	t_list			*input_list;
+	t_list			*splited_input;
+	char			*built_in[8];
+	char			*input;
+	t_exits			exits;
+}					t_minishell;
+
+
 
 typedef struct s_token
 {
