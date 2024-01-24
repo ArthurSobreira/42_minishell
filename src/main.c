@@ -3,28 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 11:58:57 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:52:10 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+t_minishell    *get_core(void)
+{
+    static t_minishell    core;
+
+    return (&core);
+}
+
+int	main(int argc, char *argv[], char *envp[])
 {
 	t_minishell	*core;
 
 	(void)argv;
 	(void)envp;
-	if (argc != 1)
-		return (0);
-	core = malloc(sizeof(t_minishell));
-	if (core == NULL)
-		return (0);
-	ft_bzero(core, sizeof(t_minishell));
-	built_in_array(core);
-	readlines(core);
-	return (0);
+	if (argc == 1)
+	{
+		print_ascii();
+		core = get_core();
+		if (core == NULL)
+			return (EXIT_FAILURE);
+		built_in_array(core);
+		readlines(core);
+		return (EXIT_SUCCESS);
+	}
+	return (EXIT_FAILURE);
 }
