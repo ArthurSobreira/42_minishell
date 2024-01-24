@@ -3,59 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   readlines.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 12:00:03 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:54:22 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	token_type(t_minishell *core, int capacity)
+static char	*get_hostname(t_minishell *core)
 {
-	int	i;
-
-	i = -1;
-	while (++i < capacity)
+	char	*path;
+	int		fd;
+	int		bytes_read;
+	char	hostname[MAX_HOSTNAME_LEN];
+	
+	path = "/etc/hostname";
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
 	{
-		if (ft_strcmp(core->input[i].value, "|") == 0)
-			core->input[i].type = TOKEN_PIPE;
-		else if (ft_strcmp(core->input[i].value, "<") == 0)
-			core->input[i].type = TOKEN_REDIRECTION;
-		else if (ft_strcmp(core->input[i].value, ">") == 0)
-			core->input[i].type = TOKEN_REDIRECTION;
-		else if (ft_strcmp(core->input[i].value, ">>") == 0)
-			core->input[i].type = TOKEN_REDIRECTION;
-		else if (ft_strcmp(core->input[i].value, "&") == 0)
-			core->input[i].type = TOKEN_BACKGROUND;
-		else if (ft_strcmp(core->input[i].value, "<<") == 0)
-			core->input[i].type = TOKEN_HERE_DOC;
-		else if (ft_strcmp(core->input[i].value, "||") == 0)
-			core->input[i].type = TOKEN_OR;
-		else if (ft_strcmp(core->input[i].value, "&&") == 0)
-			core->input[i].type = TOKEN_AND;
-		else
-			core->input[i].type = TOKEN_WORD;
+		core->exits.exit_code = EXIT_FAILURE;
+		core->exits.exit_msg = ft_strjoin(path, ": No such file or directory");
 	}
+	bytes_read = read(fd, hostname, MAX_HOSTNAME_LEN);
+	if (bytes_read < 0)
+	{
+		core->exits.exit_code = EXIT_FAILURE;
+		core->exits.exit_msg = ft_strjoin(path, ": Cannot read file");
+	}
+	close(fd);
+	hostname[bytes_read] = '\0';
+	return (ft_strdup(hostname));
 }
 
-static void	parse_input(char *input, t_minishell *core)
+static char	*get_prompt_text(t_minishell *core)
 {
-	char	**commands;
-	int		len;
-	int		i;
+	char	*user;
+	char	*hostname;
+	char	**pwd_split;
+	char	*current_dir;
+	char	*prompt;
 
-	i = -1;
-	commands = ft_split(input, ' ');
-	len = 0;
-	while (commands[len])
-		len++;
-	while (++i < len)
-		core->input[i].value = commands[i];
-	core->input[i].value = NULL;
-	free(commands);
-	token_type(core, len);
+	user = ft_strjoin_three(COLOR_WHITE, getenv("USER"), COLOR_RESET);
+	hostname = get_hostname(core);
+	if (ft_strchr(hostname, '.'))
+		hostname = ft_split(hostname, '.')[0];
+	hostname = ft_strjoin(hostname, " ");
+	hostname = ft_strjoin_three(COLOR_RED, hostname, COLOR_RESET);
+	pwd_split = ft_split(get_working_directory(), '/');
+	current_dir = pwd_split[ft_matrix_len(pwd_split) - 1];
+	current_dir = ft_strjoin_three(COLOR_CYAN, current_dir, COLOR_RESET);
+	prompt = ft_strjoin(ft_strjoin("[", user), "@");
+	prompt = ft_strjoin(ft_strjoin(prompt, hostname), current_dir);
+	prompt = ft_strjoin(prompt, " ]$ ");
+	return (prompt);
 }
 
 void	readlines(t_minishell *core)
@@ -65,20 +67,20 @@ void	readlines(t_minishell *core)
 	using_history();
 	while (TRUE)
 	{
-		tmp = ft_strjoin(getenv("USER"), "@minishell$ ");
-		prompt = ft_strjoin(COLOR_PINK, tmp);
-		prompt = ft_strjoin(prompt, COLOR_RESET);
-		free(tmp);
-		input = readline(prompt);
+		prompt = get_prompt_text(core);
+		core->input = readline(prompt);
 		free(prompt);
 		add_history(core->input);
 		ft_strip(core->input);
 		ft_printf("input: %s\n", core->input);
+		
+		if (strcmp(core->input, "pwd") == 0)
+			print_working_directory(core);
+		else if (strcmp(core->input, "exit") == 0)
+			exit(0);
+
 		splite_input(core);
 		ft_lstclear(&core->splited_input, free);
 	}
 	rl_clear_history();
 }
-
-		// execute_builtin(core);
-		// get_first_cmd(core);
