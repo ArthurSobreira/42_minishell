@@ -29,7 +29,6 @@ SOURCES = \
 	$(BUILTINS_PATH)export.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
-	$(BUILTINS_PATH)execute_builtin.c \
 	input.c \
 	main.c \
 	readlines.c \

@@ -6,13 +6,13 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/26 17:15:50 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:27:23 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_print_list(t_list *list)
+static void	ft_print_list(t_list *list)
 {
 	while (list)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readlines.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/24 16:54:22 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:10:06 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*get_hostname(t_minishell *core)
 	int		fd;
 	int		bytes_read;
 	char	hostname[MAX_HOSTNAME_LEN];
-	
+
 	path = "/etc/hostname";
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
