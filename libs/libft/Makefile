@@ -107,7 +107,7 @@ PRINTF_OBJECTS = $(addprefix $(PRINTF_BIN_PATH), $(PRINTF_SOURCES:%.c=%.o))
 # ===========================================================================
 
 NAME = libft.a
-CFLAGS = -Wall -Wextra -Werror -O3 -g3
+CFLAGS = -Wall -Wextra -O3 -g3
 
 all: $(LIB_BIN_PATH) $(NAME)
 
