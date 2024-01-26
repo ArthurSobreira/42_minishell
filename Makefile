@@ -1,6 +1,6 @@
 NAME = minishell
 LIBFT = libs/libft/libft.a
-CFLAGS = -Wall -Wextra -Werror -O3 -g3
+CFLAGS = -Wall -Wextra -O3 -g3
 RFLAGS = -lreadline -lhistory
 TEMP_PATH = ./temp/
 
