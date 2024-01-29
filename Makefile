@@ -1,6 +1,6 @@
 NAME = minishell
 LIBFT = libs/libft/libft.a
-CFLAGS = -Wall -Wextra -Werror -O3 -g3
+CFLAGS = -Wall -Wextra -O3 -g3
 RFLAGS = -lreadline -lhistory
 TEMP_PATH = ./temp/
 
@@ -29,12 +29,12 @@ SOURCES = \
 	$(BUILTINS_PATH)export.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
-	execute_builtin.c \
 	input.c \
 	main.c \
 	readlines.c \
 	start.c \
 	tool_box.c \
+	token.c \
 	is.c
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))

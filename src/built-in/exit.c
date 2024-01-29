@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 10:23:06 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:37:19 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exit_shell(t_minishell *core)
+void	exit_shell(void)
 {
-	(void)core;
-	exit(0);
+	ft_error("bye bye\n", EXIT_SUCCESS);
 }

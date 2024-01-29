@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/26 15:43:29 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:36:43 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,31 +48,33 @@
 # define MAX_PATH_LEN 4096
 # define MAX_HOSTNAME_LEN 256
 
-t_minishell    *get_core(void);
+void		readlines(t_minishell *core);
+void		built_in_array(t_minishell *core);
+void		execute_builtin(t_minishell *core);
+void		unset(t_minishell *core);
+void		change_directory(t_minishell *core);
+void		echo(void);
+void		environment(t_minishell *core);
+void		exit_shell(void);
+void		export_variables(t_minishell *core);
+void		unset(t_minishell *core);
+void		ft_strip(char *str);
+void		split_quote(t_minishell *core);
+void		re_parse(t_minishell *core);
+t_bool		ispipe(int c);
+t_bool		isredir(int c);
+t_bool		isbackground(int c);
+t_bool		issemicolon(int c);
+t_bool		isdollar(int c);
+void		tokenization(t_minishell *core);
+void		ft_error(char *str, int status);
 
-void	readlines(t_minishell *core);
-void	built_in_array(t_minishell *core);
-void	execute_builtin(t_minishell *core);
-void	unset(t_minishell *core);
-void	change_directory(t_minishell *core);
-void	echo(t_minishell *core);
-void	environment(t_minishell *core);
-void	exit_shell(t_minishell *core);
-void	export_variables(t_minishell *core);
-void	unset(t_minishell *core);
-void	ft_strip(char *str);
-void	split_quote(t_minishell *core);
-void	re_parse(t_minishell *core);
-t_bool	ispipe(int c);
-t_bool	isredir(int c);
-t_bool	isbackground(int c);
-t_bool	issemicolon(int c);
-t_bool	isnull(int c);
+t_minishell	*get_core(void);
 
 // Built-in functions
-char	*get_working_directory(void);
-void	print_working_directory(void);
+char		*get_working_directory(void);
+void		print_working_directory(void);
 
-void	print_ascii(void);
+void		print_ascii(void);
 
 #endif

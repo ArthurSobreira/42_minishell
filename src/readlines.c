@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readlines.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 10:22:40 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:52:26 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*get_hostname(t_minishell *core)
 	int		fd;
 	int		bytes_read;
 	char	hostname[MAX_HOSTNAME_LEN];
-	
+
 	path = "/etc/hostname";
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
@@ -79,10 +79,11 @@ void	readlines(t_minishell *core)
 		ft_strip(core->input);
 		printf("input: %s\n", core->input);
 		split_quote(core);
+		tokenization(core);
 		if (core->input[0] == '\0')
 			continue ;
 		if (ft_strcmp(core->input, "exit") == 0)
-			break ;
+			exit_shell();
 		if (ft_strcmp(core->input, "pwd") == 0)
 			print_working_directory();
 		free(core->input);
