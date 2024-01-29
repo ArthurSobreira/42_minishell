@@ -34,7 +34,6 @@ SOURCES = \
 	$(PROMPT_PATH)prompt.c \
 	input.c \
 	main.c \
-	readlines.c \
 	start.c \
 	tool_box.c \
 	token.c \
