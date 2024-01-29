@@ -34,6 +34,7 @@ SOURCES = \
 	readlines.c \
 	start.c \
 	tool_box.c \
+	token.c \
 	is.c
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
