@@ -6,19 +6,16 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 13:08:39 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:49:46 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	ft_print_list(void *list)
+static void	print_token(t_token *token)
 {
-	t_token	token_list;
-
-	token_list = *(t_token *)list;
-	printf("%s\n", token_list.value);
-	printf("%d\n", token_list.type);
+	printf("value: %s\n", token->value);
+	printf("type: %d\n", token->type);
 }
 
 t_token_type	set_token_type(char *str)
@@ -54,6 +51,7 @@ void	tokenization(t_minishell *core)
 	{
 		if (!ft_isprint(*(char *)(core->splited_input)->content))
 		{
+			free((char *)(core->splited_input)->content);
 			core->splited_input = (core->splited_input)->next;
 			continue ;
 		}
@@ -62,12 +60,12 @@ void	tokenization(t_minishell *core)
 				(char *)(core->splited_input->next)->content))
 		{
 			token.value = ft_strjoin(token.value,
-				(char *)(core->splited_input->next)->content);
+								(char *)(core->splited_input->next)->content);
 			core->splited_input = (core->splited_input)->next;
 		}
 		token.type = set_token_type(token.value);
 		ft_lstadd_back(&core->token_list, ft_lstnew(&token));
-		core->splited_input = (core->splited_input)->next;
-		ft_print_list(core->token_list->content);
+				core->splited_input = (core->splited_input)->next;
+		print_token((t_token *)(core->token_list->content));
 	}
 }

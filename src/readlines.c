@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 15:19:28 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:43:31 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,5 @@ void	readlines(t_minishell *core)
 			exit_shell();
 		if (ft_strcmp(core->input, "pwd") == 0)
 			print_working_directory();
-		free(core->input);
-		if (core->splited_input)
-			ft_lstclear(&core->splited_input, free);
 	}
-	rl_clear_history();
 }
