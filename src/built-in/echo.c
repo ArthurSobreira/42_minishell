@@ -3,17 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:50:48 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/22 10:23:13 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:57:41 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	echo(t_minishell *core)
+void	ft_print_list(t_list *lst)
 {
-	(void)core;
-	exit(0);
+	while (lst)
+	{
+		printf("%s\n", (char *)lst->content);
+		lst = lst->next;
+	}
+}
+
+void	echo(void)
+{
+	t_minishell	*core;
+
+	core = get_core();
+	ft_print_list(core->splited_input);
 }

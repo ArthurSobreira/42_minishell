@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 11:19:44 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:29:56 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_minishell    *get_core(void)
+t_minishell	*get_core(void)
 {
-    static t_minishell    core;
+	static t_minishell	core;
 
-    return (&core);
+	return (&core);
 }
 
 int	main(int argc, char *argv[], char *envp[])
