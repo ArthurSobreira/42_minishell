@@ -6,20 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 11:26:14 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:00:31 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	ft_print_list(t_list *list)
-{
-	while (list)
-	{
-		printf("%s\n", (char *)list->content);
-		list = list->next;
-	}
-}
 
 static void	add_to_list(t_minishell *core, int start, int end)
 {
@@ -83,5 +74,4 @@ void	split_quote(t_minishell *core)
 		else if (core->input[i] != ' ')
 			process_non_space(core, &i);
 	}
-	ft_print_list(core->splited_input);
 }
