@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:34:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 16:50:58 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:19:18 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,13 @@ void	ft_strip(char *str)
 	str[end - start + 1] = '\0';
 }
 
-void	free_token_list(t_list *token_list)
-{
-	t_list	*temp;
-	t_token	*token;
-
-	while (token_list)
-	{
-		temp = token_list;
-		token = (t_token *)temp->content;
-		free(token->value);
-		token_list = token_list->next;
-		free(temp);
-	}
-}
-
 void	ft_error(char *str, int status)
 {
 	t_minishell	*core;
 
 	core = get_core();
 	ft_putstr_fd(str, STDERR_FILENO);
-	if (core->input != NULL)
-		free(core->input);
-	if (core->token_list)
-		free_token_list(core->token_list);
+	ft_free(core->input);
 	rl_clear_history();
 	exit(status);
 }
