@@ -20,6 +20,7 @@ HEADER_PATH = ./includes
 BIN_PATH = ./bin/
 SOURCES_PATH = ./src/
 BUILTINS_PATH = built-in/
+INIT_PATH = init/
 PROMPT_PATH = prompt/
 
 SOURCES = \
@@ -30,14 +31,16 @@ SOURCES = \
 	$(BUILTINS_PATH)export.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
+	$(INIT_PATH)init_structs.c \
+	$(INIT_PATH)init_stuff.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
 	input.c \
+	is.c \
 	main.c \
-	start.c \
-	tool_box.c \
+	parse.c \
 	token.c \
-	is.c
+	tool_box.c \
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
 
@@ -69,6 +72,7 @@ $(NAME): $(OBJECTS)
 $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)
 	@mkdir -p $(BIN_PATH)$(BUILTINS_PATH)
+	@mkdir -p $(BIN_PATH)$(INIT_PATH)
 	@mkdir -p $(BIN_PATH)$(PROMPT_PATH)
 
 clean:
