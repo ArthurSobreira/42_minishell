@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 11:28:36 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:59:22 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,13 @@ typedef struct s_exits
 typedef enum e_token_type
 {
 	TOKEN_WORD,
-	TOKEN_REDIRECTION,
+	TOKEN_REDIRECT,
+	TOKEN_REDIRECT_REVERSE,
+	TOKEN_APPEND,
 	TOKEN_PIPE,
-	TOKEN_BACKGROUND,
 	TOKEN_HERE_DOC,
+	TOKEN_QUOTE,
+	TOKEN_BACKGROUND,
 	TOKEN_OR,
 	TOKEN_AND
 }					t_token_type;
@@ -49,7 +52,6 @@ typedef struct s_minishell
 {
 	t_list			*token_list;
 	t_list			*command_list;
-	t_list			*input_list;
 	t_list			*splited_input;
 	char			*built_in[8];
 	char			*input;
