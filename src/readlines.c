@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 10:22:40 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:19:28 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,47 @@ static char	*get_prompt_text(t_minishell *core)
 	char	**pwd_split;
 	char	*current_dir;
 	char	*prompt;
-	char	*temp;
+	char	**pp_temp;
+	char	*p_temp;
+	char	*final_prompt;
 
 	user = ft_strjoin_three(COLOR_WHITE, getenv("USER"), COLOR_RESET);
 	hostname = get_hostname(core);
 	if (ft_strchr(hostname, '.'))
 	{
-		temp = hostname;
-		hostname = ft_split(hostname, '.')[0];
-		free(temp);
+		pp_temp = ft_split(hostname, '.');
+		free(hostname);
+		hostname = ft_strdup(pp_temp[0]);
+		ft_free_matrix(pp_temp);
 	}
+	p_temp = hostname;
 	hostname = ft_strjoin_three(COLOR_RED, hostname, COLOR_RESET);
+	free(p_temp);
+	p_temp = hostname;
 	hostname = ft_strjoin(hostname, " ");
-	pwd_split = ft_split(get_working_directory(), '/');
+	free(p_temp);
+	current_dir = get_working_directory();
+	pwd_split = ft_split(current_dir, '/');
+	free(current_dir);
 	current_dir = pwd_split[ft_matrix_len(pwd_split) - 1];
 	current_dir = ft_strjoin_three(COLOR_CYAN, current_dir, COLOR_RESET);
-	prompt = ft_strjoin(ft_strjoin("[", user), "@");
-	prompt = ft_strjoin(ft_strjoin(prompt, hostname), current_dir);
-	prompt = ft_strjoin(prompt, " ]$ ");
-	return (prompt);
+	
+	p_temp = ft_strjoin("[", user);
+	prompt = ft_strjoin(p_temp, "@");
+	free(p_temp);
+	
+	p_temp = ft_strjoin(prompt, hostname);
+	free(prompt);
+	prompt = ft_strjoin(p_temp, current_dir);
+	free(p_temp);
+	
+	final_prompt = ft_strjoin(prompt, " ]$ ");
+	free(prompt);
+	free(user);
+	free(hostname);
+	free(current_dir);
+	ft_free_matrix(pwd_split);
+	return (final_prompt);
 }
 
 void	readlines(t_minishell *core)
