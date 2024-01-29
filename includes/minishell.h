@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 11:29:08 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:36:43 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		unset(t_minishell *core);
 void		change_directory(t_minishell *core);
 void		echo(void);
 void		environment(t_minishell *core);
-void		exit_shell(t_minishell *core);
+void		exit_shell(void);
 void		export_variables(t_minishell *core);
 void		unset(t_minishell *core);
 void		ft_strip(char *str);
@@ -66,6 +66,8 @@ t_bool		isredir(int c);
 t_bool		isbackground(int c);
 t_bool		issemicolon(int c);
 t_bool		isdollar(int c);
+void		tokenization(t_minishell *core);
+void		ft_error(char *str, int status);
 
 t_minishell	*get_core(void);
 
