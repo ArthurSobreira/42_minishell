@@ -20,6 +20,7 @@ HEADER_PATH = ./includes
 BIN_PATH = ./bin/
 SOURCES_PATH = ./src/
 BUILTINS_PATH = built-in/
+PROMPT_PATH = prompt/
 
 SOURCES = \
 	$(BUILTINS_PATH)cd.c \
@@ -29,6 +30,8 @@ SOURCES = \
 	$(BUILTINS_PATH)export.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
+	$(PROMPT_PATH)prompt_utils.c \
+	$(PROMPT_PATH)prompt.c \
 	input.c \
 	main.c \
 	readlines.c \
@@ -67,6 +70,7 @@ $(NAME): $(OBJECTS)
 $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)
 	@mkdir -p $(BIN_PATH)$(BUILTINS_PATH)
+	@mkdir -p $(BIN_PATH)$(PROMPT_PATH)
 
 clean:
 	@echo $(RED)[Removing Objects]$(COLOR_LIMITER)
