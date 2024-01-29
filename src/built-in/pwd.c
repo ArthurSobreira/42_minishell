@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:56 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 11:53:02 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:26:22 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	print_working_directory(void)
 
 	current_dir = get_working_directory();
 	if (current_dir != NULL)
-		ft_putendl_fd(current_dir, 1);
+		ft_putendl_fd(current_dir, STDOUT_FILENO);
 	ft_free_pointer((void *)&current_dir);
 }
