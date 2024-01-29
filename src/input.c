@@ -6,20 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/24 15:48:59 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:00:31 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-
-void	ft_print_list(t_list *list)
-{
-	while (list)
-	{
-		printf("%s\n", (char *)list->content);
-		list = list->next;
-	}
-}
+#include "minishell.h"
 
 static void	add_to_list(t_minishell *core, int start, int end)
 {
@@ -29,15 +20,20 @@ static void	add_to_list(t_minishell *core, int start, int end)
 	ft_lstadd_back(&core->splited_input, ft_lstnew(str));
 }
 
+static t_bool	isall(t_minishell *core, int *i)
+{
+	return (!isspace(core->input[*i]) && !ispipe(core->input[*i])
+		&& !issemicolon((core->input[*i])) && !isredir(core->input[*i])
+		&& !isbackground(core->input[*i]) && core->input[*i] != '\0');
+}
+
 static void	process_non_space(t_minishell *core, int *i)
 {
 	int		start;
 	char	quote;
 
 	start = *i;
-	while (!isspace(core->input[*i]) && !ispipe(core->input[*i])
-		&& !issemicolon((core->input[*i])) && !isredir(core->input[*i])
-		&& !isbackground(core->input[*i]) && !isnull(core->input[*i]))
+	while (isall(core, i))
 	{
 		if (core->input[*i] == '\'' || core->input[*i] == '\"')
 		{
@@ -78,5 +74,4 @@ void	split_quote(t_minishell *core)
 		else if (core->input[i] != ' ')
 			process_non_space(core, &i);
 	}
-	ft_print_list(core->splited_input);
 }
