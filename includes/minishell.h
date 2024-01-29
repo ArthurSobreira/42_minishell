@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/24 17:51:44 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:06:49 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_bool		ispipe(int c);
 t_bool		isredir(int c);
 t_bool		isbackground(int c);
 t_bool		issemicolon(int c);
-t_bool		isnull(int c);
+t_bool		isdollar(int c);
 
 t_minishell	*get_core(void);
 

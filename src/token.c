@@ -6,15 +6,26 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/24 14:57:13 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:23:28 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	token(t_minishell *core)
+static void	ft_print_list(t_list *list)
 {
-	t_list	*tmp;
-	char	*str;
+	while (list)
+	{
+		printf("%s\n", (char *)list->content);
+		list = list->next;
+	}
+}
 
-	tmp = core->splited_input;
+void	tokenization(void)
+{
+	t_minishell *core;
+	int i;
+
+	core = get_core();
+	i = 0;
+}
