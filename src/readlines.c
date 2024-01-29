@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 17:01:14 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:31:45 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	readlines(t_minishell *core)
 		ft_strip(core->input);
 		printf("input: %s\n", core->input);
 		split_quote(core);
-		tokenization(core);
+		// tokenization(core);
 		if (core->input[0] == '\0')
 			continue ;
 		if (ft_strcmp(core->input, "exit") == 0)

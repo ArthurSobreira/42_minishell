@@ -6,16 +6,45 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 16:49:46 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:29:07 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	print_token(t_token *token)
+
+void print_token_list(t_token *token_list)
 {
-	printf("value: %s\n", token->value);
-	printf("type: %d\n", token->type);
+	while (token_list)
+	{
+		printf("token:\n");
+		printf("value: %s\n", token_list->value);
+		printf("type: %d\n", token_list->type);
+		token_list = token_list->next;
+	}
+}
+
+void	add_to_node(t_token *node, t_token token)
+{
+	t_token	*new;
+
+	new = new_token(token);
+	while (node->next)
+		node = node->next;
+	node->next = new;
+}
+
+t_token	*new_token(t_token token)
+{
+	t_token	*new;
+
+	new = malloc(sizeof(t_token));
+	if (!new)
+		return (NULL);
+	new->value = token.value;
+	new->type = token.type;
+	new->next = NULL;
+	return (new);
 }
 
 t_token_type	set_token_type(char *str)
@@ -44,28 +73,21 @@ t_token_type	set_token_type(char *str)
 void	tokenization(t_minishell *core)
 {
 	t_token	token;
-	int		i;
-
-	i = 0;
-	while (core->splited_input)
+	
+	while(core->splited_input)
 	{
-		if (!ft_isprint(*(char *)(core->splited_input)->content))
+		if(!ft_isprint(core->splited_input->content[0]))
 		{
-			free((char *)(core->splited_input)->content);
-			core->splited_input = (core->splited_input)->next;
+			core->splited_input = core->splited_input->next;
 			continue ;
 		}
-		token.value = (char *)(core->splited_input)->content;
-		if (core->splited_input->next && !ft_strcmp(token.value,
-				(char *)(core->splited_input->next)->content))
-		{
-			token.value = ft_strjoin(token.value,
-								(char *)(core->splited_input->next)->content);
-			core->splited_input = (core->splited_input)->next;
-		}
+		token.value = core->splited_input->content;
 		token.type = set_token_type(token.value);
-		ft_lstadd_back(&core->token_list, ft_lstnew(&token));
-				core->splited_input = (core->splited_input)->next;
-		print_token((t_token *)(core->token_list->content));
+		if (!core->token_list)
+			core->token_list = new_token(token);
+		else
+			add_to_node(core->token_list, token);
+		core->splited_input = core->splited_input->next;
 	}
+	print_token_list(core->token_list);
 }

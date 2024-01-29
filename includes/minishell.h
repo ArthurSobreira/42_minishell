@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 16:15:48 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:05:32 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ t_bool		issemicolon(int c);
 t_bool		isdollar(int c);
 void		tokenization(t_minishell *core);
 void		ft_error(char *str, int status);
+t_list_ms	*new_node(char *str);
+void		add_to_node(t_token *node, t_token token);
+t_token		*new_token(t_token token);
 
 t_minishell	*get_core(void);
 
@@ -76,7 +79,7 @@ char		*get_working_directory(void);
 void		print_working_directory(void);
 
 // Prompt functions
-char	*get_prompt_text(t_minishell *core);
+char		*get_prompt_text(t_minishell *core);
 
 void		print_ascii(void);
 
