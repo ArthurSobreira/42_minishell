@@ -86,13 +86,13 @@ re: fclean
 make_temp:
 	@mkdir -p $(TEMP_PATH)
 
-run: all
-	./$(NAME)
-
-tests: make_temp all
-	valgrind --leak-check=full -\
-	-show-leak-kinds=all --track-origins=yes \
+valgrind: make_temp all
+	valgrind -s --leak-check=full \
+	--show-reachable=yes \
+	--show-leak-kinds=all \
+	--track-origins=yes \
+	--track-fds=yes \
 	--suppressions=./sup/sup.sup \
-	--verbose --log-file=$(TEMP_PATH)valgrind.log ./$(NAME)
+	--log-file=$(TEMP_PATH)valgrind.log ./$(NAME)
 
 .PHONY: all clean fclean re libft make_temp tests run
