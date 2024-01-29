@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:05:53 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/20 17:26:57 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:43:49 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void	execute_builtin(t_minishell *core)
 {
@@ -23,7 +23,7 @@ void	execute_builtin(t_minishell *core)
 	else if (!ft_strcmp(command, core->built_in[1]))
 		change_directory(core);
 	else if (!ft_strcmp(command, core->built_in[2]))
-		print_working_directory(core);
+		print_working_directory();
 	else if (!ft_strcmp(command, core->built_in[3]))
 		export_variables(core);
 	else if (!ft_strcmp(command, core->built_in[4]))

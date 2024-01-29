@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 11:06:49 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:29:08 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_minishell	*get_core(void);
 
 // Built-in functions
 char		*get_working_directory(void);
-void		print_working_directory(t_minishell *core);
+void		print_working_directory(void);
 
 void		print_ascii(void);
 
