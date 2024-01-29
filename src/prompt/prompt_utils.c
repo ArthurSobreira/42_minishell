@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:10 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/29 16:57:53 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:15:48 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,6 @@ char	*get_hostname(t_minishell *core)
 	return (ft_strdup(hostname));
 }
 
-char	*get_username(void)
-{
-	char	*username;
-	char	*c_username;
-
-	username = getenv("USER");
-	if (!username)
-	{
-		username = getenv("LOGNAME");
-		if (!username)
-			username = "guest";
-	}
-	c_username = ft_strjoin_three(COLOR_WHITE, username, COLOR_RESET);
-	return (c_username);
-}
-
 char	*format_hostname(char *hostname)
 {
 	char	**splitted_hostname;
@@ -74,11 +58,27 @@ char	*format_hostname(char *hostname)
 	return (formatted_hostname);
 }
 
+char	*get_username(void)
+{
+	char	*username;
+	char	*c_username;
+
+	username = getenv("USER");
+	if (!username)
+	{
+		username = getenv("LOGNAME");
+		if (!username)
+			username = "guest";
+	}
+	c_username = ft_strjoin_three(COLOR_WHITE, username, COLOR_RESET);
+	return (c_username);
+}
+
 char	*get_current_dir(void)
 {
 	char	**cwd_split;
 	char	*current_dir;
-	
+
 	current_dir = get_working_directory();
 	cwd_split = ft_split(current_dir, '/');
 	ft_free(current_dir);
@@ -88,38 +88,20 @@ char	*get_current_dir(void)
 	return (current_dir);
 }
 
-char	*get_prompt_text(t_minishell *core)
+char	*format_prompt(t_prompt *prompt_data)
 {
-	char	*user;
-	char	*hostname;
-	char	*current_dir;
+	char	*formatted_prompt;
 	char	*prompt;
 	char	*p_temp;
-	char	*final_prompt;
 
-	user = get_username();
-	hostname = format_hostname(get_hostname(core));
-	current_dir = get_current_dir();
-
-	// current_dir = get_working_directory();
-	// pwd_split = ft_split(current_dir, '/');
-	// free(current_dir);
-	// current_dir = pwd_split[ft_matrix_len(pwd_split) - 1];
-	// current_dir = ft_strjoin_three(COLOR_CYAN, current_dir, COLOR_RESET);
-	
-	p_temp = ft_strjoin("[", user);
-	prompt = ft_strjoin(p_temp, "@");
-	free(p_temp);
-	
-	p_temp = ft_strjoin(prompt, hostname);
+	prompt = ft_strjoin("[", prompt_data->user);
+	p_temp = ft_strjoin(prompt, "@");
 	free(prompt);
-	prompt = ft_strjoin(p_temp, current_dir);
+	prompt = ft_strjoin(p_temp, prompt_data->hostname);
 	free(p_temp);
-	
-	final_prompt = ft_strjoin(prompt, " ]$ ");
+	p_temp = ft_strjoin(prompt, prompt_data->current_dir);
 	free(prompt);
-	free(user);
-	free(hostname);
-	free(current_dir);
-	return (final_prompt);
+	formatted_prompt = ft_strjoin(p_temp, " ]$ ");
+	free(p_temp);
+	return (formatted_prompt);
 }
