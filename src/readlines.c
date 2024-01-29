@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:18:27 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/24 16:54:22 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 10:22:40 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,18 @@ static char	*get_prompt_text(t_minishell *core)
 	char	**pwd_split;
 	char	*current_dir;
 	char	*prompt;
+	char	*temp;
 
 	user = ft_strjoin_three(COLOR_WHITE, getenv("USER"), COLOR_RESET);
 	hostname = get_hostname(core);
 	if (ft_strchr(hostname, '.'))
+	{
+		temp = hostname;
 		hostname = ft_split(hostname, '.')[0];
-	hostname = ft_strjoin(hostname, " ");
+		free(temp);
+	}
 	hostname = ft_strjoin_three(COLOR_RED, hostname, COLOR_RESET);
+	hostname = ft_strjoin(hostname, " ");
 	pwd_split = ft_split(get_working_directory(), '/');
 	current_dir = pwd_split[ft_matrix_len(pwd_split) - 1];
 	current_dir = ft_strjoin_three(COLOR_CYAN, current_dir, COLOR_RESET);
@@ -78,6 +83,8 @@ void	readlines(t_minishell *core)
 			continue ;
 		if (ft_strcmp(core->input, "exit") == 0)
 			break ;
+		if (ft_strcmp(core->input, "pwd") == 0)
+			print_working_directory();
 		free(core->input);
 		if (core->splited_input)
 			ft_lstclear(&core->splited_input, free);

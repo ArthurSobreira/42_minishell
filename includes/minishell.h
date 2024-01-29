@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/24 15:27:55 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:43:29 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 # define MAX_PATH_LEN 4096
 # define MAX_HOSTNAME_LEN 256
 
+t_minishell    *get_core(void);
+
 void	readlines(t_minishell *core);
 void	built_in_array(t_minishell *core);
 void	execute_builtin(t_minishell *core);
@@ -69,7 +71,7 @@ t_bool	isnull(int c);
 
 // Built-in functions
 char	*get_working_directory(void);
-void	print_working_directory(t_minishell *core);
+void	print_working_directory(void);
 
 void	print_ascii(void);
 
