@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 16:15:48 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:14:21 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@
 # define MAX_PATH_LEN 4096
 # define MAX_HOSTNAME_LEN 256
 
-void		readlines(t_minishell *core);
 void		built_in_array(t_minishell *core);
 void		execute_builtin(t_minishell *core);
 void		unset(t_minishell *core);
@@ -60,7 +59,6 @@ void		export_variables(t_minishell *core);
 void		unset(t_minishell *core);
 void		ft_strip(char *str);
 void		split_quote(t_minishell *core);
-void		re_parse(t_minishell *core);
 t_bool		ispipe(int c);
 t_bool		isredir(int c);
 t_bool		isbackground(int c);
@@ -76,7 +74,16 @@ char		*get_working_directory(void);
 void		print_working_directory(void);
 
 // Prompt functions
+void	prompt_loop(t_minishell *core);
 char	*get_prompt_text(t_minishell *core);
+char	*get_hostname(t_minishell *core);
+char	*format_hostname(char *hostname);
+char	*get_username(void);
+char	*get_current_dir(void);
+char	*format_prompt(t_prompt *prompt);
+
+// Start functions
+t_prompt	*init_prompt(void);
 
 void		print_ascii(void);
 
