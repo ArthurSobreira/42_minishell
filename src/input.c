@@ -6,11 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 11:17:10 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:26:14 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 static void	ft_print_list(t_list *list)
 {
