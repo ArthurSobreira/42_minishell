@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   init_stuff.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:07:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 19:23:28 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:32:25 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_prompt	*init_prompt(void)
-{
-	t_prompt	*prompt_data;
-
-	prompt_data = (t_prompt *)malloc(sizeof(t_prompt));
-	if (!prompt_data)
-		return (NULL);
-	prompt_data->user = NULL;
-	prompt_data->hostname = NULL;
-	prompt_data->current_dir = NULL;
-	prompt_data->prompt = NULL;
-	return (prompt_data);
-}
 
 void	built_in_array(t_minishell *core)
 {
