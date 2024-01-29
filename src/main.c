@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 11:29:56 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:27:51 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char *argv[], char *envp[])
 		if (core == NULL)
 			return (EXIT_FAILURE);
 		built_in_array(core);
-		readlines(core);
+		prompt_loop(core);
 		return (EXIT_SUCCESS);
 	}
 	return (EXIT_FAILURE);
