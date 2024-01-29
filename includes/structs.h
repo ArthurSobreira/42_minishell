@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 12:59:22 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:34:28 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,13 @@ typedef struct s_minishell
 	t_exits			exits;
 }					t_minishell;
 
-
+typedef struct s_prompt
+{
+	char			*user;
+	char			*hostname;
+	char			*current_dir;
+	char			*prompt;
+}					t_prompt;
 
 typedef struct s_token
 {
