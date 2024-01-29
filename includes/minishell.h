@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 14:36:43 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:15:48 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ t_minishell	*get_core(void);
 // Built-in functions
 char		*get_working_directory(void);
 void		print_working_directory(void);
+
+// Prompt functions
+char	*get_prompt_text(t_minishell *core);
 
 void		print_ascii(void);
 
