@@ -6,13 +6,13 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 19:32:50 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:17:02 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void print_node(t_list_ms *node)
+void	print_node(t_list_ms *node)
 {
 	printf("node:\n");
 	while (node)
@@ -26,7 +26,6 @@ t_list_ms	*new_node(char *str)
 {
 	t_list_ms	*new;
 
-	if()
 	new = malloc(sizeof(t_list_ms));
 	if (!new)
 		return (NULL);
@@ -37,15 +36,23 @@ t_list_ms	*new_node(char *str)
 
 static void	add_to_list(t_minishell *core, int start, int end)
 {
-	char	*str;
-
+	char		*str;
+	t_list_ms	*tmp;
+	t_list_ms	*new;
 
 	str = ft_substr(core->input, start, end - start);
+	if (ft_isprint(str[0]) == 0)
+		return ;
+	new = new_node(str);
 	if (!core->splited_input)
-		core->splited_input = new_node(str);
-	while (core->splited_input->next)
-		core->splited_input = core->splited_input->next;
-	core->splited_input->next = new_node(str);
+	{
+		core->splited_input = new;
+		return ;
+	}
+	tmp = core->splited_input;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
 }
 
 static t_bool	isall(t_minishell *core, int *i)
