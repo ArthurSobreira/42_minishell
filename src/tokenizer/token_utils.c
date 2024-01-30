@@ -6,11 +6,23 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:35:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/30 14:46:57 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:29:41 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	print_nodes(t_list_ms *head)
+{
+	t_list_ms	*tmp;
+
+	tmp = head;
+	while (tmp)
+	{
+		printf("%s\n", tmp->content);
+		tmp = tmp->next;
+	}
+}
 
 t_list_ms	*new_node(char *str)
 {
@@ -22,29 +34,6 @@ t_list_ms	*new_node(char *str)
 	new->content = str;
 	new->next = NULL;
 	return (new);
-}
-
-t_token_type	set_token_type(char *str)
-{
-	if (!ft_strcmp(str, "||"))
-		return (TOKEN_OR);
-	if (!ft_strcmp(str, "&&"))
-		return (TOKEN_AND);
-	if (!ft_strcmp(str, ">>"))
-		return (TOKEN_APPEND);
-	if (!ft_strcmp(str, ">"))
-		return (TOKEN_REDIRECT);
-	if (!ft_strcmp(str, "<"))
-		return (TOKEN_REDIRECT_REVERSE);
-	if (!ft_strcmp(str, "|"))
-		return (TOKEN_PIPE);
-	if (!ft_strcmp(str, "&"))
-		return (TOKEN_BACKGROUND);
-	if (!ft_strcmp(str, "<<"))
-		return (TOKEN_HERE_DOC);
-	if (str[0] == '\"')
-		return (TOKEN_QUOTE);
-	return (TOKEN_WORD);
 }
 
 void	split_input(t_minishell *core)
@@ -68,6 +57,7 @@ void	split_input(t_minishell *core)
 		else if (core->input[i] != ' ')
 			process_non_space(core, &i);
 	}
+	print_nodes(core->splited_input);
 }
 
 void	process_non_space(t_minishell *core, int *i)
@@ -97,7 +87,7 @@ void	process_non_space(t_minishell *core, int *i)
 	(*i)--;
 }
 
-static void	add_to_list(t_minishell *core, int start, int end)
+void	add_to_list(t_minishell *core, int start, int end)
 {
 	char		*str;
 	t_list_ms	*tmp;
