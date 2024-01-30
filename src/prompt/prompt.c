@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/29 19:05:47 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:57:14 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	prompt_loop(t_minishell *core)
 		add_history(core->input);
 		ft_strip(core->input);
 		printf("input: %s\n", core->input);
-		split_quote(core);
+		split_input(core);
 		tokenization(core);
 		if (core->input[0] == '\0')
 			continue ;
