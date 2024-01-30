@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/30 14:44:56 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:51:55 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ typedef struct s_token
 	struct s_token		*next;
 
 }						t_token;
+
+typedef struct s_prompt
+{
+	char				*user;
+	char				*hostname;
+	char				*current_dir;
+	char				*prompt;
+}						t_prompt;
 
 typedef struct s_minishell
 {
