@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_isbackground.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/19 11:37:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/30 12:12:57 by arsobrei         ###   ########.fr       */
+/*   Created: 2024/01/30 12:21:49 by arsobrei          #+#    #+#             */
+/*   Updated: 2024/01/30 12:22:07 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool	ft_isascii(int c)
+t_bool	ft_isbackground(int c)
 {
-	if ((c >= 0) && (c <= 127))
+	if (c == '&')
 	{
-		return(TRUE);
+		return (TRUE);
 	}
 	else
 	{

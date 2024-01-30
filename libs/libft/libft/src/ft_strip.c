@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tool_box.c                                         :+:      :+:    :+:   */
+/*   ft_strip.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 10:34:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 17:19:18 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/01/30 11:36:28 by arsobrei          #+#    #+#             */
+/*   Updated: 2024/01/30 14:22:45 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
 void	ft_strip(char *str)
 {
@@ -33,15 +33,4 @@ void	ft_strip(char *str)
 		end--;
 	ft_memmove(str, str + start, end - start + 1);
 	str[end - start + 1] = '\0';
-}
-
-void	ft_error(char *str, int status)
-{
-	t_minishell	*core;
-
-	core = get_core();
-	ft_putstr_fd(str, STDERR_FILENO);
-	ft_free(core->input);
-	rl_clear_history();
-	exit(status);
 }

@@ -6,24 +6,24 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:20:41 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/08/04 15:09:01 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:12:57 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+t_bool	ft_isalpha(int c)
 {
 	if ((c >= 'A') && (c <= 'Z'))
 	{
-		return (1);
+		return(TRUE);
 	}
 	else if ((c >= 'a') && (c <= 'z'))
 	{
-		return (1);
+		return(TRUE);
 	}
 	else
 	{
-		return (0);
+		return (FALSE);
 	}
 }

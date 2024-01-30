@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/19 11:37:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/30 12:12:57 by arsobrei         ###   ########.fr       */
+/*   Created: 2024/01/18 10:34:03 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/01/30 11:54:23 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_bool	ft_isascii(int c)
+void	ft_error(char *str, int status)
 {
-	if ((c >= 0) && (c <= 127))
-	{
-		return(TRUE);
-	}
-	else
-	{
-		return (FALSE);
-	}
+	t_minishell	*core;
+
+	core = get_core();
+	ft_putstr_fd(str, STDERR_FILENO);
+	// if (core->input != NULL)
+	// 	free(core->input);
+	// if (core->splited_input != NULL)
+	// 	ft_lstclear(&core->splited_input, free);
+	// if (core->token_list != NULL)
+	// 	ft_lstclear(&core->token_list, free);
+	exit(status);
 }

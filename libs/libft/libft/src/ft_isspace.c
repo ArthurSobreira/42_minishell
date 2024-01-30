@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 17:30:02 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/20 17:30:21 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:12:57 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isspace(int c)
+t_bool	ft_isspace(int c)
 {
 	if ((c == '\t') || (c == '\n') || (c == '\v') || (c == '\f') || (c == '\r')
 		|| (c == ' '))
 	{
-		return (1);
+		return(TRUE);
 	}
 	else
 	{
-		return (0);
+		return (FALSE);
 	}
 }
