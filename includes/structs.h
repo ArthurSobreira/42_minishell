@@ -65,9 +65,18 @@ typedef struct s_minishell
 {
 	t_token				*token_list;
 	t_list_ms			*splited_input;
+  t_var			*env_vars;
+	int				env_vars_size;
 	char				*built_in[8];
 	char				*input;
 	t_exits				exits;
 }						t_minishell;
+
+typedef struct s_var
+{
+	char			*key;
+	char			*value;
+	struct s_var	*next;
+}					t_var;
 
 #endif
