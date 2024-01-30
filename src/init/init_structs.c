@@ -3,25 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/30 11:26:35 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:13:03 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_prompt	*init_prompt(void)
+t_prompt	init_prompt(void)
 {
-	t_prompt	*prompt_data;
+	t_prompt	prompt_data;
 
-	prompt_data = (t_prompt *)malloc(sizeof(t_prompt));
-	if (!prompt_data)
-		return (NULL);
-	prompt_data->user = NULL;
-	prompt_data->hostname = NULL;
-	prompt_data->current_dir = NULL;
-	prompt_data->prompt = NULL;
+	prompt_data.user = NULL;
+	prompt_data.hostname = NULL;
+	prompt_data.current_dir = NULL;
+	prompt_data.prompt = NULL;
 	return (prompt_data);
 }

@@ -38,3 +38,14 @@ Memcheck:Leak
 fun:readline_internal_teardown
 ...
 }
+
+{
+   SupressaoReadlineFunctions
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:xmalloc
+   fun:alloc_history_entry
+   fun:add_history
+}
+
