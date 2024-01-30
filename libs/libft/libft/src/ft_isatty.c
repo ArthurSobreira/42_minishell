@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_isatty(int fd)
+t_bool	ft_isatty(int fd)
 {
 	return (write(fd, "\0", 1) == 1);
 }
