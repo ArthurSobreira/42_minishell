@@ -20,10 +20,13 @@ HEADER_PATH = ./includes
 BIN_PATH = ./bin/
 SOURCES_PATH = ./src/
 BUILTINS_PATH = built-in/
+EXIT_PATH = exit/
 INIT_PATH = init/
+PARSER_PATH = parser/
 PROMPT_PATH = prompt/
+TOKENIZER_PATH = tokenizer/
 
-SOURCES = \
+SOURCES = main.c \
 	$(BUILTINS_PATH)cd.c \
 	$(BUILTINS_PATH)echo.c \
 	$(BUILTINS_PATH)env.c \
@@ -31,16 +34,14 @@ SOURCES = \
 	$(BUILTINS_PATH)export.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
+	$(EXIT_PATH)error.c \
 	$(INIT_PATH)init_structs.c \
 	$(INIT_PATH)init_stuff.c \
+	$(PARSER_PATH)parser.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
-	input.c \
-	is.c \
-	main.c \
-	parse.c \
-	token.c \
-	tool_box.c \
+	$(TOKENIZER_PATH)token_utils.c \
+	$(TOKENIZER_PATH)token.c \
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
 
@@ -72,8 +73,11 @@ $(NAME): $(OBJECTS)
 $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)
 	@mkdir -p $(BIN_PATH)$(BUILTINS_PATH)
+	@mkdir -p $(BIN_PATH)$(EXIT_PATH)
 	@mkdir -p $(BIN_PATH)$(INIT_PATH)
+	@mkdir -p $(BIN_PATH)$(PARSER_PATH)
 	@mkdir -p $(BIN_PATH)$(PROMPT_PATH)
+	@mkdir -p $(BIN_PATH)$(TOKENIZER_PATH)
 
 clean:
 	@echo $(RED)[Removing Objects]$(COLOR_LIMITER)

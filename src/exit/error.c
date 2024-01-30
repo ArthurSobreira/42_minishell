@@ -1,39 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tool_box.c                                         :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:34:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 14:44:43 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:54:23 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_strip(char *str)
-{
-	size_t	len;
-	size_t	start;
-	size_t	end;
-
-	if (str == NULL || *str == '\0')
-		return ;
-	len = ft_strlen(str);
-	start = 0;
-	end = len - 1;
-	while (start < len && (str[start] == ' ' || str[start] == '\t'
-			|| str[start] == '\n' || str[start] == '\v' || str[start] == '\f'
-			|| str[start] == '\r'))
-		start++;
-	while (end > start && (str[end] == ' ' || str[end] == '\t'
-			|| str[end] == '\n' || str[end] == '\v' || str[end] == '\f'
-			|| str[end] == '\r'))
-		end--;
-	ft_memmove(str, str + start, end - start + 1);
-	str[end - start + 1] = '\0';
-}
 
 void	ft_error(char *str, int status)
 {

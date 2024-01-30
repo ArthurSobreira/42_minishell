@@ -6,20 +6,20 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:17:43 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/08/04 15:09:25 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:12:57 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+t_bool	ft_isdigit(int c)
 {
 	if ((c >= '0') && (c <= '9'))
 	{
-		return (1);
+		return(TRUE);
 	}
 	else
 	{
-		return (0);
+		return (FALSE);
 	}
 }

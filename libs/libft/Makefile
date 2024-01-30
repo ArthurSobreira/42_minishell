@@ -29,8 +29,12 @@ LIB_SOURCES = \
 	ft_isalpha.c \
 	ft_isascii.c \
 	ft_isatty.c \
+	ft_isbackground.c \
 	ft_isdigit.c \
+	ft_ispipe.c \
 	ft_isprint.c \
+	ft_isredir.c \
+	ft_issemicolon.c \
 	ft_isspace.c \
 	ft_itoa.c \
 	ft_matrix_len.c \
@@ -47,6 +51,7 @@ LIB_SOURCES = \
 	ft_strchr.c \
 	ft_strcmp.c \
 	ft_strdup.c \
+	ft_strip.c \
 	ft_striteri.c \
 	ft_strjoin_three.c \
 	ft_strjoin.c \
