@@ -5,12 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/01/30 14:41:51 by phenriq2         ###   ########.fr       */
-=======
-/*   Updated: 2024/01/30 14:42:20 by arsobrei         ###   ########.fr       */
->>>>>>> 4437a7b354e0248ac05255f7634ac57b33545265
+/*   Created: 2024/01/30 14:52:22 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/01/30 15:26:03 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +79,11 @@ void			split_input(t_minishell *core);
 void			process_non_space(t_minishell *core, int *i);
 void			add_to_list(t_minishell *core, int start, int end);
 t_bool			isall(t_minishell *core, int *i);
+void			ft_clear_splited_input(void);
+void			ft_clear_splited_input(void);
 
 // Start functions
-t_prompt		*init_prompt(void);
+t_prompt		init_prompt(void);
 void			built_in_array(t_minishell *core);
 
 void			print_ascii(void);
