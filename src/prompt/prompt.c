@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/30 11:57:14 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:45:57 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ void	prompt_loop(t_minishell *core)
 		core->input = readline(prompt);
 		free(prompt);
 		add_history(core->input);
-		ft_strip(core->input);
 		printf("input: %s\n", core->input);
 		split_input(core);
-		tokenization(core);
+		// tokenization(core);
 		if (core->input[0] == '\0')
 			continue ;
 		if (ft_strcmp(core->input, "exit") == 0)
@@ -34,8 +33,6 @@ void	prompt_loop(t_minishell *core)
 		if (ft_strcmp(core->input, "pwd") == 0)
 			print_working_directory();
 		free(core->input);
-		if (core->splited_input)
-			ft_lstclear(&core->splited_input, free);
 	}
 	rl_clear_history();
 }

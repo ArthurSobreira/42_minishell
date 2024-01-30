@@ -6,11 +6,23 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:35:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/30 14:23:11 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:46:57 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_list_ms	*new_node(char *str)
+{
+	t_list_ms	*new;
+
+	new = malloc(sizeof(t_list_ms));
+	if (!new)
+		return (NULL);
+	new->content = str;
+	new->next = NULL;
+	return (new);
+}
 
 t_token_type	set_token_type(char *str)
 {
@@ -42,6 +54,7 @@ void	split_input(t_minishell *core)
 	int		start;
 
 	i = -1;
+	ft_strip(core->input);
 	while (core->input[++i])
 	{
 		if (core->input[i] == '\'' || core->input[i] == '\"')
@@ -84,12 +97,25 @@ void	process_non_space(t_minishell *core, int *i)
 	(*i)--;
 }
 
-void	add_to_list(t_minishell *core, int start, int end)
+static void	add_to_list(t_minishell *core, int start, int end)
 {
-	char	*str;
+	char		*str;
+	t_list_ms	*tmp;
+	t_list_ms	*new;
 
 	str = ft_substr(core->input, start, end - start);
-	ft_lstadd_back(&core->splited_input, ft_lstnew(str));
+	if (ft_isprint(str[0]) == 0)
+		return ;
+	new = new_node(str);
+	if (!core->splited_input)
+	{
+		core->splited_input = new;
+		return ;
+	}
+	tmp = core->splited_input;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
 }
 
 t_bool	isall(t_minishell *core, int *i)

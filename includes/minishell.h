@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/30 14:22:16 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:41:51 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ void		unset(t_minishell *core);
 void		ft_strip(char *str);
 void		split_input(t_minishell *core);
 void		ft_error(char *str, int status);
-t_list_ms	*new_node(char *str);
-void		add_to_node(t_token *node, t_token token);
-t_token		*new_token(t_token token);
 
 t_minishell	*get_core(void);
 
