@@ -29,8 +29,12 @@ LIB_SOURCES = \
 	ft_isalpha.c \
 	ft_isascii.c \
 	ft_isatty.c \
+	ft_isbackground.c \
 	ft_isdigit.c \
+	ft_ispipe.c \
 	ft_isprint.c \
+	ft_isredir.c \
+	ft_issemicolon.c \
 	ft_isspace.c \
 	ft_itoa.c \
 	ft_matrix_len.c \
