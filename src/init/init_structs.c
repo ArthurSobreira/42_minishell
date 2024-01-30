@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 17:27:51 by arsobrei         ###   ########.fr       */
+/*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
+/*   Updated: 2024/01/29 19:32:33 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_minishell	*get_core(void)
+t_prompt	*init_prompt(void)
 {
-	static t_minishell	core;
+	t_prompt	*prompt_data;
 
-	return (&core);
-}
-
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_minishell	*core;
-
-	(void)argv;
-	(void)envp;
-	if (argc == 1)
-	{
-		print_ascii();
-		core = get_core();
-		if (core == NULL)
-			return (EXIT_FAILURE);
-		built_in_array(core);
-		prompt_loop(core);
-		return (EXIT_SUCCESS);
-	}
-	return (EXIT_FAILURE);
+	prompt_data = (t_prompt *)malloc(sizeof(t_prompt));
+	if (!prompt_data)
+		return (NULL);
+	prompt_data->user = NULL;
+	prompt_data->hostname = NULL;
+	prompt_data->current_dir = NULL;
+	prompt_data->prompt = NULL;
+	return (prompt_data);
 }

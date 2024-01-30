@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 18:58:06 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:21:28 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,26 @@ typedef struct s_token
 
 typedef struct s_minishell
 {
-	t_token				*token_list;
-	t_list_ms			*splited_input;
-	char				*built_in[8];
-	char				*input;
-	t_exits				exits;
-}						t_minishell;
+	t_list			*token_list;
+	t_list			*command_list;
+	t_list			*splited_input;
+	char			*built_in[8];
+	char			*input;
+	t_exits			exits;
+}					t_minishell;
+
+typedef struct s_prompt
+{
+	char			*user;
+	char			*hostname;
+	char			*current_dir;
+	char			*prompt;
+}					t_prompt;
+
+typedef struct s_token
+{
+	char			*value;
+	t_token_type	type;
+}					t_token;
 
 #endif
