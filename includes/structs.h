@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/30 14:49:35 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:44:52 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_minishell
 	t_list			*token_list;
 	t_list			*command_list;
 	t_list			*splited_input;
+	t_var			*env_vars;
+	int				env_vars_size;
 	char			*built_in[8];
 	char			*input;
 	t_exits			exits;
@@ -63,5 +65,12 @@ typedef struct s_token
 	char			*value;
 	t_token_type	type;
 }					t_token;
+
+typedef struct s_var
+{
+	char			*key;
+	char			*value;
+	struct s_var	*next;
+}					t_var;
 
 #endif
