@@ -3,28 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/30 15:44:08 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:02:15 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
-typedef struct s_cmd
-{
-	char				*executable;
-	char				**arguments;
-	int					background;
-}						t_cmd;
-
-typedef struct s_exits
-{
-	int					exit_code;
-	char				*exit_msg;
-}						t_exits;
 
 typedef enum e_token_type
 {
@@ -39,6 +26,26 @@ typedef enum e_token_type
 	TOKEN_OR,
 	TOKEN_AND
 }						t_token_type;
+
+typedef struct s_cmd
+{
+	char				*executable;
+	char				**arguments;
+	int					background;
+}						t_cmd;
+
+typedef struct s_var
+{
+	char				*key;
+	char				*value;
+	struct s_var		*next;
+}						t_var;
+
+typedef struct s_exits
+{
+	int					exit_code;
+	char				*exit_msg;
+}						t_exits;
 
 typedef struct s_list_ms
 {
@@ -65,18 +72,11 @@ typedef struct s_minishell
 {
 	t_token				*token_list;
 	t_list_ms			*splited_input;
-  t_var			*env_vars;
-	int				env_vars_size;
+	t_var				*env_vars;
+	int					env_vars_size;
 	char				*built_in[8];
 	char				*input;
 	t_exits				exits;
 }						t_minishell;
-
-typedef struct s_var
-{
-	char			*key;
-	char			*value;
-	struct s_var	*next;
-}					t_var;
 
 #endif
