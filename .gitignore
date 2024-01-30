@@ -52,7 +52,5 @@ Mkfile.old
 dkms.conf
 .vscode
 minishell
-sup/
 temp/
-*.sup
 *.log
