@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/30 14:42:20 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:51:22 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,19 @@
 
 # include "../libs/libft/libft.h"
 # include "structs.h"
-# include <dirent.h>
-# include <fcntl.h>
+# include "defines.h"
 # include <readline/history.h>
 # include <readline/readline.h>
-# include <signal.h>
 # include <stdio.h>
+# include <unistd.h>
 # include <stdlib.h>
-# include <string.h>
-# include <sys/ioctl.h>
+# include <fcntl.h>
+# include <dirent.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+# include <sys/types.h>
 # include <sys/wait.h>
-# include <termcap.h>
-# include <termios.h>
-# include <unistd.h>
-
-# define COLOR_PINK "\033[1;35m"
-# define COLOR_RESET "\033[0m"
-# define COLOR_GREEN "\033[1;32m"
-# define COLOR_RED "\033[1;31m"
-# define COLOR_BLUE "\033[34m"
-# define COLOR_YELLOW "\033[1;33m"
-# define COLOR_CYAN "\033[36m"
-# define COLOR_WHITE "\033[1;37m"
-# define COLOR_BLACK "\033[1;30m"
-# define COLOR_GRAY "\033[1;90m"
-
-# define EXIT_SUCCESS 0
-# define EXIT_FAILURE 1
-
-# define MAX_PATH_LEN 4096
-# define MAX_HOSTNAME_LEN 256
+# include <signal.h>
 
 t_minishell		*get_core(void);
 
