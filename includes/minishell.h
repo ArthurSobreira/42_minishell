@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 17:23:49 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:27:11 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char			*format_prompt(t_prompt *prompt);
 
 // Token functions
 void			tokenization(t_minishell *core);
-t_tkn_type		set_tkn_type(char *str);
+t_tkn_type		set_token_type(char *str);
 void			split_input(t_minishell *core);
 void			process_non_space(t_minishell *core, int *i);
 void			add_to_list(t_minishell *core, int start, int end);
