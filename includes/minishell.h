@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 17:27:11 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/31 19:01:23 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ t_minishell		*get_core(void);
 // Built-in functions
 char			*get_working_directory(void);
 void			print_working_directory(void);
+void			print_env_variables(void);
 
 void			unset(t_minishell *core);
 void			change_directory(t_minishell *core);
 void			echo(void);
-void			environment(t_minishell *core);
 void			exit_shell(void);
 void			export_variables(t_minishell *core);
 void			unset(t_minishell *core);
