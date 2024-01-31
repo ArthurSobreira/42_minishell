@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/30 15:43:38 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:44:48 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,19 @@
 # define MINISHELL_H
 
 # include "../libs/libft/libft.h"
-# include "structs.h"
 # include "defines.h"
+# include "structs.h"
+# include <dirent.h>
+# include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <signal.h>
 # include <stdio.h>
-# include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
-# include <dirent.h>
 # include <sys/stat.h>
 # include <sys/types.h>
-# include <sys/types.h>
 # include <sys/wait.h>
-# include <signal.h>
+# include <unistd.h>
 
 t_minishell		*get_core(void);
 
@@ -55,13 +54,13 @@ char			*format_prompt(t_prompt *prompt);
 
 // Token functions
 void			tokenization(t_minishell *core);
-t_token_type	set_token_type(char *str);
+t_tkn_type	set_tkn_type(char *str);
 void			split_input(t_minishell *core);
 void			process_non_space(t_minishell *core, int *i);
 void			add_to_list(t_minishell *core, int start, int end);
 t_bool			isall(t_minishell *core, int *i);
 void			ft_clear_splited_input(void);
-void			ft_clear_splited_input(void);
+void			searsh_bugs(void);
 
 // Start functions
 t_prompt		init_prompt(void);
