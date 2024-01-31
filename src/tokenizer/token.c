@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 17:27:03 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/31 19:03:05 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_tkn_type	set_token_type(char *str)
+void	print_token(t_token *token)
+{
+	printf("Token: %s\n", token->value);
+	printf("Type: %d\n", token->type);
+}
+
+t_tkn_type	set_tkn_type(char *str)
 {
 	if (!ft_strcmp(str, "||"))
 		return (TOKEN_OR);
@@ -30,44 +36,64 @@ t_tkn_type	set_token_type(char *str)
 		return (TOKEN_BACKGROUND);
 	if (!ft_strcmp(str, "<<"))
 		return (TOKEN_HERE_DOC);
+	if (!ft_strcmp(str, ";"))
+		return (TOKEN_SEMICOLON);
 	if (str[0] == '\"')
 		return (TOKEN_QUOTE);
 	return (TOKEN_WORD);
 }
 
-// static void	ft_print_list(void *list)
-// {
-// 	t_token	token_list;
+t_token	*new_token(char *str)
+{
+	t_token	*token;
 
-// 	token_list = *(t_token *)list;
-// 	printf("%s\n", token_list.value);
-// 	printf("%d\n", token_list.type);
-// }
+	token = (t_token *)malloc(sizeof(t_token));
+	token->type = set_tkn_type(str);
+	token->value = str;
+	token->next = NULL;
+	return (token);
+}
 
-// void	tokenization(t_minishell *core)
-// {
-// 	t_token	token;
-// 	int		i;
+void	add_token(t_token **head, t_token *new)
+{
+	t_token	*tmp;
 
-// 	i = 0;
-// 	while (core->splited_input)
-// 	{
-// 		if (!ft_isprint(*(char *)(core->splited_input)->content))
-// 		{
-// 			core->splited_input = (core->splited_input)->next;
-// 			continue ;
-// 		}
-// 		token.value = (char *)(core->splited_input)->content;
-// 		if (core->splited_input->next && !ft_strcmp(token.value,
-// 				(char *)(core->splited_input->next)->content))
-// 		{
-// 			token.value = ft_strjoin(token.value,
-// 				(char *)(core->splited_input->next)->content);
-// 			core->splited_input = (core->splited_input)->next;
-// 		}
-// 		token.type = set_tkn_type(token.value);
-// 		ft_lstadd_back(&core->token_list, ft_lstnew(&token));
-// 		core->splited_input = (core->splited_input)->next;
-// 		ft_print_list(core->token_list->content);
-// 	}
-// }
+	if (!*head)
+	{
+		*head = new;
+		return ;
+	}
+	tmp = *head;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
+}
+
+void	tokenization(void)
+{
+	t_input		*tmp;
+	t_token		*token;
+	char		*str;
+	char		*temp_str;
+	t_minishell	*core;
+
+	core = get_core();
+	split_input();
+	tmp = core->splited_input;
+	temp_str = NULL;
+	while (tmp)
+	{
+		str = tmp->content;
+		if (tmp->next && !ft_strcmp(tmp->next->content, str))
+		{
+			temp_str = str;
+			str = ft_strjoin(temp_str, str);
+			tmp = tmp->next;
+		}
+		token = new_token(str);
+		add_token(&core->token_list, token);
+		tmp = tmp->next;
+		print_token(token);
+	}
+	searsh_bugs();
+}
