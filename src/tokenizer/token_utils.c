@@ -6,15 +6,15 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:35:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/30 15:29:41 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:46:19 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_nodes(t_list_ms *head)
+void	print_nodes(t_input *head)
 {
-	t_list_ms	*tmp;
+	t_input	*tmp;
 
 	tmp = head;
 	while (tmp)
@@ -24,11 +24,11 @@ void	print_nodes(t_list_ms *head)
 	}
 }
 
-t_list_ms	*new_node(char *str)
+t_input	*new_node(char *str)
 {
-	t_list_ms	*new;
+	t_input	*new;
 
-	new = malloc(sizeof(t_list_ms));
+	new = malloc(sizeof(t_input));
 	if (!new)
 		return (NULL);
 	new->content = str;
@@ -90,12 +90,15 @@ void	process_non_space(t_minishell *core, int *i)
 void	add_to_list(t_minishell *core, int start, int end)
 {
 	char		*str;
-	t_list_ms	*tmp;
-	t_list_ms	*new;
+	t_input	*tmp;
+	t_input	*new;
 
 	str = ft_substr(core->input, start, end - start);
-	if (ft_isprint(str[0]) == 0)
+	if (!ft_isprint(str[0]))
+	{
+		ft_free(str);
 		return ;
+	}
 	new = new_node(str);
 	if (!core->splited_input)
 	{
