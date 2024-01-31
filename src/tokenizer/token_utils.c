@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:35:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/30 15:29:41 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:27:32 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_nodes(t_list_ms *head)
+void	print_nodes(t_input *head)
 {
-	t_list_ms	*tmp;
+	t_input	*tmp;
 
 	tmp = head;
 	while (tmp)
@@ -24,11 +24,11 @@ void	print_nodes(t_list_ms *head)
 	}
 }
 
-t_list_ms	*new_node(char *str)
+t_input	*new_node(char *str)
 {
-	t_list_ms	*new;
+	t_input	*new;
 
-	new = malloc(sizeof(t_list_ms));
+	new = malloc(sizeof(t_input));
 	if (!new)
 		return (NULL);
 	new->content = str;
@@ -89,9 +89,9 @@ void	process_non_space(t_minishell *core, int *i)
 
 void	add_to_list(t_minishell *core, int start, int end)
 {
-	char		*str;
-	t_list_ms	*tmp;
-	t_list_ms	*new;
+	t_input	*tmp;
+	t_input	*new;
+	char	*str;
 
 	str = ft_substr(core->input, start, end - start);
 	if (ft_isprint(str[0]) == 0)
@@ -106,6 +106,7 @@ void	add_to_list(t_minishell *core, int start, int end)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
+	free(str);
 }
 
 t_bool	isall(t_minishell *core, int *i)
