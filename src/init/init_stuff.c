@@ -6,22 +6,29 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:07:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/29 19:32:25 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:18:18 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	built_in_array(t_minishell *core)
+void	clear_prompt(void)
 {
-	core->built_in[0] = "echo";
-	core->built_in[1] = "cd";
-	core->built_in[2] = "pwd";
-	core->built_in[3] = "export";
-	core->built_in[4] = "unset";
-	core->built_in[5] = "env";
-	core->built_in[6] = "exit";
-	core->built_in[7] = NULL;
+	pid_t	pid;
+	char	*argv[2];
+	char	**envp;
+
+	pid = fork();
+	argv[0] = "/usr/bin/clear";
+	argv[1] = NULL;
+	envp = get_core()->envp;
+	if (pid == 0)
+	{
+		execve("/usr/bin/clear", argv, envp);
+		exit(EXIT_SUCCESS);
+	}
+	else
+		waitpid(pid, NULL, 0);
 }
 
 void	print_ascii(void)

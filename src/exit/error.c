@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:34:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 17:46:19 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:08:29 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_clear_token(void)
 void	ft_clear_splited_input(void)
 {
 	t_minishell	*core;
+	t_input	*tmp;
 	t_input	*tmp;
 
 	core = get_core();

@@ -104,7 +104,7 @@ valgrind: make_temp all
 	--show-leak-kinds=all \
 	--track-origins=yes \
 	--track-fds=yes \
-	--suppressions=./sup/sup.sup \
+	--suppressions=./suppresion.supp \
 	--log-file=$(TEMP_PATH)valgrind.log ./$(NAME)
 
 .PHONY: all clean fclean re libft make_temp tests run

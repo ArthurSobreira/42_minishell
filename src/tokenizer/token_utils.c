@@ -6,14 +6,16 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:35:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/31 17:46:19 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:09:10 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 void	print_nodes(t_input *head)
+void	print_nodes(t_input *head)
 {
+	t_input	*tmp;
 	t_input	*tmp;
 
 	tmp = head;
@@ -25,9 +27,12 @@ void	print_nodes(t_input *head)
 }
 
 t_input	*new_node(char *str)
+t_input	*new_node(char *str)
 {
 	t_input	*new;
+	t_input	*new;
 
+	new = malloc(sizeof(t_input));
 	new = malloc(sizeof(t_input));
 	if (!new)
 		return (NULL);
@@ -109,6 +114,7 @@ void	add_to_list(t_minishell *core, int start, int end)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
+	free(str);
 }
 
 t_bool	isall(t_minishell *core, int *i)

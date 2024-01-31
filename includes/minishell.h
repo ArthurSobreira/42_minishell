@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 17:44:48 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:07:10 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char			*format_prompt(t_prompt *prompt);
 
 // Token functions
 void			tokenization(t_minishell *core);
-t_tkn_type	set_tkn_type(char *str);
+t_tkn_type		set_token_type(char *str);
 void			split_input(t_minishell *core);
 void			process_non_space(t_minishell *core, int *i);
 void			add_to_list(t_minishell *core, int start, int end);
@@ -63,9 +63,9 @@ void			ft_clear_splited_input(void);
 void			searsh_bugs(void);
 
 // Start functions
+t_minishell		*init_minishell(char *envp[]);
 t_prompt		init_prompt(void);
-void			built_in_array(t_minishell *core);
-
+void			clear_prompt(void);
 void			print_ascii(void);
 
 #endif
