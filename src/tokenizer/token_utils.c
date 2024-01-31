@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:35:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/31 18:11:03 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 19:02:34 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_input	*new_node(char *str)
 	t_input	*new;
 
 	new = malloc(sizeof(t_input));
-	new = malloc(sizeof(t_input));
 	if (!new)
 		return (NULL);
 	new->content = str;
@@ -25,26 +24,28 @@ t_input	*new_node(char *str)
 	return (new);
 }
 
-void	split_input(t_minishell *core)
+void	split_input(void)
 {
-	int		i;
-	char	quote;
-	int		start;
+	t_minishell	*core_tmp;
+	int			i;
+	char		quote;
+	int			start;
 
 	i = -1;
-	ft_strip(core->input);
-	while (core->input[++i])
+	core_tmp = get_core();
+	ft_strip(core_tmp->input);
+	while (core_tmp->input[++i])
 	{
-		if (core->input[i] == '\'' || core->input[i] == '\"')
+		if (core_tmp->input[i] == '\'' || core_tmp->input[i] == '\"')
 		{
-			quote = core->input[i];
+			quote = core_tmp->input[i];
 			start = i;
-			while (core->input[++i] != quote && core->input[i] != '\0')
+			while (core_tmp->input[++i] != quote && core_tmp->input[i] != '\0')
 				;
-			add_to_list(core, start, i + 1);
+			add_to_list(core_tmp, start, i + 1);
 		}
-		else if (core->input[i] != ' ')
-			process_non_space(core, &i);
+		else if (core_tmp->input[i] != ' ')
+			process_non_space(core_tmp, &i);
 	}
 }
 
@@ -97,7 +98,6 @@ void	add_to_list(t_minishell *core, int start, int end)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
-	free(str);
 }
 
 t_bool	isall(t_minishell *core, int *i)
