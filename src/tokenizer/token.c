@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/30 14:54:31 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:27:03 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token_type	set_token_type(char *str)
+t_tkn_type	set_token_type(char *str)
 {
 	if (!ft_strcmp(str, "||"))
 		return (TOKEN_OR);
@@ -65,7 +65,7 @@ t_token_type	set_token_type(char *str)
 // 				(char *)(core->splited_input->next)->content);
 // 			core->splited_input = (core->splited_input)->next;
 // 		}
-// 		token.type = set_token_type(token.value);
+// 		token.type = set_tkn_type(token.value);
 // 		ft_lstadd_back(&core->token_list, ft_lstnew(&token));
 // 		core->splited_input = (core->splited_input)->next;
 // 		ft_print_list(core->token_list->content);

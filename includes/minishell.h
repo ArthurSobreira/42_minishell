@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/30 15:43:38 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:27:11 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char			*format_prompt(t_prompt *prompt);
 
 // Token functions
 void			tokenization(t_minishell *core);
-t_token_type	set_token_type(char *str);
+t_tkn_type		set_token_type(char *str);
 void			split_input(t_minishell *core);
 void			process_non_space(t_minishell *core, int *i);
 void			add_to_list(t_minishell *core, int start, int end);
@@ -64,9 +64,9 @@ void			ft_clear_splited_input(void);
 void			ft_clear_splited_input(void);
 
 // Start functions
+t_minishell		*init_minishell(char *envp[]);
 t_prompt		init_prompt(void);
-void			built_in_array(t_minishell *core);
-
+void			clear_prompt(void);
 void			print_ascii(void);
 
 #endif

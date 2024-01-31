@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/30 15:52:38 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:20:02 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,51 @@ t_minishell	*get_core(void)
 	return (&core);
 }
 
-void	get_env_vars(char *envp[])
+t_var	*create_var(char *key, char *value)
+{
+	t_var	*new_var;
+
+	new_var = malloc(sizeof(t_var));
+	if (!new_var)
+		return (NULL);
+	new_var->key = key;
+	new_var->value = value;
+	new_var->next = NULL;
+	return (new_var);
+}
+
+t_var	*find_last_var(t_var *var)
+{
+	if (!var)
+		return (NULL);
+	while (var->next != NULL)
+		var = var->next;
+	return (var);
+}
+
+void	get_env_vars(void)
 {
 	t_minishell	*core;
-	int			i;
-
+	char		**splitted_var;
+	t_var		*current_var;
+	size_t		index;
+	
+	index = 0;
 	core = get_core();
-	core->env_vars = NULL;
-	core->env_vars_size = 0;
-	i = 0;
-	while (envp[i])
+	while (core->envp[index] != NULL)
 	{
-		ft_lstadd_back(&core->env_vars, ft_lstnew(ft_strdup(envp[i])));
-		core->env_vars_size++;
-		i++;
+		splitted_var = ft_split(core->envp[index], '=');
+		current_var = create_var(splitted_var[0], splitted_var[1]);
+		if (current_var)
+		{
+			if (core->env_vars == NULL)
+				core->env_vars = current_var;
+			else
+				find_last_var(core->env_vars)->next = current_var;
+			core->env_vars_size++;
+		}
+		ft_free_matrix(splitted_var);
+		index++;
 	}
 }
 
@@ -41,15 +72,12 @@ int	main(int argc, char *argv[], char *envp[])
 	t_minishell	*core;
 
 	(void)argv;
-	(void)envp;
 	if (argc == 1)
 	{
+		core = init_minishell(envp);
+		clear_prompt();
 		print_ascii();
-		core = get_core();
-		if (core == NULL)
-			return (EXIT_FAILURE);
-		built_in_array(core);
-		get_env_vars(envp);
+		get_env_vars();
 		prompt_loop(core);
 		return (EXIT_SUCCESS);
 	}
