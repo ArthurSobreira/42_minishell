@@ -6,30 +6,14 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:35:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/31 18:09:10 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:11:03 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_nodes(t_input *head)
-void	print_nodes(t_input *head)
-{
-	t_input	*tmp;
-	t_input	*tmp;
-
-	tmp = head;
-	while (tmp)
-	{
-		printf("%s\n", tmp->content);
-		tmp = tmp->next;
-	}
-}
-
-t_input	*new_node(char *str)
 t_input	*new_node(char *str)
 {
-	t_input	*new;
 	t_input	*new;
 
 	new = malloc(sizeof(t_input));
@@ -62,7 +46,6 @@ void	split_input(t_minishell *core)
 		else if (core->input[i] != ' ')
 			process_non_space(core, &i);
 	}
-	print_nodes(core->splited_input);
 }
 
 void	process_non_space(t_minishell *core, int *i)
@@ -94,7 +77,7 @@ void	process_non_space(t_minishell *core, int *i)
 
 void	add_to_list(t_minishell *core, int start, int end)
 {
-	char		*str;
+	char	*str;
 	t_input	*tmp;
 	t_input	*new;
 

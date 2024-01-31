@@ -54,9 +54,5 @@ dkms.conf
 minishell
 temp/
 *.log
-<<<<<<< HEAD
 sup/
 *.sup
-=======
-*.supp
->>>>>>> 369cc7f74d1e7033c5685ce9de5ce760ed2e4bf7
