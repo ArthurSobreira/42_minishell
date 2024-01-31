@@ -55,4 +55,4 @@ minishell
 temp/
 *.log
 sup/
-*.sup
+*.supp
