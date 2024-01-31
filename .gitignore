@@ -54,3 +54,5 @@ dkms.conf
 minishell
 temp/
 *.log
+sup/
+*.sup
