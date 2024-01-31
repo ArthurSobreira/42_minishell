@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 11:40:05 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:38:10 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_minishell
 	int				env_vars_size;
 	char			*built_in[8];
 	char			*input;
+	char			**envp;
 	t_exits			exits;
 }					t_minishell;
 
