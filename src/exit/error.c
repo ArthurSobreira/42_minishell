@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:34:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 11:36:05 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:10:42 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_clear_token(void)
+{
+	t_minishell	*core;
+	t_token		*tmp;
+
+	core = get_core();
+	if (core->token_list == NULL)
+		return ;
+	while (core->token_list)
+	{
+		tmp = core->token_list->next;
+		if (core->token_list->type == TOKEN_APPEND
+			|| core->token_list->type == TOKEN_HERE_DOC
+			|| core->token_list->type == TOKEN_OR
+			|| core->token_list->type == TOKEN_AND)
+			ft_free(core->token_list->value);
+		ft_free(core->token_list);
+		core->token_list = tmp;
+	}
+}
 
 void	ft_clear_splited_input(void)
 {
@@ -27,23 +48,7 @@ void	ft_clear_splited_input(void)
 		free(core->splited_input);
 		core->splited_input = tmp;
 	}
-}
-
-void	ft_clear_token(void)
-{
-	t_minishell	*core;
-	t_token		*tmp;
-
-	core = get_core();
-	if (core->token_list == NULL)
-		return ;
-	while (core->token_list)
-	{
-		tmp = core->token_list->next;
-		free(core->token_list->value);
-		free(core->token_list);
-		core->token_list = tmp;
-	}
+	ft_clear_token();
 }
 
 void	ft_error(char *str, int status)
@@ -56,7 +61,5 @@ void	ft_error(char *str, int status)
 		free(core->input);
 	if (core->splited_input != NULL)
 		ft_clear_splited_input();
-	if (core->token_list != NULL)
-		ft_clear_token();
 	exit(status);
 }
