@@ -42,6 +42,7 @@ SOURCES = main.c \
 	$(PROMPT_PATH)prompt.c \
 	$(TOKENIZER_PATH)token_utils.c \
 	$(TOKENIZER_PATH)token.c \
+	$(TOKENIZER_PATH)token_search.c \
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
 
