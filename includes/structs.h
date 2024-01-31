@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 12:38:10 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:07:37 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef enum e_tkn_type
 	TOKEN_HERE_DOC,
 	TOKEN_QUOTE,
 	TOKEN_BACKGROUND,
+	TOKEN_SEMICOLON,
 	TOKEN_OR,
 	TOKEN_AND
 }					t_tkn_type;

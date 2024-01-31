@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/30 15:29:00 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:50:58 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	prompt_loop(t_minishell *core)
 		free(prompt);
 		add_history(core->input);
 		printf("input: %s\n", core->input);
-		split_input(core);
-		// tokenization(core);
+		tokenization(core);
 		if (core->input[0] == '\0')
 			continue ;
 		if (ft_strcmp(core->input, "exit") == 0)
