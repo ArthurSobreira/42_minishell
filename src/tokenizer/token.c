@@ -6,11 +6,24 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 19:28:32 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:00:29 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	print_token(t_token *token)
+{
+	t_token	*tmp;
+
+	tmp = token;
+	while (tmp)
+	{
+		printf("type: %d\n", tmp->type);
+		printf("value: %s\n", tmp->value);
+		tmp = tmp->next;
+	}
+}
 
 t_tkn_type	set_tkn_type(char *str)
 {
@@ -88,5 +101,6 @@ void	tokenization(void)
 		add_token(&core->token_list, token);
 		tmp = tmp->next;
 	}
+	print_token(core->token_list);
 	searsh_bugs();
 }
