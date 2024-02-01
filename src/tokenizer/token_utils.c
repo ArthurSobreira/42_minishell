@@ -6,11 +6,23 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:35:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/31 19:02:34 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 10:43:38 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	print_input(t_input *input)
+{
+	t_input	*tmp;
+
+	tmp = input;
+	while (tmp)
+	{
+		printf("content: %s\n", tmp->content);
+		tmp = tmp->next;
+	}
+}
 
 t_input	*new_node(char *str)
 {
@@ -47,6 +59,7 @@ void	split_input(void)
 		else if (core_tmp->input[i] != ' ')
 			process_non_space(core_tmp, &i);
 	}
+	print_input(core_tmp->splited_input);
 }
 
 void	process_non_space(t_minishell *core, int *i)
@@ -104,5 +117,6 @@ t_bool	isall(t_minishell *core, int *i)
 {
 	return (!ft_isspace(core->input[*i]) && !ft_ispipe(core->input[*i])
 		&& !ft_issemicolon((core->input[*i])) && !ft_isredir(core->input[*i])
-		&& !ft_isbackground(core->input[*i]) && core->input[*i] != '\0');
+		&& !ft_isbackground(core->input[*i]) && !(core->input[*i] == '\'')
+		&& !(core->input[*i] == '\"') && core->input[*i] != '\0');
 }
