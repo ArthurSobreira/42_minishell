@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 14:41:10 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:36:42 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	searsh_bugs(void)
 
 	core = get_core();
 	tmp = core->token_list;
+	if (core->token_list->type == TOKEN_PIPE)
+		ft_error("syntax error: unexpected token\n", 2);
 	while (tmp->next)
 	{
 		if (is_excluded_type(tmp->type, 1))
