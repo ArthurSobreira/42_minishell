@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 19:15:19 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:18:20 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ void			ft_clear_splited_input(void);
 void			searsh_bugs(void);
 
 // Start functions
-t_minishell		*init_minishell(char *envp[]);
+void			init_minishell(t_minishell *core);
+t_var			*create_var(char *key, char *value);
+t_var			*find_last_var(t_var *var);
 t_prompt		init_prompt(void);
-void			clear_prompt(void);
 void			print_ascii(void);
+void			clear_prompt(void);
 
 #endif
