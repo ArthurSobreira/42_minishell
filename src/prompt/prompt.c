@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/31 19:24:36 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:55:51 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	prompt_loop(t_minishell *core)
 			exit_shell();
 		if (ft_strcmp(core->input, "pwd") == 0)
 			print_working_directory();
+		if (ft_strcmp(core->input, "env") == 0)
+			print_env_variables();
 		free(core->input);
 		ft_clear_splited_input();
 	}

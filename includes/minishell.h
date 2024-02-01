@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 19:05:59 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/01/31 19:15:19 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ t_minishell		*get_core(void);
 // Built-in functions
 char			*get_working_directory(void);
 void			print_working_directory(void);
+void			print_env_variables(void);
 
 void			unset(t_minishell *core);
 void			change_directory(t_minishell *core);
 void			echo(void);
-void			environment(t_minishell *core);
 void			exit_shell(void);
 void			export_variables(t_minishell *core);
 void			unset(t_minishell *core);
