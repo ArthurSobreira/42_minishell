@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 11:44:51 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:51:00 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_bool	is_excluded_type(t_tkn_type type, int option)
 		return (TRUE);
 	return (FALSE);
 }
+
 void	pipe_and_operator_error(void)
 {
 	t_minishell	*core;
