@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 12:00:29 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:23:08 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	print_token(t_token *token)
 	{
 		printf("type: %d\n", tmp->type);
 		printf("value: %s\n", tmp->value);
+		if (tmp->prev)
+			printf("prev: %s\n", tmp->prev->value);
 		tmp = tmp->next;
 	}
 }
@@ -58,6 +60,7 @@ t_token	*new_token(char *str)
 	token->type = set_tkn_type(str);
 	token->value = str;
 	token->next = NULL;
+	token->prev = NULL;
 	return (token);
 }
 
@@ -74,6 +77,7 @@ void	add_token(t_token **head, t_token *new)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
+	new->prev = tmp;
 }
 
 void	tokenization(void)
