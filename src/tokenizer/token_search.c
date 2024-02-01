@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 11:51:00 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:08:52 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_bool	is_excluded_type(t_tkn_type type, int option)
 {
-	if ((type == TOKEN_AND || type == TOKEN_OR || type == TOKEN_SEMICOLON
-			|| type == TOKEN_BACKGROUND) && option == 1)
+	if (option == 1 && (type == TOKEN_AND || type == TOKEN_OR
+			|| type == TOKEN_SEMICOLON || type == TOKEN_BACKGROUND))
 		return (TRUE);
 	else if (option == 2 && (type == TOKEN_PIPE || type == TOKEN_REDIRECT
 			|| type == TOKEN_REDIRECT_REVERSE || type == TOKEN_APPEND
@@ -52,8 +52,6 @@ void	searsh_bugs(void)
 
 	core = get_core();
 	tmp = core->token_list;
-	while (tmp->next)
-		tmp = tmp->next;
 	while (tmp->next)
 	{
 		if (is_excluded_type(tmp->type, 1))
