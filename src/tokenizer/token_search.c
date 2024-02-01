@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 12:08:52 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:41:10 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	pipe_and_operator_error(void)
 			|| (tmp->type == TOKEN_REDIRECT && tmp->next->type != TOKEN_WORD)
 			|| (tmp->type == TOKEN_REDIRECT_REVERSE
 				&& tmp->next->type != TOKEN_WORD))
-			ft_error("syntax error: unexpected token", 2);
+			ft_error("syntax error: unexpected token\n", 2);
 		tmp = tmp->next;
 	}
 }
@@ -55,10 +55,10 @@ void	searsh_bugs(void)
 	while (tmp->next)
 	{
 		if (is_excluded_type(tmp->type, 1))
-			ft_error("syntax error: command not found", 127);
+			ft_error("syntax error: command not found\n", 127);
 		tmp = tmp->next;
 	}
 	if (is_excluded_type(tmp->type, 2))
-		ft_error("syntax error: unexpected end of file", 2);
+		ft_error("syntax error: unexpected end of file\n", 2);
 	pipe_and_operator_error();
 }
