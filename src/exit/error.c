@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:34:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 12:19:20 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:29:40 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,24 @@ void	ft_clear_token(void)
 			ft_free(core->token_list->value);
 		ft_free(core->token_list);
 		core->token_list = tmp;
+	}
+}
+
+void	ft_clear_env_vars(void)
+{
+	t_minishell	*core;
+	t_var		*tmp;
+
+	core = get_core();
+	if (core->env_vars == NULL)
+		return ;
+	while (core->env_vars)
+	{
+		tmp = core->env_vars->next;
+		ft_free(core->env_vars->key);
+		ft_free(core->env_vars->value);
+		ft_free(core->env_vars);
+		core->env_vars = tmp;
 	}
 }
 
@@ -61,5 +79,7 @@ void	ft_error(char *str, int status)
 		free(core->input);
 	if (core->splited_input != NULL)
 		ft_clear_splited_input();
+	if (core->env_vars != NULL)
+		ft_clear_env_vars();
 	exit(status);
 }
