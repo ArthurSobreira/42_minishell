@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 12:23:02 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:19:42 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void			echo(void);
 void			exit_shell(void);
 void			export_variables(t_minishell *core);
 void			unset(t_minishell *core);
-void			ft_error(char *str, int status);
 
 // Prompt functions
 void			prompt_loop(t_minishell *core);
@@ -70,5 +69,11 @@ t_var			*find_last_var(t_var *var);
 t_prompt		init_prompt(void);
 void			print_ascii(void);
 void			clear_prompt(void);
+
+// Clear functions
+void			ft_error(char *str, int status);
+void			ft_clear_token(void);
+void			ft_clear_env_vars(void);
+void			ft_clear_splited_input(void);
 
 #endif
