@@ -6,36 +6,32 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:46 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 18:18:14 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:01:40 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// static void	print_var(t_var *var)
-// {
-// 	ft_putstr_fd(var->key, STDOUT_FILENO);
-// 	ft_putstr_fd("=", STDOUT_FILENO);
-// 	if (var->value)
-// 		ft_putendl_fd(var->value, STDOUT_FILENO);
-// 	else
-// 		ft_putchar_fd('\n', STDOUT_FILENO);
-// }
+static void	print_var(char *key, char *value)
+{
+	ft_putstr_fd(key, STDOUT_FILENO);
+	ft_putstr_fd("=", STDOUT_FILENO);
+	if (value)
+		ft_putendl_fd(value, STDOUT_FILENO);
+	else
+		ft_putchar_fd('\n', STDOUT_FILENO);
+}
 
 void	print_env_variables(void)
 {
 	t_minishell	*core;
+	t_var		*current_var;
 
 	core = get_core();
-	while (core->env_vars->next != NULL)
+	current_var = core->env_vars;
+	while (current_var != NULL)
 	{
-		printf("%s=%s\n", core->env_vars->key, core->env_vars->value);
-		// ft_putstr_fd(core->env_vars->key, STDOUT_FILENO);
-		// ft_putstr_fd("=", STDOUT_FILENO);
-		// if (core->env_vars->value)
-		// 	ft_putendl_fd(core->env_vars->value, STDOUT_FILENO);
-		// else
-		// 	ft_putchar_fd('\n', STDOUT_FILENO);
-		core->env_vars = core->env_vars->next;
+		print_var(current_var->key, current_var->value);
+		current_var = current_var->next;
 	}
 }
