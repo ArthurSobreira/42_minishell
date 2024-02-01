@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/01/31 18:07:37 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:04:19 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_token
 	char			*value;
 	t_tkn_type		type;
 	struct s_token	*next;
+	struct s_token	*prev;
 
 }					t_token;
 
