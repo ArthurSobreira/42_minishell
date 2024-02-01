@@ -35,6 +35,7 @@ SOURCES = main.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
 	$(EXIT_PATH)error.c \
+	$(INIT_PATH)init_env.c \
 	$(INIT_PATH)init_structs.c \
 	$(INIT_PATH)init_stuff.c \
 	$(PARSER_PATH)parser.c \
