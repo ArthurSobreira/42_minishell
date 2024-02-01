@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 12:18:20 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:23:02 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void			searsh_bugs(void);
 
 // Start functions
 void			init_minishell(t_minishell *core);
+void			get_env_vars(t_minishell *core);
 t_var			*create_var(char *key, char *value);
 t_var			*find_last_var(t_var *var);
 t_prompt		init_prompt(void);
