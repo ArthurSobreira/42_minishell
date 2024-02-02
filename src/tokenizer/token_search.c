@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 19:00:26 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:56:11 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ t_bool	is_excluded_type(t_tkn_type type, int option)
 			|| type == TOKEN_SEMICOLON || type == TOKEN_BACKGROUND))
 		return (TRUE);
 	else if (option == 2 && (type == TOKEN_PIPE || type == TOKEN_REDIRECT
-				|| type == TOKEN_REDIRECT_REVERSE || type == TOKEN_APPEND
-				|| type == TOKEN_HERE_DOC || type == TOKEN_AND
-				|| type == TOKEN_OR || type == TOKEN_SEMICOLON
-				|| type == TOKEN_BACKGROUND))
+			|| type == TOKEN_REDIRECT_REVERSE || type == TOKEN_APPEND
+			|| type == TOKEN_HERE_DOC || type == TOKEN_AND
+			|| type == TOKEN_OR || type == TOKEN_SEMICOLON
+			|| type == TOKEN_BACKGROUND))
 		return (TRUE);
 	return (FALSE);
 }
@@ -55,6 +55,27 @@ void	pipe_and_operator_error(void)
 			|| (tmp->type == TOKEN_REDIRECT_REVERSE
 				&& tmp->next->type != TOKEN_WORD))
 			ft_error("syntax error: unexpected token\n", 2);
+		tmp = tmp->next;
+	}
+}
+
+void	count_operators(void)
+{
+	t_token		*tmp;
+	t_counter	*counter;
+
+	tmp = get_core()->token_list;
+	counter = &get_core()->counter;
+	ft_bzero(counter, sizeof(t_counter));
+	while (tmp)
+	{
+		if (tmp->type == TOKEN_PIPE)
+			counter->pipes++;
+		if (tmp->type == TOKEN_REDIRECT || tmp->type == TOKEN_APPEND
+			|| tmp->type == TOKEN_REDIRECT_REVERSE)
+			counter->redir++;
+		if (tmp->type == TOKEN_HERE_DOC)
+			counter->here_doc++;
 		tmp = tmp->next;
 	}
 }
@@ -84,4 +105,5 @@ void	searsh_bugs(void)
 			ft_error("syntax error: unexpected end of file\n", 2);
 		tmp = tmp->next;
 	}
+	count_operators();
 }
