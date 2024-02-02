@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/02 18:56:11 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:12:16 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,33 +59,14 @@ void	pipe_and_operator_error(void)
 	}
 }
 
-void	count_operators(void)
+void	search_bugs(void)
 {
+	t_minishell	*core;
 	t_token		*tmp;
-	t_counter	*counter;
 
-	tmp = get_core()->token_list;
-	counter = &get_core()->counter;
-	ft_bzero(counter, sizeof(t_counter));
-	while (tmp)
-	{
-		if (tmp->type == TOKEN_PIPE)
-			counter->pipes++;
-		if (tmp->type == TOKEN_REDIRECT || tmp->type == TOKEN_APPEND
-			|| tmp->type == TOKEN_REDIRECT_REVERSE)
-			counter->redir++;
-		if (tmp->type == TOKEN_HERE_DOC)
-			counter->here_doc++;
-		tmp = tmp->next;
-	}
-}
-
-void	searsh_bugs(void)
-{
-	t_token	*tmp;
-
-	tmp = get_core()->token_list;
-	if (get_core()->token_list->type == TOKEN_PIPE)
+	core = get_core();
+	tmp = core->token_list;
+	if (core->token_list->type == TOKEN_PIPE)
 		ft_error("syntax error: unexpected token\n", 2);
 	while (tmp->next)
 	{
