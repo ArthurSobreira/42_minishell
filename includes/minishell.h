@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 14:19:42 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:50:45 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			process_non_space(t_minishell *core, int *i);
 void			add_to_list(t_minishell *core, int start, int end);
 t_bool			isall(t_minishell *core, int *i);
 void			ft_clear_splited_input(void);
-void			searsh_bugs(void);
+void			search_bugs(void);
 
 // Start functions
 void			init_minishell(t_minishell *core);
