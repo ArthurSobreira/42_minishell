@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/02 19:10:56 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:17:11 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_minishell
 	char			*built_in[8];
 	char			*input;
 	char			**envp;
+	t_counter		counter;
 }					t_minishell;
 
 #endif
