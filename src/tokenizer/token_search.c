@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_search.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 15:36:42 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:50:45 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	pipe_and_operator_error(void)
 	}
 }
 
-void	searsh_bugs(void)
+void	search_bugs(void)
 {
 	t_minishell	*core;
 	t_token		*tmp;
