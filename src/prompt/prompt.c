@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/01 11:55:51 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:47:09 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	prompt_loop(t_minishell *core)
 		core->input = readline(prompt);
 		free(prompt);
 		add_history(core->input);
-		printf("input: %s\n", core->input);
 		tokenization();
 		if (core->input[0] == '\0')
 			continue ;
