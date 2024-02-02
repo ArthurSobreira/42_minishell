@@ -82,6 +82,7 @@ $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)$(INIT_PATH)
 	@mkdir -p $(BIN_PATH)$(PARSER_PATH)
 	@mkdir -p $(BIN_PATH)$(PROMPT_PATH)
+	@mkdir -p $(BIN_PATH)$(REDIRECT_PATH)
 	@mkdir -p $(BIN_PATH)$(TOKENIZER_PATH)
 
 clean:
