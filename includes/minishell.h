@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 22:50:45 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:46:36 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void			unset(t_minishell *core);
 
 // Prompt functions
 void			prompt_loop(t_minishell *core);
-char			*get_prompt_text(t_minishell *core);
-char			*get_hostname(t_minishell *core);
+char			*get_prompt_text(void);
+char			*get_hostname(void);
 char			*format_hostname(char *hostname);
 char			*get_username(void);
 char			*get_current_dir(void);
@@ -75,5 +75,9 @@ void			ft_error(char *str, int status);
 void			ft_clear_token(void);
 void			ft_clear_env_vars(void);
 void			ft_clear_splited_input(void);
+
+// Redirect functions
+t_bool	check_file_existence(char *file_name);
+t_bool	check_file_permissions(char *file_name);
 
 #endif
