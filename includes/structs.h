@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 22:21:52 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:17:11 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,32 @@ typedef struct s_var
 
 typedef struct s_input
 {
-	char			*content;
-	struct s_input	*next;
-}					t_input;
+	char				*content;
+	struct s_input		*next;
+}						t_input;
 typedef struct s_token
 {
-	char			*value;
-	t_tkn_type		type;
-	struct s_token	*next;
-	struct s_token	*prev;
+	char				*value;
+	t_tkn_type			type;
+	struct s_token		*next;
+	struct s_token		*prev;
 
-}					t_token;
+}						t_token;
 
 typedef struct s_prompt
 {
-	char			*user;
-	char			*hostname;
-	char			*current_dir;
-	char			*prompt;
-}					t_prompt;
+	char				*user;
+	char				*hostname;
+	char				*current_dir;
+	char				*prompt;
+}						t_prompt;
+
+typedef struct s_counter
+{
+	int					pipes;
+	int					redir;
+	int					here_doc;
+}						t_counter;
 
 typedef struct s_minishell
 {
@@ -81,6 +88,7 @@ typedef struct s_minishell
 	char			*built_in[8];
 	char			*input;
 	char			**envp;
+	t_counter		counter;
 }					t_minishell;
 
 #endif
