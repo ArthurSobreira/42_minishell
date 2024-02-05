@@ -56,3 +56,4 @@ temp/
 *.log
 sup/
 *.supp
+tests/
