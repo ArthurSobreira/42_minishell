@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/02 19:12:04 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:47:33 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-t_minishell	*get_core(void);
+t_minishell		*get_core(void);
 
 // Built-in functions
-char		*get_working_directory(void);
-void		print_working_directory(void);
-void		print_env_variables(void);
+char			*get_working_directory(void);
+void			print_working_directory(void);
+void			print_env_variables(void);
 
-void		unset(t_minishell *core);
-void		change_directory(t_minishell *core);
-void		echo(void);
-void		exit_shell(void);
-void		export_variables(t_minishell *core);
-void		unset(t_minishell *core);
+void			unset(t_minishell *core);
+void			change_directory(t_minishell *core);
+void			echo(void);
+void			exit_shell(void);
+void			export_variables(t_minishell *core);
+void			unset(t_minishell *core);
 
 // Prompt functions
 void			prompt_loop(t_minishell *core);
@@ -62,13 +62,13 @@ void			ft_clear_splited_input(void);
 void			search_bugs(void);
 
 // Start functions
-void		init_minishell(t_minishell *core);
-void		get_env_vars(t_minishell *core);
-t_var		*create_var(char *key, char *value);
-t_var		*find_last_var(t_var *var);
-t_prompt	init_prompt(void);
-void		print_ascii(void);
-void		clear_prompt(void);
+void			init_minishell(t_minishell *core);
+void			get_env_vars(t_minishell *core);
+t_var			*create_var(char *key, char *value);
+t_var			*find_last_var(t_var *var);
+t_prompt		init_prompt(void);
+void			print_ascii(void);
+void			clear_prompt(void);
 
 // Clear functions
 void			ft_error(char *str, int status);
@@ -77,7 +77,7 @@ void			ft_clear_env_vars(void);
 void			ft_clear_splited_input(void);
 
 // Redirect functions
-t_bool	check_file_existence(char *file_name);
-t_bool	check_file_permissions(char *file_name);
+t_bool			check_file_existence(char *file_name);
+t_bool			check_file_permissions(char *file_name);
 
 #endif
