@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 22:50:45 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:02:01 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,35 @@ void	add_token(t_token **head, t_token *new)
 	new->prev = tmp;
 }
 
+void	search_bad_redirects(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '>' || str[i] == '<')
+		{
+			while (str[++i] == ' ')
+			{
+				i++;
+				if (str[i] == '<' || str[i] == '>')
+					ft_error("syntax error: unexpected token\n", 2);
+			}
+		}
+	}
+}
+
 void	tokenization(void)
 {
-	t_input		*tmp;
-	t_token		*token;
-	char		*str;
-	char		*temp_str;
-	t_minishell	*core;
+	t_input	*tmp;
+	t_token	*token;
+	char	*str;
+	char	*temp_str;
 
-	core = get_core();
 	split_input();
-	tmp = core->splited_input;
+	search_bad_redirects(get_core()->input);
+	tmp = get_core()->splited_input;
 	temp_str = NULL;
 	while (tmp)
 	{
@@ -100,9 +118,9 @@ void	tokenization(void)
 			tmp = tmp->next;
 		}
 		token = new_token(str);
-		add_token(&core->token_list, token);
+		add_token(&get_core()->token_list, token);
 		tmp = tmp->next;
 	}
-	print_token(core->token_list);
+	print_token(get_core()->token_list);
 	search_bugs();
 }
