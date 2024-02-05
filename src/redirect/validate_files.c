@@ -17,7 +17,7 @@ void	validate_io_files(t_token *token)
 	t_token		*current_tkn;
 
 	current_tkn = token;
-	while (current)
+	while (current_tkn)
 	{
 		if (current_tkn->type == TOKEN_REDIRECT || 
 				current_tkn->type == TOKEN_APPEND)
@@ -43,7 +43,7 @@ void	handle_redirects(void)
 	t_token		*current_tkn;
 
 	core = get_core();
-	current_tkn = core->token;
+	current_tkn = core->token_list;
 	validate_io_files(current_tkn);
 	while (current_tkn)
 	{
