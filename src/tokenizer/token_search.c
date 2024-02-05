@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/02 19:18:30 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:41:29 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ t_bool	is_excluded_type(t_tkn_type type, int option)
 			|| type == TOKEN_SEMICOLON || type == TOKEN_BACKGROUND))
 		return (TRUE);
 	else if (option == 2 && (type == TOKEN_PIPE || type == TOKEN_REDIRECT
-			|| type == TOKEN_REDIRECT_REVERSE || type == TOKEN_APPEND
-			|| type == TOKEN_HERE_DOC || type == TOKEN_AND
-			|| type == TOKEN_OR || type == TOKEN_SEMICOLON
-			|| type == TOKEN_BACKGROUND))
+				|| type == TOKEN_REDIRECT_REVERSE || type == TOKEN_APPEND
+				|| type == TOKEN_HERE_DOC || type == TOKEN_AND
+				|| type == TOKEN_OR || type == TOKEN_SEMICOLON
+				|| type == TOKEN_BACKGROUND))
 		return (TRUE);
 	return (FALSE);
 }
