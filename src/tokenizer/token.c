@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 15:23:08 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:50:45 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	print_token(t_token *token)
 	{
 		printf("type: %d\n", tmp->type);
 		printf("value: %s\n", tmp->value);
-		if (tmp->prev)
-			printf("prev: %s\n", tmp->prev->value);
 		tmp = tmp->next;
 	}
 }
@@ -106,5 +104,5 @@ void	tokenization(void)
 		tmp = tmp->next;
 	}
 	print_token(core->token_list);
-	searsh_bugs();
+	search_bugs();
 }

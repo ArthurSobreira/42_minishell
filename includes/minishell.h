@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 14:19:42 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:12:04 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,24 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-t_minishell		*get_core(void);
+t_minishell	*get_core(void);
 
 // Built-in functions
-char			*get_working_directory(void);
-void			print_working_directory(void);
-void			print_env_variables(void);
+char		*get_working_directory(void);
+void		print_working_directory(void);
+void		print_env_variables(void);
 
-void			unset(t_minishell *core);
-void			change_directory(t_minishell *core);
-void			echo(void);
-void			exit_shell(void);
-void			export_variables(t_minishell *core);
-void			unset(t_minishell *core);
+void		unset(t_minishell *core);
+void		change_directory(t_minishell *core);
+void		echo(void);
+void		exit_shell(void);
+void		export_variables(t_minishell *core);
+void		unset(t_minishell *core);
 
 // Prompt functions
 void			prompt_loop(t_minishell *core);
-char			*get_prompt_text(t_minishell *core);
-char			*get_hostname(t_minishell *core);
+char			*get_prompt_text(void);
+char			*get_hostname(void);
 char			*format_hostname(char *hostname);
 char			*get_username(void);
 char			*get_current_dir(void);
@@ -59,21 +59,25 @@ void			process_non_space(t_minishell *core, int *i);
 void			add_to_list(t_minishell *core, int start, int end);
 t_bool			isall(t_minishell *core, int *i);
 void			ft_clear_splited_input(void);
-void			searsh_bugs(void);
+void			search_bugs(void);
 
 // Start functions
-void			init_minishell(t_minishell *core);
-void			get_env_vars(t_minishell *core);
-t_var			*create_var(char *key, char *value);
-t_var			*find_last_var(t_var *var);
-t_prompt		init_prompt(void);
-void			print_ascii(void);
-void			clear_prompt(void);
+void		init_minishell(t_minishell *core);
+void		get_env_vars(t_minishell *core);
+t_var		*create_var(char *key, char *value);
+t_var		*find_last_var(t_var *var);
+t_prompt	init_prompt(void);
+void		print_ascii(void);
+void		clear_prompt(void);
 
 // Clear functions
 void			ft_error(char *str, int status);
 void			ft_clear_token(void);
 void			ft_clear_env_vars(void);
 void			ft_clear_splited_input(void);
+
+// Redirect functions
+t_bool	check_file_existence(char *file_name);
+t_bool	check_file_permissions(char *file_name);
 
 #endif

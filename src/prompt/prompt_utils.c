@@ -6,13 +6,13 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:10 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/29 19:15:48 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:45:54 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_hostname(t_minishell *core)
+char	*get_hostname(void)
 {
 	char	*path;
 	int		fd;
@@ -22,16 +22,10 @@ char	*get_hostname(t_minishell *core)
 	path = "/etc/hostname";
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-	{
-		core->exits.exit_code = EXIT_FAILURE;
-		core->exits.exit_msg = ft_strjoin(path, ": No such file or directory");
-	}
+		ft_error("Cannot open /etc/hostname", EXIT_FAILURE);
 	bytes_read = read(fd, hostname, MAX_HOSTNAME_LEN);
 	if (bytes_read < 0)
-	{
-		core->exits.exit_code = EXIT_FAILURE;
-		core->exits.exit_msg = ft_strjoin(path, ": Cannot read file");
-	}
+		ft_error("Cannot read /etc/hostname", EXIT_FAILURE);
 	close(fd);
 	hostname[bytes_read] = '\0';
 	return (ft_strdup(hostname));

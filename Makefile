@@ -24,6 +24,7 @@ EXIT_PATH = exit/
 INIT_PATH = init/
 PARSER_PATH = parser/
 PROMPT_PATH = prompt/
+REDIRECT_PATH = redirect/
 TOKENIZER_PATH = tokenizer/
 
 SOURCES = main.c \
@@ -42,6 +43,7 @@ SOURCES = main.c \
 	$(PARSER_PATH)parser.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
+	$(REDIRECT_PATH)check_files.c \
 	$(TOKENIZER_PATH)token_utils.c \
 	$(TOKENIZER_PATH)token.c \
 	$(TOKENIZER_PATH)token_search.c \
@@ -80,6 +82,7 @@ $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)$(INIT_PATH)
 	@mkdir -p $(BIN_PATH)$(PARSER_PATH)
 	@mkdir -p $(BIN_PATH)$(PROMPT_PATH)
+	@mkdir -p $(BIN_PATH)$(REDIRECT_PATH)
 	@mkdir -p $(BIN_PATH)$(TOKENIZER_PATH)
 
 clean:
@@ -109,4 +112,4 @@ valgrind: make_temp all
 	--suppressions=./suppresion.supp \
 	--log-file=$(TEMP_PATH)valgrind.log ./$(NAME)
 
-.PHONY: all clean fclean re libft make_temp tests run
+.PHONY: all clean fclean re libft make_temp valgrind

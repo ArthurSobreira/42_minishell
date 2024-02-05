@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/01 12:08:10 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:41:25 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	init_minishell(t_minishell *core)
 	core->env_vars_size = 0;
 	// core.built_in = NULL;
 	core->input = NULL;
-	core->exits.exit_code = 0;
-	core->exits.exit_msg = NULL;
 }
 
 t_prompt	init_prompt(void)
