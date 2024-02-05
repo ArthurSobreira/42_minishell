@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/02 19:17:11 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/05 14:32:42 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@ typedef enum e_tkn_type
 	TOKEN_AND
 }					t_tkn_type;
 
-typedef struct s_cmd
-{
-	char			*executable;
-	char			**arguments;
-	int				background;
-}					t_cmd;
-
 typedef struct s_redirect
 {
 	t_tkn_type		r_type;
@@ -42,6 +35,13 @@ typedef struct s_redirect
 	int				fd;
 	int				number;
 }					t_redirect;
+
+typedef struct s_cmd
+{
+	char			*executable;
+	char			**arguments;
+	t_redirect		*redirects;
+}					t_cmd;
 
 typedef struct s_var
 {
@@ -52,32 +52,32 @@ typedef struct s_var
 
 typedef struct s_input
 {
-	char				*content;
-	struct s_input		*next;
-}						t_input;
+	char			*content;
+	struct s_input	*next;
+}					t_input;
 typedef struct s_token
 {
-	char				*value;
-	t_tkn_type			type;
-	struct s_token		*next;
-	struct s_token		*prev;
+	char			*value;
+	t_tkn_type		type;
+	struct s_token	*next;
+	struct s_token	*prev;
 
-}						t_token;
+}					t_token;
 
 typedef struct s_prompt
 {
-	char				*user;
-	char				*hostname;
-	char				*current_dir;
-	char				*prompt;
-}						t_prompt;
+	char			*user;
+	char			*hostname;
+	char			*current_dir;
+	char			*prompt;
+}					t_prompt;
 
 typedef struct s_counter
 {
-	int					pipes;
-	int					redir;
-	int					here_doc;
-}						t_counter;
+	int				pipes;
+	int				redir;
+	int				here_doc;
+}					t_counter;
 
 typedef struct s_minishell
 {
