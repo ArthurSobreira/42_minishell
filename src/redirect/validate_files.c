@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   validate_files.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2024/02/01 22:12:23 by arsobrei          #+#    #+#             */
 /*   Updated: 2024/02/01 22:12:23 by arsobrei         ###   ########.fr       */
 /*                                                                            */
@@ -12,24 +15,25 @@
 
 #include "minishell.h"
 
+
 void	validate_io_files(t_token *token)
 {
-	t_token		*current_tkn;
+	t_token *current_tkn;
 
 	current_tkn = token;
-	while (current)
+	while (current_tkn)
 	{
-		if (current_tkn->type == TOKEN_REDIRECT || 
-				current_tkn->type == TOKEN_APPEND)
+		if (current_tkn->type == TOKEN_REDIRECT ||
+			current_tkn->type == TOKEN_APPEND)
 		{
-			if (current_tkn->next == NULL || 
+			if (current_tkn->next == NULL ||
 				current_tkn->next->type != TOKEN_WORD)
-				ft_error("syntax error near unexpected token `newline'\n", 
+				ft_error("syntax error near unexpected token `newline'\n",
 					SYNTAX_ERROR);
 		}
 		else if (current_tkn->type == TOKEN_REDIRECT_REVERSE)
 		{
-			if (!check_file_existence(current_tkn->next->value) || 
+			if (!check_file_existence(current_tkn->next->value) ||
 				!check_file_permissions(current_tkn->next->value))
 				ft_error("no such file or directory\n", EXIT_FAILURE);
 		}
@@ -39,11 +43,11 @@ void	validate_io_files(t_token *token)
 
 void	handle_redirects(void)
 {
-	t_minishell	*core;
-	t_token		*current_tkn;
+	t_minishell *core;
+	t_token *current_tkn;
 
 	core = get_core();
-	current_tkn = core->token;
+	current_tkn = core->token_list;
 	validate_io_files(current_tkn);
 	while (current_tkn)
 	{
