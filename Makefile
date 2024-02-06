@@ -20,7 +20,7 @@ HEADER_PATH = ./includes
 BIN_PATH = ./bin/
 SOURCES_PATH = ./src/
 BUILTINS_PATH = built-in/
-DEBUG_PATH = debug/
+DEBUG_PATH = debbuger/
 REDIRECT_PATH = redirect/
 EXIT_PATH = exit/
 INIT_PATH = init/
@@ -38,7 +38,7 @@ SOURCES = main.c \
 	$(BUILTINS_PATH)export.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
-	$(DEBBUGER_PATH)debug.c \
+	$(DEBBUGER_PATH)print_coisas.c \
 	$(EXIT_PATH)clear.c \
 	$(EXIT_PATH)error.c \
 	$(EXPANSION_PATH)expansion.c \
