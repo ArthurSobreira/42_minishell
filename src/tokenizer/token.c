@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 22:50:45 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:04:01 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	print_token(t_token *token)
 	while (tmp)
 	{
 		printf("type: %d\n", tmp->type);
-		printf("value: %s\n", tmp->value);
+		if (tmp->value)
+			printf("value: %s\n", tmp->value);
 		tmp = tmp->next;
 	}
 }
