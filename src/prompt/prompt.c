@@ -3,16 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/02/06 19:38:17 by phenriq2         ###   ########.fr       */
-=======
-/*   Updated: 2024/02/06 15:21:19 by arsobrei         ###   ########.fr       */
->>>>>>> f1f373ee6d21f4978e9f701e95d8b0e6a99dc008
+/*   Updated: 2024/02/06 19:44:31 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 
