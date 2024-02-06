@@ -19,50 +19,42 @@ void	validate_io_files(t_token *token_list)
 	current_tkn = token_list;
 	while (current_tkn)
 	{
-		if (current_tkn->type == TOKEN_REDIRECT || 
+		if (current_tkn->type == TOKEN_REDIRECT_REVERSE ||
+				current_tkn->type == TOKEN_HERE_DOC)
+			validate_input_file(current_tkn);
+		else if (current_tkn->type == TOKEN_REDIRECT || 
 				current_tkn->type == TOKEN_APPEND)
-		{
-			if (current_tkn->next == NULL || 
-				current_tkn->next->type != TOKEN_WORD)
-				ft_error("syntax error near unexpected token `newline'\n", 
-					SYNTAX_ERROR);
-		}
-		else if (current_tkn->type == TOKEN_REDIRECT_REVERSE)
-		{
-			if (!check_file_exists(current_tkn->next->value) || 
-				!check_file_readable(current_tkn->next->value))
-				ft_error("no such file or directory\n", EXIT_FAILURE);
-		}
+			validate_output_file(current_tkn);
 		current_tkn = current_tkn->next;
 	}
 }
 
-t_bool	check_file_exists(char *file_name)
+void	validate_input_file(t_token *current_tkn)
 {
-	if (access(file_name, F_OK) == -1)
+	if (current_tkn->next == NULL || 
+		current_tkn->next->type != TOKEN_WORD)
+		ft_error("syntax error near unexpected token `newline'\n", 
+			SYNTAX_ERROR);
+	if (current_tkn->type == TOKEN_REDIRECT_REVERSE)
 	{
-		ft_error("no such file or directory\n", EXIT_FAILURE);
-		return (FALSE);
+		if (!check_file_exists(current_tkn->next->value))
+			ft_error("no such file or directory\n", EXIT_FAILURE);
+		else if (!check_file_readable(current_tkn->next->value))
+			ft_error("permission denied\n", PERMISSION_ERROR);
 	}
-	return (TRUE);
 }
 
-t_bool	check_file_readable(char *file_name)
+void	validate_output_file(t_token *current_tkn)
 {
-	if (access(file_name, R_OK) == -1)
+	if (current_tkn->next == NULL || 
+		current_tkn->next->type != TOKEN_WORD)
+		ft_error("syntax error near unexpected token `newline'\n", 
+			SYNTAX_ERROR);
+	if (check_file_executable(current_tkn->next->value))
+		ft_error("is a directory\n", EXIT_FAILURE);
+	if (check_file_exists(current_tkn->next->value))
 	{
-		ft_error("permission denied\n", PERMISSION_ERROR);
-		return (FALSE);
+		if (!check_file_writable(current_tkn->next->value))
+			ft_error("permission denied\n", PERMISSION_ERROR);
 	}
-	return (TRUE);
-}
-
-t_bool	check_file_writable(char *file_name)
-{
-	if (access(file_name, W_OK) == -1)
-	{
-		ft_error("permission denied\n", PERMISSION_ERROR);
-		return (FALSE);
-	}
-	return (TRUE);
 }
