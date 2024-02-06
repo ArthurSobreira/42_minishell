@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/06 15:54:58 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:27:20 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,17 +97,6 @@ void	search_bad_redirects(char *str)
 	}
 }
 
-char	*chardup(char c)
-{
-	char	*str;
-
-	str = (char *)malloc(3);
-	str[0] = c;
-	str[1] = c;
-	str[2] = '\0';
-	return (str);
-}
-
 void	tokenization(void)
 {
 	t_input	*tmp;
@@ -125,7 +114,7 @@ void	tokenization(void)
 		{
 			dup = str[0];
 			ft_free(str);
-			str = chardup(dup);
+			str = ft_strduplicate_char(dup);
 			tmp = tmp->next;
 		}
 		token = new_token(ft_strdup(str));
