@@ -6,27 +6,46 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:20:22 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/05 19:49:06 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:37:48 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*find_variables(char *str, t_var *env, t_tkn_type type)
+void	find_var(char *str)
 {
-	char	*new_str;
+	t_var	*temp;
 
-	while (*str && *str != '\'')
+	temp = get_core()->env_vars;
+	while (temp)
 	{
-		if (*str == '$')
+		if (!ft_strcmp(temp->key, str))
 		{
-			if (type == TOKEN_QUOTE)
-				new_str = ft_substr(++str, 0, ft_strchr(str, ' ') - str);
-			else if (type == TOKEN_WORD)
-				new_str = ft_strdup(++str);
-			return (new_str);
+			printf("%s\n", temp->value);
+			return ;
 		}
-		str++;
+		temp = temp->next;
 	}
-	return (NULL);
+}
+
+t_bool	is_quote(char c)
+{
+	return (c == '\'');
+}
+
+void	look_for_variables(void)
+{
+	t_token	*token;
+
+	token = get_core()->token_list;
+	while (token)
+	{
+		if ((token->type == TOKEN_WORD || token->type == TOKEN_QUOTE)
+			&& !is_quote(token->value[0]))
+		{
+			if (ft_strchr(token->value, '$') && token->type == TOKEN_WORD)
+				find_var(token->value + 1);
+		}
+		token = token->next;
+	}
 }
