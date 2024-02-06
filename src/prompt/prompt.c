@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/02/06 19:38:17 by phenriq2         ###   ########.fr       */
+=======
+/*   Updated: 2024/02/06 15:21:19 by arsobrei         ###   ########.fr       */
+>>>>>>> f1f373ee6d21f4978e9f701e95d8b0e6a99dc008
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +28,7 @@ void	prompt_loop(t_minishell *core)
 		free(prompt);
 		add_history(core->input);
 		tokenization();
+		handle_redirects();
 		if (core->input[0] == '\0')
 			continue ;
 		if (ft_strcmp(core->input, "exit") == 0)

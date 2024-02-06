@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 14:16:52 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/06 15:38:08 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:45:59 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,34 @@ void	ft_clear_splited_input(void)
 		core->splited_input = tmp;
 	}
 	ft_clear_token();
+}
+
+void	ft_clear_redir_in(t_redir_in **redir_in)
+{
+	t_redir_in	*tmp_in;
+
+	if (*redir_in == NULL)
+		return ;
+	while (*redir_in)
+	{
+		tmp_in = (*redir_in)->next;
+		ft_free((*redir_in)->file_name);
+		ft_free(*redir_in);
+		*redir_in = tmp_in;
+	}
+}
+
+void	ft_clear_redir_out(t_redir_out **redir_out)
+{
+	t_redir_out	*tmp_out;
+
+	if (*redir_out == NULL)
+		return ;
+	while (*redir_out)
+	{
+		tmp_out = (*redir_out)->next;
+		ft_free((*redir_out)->file_name);
+		ft_free(*redir_out);
+		*redir_out = tmp_out;
+	}
 }
