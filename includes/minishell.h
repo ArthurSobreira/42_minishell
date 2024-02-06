@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/06 16:48:59 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:08:48 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,13 @@ void		ft_clear_splited_input(void);
 t_bool		check_file_existence(char *file_name);
 t_bool		check_file_permissions(char *file_name);
 
+// Expansion functions
+
+void		look_for_variables(void);
+
 // Debug functions
 
 void		print_token(t_token *token);
+void		print_splited(t_input *input);
 
 #endif
