@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/05 19:02:01 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:54:58 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,29 +97,41 @@ void	search_bad_redirects(char *str)
 	}
 }
 
+char	*chardup(char c)
+{
+	char	*str;
+
+	str = (char *)malloc(3);
+	str[0] = c;
+	str[1] = c;
+	str[2] = '\0';
+	return (str);
+}
+
 void	tokenization(void)
 {
 	t_input	*tmp;
 	t_token	*token;
 	char	*str;
-	char	*temp_str;
+	char	dup;
 
 	split_input();
 	search_bad_redirects(get_core()->input);
 	tmp = get_core()->splited_input;
-	temp_str = NULL;
 	while (tmp)
 	{
-		str = tmp->content;
+		str = ft_strdup(tmp->content);
 		if (tmp->next && !ft_strcmp(tmp->next->content, str))
 		{
-			temp_str = str;
-			str = ft_strjoin(temp_str, str);
+			dup = str[0];
+			ft_free(str);
+			str = chardup(dup);
 			tmp = tmp->next;
 		}
-		token = new_token(str);
+		token = new_token(ft_strdup(str));
 		add_token(&get_core()->token_list, token);
 		tmp = tmp->next;
+		ft_free(str);
 	}
 	print_token(get_core()->token_list);
 	search_bugs();
