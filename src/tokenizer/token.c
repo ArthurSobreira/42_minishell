@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/06 16:39:48 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:31:13 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ t_tkn_type	set_tkn_type(char *str)
 	if (!ft_strcmp(str, ";"))
 		return (TOKEN_SEMICOLON);
 	if (str[0] == '\"')
-		return (TOKEN_QUOTE);
+		return (TOKEN_DQUOTE);
+	if (str[0] == '\'')
+		return (TOKEN_SQUOTE);
 	return (TOKEN_WORD);
 }
 
@@ -111,4 +113,5 @@ void	tokenization(void)
 	}
 	print_token(get_core()->token_list);
 	search_bugs();
+	look_for_variables();
 }

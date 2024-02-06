@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/05 18:41:29 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:23:45 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,6 @@ void	pipe_and_operator_error(void)
 	}
 }
 
-void	count_operators(void)
-{
-	t_token		*tmp;
-	t_counter	*counter;
-
-	tmp = get_core()->token_list;
-	counter = &get_core()->counter;
-	ft_bzero(counter, sizeof(t_counter));
-	while (tmp)
-	{
-		if (tmp->type == TOKEN_PIPE)
-			counter->pipes++;
-		if (tmp->type == TOKEN_REDIRECT || tmp->type == TOKEN_APPEND
-			|| tmp->type == TOKEN_REDIRECT_REVERSE)
-			counter->redir++;
-		if (tmp->type == TOKEN_HERE_DOC)
-			counter->here_doc++;
-		tmp = tmp->next;
-	}
-}
-
 void	search_bugs(void)
 {
 	t_token	*tmp;
@@ -97,13 +76,5 @@ void	search_bugs(void)
 		ft_error("syntax error: unexpected end of file\n", 2);
 	pipe_and_operator_error();
 	tmp = get_core()->token_list;
-	while (tmp)
-	{
-		if (tmp->type == TOKEN_QUOTE && ((count_occurrences(tmp->value,
-						'\'') != 2 || count_occurrences(tmp->value,
-						'\"') != 2)))
-			ft_error("syntax error: unexpected end of file\n", 2);
-		tmp = tmp->next;
-	}
-	count_operators();
+	print_token(tmp);
 }
