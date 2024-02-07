@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/07 19:53:13 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/07 20:16:26 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ int	main(int argc, char *argv[], char *envp[])
 		get_env_vars(core);
 		prompt_loop(core);
 	}
-	return (EXIT_FAILURE);
+	return (core->exit_status);
 }
