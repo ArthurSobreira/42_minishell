@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/06 19:46:48 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:34:38 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	pipe_and_operator_error(void)
 	tmp = core->token_list;
 	while (tmp->next)
 	{
-		if ((tmp->type == TOKEN_PIPE && tmp->next->type != TOKEN_WORD)
+		if ((tmp->type == TOKEN_PIPE && is_excluded_type(tmp->next->type, 1))
 			|| (tmp->type == TOKEN_APPEND && tmp->next->type != TOKEN_WORD)
 			|| (tmp->type == TOKEN_REDIRECT && tmp->next->type != TOKEN_WORD)
 			|| (tmp->type == TOKEN_REDIRECT_REVERSE
