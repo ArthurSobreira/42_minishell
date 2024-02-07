@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:20:22 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/06 18:37:48 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 10:45:34 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ void	look_for_variables(void)
 	token = get_core()->token_list;
 	while (token)
 	{
-		if ((token->type == TOKEN_WORD || token->type == TOKEN_QUOTE)
-			&& !is_quote(token->value[0]))
+		if ((token->type == TOKEN_WORD || token->type == TOKEN_DQUOTE))
 		{
 			if (ft_strchr(token->value, '$') && token->type == TOKEN_WORD)
 				find_var(token->value + 1);
