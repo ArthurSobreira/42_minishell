@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/06 19:47:00 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:35:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ t_token	*new_token(char *str)
 	t_token	*token;
 
 	token = (t_token *)malloc(sizeof(t_token));
+	token->value = ft_strdup(str);
 	token->type = set_tkn_type(str);
-	token->value = str;
 	token->next = NULL;
 	token->prev = NULL;
 	return (token);
@@ -83,6 +83,15 @@ void	search_bad_redirects(char *str)
 					ft_error("syntax error: unexpected token\n", 2);
 			}
 		}
+		else if (str[i] == '|')
+		{
+			while (str[++i] == ' ')
+			{
+				i++;
+				if (str[i] == '|')
+					ft_error("syntax error: unexpected token\n", 2);
+			}
+		}
 	}
 }
 
@@ -93,8 +102,12 @@ void	tokenization(void)
 	char	*str;
 	char	dup;
 
-	split_input();
+	tmp = NULL;
+	token = NULL;
+	str = NULL;
+	dup = 0;
 	search_bad_redirects(get_core()->input);
+	split_input();
 	tmp = get_core()->splited_input;
 	while (tmp)
 	{
@@ -106,12 +119,11 @@ void	tokenization(void)
 			str = ft_strduplicate_char(dup);
 			tmp = tmp->next;
 		}
-		token = new_token(ft_strdup(str));
+		token = new_token(str);
 		add_token(&get_core()->token_list, token);
 		tmp = tmp->next;
 		ft_free(str);
 	}
-	print_token(get_core()->token_list);
 	search_bugs();
-	look_for_variables();
+	// look_for_variables();
 }
