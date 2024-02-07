@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_search.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/05 19:30:45 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:34:38 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ t_bool	is_excluded_type(t_tkn_type type, int option)
 			|| type == TOKEN_SEMICOLON || type == TOKEN_BACKGROUND))
 		return (TRUE);
 	else if (option == 2 && (type == TOKEN_PIPE || type == TOKEN_REDIRECT
-			|| type == TOKEN_REDIRECT_REVERSE || type == TOKEN_APPEND
-			|| type == TOKEN_HERE_DOC || type == TOKEN_AND
-			|| type == TOKEN_OR || type == TOKEN_SEMICOLON
-			|| type == TOKEN_BACKGROUND))
+				|| type == TOKEN_REDIRECT_REVERSE || type == TOKEN_APPEND
+				|| type == TOKEN_HERE_DOC || type == TOKEN_AND
+				|| type == TOKEN_OR || type == TOKEN_SEMICOLON
+				|| type == TOKEN_BACKGROUND))
 		return (TRUE);
 	return (FALSE);
 }
@@ -49,7 +49,7 @@ void	pipe_and_operator_error(void)
 	tmp = core->token_list;
 	while (tmp->next)
 	{
-		if ((tmp->type == TOKEN_PIPE && tmp->next->type != TOKEN_WORD)
+		if ((tmp->type == TOKEN_PIPE && is_excluded_type(tmp->next->type, 1))
 			|| (tmp->type == TOKEN_APPEND && tmp->next->type != TOKEN_WORD)
 			|| (tmp->type == TOKEN_REDIRECT && tmp->next->type != TOKEN_WORD)
 			|| (tmp->type == TOKEN_REDIRECT_REVERSE
@@ -76,12 +76,5 @@ void	search_bugs(void)
 		ft_error("syntax error: unexpected end of file\n", 2);
 	pipe_and_operator_error();
 	tmp = get_core()->token_list;
-	while (tmp)
-	{
-		if (tmp->type == TOKEN_QUOTE && ((count_occurrences(tmp->value,
-						'\'') != 2 || count_occurrences(tmp->value,
-						'\"') != 2)))
-			ft_error("syntax error: unexpected end of file\n", 2);
-		tmp = tmp->next;
-	}
+	print_token(tmp);
 }

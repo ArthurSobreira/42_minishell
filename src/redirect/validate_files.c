@@ -14,7 +14,7 @@
 
 void	validate_io_files(t_token *token_list)
 {
-	t_token		*current_tkn;
+	t_token *current_tkn;
 
 	current_tkn = token_list;
 	while (current_tkn)
