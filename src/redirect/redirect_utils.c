@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:11:36 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/06 15:41:24 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:40:40 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,27 @@ t_redir_out	*find_last_redir_out(t_redir_out *redir)
 	while (current_redir->next != NULL)
 		current_redir = current_redir->next;
 	return (current_redir);
+}
+
+void	remove_redir_token(t_token **token_list, t_token *target_tkn)
+{
+	t_token	*current_tkn;
+
+	current_tkn = *token_list;
+	while (current_tkn)
+	{
+		if (current_tkn == target_tkn)
+		{
+			if (current_tkn->prev)
+				current_tkn->prev->next = current_tkn->next;
+			else
+				*token_list = current_tkn->next;
+			if (current_tkn->next)
+				current_tkn->next->prev = current_tkn->prev;
+			ft_free(current_tkn->value);
+			ft_free(current_tkn);
+			break ;
+		}
+		current_tkn = current_tkn->next;
+	}
 }
