@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/07 12:02:56 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:57:50 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	prompt_loop(t_minishell *core)
 		core->input = readline(prompt);
 		free(prompt);
 		add_history(core->input);
-		tokenization();
-		print_token(get_core()->token_list);
-		// handle_redirects();
 		if (core->input[0] == '\0')
 			continue ;
+		tokenization();
+		print_token(get_core()->token_list);
+		handle_redirects();
 		if (ft_strcmp(core->input, "exit") == 0)
 			exit_shell();
 		if (ft_strcmp(core->input, "pwd") == 0)
