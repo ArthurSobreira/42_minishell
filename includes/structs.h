@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/07 11:17:28 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:50:46 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_minishell
 	char				*built_in[8];
 	char				*input;
 	char				**envp;
+	int					exit_status;
 }						t_minishell;
 
 #endif
