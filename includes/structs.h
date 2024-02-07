@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/07 10:44:33 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 11:17:28 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 typedef enum e_tkn_type
 {
-	TOKEN_BACKGROUND,
-	TOKEN_SEMICOLON,
-	TOKEN_OR,
-	TOKEN_AND,
 	TOKEN_WORD,
 	TOKEN_PIPE,
 	TOKEN_REDIRECT,
@@ -26,7 +22,11 @@ typedef enum e_tkn_type
 	TOKEN_APPEND,
 	TOKEN_HERE_DOC,
 	TOKEN_SQUOTE,
-	TOKEN_DQUOTE
+	TOKEN_DQUOTE,
+	TOKEN_BACKGROUND,
+	TOKEN_SEMICOLON,
+	TOKEN_OR,
+	TOKEN_AND,
 }						t_tkn_type;
 
 typedef struct s_redir_in

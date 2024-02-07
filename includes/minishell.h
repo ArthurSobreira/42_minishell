@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/06 19:45:13 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 11:42:50 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ t_redir_out		*create_redir_out(t_tkn_type r_type, char *file_name);
 t_redir_out		*find_last_redir_out(t_redir_out *redir);
 void			remove_redir_token(t_token **token_list, t_token *target_tkn);
 
-void	print_token(t_token *token);
-
 // Expansion functions
 
 void		look_for_variables(void);
@@ -104,5 +102,6 @@ void		look_for_variables(void);
 
 void		print_token(t_token *token);
 void		print_splited(t_input *input);
+void		print_redir_out(t_redir_out *redir_list);
 
 #endif
