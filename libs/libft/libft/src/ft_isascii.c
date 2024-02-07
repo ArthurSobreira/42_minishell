@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:37:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/30 12:12:57 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:16:28 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_bool	ft_isascii(int c)
 {
 	if ((c >= 0) && (c <= 127))
 	{
-		return(TRUE);
+		return (TRUE);
 	}
 	else
 	{
