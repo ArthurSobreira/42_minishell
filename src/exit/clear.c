@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 14:16:52 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/06 19:45:59 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:23:35 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	ft_clear_splited_input(void)
 	while (core->splited_input)
 	{
 		tmp = core->splited_input->next;
-		free(core->splited_input->content);
-		free(core->splited_input);
+		ft_free(core->splited_input->content);
+		ft_free(core->splited_input);
 		core->splited_input = tmp;
 	}
 	ft_clear_token();
