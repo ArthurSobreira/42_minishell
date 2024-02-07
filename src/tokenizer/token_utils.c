@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:35:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/07 12:40:25 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:09:56 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,16 @@ void	add_to_list(t_minishell *core, int start, int end)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
+}
+
+t_bool	is_redir_token(t_token *token)
+{
+	if (token->type == TOKEN_REDIRECT ||
+		token->type == TOKEN_APPEND ||
+		token->type == TOKEN_REDIRECT_REVERSE ||
+		token->type == TOKEN_HERE_DOC)
+		return (TRUE);
+	return (FALSE);
 }
 
 t_bool	isall(t_minishell *core, int *i)
