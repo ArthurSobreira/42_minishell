@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/07 11:17:28 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:42:01 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef enum e_tkn_type
 	TOKEN_HERE_DOC,
 	TOKEN_SQUOTE,
 	TOKEN_DQUOTE,
+	TOKEN_VARIABLE,
 	TOKEN_BACKGROUND,
 	TOKEN_SEMICOLON,
 	TOKEN_OR,
@@ -92,6 +93,7 @@ typedef struct s_minishell
 	t_var				*env_vars;
 	t_cmd				*cmd_list;
 	int					env_vars_size;
+	int					exit_status;
 	char				*built_in[8];
 	char				*input;
 	char				**envp;
