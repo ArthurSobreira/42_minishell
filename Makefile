@@ -30,7 +30,6 @@ PROMPT_PATH = prompt/
 REDIRECT_PATH = redirect/
 TOKENIZER_PATH = tokenizer/
 
-
 SOURCES = main.c \
 	$(BUILTINS_PATH)cd.c \
 	$(BUILTINS_PATH)echo.c \
