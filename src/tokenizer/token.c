@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/06 16:04:01 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:35:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	print_token(t_token *token)
-{
-	t_token	*tmp;
-
-	tmp = token;
-	while (tmp)
-	{
-		printf("type: %d\n", tmp->type);
-		if (tmp->value)
-			printf("value: %s\n", tmp->value);
-		tmp = tmp->next;
-	}
-}
 
 t_tkn_type	set_tkn_type(char *str)
 {
@@ -47,7 +33,9 @@ t_tkn_type	set_tkn_type(char *str)
 	if (!ft_strcmp(str, ";"))
 		return (TOKEN_SEMICOLON);
 	if (str[0] == '\"')
-		return (TOKEN_QUOTE);
+		return (TOKEN_DQUOTE);
+	if (str[0] == '\'')
+		return (TOKEN_SQUOTE);
 	return (TOKEN_WORD);
 }
 
@@ -56,8 +44,8 @@ t_token	*new_token(char *str)
 	t_token	*token;
 
 	token = (t_token *)malloc(sizeof(t_token));
+	token->value = ft_strdup(str);
 	token->type = set_tkn_type(str);
-	token->value = str;
 	token->next = NULL;
 	token->prev = NULL;
 	return (token);
@@ -79,31 +67,63 @@ void	add_token(t_token **head, t_token *new)
 	new->prev = tmp;
 }
 
+void	search_bad_redirects(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '>' || str[i] == '<')
+		{
+			while (str[++i] == ' ')
+			{
+				i++;
+				if (str[i] == '<' || str[i] == '>')
+					ft_error("syntax error: unexpected token\n", 2);
+			}
+		}
+		else if (str[i] == '|')
+		{
+			while (str[++i] == ' ')
+			{
+				i++;
+				if (str[i] == '|')
+					ft_error("syntax error: unexpected token\n", 2);
+			}
+		}
+	}
+}
+
 void	tokenization(void)
 {
-	t_input		*tmp;
-	t_token		*token;
-	char		*str;
-	char		*temp_str;
-	t_minishell	*core;
+	t_input	*tmp;
+	t_token	*token;
+	char	*str;
+	char	dup;
 
-	core = get_core();
+	tmp = NULL;
+	token = NULL;
+	str = NULL;
+	dup = 0;
+	search_bad_redirects(get_core()->input);
 	split_input();
-	tmp = core->splited_input;
-	temp_str = NULL;
+	tmp = get_core()->splited_input;
 	while (tmp)
 	{
-		str = tmp->content;
+		str = ft_strdup(tmp->content);
 		if (tmp->next && !ft_strcmp(tmp->next->content, str))
 		{
-			temp_str = str;
-			str = ft_strjoin(temp_str, str);
+			dup = str[0];
+			ft_free(str);
+			str = ft_strduplicate_char(dup);
 			tmp = tmp->next;
 		}
 		token = new_token(str);
-		add_token(&core->token_list, token);
+		add_token(&get_core()->token_list, token);
 		tmp = tmp->next;
+		ft_free(str);
 	}
-	print_token(core->token_list);
 	search_bugs();
+	// look_for_variables();
 }

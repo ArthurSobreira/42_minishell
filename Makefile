@@ -20,12 +20,16 @@ HEADER_PATH = ./includes
 BIN_PATH = ./bin/
 SOURCES_PATH = ./src/
 BUILTINS_PATH = built-in/
+DEBUG_PATH = debbuger/
+REDIRECT_PATH = redirect/
 EXIT_PATH = exit/
+EXPANSION_PATH = expansion/
 INIT_PATH = init/
 PARSER_PATH = parser/
 PROMPT_PATH = prompt/
 REDIRECT_PATH = redirect/
 TOKENIZER_PATH = tokenizer/
+
 
 SOURCES = main.c \
 	$(BUILTINS_PATH)cd.c \
@@ -35,8 +39,11 @@ SOURCES = main.c \
 	$(BUILTINS_PATH)export.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
+	$(DEBUG_PATH)print_coisas.c \
 	$(EXIT_PATH)clear.c \
 	$(EXIT_PATH)error.c \
+	$(EXPANSION_PATH)expand_variables.c \
+	$(EXPANSION_PATH)look_for_variable.c \
 	$(INIT_PATH)init_env.c \
 	$(INIT_PATH)init_structs.c \
 	$(INIT_PATH)init_stuff.c \
@@ -81,7 +88,9 @@ $(NAME): $(OBJECTS)
 $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)
 	@mkdir -p $(BIN_PATH)$(BUILTINS_PATH)
+	@mkdir -p $(BIN_PATH)$(DEBUG_PATH)
 	@mkdir -p $(BIN_PATH)$(EXIT_PATH)
+	@mkdir -p $(BIN_PATH)$(EXPANSION_PATH)
 	@mkdir -p $(BIN_PATH)$(INIT_PATH)
 	@mkdir -p $(BIN_PATH)$(PARSER_PATH)
 	@mkdir -p $(BIN_PATH)$(PROMPT_PATH)

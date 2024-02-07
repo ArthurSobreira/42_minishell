@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:35:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/02 11:20:17 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:40:25 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	split_input(void)
 			start = i;
 			while (core_tmp->input[++i] != quote && core_tmp->input[i] != '\0')
 				;
+			if (core_tmp->input[i] == '\0')
+				ft_error("syntax error: unexpected end of file\n", 2);
 			add_to_list(core_tmp, start, i + 1);
 		}
 		else if (core_tmp->input[i] != ' ')
@@ -104,6 +106,6 @@ t_bool	isall(t_minishell *core, int *i)
 {
 	return (!ft_isspace(core->input[*i]) && !ft_ispipe(core->input[*i])
 		&& !ft_issemicolon((core->input[*i])) && !ft_isredir(core->input[*i])
-		&& !ft_isbackground(core->input[*i]) && !(core->input[*i] == '\'')
-		&& !(core->input[*i] == '\"') && core->input[*i] != '\0');
+		&& !ft_isbackground(core->input[*i]) && core->input[*i] != '\"'
+		&& core->input[*i] != '\'' && core->input[*i] != '\0');
 }

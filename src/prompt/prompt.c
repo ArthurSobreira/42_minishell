@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/06 15:21:19 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:57:50 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 
@@ -23,10 +24,11 @@ void	prompt_loop(t_minishell *core)
 		core->input = readline(prompt);
 		free(prompt);
 		add_history(core->input);
-		tokenization();
-		handle_redirects();
 		if (core->input[0] == '\0')
 			continue ;
+		tokenization();
+		print_token(get_core()->token_list);
+		handle_redirects();
 		if (ft_strcmp(core->input, "exit") == 0)
 			exit_shell();
 		if (ft_strcmp(core->input, "pwd") == 0)

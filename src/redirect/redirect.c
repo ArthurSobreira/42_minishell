@@ -12,20 +12,6 @@
 
 #include "minishell.h"
 
-void	print_redir_out(t_redir_out *redir_list)
-{
-	t_redir_out *current_redir;
-
-	current_redir = redir_list;
-	while (current_redir)
-	{
-		printf("\nr_type: %d\n", current_redir->r_type);
-		printf("redir_out: %s\n", current_redir->file_name);
-		printf("fd_out: %d\n\n", current_redir->fd_out);
-		current_redir = current_redir->next;
-	}
-}
-
 void	handle_redirects(void)
 {
 	t_minishell	*core;
@@ -88,8 +74,7 @@ void	remove_redir_token(t_token **token_list, t_token *target_tkn)
 				*token_list = current_tkn->next;
 			if (current_tkn->next)
 				current_tkn->next->prev = current_tkn->prev;
-			if (current_tkn->type == TOKEN_APPEND)
-				ft_free(current_tkn->value);
+			ft_free(current_tkn->value);
 			ft_free(current_tkn);
 			break ;
 		}
@@ -112,5 +97,5 @@ void	handle_redir_out(t_redir_out **redir_list, t_token *current_tkn)
 			*redir_list = redir_out;
 		else
 			find_last_redir_out(*redir_list)->next = redir_out;
-	}
+	}	
 }
