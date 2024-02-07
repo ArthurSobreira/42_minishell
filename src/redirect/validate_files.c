@@ -12,23 +12,6 @@
 
 #include "minishell.h"
 
-void	validate_io_files(t_token *token_list)
-{
-	t_token *current_tkn;
-
-	current_tkn = token_list;
-	while (current_tkn)
-	{
-		if (current_tkn->type == TOKEN_REDIRECT_REVERSE ||
-				current_tkn->type == TOKEN_HERE_DOC)
-			validate_input_file(current_tkn);
-		else if (current_tkn->type == TOKEN_REDIRECT || 
-				current_tkn->type == TOKEN_APPEND)
-			validate_output_file(current_tkn);
-		current_tkn = current_tkn->next;
-	}
-}
-
 void	validate_input_file(t_token *current_tkn)
 {
 	if (current_tkn->next == NULL || 
@@ -56,5 +39,24 @@ void	validate_output_file(t_token *current_tkn)
 	{
 		if (!check_file_writable(current_tkn->next->value))
 			ft_error("permission denied\n", PERMISSION_ERROR);
+	}
+}
+
+void	open_create_out_files(t_redir_out *redir_out)
+{
+	char	*file_name;
+
+	file_name = redir_out->file_name;
+	if (redir_out->r_type == TOKEN_APPEND)
+	{
+		redir_out->fd_out = open(file_name, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		if (redir_out->fd_out < 0)
+			ft_error("cannot open the file\n", EXIT_FAILURE);
+	}
+	else if (redir_out->r_type == TOKEN_REDIRECT)
+	{
+		redir_out->fd_out = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (redir_out->fd_out < 0)
+			ft_error("cannot open the file\n", EXIT_FAILURE);
 	}
 }

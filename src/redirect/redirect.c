@@ -14,82 +14,51 @@
 
 void	handle_redirects(void)
 {
-	t_minishell	*core;
 	t_token 	*current_tkn;
 	t_token		*next_tkn;
 	t_redir_in	*redir_in;
 	t_redir_out	*redir_out;
 
-	core = get_core();
-	validate_io_files(core->token_list);
-	current_tkn = core->token_list;
+	current_tkn = get_core()->token_list;
 	redir_in = NULL;
 	redir_out = NULL;
 	while (current_tkn)
 	{
 		next_tkn = current_tkn->next;
-		if (current_tkn->type == TOKEN_REDIRECT ||
-			current_tkn->type == TOKEN_APPEND ||
-			current_tkn->type == TOKEN_REDIRECT_REVERSE ||
-			current_tkn->type == TOKEN_HERE_DOC)
+		if (is_redir_token(current_tkn) && (next_tkn != NULL))
 		{
-			if (current_tkn->type == TOKEN_REDIRECT ||
+			if (current_tkn->type == TOKEN_HERE_DOC)
+				handle_here_doc(&redir_in, current_tkn);
+			if (current_tkn->type == TOKEN_REDIRECT_REVERSE)
+				handle_redir_in(&redir_in, current_tkn);
+			else if (current_tkn->type == TOKEN_REDIRECT || 
 				current_tkn->type == TOKEN_APPEND)
-			{
 				handle_redir_out(&redir_out, current_tkn);
-				// if (current_tkn->prev)
-				// 	current_tkn->prev->next = current_tkn->next->next;
-				// else
-				// 	core->token_list = current_tkn->next->next;
-				// if (current_tkn->next->next)
-				// 	current_tkn->next->next->prev = current_tkn->prev;
-				// free(current_tkn->next);
-				// free(current_tkn);
-				// remove_redir_token(current_tkn->next);
-				// remove_redir_token(current_tkn);
-				next_tkn = current_tkn->next->next;
-				remove_redir_token(&core->token_list, current_tkn->next);
-				remove_redir_token(&core->token_list, current_tkn);
-			}
+			next_tkn = current_tkn->next->next;
+			remove_redir_token(&get_core()->token_list, current_tkn->next);
+			remove_redir_token(&get_core()->token_list, current_tkn);
 		}
 		current_tkn = next_tkn;
 	}
+	// Remove later
+	printf("\n=====Redirect out list =====\n");
 	print_redir_out(redir_out);
-	print_token(core->token_list);
+	printf("\n=====Redirect in  list =====\n");
+	print_redir_in(redir_in);
+	print_token(get_core()->token_list);
 	ft_clear_redir_out(&redir_out);
-}
-
-void	remove_redir_token(t_token **token_list, t_token *target_tkn)
-{
-	t_token *current_tkn;
-
-	current_tkn = *token_list;
-	while (current_tkn)
-	{
-		if (current_tkn == target_tkn)
-		{
-			if (current_tkn->prev)
-				current_tkn->prev->next = current_tkn->next;
-			else
-				*token_list = current_tkn->next;
-			if (current_tkn->next)
-				current_tkn->next->prev = current_tkn->prev;
-			ft_free(current_tkn->value);
-			ft_free(current_tkn);
-			break ;
-		}
-		current_tkn = current_tkn->next;
-	}
+	ft_clear_redir_in(&redir_in);
 }
 
 void	handle_redir_out(t_redir_out **redir_list, t_token *current_tkn)
 {
-	t_token *current_cpy;
-	t_token *next_tkn;
+	t_token		*current_cpy;
+	t_token 	*next_tkn;
 	t_redir_out *redir_out;
 
 	current_cpy = current_tkn;
 	next_tkn = current_tkn->next;
+	validate_output_file(current_cpy);
 	redir_out = create_redir_out(current_cpy->type, next_tkn->value);
 	if (redir_out != NULL)
 	{
@@ -97,5 +66,25 @@ void	handle_redir_out(t_redir_out **redir_list, t_token *current_tkn)
 			*redir_list = redir_out;
 		else
 			find_last_redir_out(*redir_list)->next = redir_out;
-	}	
+	}
+	open_create_out_files(redir_out);
+}
+
+void	handle_redir_in(t_redir_in **redir_list, t_token *current_tkn)
+{
+	t_token		*current_cpy;
+	t_token		*next_tkn;
+	t_redir_in	*redir_in;
+
+	current_cpy = current_tkn;
+	next_tkn = current_tkn->next;
+	validate_input_file(current_cpy);
+	redir_in = create_redir_in(current_cpy->type, next_tkn->value);
+	if (redir_in != NULL)
+	{
+		if (*redir_list == NULL)
+			*redir_list = redir_in;
+		else
+			find_last_redir_in(*redir_list)->next = redir_in;
+	}
 }

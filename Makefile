@@ -21,7 +21,6 @@ BIN_PATH = ./bin/
 SOURCES_PATH = ./src/
 BUILTINS_PATH = built-in/
 DEBUG_PATH = debbuger/
-REDIRECT_PATH = redirect/
 EXIT_PATH = exit/
 EXPANSION_PATH = expansion/
 INIT_PATH = init/
@@ -49,6 +48,7 @@ SOURCES = main.c \
 	$(PARSER_PATH)parser.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
+	$(REDIRECT_PATH)here_doc.c \
 	$(REDIRECT_PATH)redirect_utils.c \
 	$(REDIRECT_PATH)redirect.c \
 	$(REDIRECT_PATH)validate_files.c \
