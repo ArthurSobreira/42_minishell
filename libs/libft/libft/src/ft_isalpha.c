@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:20:41 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/01/30 12:12:57 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:16:46 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ t_bool	ft_isalpha(int c)
 {
 	if ((c >= 'A') && (c <= 'Z'))
 	{
-		return(TRUE);
+		return (TRUE);
 	}
 	else if ((c >= 'a') && (c <= 'z'))
 	{
-		return(TRUE);
+		return (TRUE);
 	}
 	else
 	{
