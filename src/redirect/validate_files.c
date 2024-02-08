@@ -12,34 +12,54 @@
 
 #include "minishell.h"
 
-void	validate_input_file(t_token *current_tkn)
+t_bool	validate_input_file(t_token *current_tkn)
 {
-	if (current_tkn->next == NULL || 
+	if (current_tkn->next == NULL || \
 		current_tkn->next->type != TOKEN_WORD)
-		ft_error("syntax error near unexpected token `newline'\n", 
+	{
+		ft_error("syntax error near unexpected token `newline'\n",
 			SYNTAX_ERROR);
+		return (FALSE);
+	}
 	if (current_tkn->type == TOKEN_REDIRECT_REVERSE)
 	{
 		if (!check_file_exists(current_tkn->next->value))
+		{
 			ft_error("no such file or directory\n", EXIT_FAILURE);
+			return (FALSE);
+		}
 		else if (!check_file_readable(current_tkn->next->value))
+		{
 			ft_error("permission denied\n", PERMISSION_ERROR);
+			return (FALSE);
+		}
 	}
+	return (TRUE);
 }
 
-void	validate_output_file(t_token *current_tkn)
+t_bool	validate_output_file(t_token *current_tkn)
 {
-	if (current_tkn->next == NULL || 
+	if (current_tkn->next == NULL || \
 		current_tkn->next->type != TOKEN_WORD)
-		ft_error("syntax error near unexpected token `newline'\n", 
+	{
+		ft_error("syntax error near unexpected token `newline'\n",
 			SYNTAX_ERROR);
+		return (FALSE);
+	}
 	if (check_file_exists(current_tkn->next->value))
 	{
 		if (!check_file_writable(current_tkn->next->value))
+		{
 			ft_error("permission denied\n", PERMISSION_ERROR);
+			return (FALSE);
+		}
 	}
 	else if (check_file_executable(current_tkn->next->value))
+	{
 		ft_error("is a directory\n", EXIT_FAILURE);
+		return (FALSE);
+	}
+	return (TRUE);
 }
 
 void	open_create_out_files(t_redir_out *redir_out)
@@ -49,12 +69,12 @@ void	open_create_out_files(t_redir_out *redir_out)
 	file_name = redir_out->file_name;
 	if (redir_out->r_type == TOKEN_APPEND)
 	{
-		redir_out->fd_out = open(file_name, O_WRONLY | 
+		redir_out->fd_out = open(file_name, O_WRONLY | \
 					O_CREAT | O_APPEND, 0644);
 	}
 	else if (redir_out->r_type == TOKEN_REDIRECT)
 	{
-		redir_out->fd_out = open(file_name, O_WRONLY | 
+		redir_out->fd_out = open(file_name, O_WRONLY | \
 					O_CREAT | O_TRUNC, 0644);
 	}
 }
