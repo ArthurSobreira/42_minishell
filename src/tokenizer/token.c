@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/07 12:35:53 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:05:15 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,34 +67,6 @@ void	add_token(t_token **head, t_token *new)
 	new->prev = tmp;
 }
 
-void	search_bad_redirects(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == '>' || str[i] == '<')
-		{
-			while (str[++i] == ' ')
-			{
-				i++;
-				if (str[i] == '<' || str[i] == '>')
-					ft_error("syntax error: unexpected token\n", 2);
-			}
-		}
-		else if (str[i] == '|')
-		{
-			while (str[++i] == ' ')
-			{
-				i++;
-				if (str[i] == '|')
-					ft_error("syntax error: unexpected token\n", 2);
-			}
-		}
-	}
-}
-
 void	tokenization(void)
 {
 	t_input	*tmp;
@@ -102,11 +74,6 @@ void	tokenization(void)
 	char	*str;
 	char	dup;
 
-	tmp = NULL;
-	token = NULL;
-	str = NULL;
-	dup = 0;
-	search_bad_redirects(get_core()->input);
 	split_input();
 	tmp = get_core()->splited_input;
 	while (tmp)
