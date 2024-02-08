@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/08 14:21:49 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:56:18 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_minishell(t_minishell *core)
 	// core.built_in = NULL;
 	core->exit_status = EXIT_SUCCESS;
 	core->input = NULL;
+	core->error_msg = TRUE;
 }
 
 t_cmd	*init_cmd(void)

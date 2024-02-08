@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:35:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/08 14:14:56 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:40:40 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,30 @@ t_input	*new_node(char *str)
 
 void	split_input(void)
 {
-	t_minishell	*core_tmp;
-	int			i;
-	char		quote;
-	int			start;
+	int		i;
+	char	quote;
+	int		start;
 
 	i = -1;
-	core_tmp = get_core();
-	ft_strip(core_tmp->input);
-	while (core_tmp->input[++i])
+	ft_strip(get_core()->input);
+	while (get_core()->input[++i])
 	{
-		if (core_tmp->input[i] == '\'' || core_tmp->input[i] == '\"')
+		if (get_core()->input[i] == '\'' || get_core()->input[i] == '\"')
 		{
-			quote = core_tmp->input[i];
+			quote = get_core()->input[i];
 			start = i;
-			while (core_tmp->input[++i] != quote && core_tmp->input[i] != '\0')
+			while (get_core()->input[++i] != quote
+				&& get_core()->input[i] != '\0')
 				;
-			if (core_tmp->input[i] == '\0')
+			if (get_core()->input[i] == '\0')
+			{
 				ft_error("syntax error: unexpected end of file\n", 2);
-			add_to_list(core_tmp, start, i + 1);
+				return ;
+			}
+			add_to_list(get_core(), start, i + 1);
 		}
-		else if (core_tmp->input[i] != ' ')
-			process_non_space(core_tmp, &i);
+		else if (get_core()->input[i] != ' ')
+			process_non_space(get_core(), &i);
 	}
 }
 

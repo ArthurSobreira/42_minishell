@@ -6,13 +6,13 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:19:45 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/07 18:44:54 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:16:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	check_var_exit(void)
+void	check_last_status(void)
 {
 	t_minishell	*core;
 	t_input		*tmp;
@@ -30,12 +30,23 @@ void	check_var_exit(void)
 			{
 				free(tmp->content);
 				exit_status = ft_itoa(core->exit_status);
-				tmp->content[i] = '\0';
-				tmp->content = ft_strjoin(tmp->content, exit_status);
-				tmp->content = ft_strjoin(tmp->content, tmp->content + i + 2);
+				tmp->content = ft_strdup(exit_status);
+				perror("exit_status");
 				free(exit_status);
 			}
 		}
 		tmp = tmp->next;
 	}
+}
+
+void	parser(void)
+{
+	printf("debug %d\n", get_core()->error_msg);
+	if (!get_core()->error_msg)
+		return ;
+	// if (!search_bugs())
+	// 	return ;
+	if (!pipe_and_operator_error())
+		return ;
+	check_last_status();
 }

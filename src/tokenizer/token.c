@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/08 15:05:15 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:39:49 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	tokenization(void)
 	char	dup;
 
 	split_input();
+	if (!get_core()->error_msg)
+		return ;
 	tmp = get_core()->splited_input;
 	while (tmp)
 	{
@@ -91,6 +93,5 @@ void	tokenization(void)
 		tmp = tmp->next;
 		ft_free(str);
 	}
-	search_bugs();
 	// look_for_variables();
 }

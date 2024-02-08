@@ -33,9 +33,9 @@ void	validate_output_file(t_token *current_tkn)
 		current_tkn->next->type != TOKEN_WORD)
 		ft_error("syntax error near unexpected token `newline'\n", 
 			SYNTAX_ERROR);
-	if (check_file_executable(current_tkn->next->value))
+	else if (check_file_executable(current_tkn->next->value))
 		ft_error("is a directory\n", EXIT_FAILURE);
-	if (check_file_exists(current_tkn->next->value))
+	else if (check_file_exists(current_tkn->next->value))
 	{
 		if (!check_file_writable(current_tkn->next->value))
 			ft_error("permission denied\n", PERMISSION_ERROR);
