@@ -40,14 +40,40 @@ void	handle_redirects(void)
 		}
 		current_tkn = next_tkn;
 	}
+
 	// Remove later
 	printf("\n=====Redirect out list =====\n");
 	print_redir_out(redir_out);
-	printf("\n=====Redirect in  list =====\n");
-	print_redir_in(redir_in);
+
+	remove_unnecessary_redir_out(&redir_out);
+	
+	// printf("\n=====Redirect in  list =====\n");
+	// print_redir_in(redir_in);
 	print_token(get_core()->token_list);
 	ft_clear_redir_out(&redir_out);
 	ft_clear_redir_in(&redir_in);
+}
+
+void	remove_unnecessary_redir_out(t_redir_out **redir_out)
+{
+	t_redir_out	*tmp_out;
+
+	if (*redir_out == NULL)
+		return ;
+	while ((*redir_out)->next)
+	{
+		tmp_out = (*redir_out)->next;
+		if (*redir_out != NULL && ((*redir_out)->r_type == TOKEN_APPEND || 
+			(*redir_out)->r_type == TOKEN_REDIRECT))
+		{
+			close((*redir_out)->fd_out);
+			ft_free((*redir_out)->file_name);
+			ft_free(*redir_out);
+			(*redir_out) = tmp_out;
+		}
+	}
+	printf("\n=====Redirect out list =====\n");
+	print_redir_out(*redir_out);
 }
 
 void	handle_redir_out(t_redir_out **redir_list, t_token *current_tkn)

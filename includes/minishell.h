@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/08 14:46:00 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:45:45 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void		handle_redir_out(t_redir_out **redir_list, t_token *current_tkn);
 void		validate_input_file(t_token *current_tkn);
 void		validate_output_file(t_token *current_tkn);
 void		open_create_out_files(t_redir_out *redir_out);
+void		remove_unnecessary_redir_out(t_redir_out **redir_out);
 t_bool		check_file_exists(char *file_name);
 t_bool		check_file_readable(char *file_name);
 t_bool		check_file_writable(char *file_name);
