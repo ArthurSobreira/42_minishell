@@ -33,13 +33,13 @@ void	validate_output_file(t_token *current_tkn)
 		current_tkn->next->type != TOKEN_WORD)
 		ft_error("syntax error near unexpected token `newline'\n", 
 			SYNTAX_ERROR);
-	if (check_file_executable(current_tkn->next->value))
-		ft_error("is a directory\n", EXIT_FAILURE);
 	if (check_file_exists(current_tkn->next->value))
 	{
 		if (!check_file_writable(current_tkn->next->value))
 			ft_error("permission denied\n", PERMISSION_ERROR);
 	}
+	else if (check_file_executable(current_tkn->next->value))
+		ft_error("is a directory\n", EXIT_FAILURE);
 }
 
 void	open_create_out_files(t_redir_out *redir_out)
@@ -49,14 +49,12 @@ void	open_create_out_files(t_redir_out *redir_out)
 	file_name = redir_out->file_name;
 	if (redir_out->r_type == TOKEN_APPEND)
 	{
-		redir_out->fd_out = open(file_name, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		if (redir_out->fd_out < 0)
-			ft_error("cannot open the file\n", EXIT_FAILURE);
+		redir_out->fd_out = open(file_name, O_WRONLY | 
+					O_CREAT | O_APPEND, 0644);
 	}
 	else if (redir_out->r_type == TOKEN_REDIRECT)
 	{
-		redir_out->fd_out = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (redir_out->fd_out < 0)
-			ft_error("cannot open the file\n", EXIT_FAILURE);
+		redir_out->fd_out = open(file_name, O_WRONLY | 
+					O_CREAT | O_TRUNC, 0644);
 	}
 }
