@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/08 14:18:56 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:51:42 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef enum e_tkn_type
 	TOKEN_HERE_DOC,
 	TOKEN_SQUOTE,
 	TOKEN_DQUOTE,
-	TOKEN_VARIABLE,
 	TOKEN_BACKGROUND,
 	TOKEN_SEMICOLON,
 	TOKEN_OR,
@@ -97,6 +96,7 @@ typedef struct s_minishell
 	char				*built_in[8];
 	char				*input;
 	char				**envp;
+	t_bool				error_msg;
 }						t_minishell;
 
 #endif

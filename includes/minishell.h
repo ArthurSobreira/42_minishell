@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/08 14:46:00 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:33:06 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void		add_to_list(t_minishell *core, int start, int end);
 t_bool		is_redir_token(t_token *token);
 t_bool		isall(t_minishell *core, int *i);
 void		ft_clear_splited_input(void);
-void		search_bugs(void);
 
 // Start functions
 void		init_minishell(t_minishell *core);
@@ -112,7 +111,12 @@ void		print_redir_out(t_redir_out *redir_list);
 // Error functions
 
 void		search_bad_redirects(char *str);
-void		pipe_and_operator_error(void);
 t_bool		is_excluded_type(t_tkn_type type, int option);
+
+// Parser functions
+
+void		parser(void);
+t_bool		search_bugs(void);
+t_bool		pipe_and_operator_error(void);
 
 #endif
