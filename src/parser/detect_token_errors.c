@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_search.c                                     :+:      :+:    :+:   */
+/*   detect_token_errors.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:01:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/07 12:34:38 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:41:23 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,4 @@ void	search_bugs(void)
 	if (is_excluded_type(tmp->type, 2))
 		ft_error("syntax error: unexpected end of file\n", 2);
 	pipe_and_operator_error();
-	tmp = get_core()->token_list;
-	print_token(tmp);
 }

@@ -46,6 +46,7 @@ SOURCES = main.c \
 	$(INIT_PATH)init_structs.c \
 	$(INIT_PATH)init_stuff.c \
 	$(PARSER_PATH)parser.c \
+	$(PARSER_PATH)detect_token_errors.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
 	$(REDIRECT_PATH)here_doc.c \
@@ -55,7 +56,6 @@ SOURCES = main.c \
 	$(REDIRECT_PATH)validate_utils.c \
 	$(TOKENIZER_PATH)token_utils.c \
 	$(TOKENIZER_PATH)token.c \
-	$(TOKENIZER_PATH)token_search.c \
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
 

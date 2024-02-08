@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/07 20:09:22 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:12:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void		export_variables(t_minishell *core);
 void		unset(t_minishell *core);
 
 // Prompt functions
-void		prompt_loop(t_minishell *core);
-char		*get_prompt_text(void);
-char		*get_hostname(void);
-char		*format_hostname(char *hostname);
-char		*get_username(void);
-char		*get_current_dir(void);
-char		*format_prompt(t_prompt *prompt);
+void			prompt_loop(t_minishell *core);
+char			*get_prompt_text(void);
+char			*get_hostname(void);
+char			*format_hostname(char *hostname);
+char			*get_username(void);
+char			*get_current_dir(void);
+char			*format_prompt(t_prompt *prompt);
 
 // Token functions
 void		tokenization(void);
@@ -101,7 +101,7 @@ void		handle_here_doc(t_redir_in **redir_list, t_token *current_tkn);
 
 // Expansion functions
 
-void		look_for_variables(void);
+void			look_for_variables(void);
 
 // Debug functions
 void		print_token(t_token *token);

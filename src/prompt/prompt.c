@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/07 19:27:49 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:14:43 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	prompt_loop(t_minishell *core)
 		if (core->input[0] == '\0')
 			continue ;
 		tokenization();
-		print_token(get_core()->token_list);
 		handle_redirects();
 		if (ft_strcmp(core->input, "exit") == 0)
 			exit_shell();
@@ -34,7 +33,7 @@ void	prompt_loop(t_minishell *core)
 			print_working_directory();
 		if (ft_strcmp(core->input, "env") == 0)
 			print_env_variables();
-		free(core->input);
+		// free(core->input);
 		ft_clear_splited_input();
 	}
 	rl_clear_history();

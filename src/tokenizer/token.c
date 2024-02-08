@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/07 12:35:53 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:45:00 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,6 @@ void	tokenization(void)
 	char	*str;
 	char	dup;
 
-	tmp = NULL;
-	token = NULL;
-	str = NULL;
-	dup = 0;
 	search_bad_redirects(get_core()->input);
 	split_input();
 	tmp = get_core()->splited_input;
