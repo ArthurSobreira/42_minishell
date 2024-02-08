@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 12:15:59 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/07 20:16:26 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	main(int argc, char *argv[], char *envp[])
 		init_minishell(core);
 		get_env_vars(core);
 		prompt_loop(core);
-		return (EXIT_SUCCESS);
 	}
-	return (EXIT_FAILURE);
+	return (core->exit_status);
 }
