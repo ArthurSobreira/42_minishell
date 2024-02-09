@@ -50,6 +50,7 @@ SOURCES = main.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
 	$(REDIRECT_PATH)here_doc.c \
+	$(REDIRECT_PATH)open_files.c \
 	$(REDIRECT_PATH)redirect_utils.c \
 	$(REDIRECT_PATH)redirect.c \
 	$(REDIRECT_PATH)validate_files.c \
