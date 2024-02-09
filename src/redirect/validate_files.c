@@ -14,23 +14,18 @@
 
 t_bool	validate_input_file(t_token *current_tkn)
 {
-	if (current_tkn->next == NULL || \
-		current_tkn->next->type != TOKEN_WORD)
-	{
-		ft_error("syntax error near unexpected token `newline'\n",
-			SYNTAX_ERROR);
-		return (FALSE);
-	}
 	if (current_tkn->type == TOKEN_REDIRECT_REVERSE)
 	{
 		if (!check_file_exists(current_tkn->next->value))
 		{
-			ft_error("no such file or directory\n", EXIT_FAILURE);
+			ft_file_error(current_tkn->next->value, "no such file or directory\n",
+				EXIT_FAILURE);
 			return (FALSE);
 		}
 		else if (!check_file_readable(current_tkn->next->value))
 		{
-			ft_error("permission denied\n", PERMISSION_ERROR);
+			ft_file_error(current_tkn->next->value, "permission denied\n",
+				PERMISSION_ERROR);
 			return (FALSE);
 		}
 	}
@@ -39,27 +34,35 @@ t_bool	validate_input_file(t_token *current_tkn)
 
 t_bool	validate_output_file(t_token *current_tkn)
 {
-	if (current_tkn->next == NULL || \
-		current_tkn->next->type != TOKEN_WORD)
-	{
-		ft_error("syntax error near unexpected token `newline'\n",
-			SYNTAX_ERROR);
-		return (FALSE);
-	}
 	if (check_file_exists(current_tkn->next->value))
 	{
 		if (!check_file_writable(current_tkn->next->value))
 		{
-			ft_error("permission denied\n", PERMISSION_ERROR);
+			ft_file_error(current_tkn->next->value, "permission denied\n",
+				PERMISSION_ERROR);
 			return (FALSE);
 		}
 	}
 	else if (check_file_executable(current_tkn->next->value))
 	{
-		ft_error("is a directory\n", EXIT_FAILURE);
+		ft_file_error(current_tkn->next->value, "is a directory\n",
+			EXIT_FAILURE);
 		return (FALSE);
 	}
 	return (TRUE);
+}
+
+void	open_in_files(t_redir_in *redir_in)
+{
+	char	*file_name;
+
+	file_name = redir_in->file_name;
+	if (redir_in->r_type == TOKEN_REDIRECT_REVERSE)
+	{
+		redir_in->here_doc = FALSE;
+		redir_in->hd_limiter = NULL;
+		redir_in->fd_in = open(file_name, O_RDONLY);
+	}
 }
 
 void	open_create_out_files(t_redir_out *redir_out)
