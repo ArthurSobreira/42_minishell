@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/08 15:45:45 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:37:46 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void		clear_prompt(void);
 
 // Clear functions
 void		ft_error(char *str, int status);
+void		ft_file_error(char *file_name, char *str, int status);
 void		ft_clear_token(void);
 void		ft_clear_env_vars(void);
 void		ft_clear_splited_input(void);
@@ -81,12 +82,10 @@ void		ft_clear_redir_out(t_redir_out **redir_out);
 
 // Redirect functions
 void		handle_redirects(void);
-void		handle_redir_in(t_redir_in **redir_list, t_token *current_tkn);
-void		handle_redir_out(t_redir_out **redir_list, t_token *current_tkn);
-void		validate_input_file(t_token *current_tkn);
-void		validate_output_file(t_token *current_tkn);
+void		open_in_files(t_redir_in *redir_in);
 void		open_create_out_files(t_redir_out *redir_out);
-void		remove_unnecessary_redir_out(t_redir_out **redir_out);
+t_bool		validate_input_file(t_token *current_tkn);
+t_bool		validate_output_file(t_token *current_tkn);
 t_bool		check_file_exists(char *file_name);
 t_bool		check_file_readable(char *file_name);
 t_bool		check_file_writable(char *file_name);

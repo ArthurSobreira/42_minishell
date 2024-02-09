@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/08 14:21:49 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:01:15 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_minishell(t_minishell *core)
 	core->env_vars_size = 0;
 	// core.built_in = NULL;
 	core->exit_status = EXIT_SUCCESS;
+	core->file_error = FALSE;
 	core->input = NULL;
 }
 

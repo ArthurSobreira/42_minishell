@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 14:16:52 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/07 12:23:35 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:41:39 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	ft_clear_redir_in(t_redir_in **redir_in)
 	while (*redir_in)
 	{
 		tmp_in = (*redir_in)->next;
+		close((*redir_in)->fd_in);
 		ft_free((*redir_in)->file_name);
 		ft_free(*redir_in);
 		*redir_in = tmp_in;
@@ -89,6 +90,7 @@ void	ft_clear_redir_out(t_redir_out **redir_out)
 	while (*redir_out)
 	{
 		tmp_out = (*redir_out)->next;
+		close((*redir_out)->fd_out);
 		ft_free((*redir_out)->file_name);
 		ft_free(*redir_out);
 		*redir_out = tmp_out;
