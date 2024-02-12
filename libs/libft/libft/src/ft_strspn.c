@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strip.c                                         :+:      :+:    :+:   */
+/*   ft_strspn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 11:36:28 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/12 11:58:38 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/02/10 15:00:01 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/02/10 18:02:18 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strip(char *str)
+size_t	ft_strspn(const char *s, const char *accept)
 {
-	size_t	len;
-	size_t	start;
-	size_t	end;
+	size_t	i;
+	size_t	j;
 
-	if (str == NULL || *str == '\0')
-		return ;
-	len = ft_strlen(str);
-	start = 0;
-	end = len - 1;
-	while (start < len && ft_isspace(str[start]))
-		start++;
-	while (end > start && ft_isspace(str[end]))
-		end--;
-	if (start > 0 || end < len - 1)
-		ft_memmove(str, str + start, end - start + 1);
-	str[end - start + 1] = '\0';
+	i = 0;
+	while (s[i])
+	{
+		j = 0;
+		while (accept[j])
+		{
+			if (s[i] == accept[j])
+				break ;
+			j++;
+		}
+		if (!accept[j])
+			return (i);
+		i++;
+	}
+	return (i);
 }

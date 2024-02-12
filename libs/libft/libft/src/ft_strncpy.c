@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strip.c                                         :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 11:36:28 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/12 11:58:38 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/02/10 14:53:03 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/02/10 14:53:11 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strip(char *str)
+size_t	ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t	len;
-	size_t	start;
-	size_t	end;
+	size_t	i;
 
-	if (str == NULL || *str == '\0')
-		return ;
-	len = ft_strlen(str);
-	start = 0;
-	end = len - 1;
-	while (start < len && ft_isspace(str[start]))
-		start++;
-	while (end > start && ft_isspace(str[end]))
-		end--;
-	if (start > 0 || end < len - 1)
-		ft_memmove(str, str + start, end - start + 1);
-	str[end - start + 1] = '\0';
+	i = 0;
+	while (src[i] && i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	while (i < len)
+	{
+		dst[i] = '\0';
+		i++;
+	}
+	return (i);
 }

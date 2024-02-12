@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strip.c                                         :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 11:36:28 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/12 11:58:38 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/02/10 14:00:19 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/02/10 17:52:15 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strip(char *str)
+size_t	ft_strcspn(const char *s, const char *reject)
 {
-	size_t	len;
-	size_t	start;
-	size_t	end;
+	size_t	i;
+	size_t	j;
 
-	if (str == NULL || *str == '\0')
-		return ;
-	len = ft_strlen(str);
-	start = 0;
-	end = len - 1;
-	while (start < len && ft_isspace(str[start]))
-		start++;
-	while (end > start && ft_isspace(str[end]))
-		end--;
-	if (start > 0 || end < len - 1)
-		ft_memmove(str, str + start, end - start + 1);
-	str[end - start + 1] = '\0';
+	i = 0;
+	while (s[i])
+	{
+		j = 0;
+		while (reject[j])
+		{
+			if (s[i] == reject[j])
+				return (i);
+			j++;
+		}
+		i++;
+	}
+	return (i);
 }
