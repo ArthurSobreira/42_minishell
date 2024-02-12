@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:56 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 23:40:03 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:23:37 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char	*get_working_directory(void)
 {
-	char		*current_dir;
+	char	*current_dir;
 
 	current_dir = getcwd(NULL, 0);
 	if (!current_dir)
-		ft_error("pwd: Cannot print the current directory\n", 
+		ft_error("pwd: Cannot print the current directory\n",
 			EXIT_FAILURE);
 	return (current_dir);
 }
