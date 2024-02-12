@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/08 15:51:42 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:09:11 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,7 @@ typedef enum e_tkn_type
 	TOKEN_REDIRECT,
 	TOKEN_REDIRECT_REVERSE,
 	TOKEN_APPEND,
-	TOKEN_HERE_DOC,
-	TOKEN_SQUOTE,
-	TOKEN_DQUOTE,
-	TOKEN_BACKGROUND,
-	TOKEN_SEMICOLON,
-	TOKEN_OR,
-	TOKEN_AND,
+	TOKEN_HERE_DOC
 }						t_tkn_type;
 
 typedef struct s_redir_in
@@ -88,9 +82,9 @@ typedef struct s_cmd
 typedef struct s_minishell
 {
 	t_token				*token_list;
-	t_input				*splited_input;
 	t_var				*env_vars;
 	t_cmd				*cmd_list;
+	t_list				*gc;
 	int					env_vars_size;
 	int					exit_status;
 	char				*built_in[8];
