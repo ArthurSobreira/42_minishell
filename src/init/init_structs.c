@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/08 15:56:18 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:27:26 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 void	init_minishell(t_minishell *core)
 {
 	core->token_list = NULL;
-	core->splited_input = NULL;
 	core->env_vars = NULL;
 	core->cmd_list = NULL;
 	core->env_vars_size = 0;
-	// core.built_in = NULL;
 	core->exit_status = EXIT_SUCCESS;
 	core->input = NULL;
 	core->error_msg = TRUE;
+	core->gc = NULL;
+	core->exit_status = 0;
 }
+	// core.built_in = NULL;
 
 t_cmd	*init_cmd(void)
 {
