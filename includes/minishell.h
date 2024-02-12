@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/08 17:33:06 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:33:16 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		export_variables(t_minishell *core);
 void		unset(t_minishell *core);
 
 // Prompt functions
-void		prompt_loop(t_minishell *core);
+void		prompt_loop(void);
 char		*get_prompt_text(void);
 char		*get_hostname(void);
 char		*format_hostname(char *hostname);
@@ -54,7 +54,7 @@ char		*format_prompt(t_prompt *prompt);
 // Token functions
 void		tokenization(void);
 t_tkn_type	set_tkn_type(char *str);
-void		split_input(void);
+// void		split_input(void);
 void		process_non_space(t_minishell *core, int *i);
 void		add_to_list(t_minishell *core, int start, int end);
 t_bool		is_redir_token(t_token *token);
@@ -118,5 +118,27 @@ t_bool		is_excluded_type(t_tkn_type type, int option);
 void		parser(void);
 t_bool		search_bugs(void);
 t_bool		pipe_and_operator_error(void);
+
+// tester functions
+void		clear_garbage(void);
+void		garbage_add(void *ptr);
+t_bool		check_start_pipe(void);
+t_bool		check_end_operators(void);
+t_bool		check_spaces_between_redirections(void);
+t_bool		check_spaces_between_heredock(void);
+char		*check_input_error(void);
+t_bool		check_forbidden_background(void);
+t_bool		check_forbidden_semicolon(void);
+t_bool		check_forbidden_or(void);
+t_bool		check_forbidden_and(void);
+t_bool		check_close_quotes(void);
+t_bool		exit_status_2(char *error_msg);
+void		set_exit_status(char *error_msg);
+void		skip_quotes(char *str, int *i);
+void		replace_input(void);
+void		split_input(char *str);
+void		splited_add_back(t_token **head, t_token *new);
+t_token		*new_token(char *str);
+char		*parser_and_split(void);
 
 #endif
