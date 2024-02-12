@@ -40,13 +40,12 @@ SOURCES = main.c \
 	$(DEBUG_PATH)print_coisas.c \
 	$(EXIT_PATH)clear.c \
 	$(EXIT_PATH)error.c \
+	$(EXIT_PATH)garbage.c \
 	$(EXPANSION_PATH)expand_variables.c \
 	$(EXPANSION_PATH)look_for_variable.c \
 	$(INIT_PATH)init_env.c \
 	$(INIT_PATH)init_structs.c \
 	$(INIT_PATH)init_stuff.c \
-	$(PARSER_PATH)parser.c \
-	$(PARSER_PATH)detect_token_errors.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
 	$(REDIRECT_PATH)here_doc.c \
@@ -54,6 +53,11 @@ SOURCES = main.c \
 	$(REDIRECT_PATH)redirect.c \
 	$(REDIRECT_PATH)validate_files.c \
 	$(REDIRECT_PATH)validate_utils.c \
+	$(TOKENIZER_PATH)prompt_check.c \
+	$(TOKENIZER_PATH)input_split.c \
+	$(TOKENIZER_PATH)prompt_handling.c \
+	$(TOKENIZER_PATH)error_msg.c \
+	$(TOKENIZER_PATH)split_prompt.c \
 	$(TOKENIZER_PATH)token_utils.c \
 	$(TOKENIZER_PATH)token.c \
 
