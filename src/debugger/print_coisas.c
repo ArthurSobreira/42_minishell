@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:39:32 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/12 14:07:48 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:23:14 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ void	print_redir_in(t_redir_in *redir_list)
 		else
 			printf("no here_doc\n");
 		printf("redir_in: %s\n", current_redir->file_name);
-		if (current_redir->hd_limiter)
-			printf("hd_limiter: %s\n", current_redir->hd_limiter);
 		printf("fd_in: %d\n\n", current_redir->fd_in);
 		current_redir = current_redir->next;
 	}
