@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/12 22:14:43 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:29:45 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,23 @@ typedef struct s_cmd
 	t_redir_out			*redir_out;
 }						t_cmd;
 
+typedef struct s_error
+{
+	t_bool				file_error;
+}						t_error;
+
 typedef struct s_minishell
 {
 	t_token				*token_list;
 	t_input				*splited_input;
 	t_var				*env_vars;
 	t_cmd				*cmd_list;
+	t_error				error_check;
 	int					env_vars_size;
 	int					exit_status;
 	char				*built_in[8];
 	char				*input;
 	char				**envp;
-	t_bool				file_error;
 }						t_minishell;
 
 #endif
