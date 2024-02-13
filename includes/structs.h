@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 16:46:05 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:30:43 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ typedef struct s_redir_out
 	int					fd_out;
 	struct s_redir_out	*next;
 }						t_redir_out;
-
-typedef struct s_input
-{
-	char				*content;
-	struct s_input		*next;
-}						t_input;
 
 typedef struct s_token
 {
