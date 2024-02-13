@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/09 16:02:00 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:30:01 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	prompt_loop(t_minishell *core)
 	using_history();
 	while (TRUE)
 	{
-		core->file_error = FALSE;
+		core->error_check.file_error = FALSE;
 		prompt = get_prompt_text();
 		core->input = readline(prompt);
 		free(prompt);

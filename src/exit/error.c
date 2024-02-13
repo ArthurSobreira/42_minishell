@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:34:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/09 16:01:40 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:30:54 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_file_error(char *file_name, char *str, int status)
 	char		*tmp_file_name;
 
 	core = get_core();
-	core->file_error = TRUE;
+	core->error_check.file_error = TRUE;
 	tmp_file_name = ft_strjoin(file_name, ": ");
 	msg = ft_strjoin_three("minishell: ", tmp_file_name, str);
 	ft_putstr_fd(msg, STDERR_FILENO);
