@@ -45,8 +45,20 @@ void	handle_redirects(void)
 		}
 		current_tkn = next_tkn;
 	}
+
+	print_redir_in(redir_in);
+	print_redir_out(redir_out);
+
 	remove_unnecessary_redir_in(&redir_in);
 	remove_unnecessary_redir_out(&redir_out);
+
+	printf("After remove unnecessary\n");
+
+	print_redir_in(redir_in);
+	print_redir_out(redir_out);
+
+	print_token(get_core()->token_list);
+
 	ft_clear_redir_in(&redir_in);
 	ft_clear_redir_out(&redir_out);
 }
