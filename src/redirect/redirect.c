@@ -45,22 +45,10 @@ void	handle_redirects(void)
 		}
 		current_tkn = next_tkn;
 	}
-
-	print_redir_in(redir_in);
-	print_redir_out(redir_out);
-
 	remove_unnecessary_redir_in(&redir_in);
 	remove_unnecessary_redir_out(&redir_out);
-
-	printf("After remove unnecessary\n");
-
-	print_redir_in(redir_in);
-	print_redir_out(redir_out);
-
-	print_token(get_core()->token_list);
-
-	ft_clear_redir_in(&redir_in);
-	ft_clear_redir_out(&redir_out);
+	ft_clear_redir_in(&redir_in); // TODO: remove
+	ft_clear_redir_out(&redir_out); // TODO: remove
 }
 
 static void	handle_here_doc(t_redir_in **redir_list, t_token *current_tkn)
@@ -69,7 +57,7 @@ static void	handle_here_doc(t_redir_in **redir_list, t_token *current_tkn)
 	t_redir_in	*redir_in;
 
 	current_cpy = current_tkn;
-	if (get_core()->file_error)
+	if (get_core()->error_check.file_error)
 	{
 		ft_clear_redir_in(redir_list);
 		return ;
@@ -93,7 +81,8 @@ static void	handle_redir_in(t_redir_in **redir_list, t_token *current_tkn)
 
 	current_cpy = current_tkn;
 	next_tkn = current_tkn->next;
-	if (!validate_input_file(current_cpy) || get_core()->file_error)
+	if (!validate_input_file(current_cpy) || \
+		get_core()->error_check.file_error)
 	{
 		ft_clear_redir_in(redir_list);
 		return ;
@@ -117,7 +106,8 @@ static void	handle_redir_out(t_redir_out **redir_list, t_token *current_tkn)
 
 	current_cpy = current_tkn;
 	next_tkn = current_tkn->next;
-	if (!validate_output_file(current_cpy) || get_core()->file_error)
+	if (!validate_output_file(current_cpy) || \
+		get_core()->error_check.file_error)
 	{
 		ft_clear_redir_out(redir_list);
 		return ;

@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/13 12:53:43 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:47:06 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_minishell(t_minishell *core)
 	core->cmd_list = NULL;
 	core->env_vars_size = 0;
 	core->exit_status = EXIT_SUCCESS;
-	core->file_error = FALSE;
+	core->error_check.file_error = FALSE;
 	core->input = NULL;
 }
 // core.built_in = NULL;

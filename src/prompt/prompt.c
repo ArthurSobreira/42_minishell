@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/13 15:28:25 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:49:41 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	prompt_loop(t_minishell *core)
 	using_history();
 	while (TRUE)
 	{
-		core->file_error = FALSE;
+		core->error_check.file_error = FALSE;
 		garbage_add(core->input = readline(get_prompt_text()));
-		ft_strip(core->input);
 		add_history(core->input);
+		ft_strip(core->input);
 		if (core->input[0] == '\0')
 			continue ;
 		prompt_process(core);
