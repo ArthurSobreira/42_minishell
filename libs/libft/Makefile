@@ -47,9 +47,11 @@ LIB_SOURCES = \
 	ft_putendl_fd.c \
 	ft_putnbr_fd.c \
 	ft_putstr_fd.c \
+	ft_replace.c \
 	ft_split.c \
 	ft_strchr.c \
 	ft_strcmp.c \
+	ft_strcspn.c \
 	ft_strdup.c \
 	ft_strduplicate_char.c \
 	ft_strip.c \
@@ -61,8 +63,12 @@ LIB_SOURCES = \
 	ft_strlen.c \
 	ft_strmapi.c \
 	ft_strncmp.c \
+	ft_strncpy.c \
 	ft_strnstr.c \
 	ft_strrchr.c \
+	ft_strspn.c \
+	ft_strstr.c \
+	ft_strtok.c \
 	ft_strtrim.c \
 	ft_substr.c \
 	ft_tolower.c \
