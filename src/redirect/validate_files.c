@@ -56,11 +56,17 @@ void	open_in_files(t_redir_in *redir_in)
 {
 	char	*file_name;
 
-	file_name = redir_in->file_name;
-	if (redir_in->r_type == TOKEN_REDIRECT_REVERSE)
+	file_name = NULL;
+	if (redir_in->r_type == TOKEN_HERE_DOC)
 	{
+		redir_in->here_doc = TRUE;
+		redir_in->fd_in = open(HERE_DOC_FILE, \
+			O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	}
+	else if (redir_in->r_type == TOKEN_REDIRECT_REVERSE)
+	{
+		file_name = redir_in->file_name;
 		redir_in->here_doc = FALSE;
-		redir_in->hd_limiter = NULL;
 		redir_in->fd_in = open(file_name, O_RDONLY);
 	}
 }
