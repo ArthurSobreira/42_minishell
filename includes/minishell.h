@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/09 16:37:46 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:49:54 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,13 @@ t_redir_in	*create_redir_in(t_tkn_type r_type, char *file_name);
 t_redir_in	*find_last_redir_in(t_redir_in *redir);
 t_redir_out	*create_redir_out(t_tkn_type r_type, char *file_name);
 t_redir_out	*find_last_redir_out(t_redir_out *redir);
+void		remove_unnecessary_redir_out(t_redir_out **redir_out);
+void		remove_unnecessary_redir_in(t_redir_in **redir_in);
 void		remove_redir_token(t_token **token_list, t_token *target_tkn);
 
 // Here_doc functions
-void		handle_here_doc(t_redir_in **redir_list, t_token *current_tkn);
+void		capture_heredoc(t_token *current_tkn);
+void		here_doc_loop(char *hd_limiter, int here_doc_fd);
 
 // Expansion functions
 

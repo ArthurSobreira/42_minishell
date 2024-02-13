@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:11:36 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/08 17:19:07 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:14:38 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_redir_in	*create_redir_in(t_tkn_type r_type, char *file_name)
 	new_redir->file_name = ft_strdup(file_name);
 	new_redir->fd_in = -1;
 	new_redir->here_doc = FALSE;
-	new_redir->hd_limiter = NULL;
 	new_redir->next = NULL;
 	return (new_redir);
 }

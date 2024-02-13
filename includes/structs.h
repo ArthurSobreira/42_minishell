@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/09 16:00:54 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:14:43 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_redir_in
 	t_bool				here_doc;
 	char				*file_name;
 	int					fd_in;
-	char				*hd_limiter;
 	struct s_redir_in	*next;
 }						t_redir_in;
 

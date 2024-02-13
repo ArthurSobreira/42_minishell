@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_coisas.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:39:32 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/08 14:13:54 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:23:14 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	print_redir_in(t_redir_in *redir_list)
 			printf("no here_doc\n");
 		printf("redir_in: %s\n", current_redir->file_name);
 		printf("fd_in: %d\n\n", current_redir->fd_in);
-		if (current_redir->hd_limiter)
-			printf("hd_limiter: %s\n", current_redir->hd_limiter);
 		current_redir = current_redir->next;
 	}
 }
