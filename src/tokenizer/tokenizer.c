@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.c                                            :+:      :+:    :+:   */
+/*   input_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 12:26:04 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/08 15:05:15 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/02/13 15:16:30 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 t_tkn_type	set_tkn_type(char *str)
 {
-	if (!ft_strcmp(str, "||"))
-		return (TOKEN_OR);
-	if (!ft_strcmp(str, "&&"))
-		return (TOKEN_AND);
 	if (!ft_strcmp(str, ">>"))
 		return (TOKEN_APPEND);
 	if (!ft_strcmp(str, ">"))
@@ -26,32 +22,40 @@ t_tkn_type	set_tkn_type(char *str)
 		return (TOKEN_REDIRECT_REVERSE);
 	if (!ft_strcmp(str, "|"))
 		return (TOKEN_PIPE);
-	if (!ft_strcmp(str, "&"))
-		return (TOKEN_BACKGROUND);
 	if (!ft_strcmp(str, "<<"))
 		return (TOKEN_HERE_DOC);
-	if (!ft_strcmp(str, ";"))
-		return (TOKEN_SEMICOLON);
-	if (str[0] == '\"')
-		return (TOKEN_DQUOTE);
-	if (str[0] == '\'')
-		return (TOKEN_SQUOTE);
 	return (TOKEN_WORD);
 }
 
 t_token	*new_token(char *str)
 {
 	t_token	*token;
+	char	*tmp;
 
+	tmp = ft_strdup(str);
+	ft_strip(tmp);
 	token = (t_token *)malloc(sizeof(t_token));
-	token->value = ft_strdup(str);
+	if (!token)
+		return (NULL);
+	token->value = tmp;
 	token->type = set_tkn_type(str);
 	token->next = NULL;
 	token->prev = NULL;
+	free(str);
 	return (token);
 }
 
-void	add_token(t_token **head, t_token *new)
+t_bool	is_redir_token(t_token *token)
+{
+	if (token->type == TOKEN_REDIRECT || \
+	token->type == TOKEN_APPEND || \
+	token->type == TOKEN_REDIRECT_REVERSE || \
+	token->type == TOKEN_HERE_DOC)
+		return (TRUE);
+	return (FALSE);
+}
+
+void	splited_add_back(t_token **head, t_token *new)
 {
 	t_token	*tmp;
 
@@ -67,30 +71,21 @@ void	add_token(t_token **head, t_token *new)
 	new->prev = tmp;
 }
 
-void	tokenization(void)
+void	split_input(char *str)
 {
-	t_input	*tmp;
-	t_token	*token;
-	char	*str;
-	char	dup;
+	t_token	*splited;
+	char	*token;
+	char	*tmp;
 
-	split_input();
-	tmp = get_core()->splited_input;
-	while (tmp)
+	tmp = "\n";
+	splited = NULL;
+	token = ft_strtok(str, tmp);
+	while (token)
 	{
-		str = ft_strdup(tmp->content);
-		if (tmp->next && !ft_strcmp(tmp->next->content, str))
-		{
-			dup = str[0];
-			ft_free(str);
-			str = ft_strduplicate_char(dup);
-			tmp = tmp->next;
-		}
-		token = new_token(str);
-		add_token(&get_core()->token_list, token);
-		tmp = tmp->next;
-		ft_free(str);
+		splited_add_back(&splited, new_token(token));
+		token = ft_strtok(NULL, tmp);
 	}
-	search_bugs();
-	// look_for_variables();
+	get_core()->token_list = splited;
+	ft_printf("---------------\n");
+	print_token(get_core()->token_list);
 }
