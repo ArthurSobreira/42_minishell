@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:39:32 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/12 22:23:14 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:31:39 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,5 @@ void	print_redir_in(t_redir_in *redir_list)
 		printf("redir_in: %s\n", current_redir->file_name);
 		printf("fd_in: %d\n\n", current_redir->fd_in);
 		current_redir = current_redir->next;
-	}
-}
-
-void	print_splited(t_input *input)
-{
-	while (input)
-	{
-		printf("%s\n", input->content);
-		input = input->next;
 	}
 }
