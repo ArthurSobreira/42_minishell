@@ -38,6 +38,7 @@ SOURCES = main.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
 	$(DEBUG_PATH)print_coisas.c \
+	$(EXIT_PATH)clear_redir.c \
 	$(EXIT_PATH)clear.c \
 	$(EXIT_PATH)error.c \
 	$(EXPANSION_PATH)expand_variables.c \
