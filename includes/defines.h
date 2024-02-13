@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:48:00 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/13 11:56:56 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:27:57 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 
 # define MAX_PATH_LEN 4096
 # define MAX_HOSTNAME_LEN 256
+# define MAX_VAR_LEN 4096
 # define HERE_DOC_FILE "minishell_here_doc"
 
 #endif
