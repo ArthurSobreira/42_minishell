@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 16:43:57 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:31:16 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void		here_doc_loop(char *hd_limiter, int here_doc_fd);
 
 // Debug functions
 void		print_token(t_token *token);
-void		print_splited(t_input *input);
 void		print_redir_in(t_redir_in *redir_list);
 void		print_redir_out(t_redir_out *redir_list);
 
