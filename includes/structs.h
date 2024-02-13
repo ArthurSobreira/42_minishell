@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/12 22:14:43 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:54:16 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,7 @@ typedef enum e_tkn_type
 	TOKEN_REDIRECT,
 	TOKEN_REDIRECT_REVERSE,
 	TOKEN_APPEND,
-	TOKEN_HERE_DOC,
-	TOKEN_SQUOTE,
-	TOKEN_DQUOTE,
-	TOKEN_VARIABLE,
-	TOKEN_BACKGROUND,
-	TOKEN_SEMICOLON,
-	TOKEN_OR,
-	TOKEN_AND,
+	TOKEN_HERE_DOC
 }						t_tkn_type;
 
 typedef struct s_redir_in
@@ -88,7 +81,6 @@ typedef struct s_cmd
 typedef struct s_minishell
 {
 	t_token				*token_list;
-	t_input				*splited_input;
 	t_var				*env_vars;
 	t_cmd				*cmd_list;
 	int					env_vars_size;
@@ -97,6 +89,7 @@ typedef struct s_minishell
 	char				*input;
 	char				**envp;
 	t_bool				file_error;
+	t_list				*gc;
 }						t_minishell;
 
 #endif
