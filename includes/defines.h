@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:48:00 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/05 15:21:57 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/12 23:07:48 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@
 
 # define MAX_PATH_LEN 4096
 # define MAX_HOSTNAME_LEN 256
+# define HERE_DOC_FILE "temp/minishell_here_doc"
 
 #endif
