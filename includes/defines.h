@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:48:00 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/13 10:57:15 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/13 11:56:56 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@
 # define COLOR_BLACK "\001\x1B[1;30m\002"
 # define COLOR_GRAY "\001\x1B[1;90m\002"
 # define COLOR_RESET "\001\x1B\033[0m\002"
+
+# define END_FILE "syntax error: unexpected end of file"
+# define FORBIDDEN_AND "syntax error: unexpected token `&&'"
+# define FORBIDDEN_OR "syntax error: unexpected token `||'"
+# define FORBIDDEN_SEMICOLON "syntax error: unexpected token `;'"
+# define FORBIDDEN_BACKGROUND "syntax error: unexpected token `&'"
+# define FORBIDDEN_PIPE "syntax error: unexpected token `|'"
+# define FORBIDDEN_REDIR "syntax error: unexpected token `>'"
+# define FORBIDDEN_REDIR_REVERSE "syntax error: unexpected token `<'"
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1

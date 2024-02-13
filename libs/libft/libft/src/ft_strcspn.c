@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 15:53:51 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/02/10 14:00:19 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/02/10 17:52:15 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	exit_shell(void)
+size_t	ft_strcspn(const char *s, const char *reject)
 {
-	t_minishell	*core;
+	size_t	i;
+	size_t	j;
 
-	core = get_core();
-	if (core->token_list != NULL)
-		ft_clear_token();
-	if (core->env_vars != NULL)
-		ft_clear_env_vars();
-	clear_garbage();
-	ft_error("bye bye\n", EXIT_SUCCESS);
-	exit(core->exit_status);
+	i = 0;
+	while (s[i])
+	{
+		j = 0;
+		while (reject[j])
+		{
+			if (s[i] == reject[j])
+				return (i);
+			j++;
+		}
+		i++;
+	}
+	return (i);
 }

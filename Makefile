@@ -25,6 +25,7 @@ EXIT_PATH = exit/
 EXPANSION_PATH = expansion/
 INIT_PATH = init/
 PARSER_PATH = parser/
+LEXER_PATH = lexer/
 PROMPT_PATH = prompt/
 REDIRECT_PATH = redirect/
 TOKENIZER_PATH = tokenizer/
@@ -41,13 +42,16 @@ SOURCES = main.c \
 	$(EXIT_PATH)clear_redir.c \
 	$(EXIT_PATH)clear.c \
 	$(EXIT_PATH)error.c \
+	$(EXIT_PATH)garbage.c \
 	$(EXPANSION_PATH)expand_variables.c \
 	$(EXPANSION_PATH)look_for_variable.c \
 	$(INIT_PATH)init_env.c \
 	$(INIT_PATH)init_structs.c \
 	$(INIT_PATH)init_stuff.c \
-	$(PARSER_PATH)parser.c \
-	$(PARSER_PATH)detect_token_errors.c \
+	$(LEXER_PATH)error_msg.c \
+	$(LEXER_PATH)input_check.c \
+	$(LEXER_PATH)input_handling.c \
+	$(LEXER_PATH)split_input.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
 	$(REDIRECT_PATH)here_doc.c \
@@ -55,8 +59,7 @@ SOURCES = main.c \
 	$(REDIRECT_PATH)redirect.c \
 	$(REDIRECT_PATH)validate_files.c \
 	$(REDIRECT_PATH)validate_utils.c \
-	$(TOKENIZER_PATH)token_utils.c \
-	$(TOKENIZER_PATH)token.c \
+	$(TOKENIZER_PATH)tokenizer.c \
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
 
@@ -92,6 +95,7 @@ $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)$(EXIT_PATH)
 	@mkdir -p $(BIN_PATH)$(EXPANSION_PATH)
 	@mkdir -p $(BIN_PATH)$(INIT_PATH)
+	@mkdir -p $(BIN_PATH)$(LEXER_PATH)
 	@mkdir -p $(BIN_PATH)$(PARSER_PATH)
 	@mkdir -p $(BIN_PATH)$(PROMPT_PATH)
 	@mkdir -p $(BIN_PATH)$(REDIRECT_PATH)
