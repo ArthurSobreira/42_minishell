@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 14:16:52 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/09 15:41:39 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:37:14 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,36 +63,4 @@ void	ft_clear_splited_input(void)
 		core->splited_input = tmp;
 	}
 	ft_clear_token();
-}
-
-void	ft_clear_redir_in(t_redir_in **redir_in)
-{
-	t_redir_in	*tmp_in;
-
-	if (*redir_in == NULL)
-		return ;
-	while (*redir_in)
-	{
-		tmp_in = (*redir_in)->next;
-		close((*redir_in)->fd_in);
-		ft_free((*redir_in)->file_name);
-		ft_free(*redir_in);
-		*redir_in = tmp_in;
-	}
-}
-
-void	ft_clear_redir_out(t_redir_out **redir_out)
-{
-	t_redir_out	*tmp_out;
-
-	if (*redir_out == NULL)
-		return ;
-	while (*redir_out)
-	{
-		tmp_out = (*redir_out)->next;
-		close((*redir_out)->fd_out);
-		ft_free((*redir_out)->file_name);
-		ft_free(*redir_out);
-		*redir_out = tmp_out;
-	}
 }
