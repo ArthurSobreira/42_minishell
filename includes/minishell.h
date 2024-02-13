@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 12:01:50 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:43:57 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,7 @@ char		*get_current_dir(void);
 char		*format_prompt(t_prompt *prompt);
 
 // Token functions
-void		tokenization(void);
 t_tkn_type	set_tkn_type(char *str);
-void		split_input(void);
-void		process_non_space(t_minishell *core, int *i);
-void		add_to_list(t_minishell *core, int start, int end);
-t_bool		is_redir_token(t_token *token);
-t_bool		isall(t_minishell *core, int *i);
-void		ft_clear_splited_input(void);
-void		search_bugs(void);
 
 // Start functions
 void		init_minishell(t_minishell *core);
@@ -76,7 +68,6 @@ void		ft_error(char *str, int status);
 void		ft_file_error(char *file_name, char *str, int status);
 void		ft_clear_token(void);
 void		ft_clear_env_vars(void);
-void		ft_clear_splited_input(void);
 void		ft_clear_redir_in(t_redir_in **redir_in);
 void		ft_clear_redir_out(t_redir_out **redir_out);
 
@@ -104,8 +95,6 @@ void		here_doc_loop(char *hd_limiter, int here_doc_fd);
 
 // Expansion functions
 
-void		look_for_variables(void);
-
 // Debug functions
 void		print_token(t_token *token);
 void		print_splited(t_input *input);
@@ -113,9 +102,26 @@ void		print_redir_in(t_redir_in *redir_list);
 void		print_redir_out(t_redir_out *redir_list);
 
 // Error functions
+t_bool		is_redir_token(t_token *token);
 
-void		search_bad_redirects(char *str);
-void		pipe_and_operator_error(void);
-t_bool		is_excluded_type(t_tkn_type type, int option);
+// tester functions
+void		clear_garbage(void);
+void		garbage_add(void *ptr);
+t_bool		check_start_pipe(void);
+t_bool		check_end_operators(void);
+t_bool		check_spaces_between_redirections(void);
+t_bool		check_spaces_between_heredoc(void);
+t_bool		check_forbidden_background(void);
+t_bool		check_forbidden_semicolon(void);
+t_bool		check_forbidden_or(void);
+t_bool		check_forbidden_and(void);
+t_bool		check_close_quotes(void);
+t_bool		exit_status_2(char *error_msg);
+void		set_exit_status(char *error_msg);
+void		skip_quotes(char *str, int *i);
+void		split_input(char *str);
+void		splited_add_back(t_token **head, t_token *new);
+t_token		*new_token(char *str);
+t_bool		lexer_and_format_prompt(void);
 
 #endif

@@ -18,7 +18,7 @@ t_bool	validate_input_file(t_token *current_tkn)
 	{
 		if (!check_file_exists(current_tkn->next->value))
 		{
-			ft_file_error(current_tkn->next->value, 
+			ft_file_error(current_tkn->next->value, \
 				"no such file or directory\n", EXIT_FAILURE);
 			return (FALSE);
 		}

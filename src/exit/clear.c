@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 14:16:52 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/12 22:37:14 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:27:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,4 @@ void	ft_clear_env_vars(void)
 		ft_free(core->env_vars);
 		core->env_vars = tmp;
 	}
-}
-
-void	ft_clear_splited_input(void)
-{
-	t_minishell	*core;
-	t_input		*tmp;
-
-	core = get_core();
-	if (core->splited_input == NULL)
-		return ;
-	while (core->splited_input)
-	{
-		tmp = core->splited_input->next;
-		ft_free(core->splited_input->content);
-		ft_free(core->splited_input);
-		core->splited_input = tmp;
-	}
-	ft_clear_token();
 }

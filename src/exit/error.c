@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:34:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 15:30:54 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:46:39 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_error(char *str, int status)
 
 	core = get_core();
 	msg = ft_strjoin("minishell: ", str);
-	ft_putstr_fd(msg, STDERR_FILENO);
+	ft_putendl_fd(msg, STDERR_FILENO);
 	free(msg);
 	core->exit_status = status;
 }
