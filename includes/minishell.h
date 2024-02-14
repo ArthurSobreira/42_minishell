@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 16:43:57 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/14 10:17:30 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void		capture_heredoc(t_token *current_tkn);
 void		here_doc_loop(char *hd_limiter, int here_doc_fd);
 
 // Expansion functions
+
+void		check_variables(void);
 
 // Debug functions
 void		print_token(t_token *token);
