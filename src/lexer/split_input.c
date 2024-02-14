@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_prompt.c                                     :+:      :+:    :+:   */
+/*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:14:00 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 15:29:25 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/14 10:03:11 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ t_bool	lexer_and_format_prompt(void)
 		return (TRUE);
 	}
 	str = ft_strdup(get_core()->input);
-	printf("str_error: %s\n", str_error);
 	str = insert_spaces(str);
 	garbage_add(str);
-	printf("str: %s\n", str);
 	split_input(str);
+	check_variables();
 	return (FALSE);
 }
 // return (NULL);
