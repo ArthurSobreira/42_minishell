@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:33:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/15 18:21:05 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:29:15 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ char	*search_for_expansions(t_var *env_vars, char *line)
 
 char	*get_var(t_var *env_vars, char *line, size_t *l_index)
 {
-	size_t 	temp_var_len;
+	size_t	temp_var_len;
 	char	*temp_var;
 	char	*var;
-	
+
 	*l_index += 1;
 	temp_var_len = get_var_len(line, *l_index);
 	temp_var = ft_substr(line, *l_index, temp_var_len);
