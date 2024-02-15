@@ -24,7 +24,6 @@ void	handle_redirects(void)
 	t_redir_out	*redir_out;
 
 	current_tkn = get_core()->token_list;
-	capture_heredoc(current_tkn);
 	redir_in = NULL;
 	redir_out = NULL;
 	while (current_tkn)
