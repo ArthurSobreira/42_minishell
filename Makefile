@@ -21,6 +21,7 @@ BIN_PATH = ./bin/
 SOURCES_PATH = ./src/
 BUILTINS_PATH = built-in/
 DEBUG_PATH = debugger/
+EXECUTOR_PATH = executor/
 EXIT_PATH = exit/
 EXPANSION_PATH = expansion/
 INIT_PATH = init/
@@ -39,6 +40,8 @@ SOURCES = main.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
 	$(DEBUG_PATH)print_coisas.c \
+	$(EXECUTOR_PATH)command_table.c \
+	$(EXECUTOR_PATH)validate_cmd.c \
 	$(EXIT_PATH)clear_redir.c \
 	$(EXIT_PATH)clear.c \
 	$(EXIT_PATH)error.c \
@@ -92,6 +95,7 @@ $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)
 	@mkdir -p $(BIN_PATH)$(BUILTINS_PATH)
 	@mkdir -p $(BIN_PATH)$(DEBUG_PATH)
+	@mkdir -p $(BIN_PATH)$(EXECUTOR_PATH)
 	@mkdir -p $(BIN_PATH)$(EXIT_PATH)
 	@mkdir -p $(BIN_PATH)$(EXPANSION_PATH)
 	@mkdir -p $(BIN_PATH)$(INIT_PATH)
