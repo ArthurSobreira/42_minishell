@@ -16,38 +16,30 @@ static void	handle_here_doc(t_redir_in **redir_list, t_token *current_tkn);
 static void	handle_redir_in(t_redir_in **redir_list, t_token *current_tkn);
 static void	handle_redir_out(t_redir_out **redir_list, t_token *current_tkn);
 
-void	handle_redirects(void)
+void	handle_redirects(t_cmd *cmd)
 {
 	t_token		*current_tkn;
 	t_token		*next_tkn;
-	t_redir_in	*redir_in;
-	t_redir_out	*redir_out;
 
 	current_tkn = get_core()->token_list;
-	redir_in = NULL;
-	redir_out = NULL;
-	while (current_tkn)
+	while (current_tkn && current_tkn->type != TOKEN_PIPE)
 	{
 		next_tkn = current_tkn->next;
 		if (is_redir_token(current_tkn) && (next_tkn != NULL))
 		{
 			if (current_tkn->type == TOKEN_HERE_DOC)
-				handle_here_doc(&redir_in, current_tkn);
+				handle_here_doc(&cmd->redir_in, current_tkn);
 			if (current_tkn->type == TOKEN_REDIRECT_REVERSE)
-				handle_redir_in(&redir_in, current_tkn);
+				handle_redir_in(&cmd->redir_in, current_tkn);
 			else if (current_tkn->type == TOKEN_REDIRECT || \
 				current_tkn->type == TOKEN_APPEND)
-				handle_redir_out(&redir_out, current_tkn);
+				handle_redir_out(&cmd->redir_out, current_tkn);
 			next_tkn = current_tkn->next->next;
 			remove_redir_token(&get_core()->token_list, current_tkn->next);
 			remove_redir_token(&get_core()->token_list, current_tkn);
 		}
 		current_tkn = next_tkn;
 	}
-	remove_unnecessary_redir_in(&redir_in);
-	remove_unnecessary_redir_out(&redir_out);
-	ft_clear_redir_in(&redir_in); // TODO: remove
-	ft_clear_redir_out(&redir_out); // TODO: remove
 }
 
 static void	handle_here_doc(t_redir_in **redir_list, t_token *current_tkn)
