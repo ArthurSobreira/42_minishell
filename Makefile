@@ -52,6 +52,7 @@ SOURCES = main.c \
 	$(LEXER_PATH)input_check.c \
 	$(LEXER_PATH)input_handling.c \
 	$(LEXER_PATH)split_input.c \
+	$(PARSER_PATH)errors.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
 	$(REDIRECT_PATH)here_doc.c \

@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/14 10:17:30 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:25:36 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,7 @@ void		split_input(char *str);
 void		splited_add_back(t_token **head, t_token *new);
 t_token		*new_token(char *str);
 t_bool		lexer_and_format_prompt(void);
+char		*ft_strstr_true(const char *big, const char *little);
+t_bool		parser(void);
 
 #endif

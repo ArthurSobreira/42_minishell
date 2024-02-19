@@ -6,16 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/13 16:49:41 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:28:59 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_bool	parser(void)
-{
-	return (FALSE);
-}
 
 t_bool	execution(void)
 {

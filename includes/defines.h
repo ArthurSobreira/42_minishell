@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:48:00 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/13 11:56:56 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:25:27 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define FORBIDDEN_PIPE "syntax error: unexpected token `|'"
 # define FORBIDDEN_REDIR "syntax error: unexpected token `>'"
 # define FORBIDDEN_REDIR_REVERSE "syntax error: unexpected token `<'"
+# define OPERATORS_ERROR "syntax error: unexpected token after operator"
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
