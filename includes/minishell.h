@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/15 17:51:19 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:30:04 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void		init_minishell(t_minishell *core);
 void		get_env_vars(t_minishell *core);
 t_var		*create_var(char *key, char *value);
 t_var		*find_last_var(t_var *var);
+t_cmd		*init_cmd(void);
 t_prompt	init_prompt(void);
 void		print_ascii(void);
 void		clear_prompt(void);
@@ -68,11 +69,13 @@ void		ft_error(char *str, int status);
 void		ft_file_error(char *file_name, char *str, int status);
 void		ft_clear_token(void);
 void		ft_clear_env_vars(void);
+void		ft_clear_cmd_table(void);
+void		free_variables(char *var, char **split_var);
 void		ft_clear_redir_in(t_redir_in **redir_in);
 void		ft_clear_redir_out(t_redir_out **redir_out);
 
 // Redirect functions
-void		handle_redirects(void);
+void		handle_redirects(t_cmd *cmd);
 void		open_in_files(t_redir_in *redir_in);
 void		open_create_out_files(t_redir_out *redir_out);
 t_bool		validate_input_file(t_token *current_tkn);
@@ -87,7 +90,7 @@ t_redir_out	*create_redir_out(t_tkn_type r_type, char *file_name);
 t_redir_out	*find_last_redir_out(t_redir_out *redir);
 void		remove_unnecessary_redir_out(t_redir_out **redir_out);
 void		remove_unnecessary_redir_in(t_redir_in **redir_in);
-void		remove_redir_token(t_token **token_list, t_token *target_tkn);
+void		remove_token(t_token **token_list, t_token *target_tkn);
 
 // Here_doc functions
 void		capture_heredoc(void);
@@ -125,5 +128,12 @@ void		split_input(char *str);
 void		splited_add_back(t_token **head, t_token *new);
 t_token		*new_token(char *str);
 t_bool		lexer_and_format_prompt(void);
+
+// Executor functinos
+void		command_executor(void);
+int			count_pipes(void);
+char		*get_command(void);
+char		*validate_cmd_path(char *cmd_name);
+char		**get_split_path(void);
 
 #endif
