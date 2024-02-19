@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:33:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/12 22:39:44 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:35:07 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,52 @@ void	capture_heredoc(t_token *current_tkn)
 	}
 }
 
+char	*search_for_expansions(t_var *env_vars, char *line)
+{
+	char	expanded_line[MAX_VAR_LEN];
+	char	*result_line;
+	t_var	*temp_var;
+	size_t	line_index;
+	size_t	e_line_index;
+
+	if (!ft_strchr(line, '$'))
+		return (line);
+	temp_var = env_vars;
+	line_index = 0;
+	e_line_index = 0;
+	while (line[line_index])
+	{
+		if (line[line_index] == '$')
+		{
+			line_index++;
+			while (ft_isalnum(line[line_index]))
+				expanded_line[e_line_index++] = line[line_index++];
+			expanded_line[e_line_index] = '\0';
+			while (temp_var)
+			{
+				if (!ft_strcmp(expanded_line, temp_var->key))
+				{
+					ft_strlcat(expanded_line, temp_var->value, MAX_VAR_LEN);
+					break ;
+				}
+				temp_var = temp_var->next;
+			}
+		}
+		else
+			expanded_line[e_line_index++] = line[line_index++];
+	}
+	expanded_line[e_line_index] = '\0';
+	line_index = 0;
+	while (expanded_line[line_index])
+		line_index++;
+	result_line = (char *)malloc(sizeof(char) * (line_index + 1));
+	if (!result_line)
+		return (NULL);
+	ft_strlcpy(result_line, expanded_line, line_index + 1);
+	free(line);
+	return (result_line);
+}
+
 void	here_doc_loop(char *hd_limiter, int here_doc_fd)
 {
 	char	*line;
@@ -46,6 +92,7 @@ void	here_doc_loop(char *hd_limiter, int here_doc_fd)
 			close(here_doc_fd);
 			break ;
 		}
+		search_for_expansions(get_core()->env_vars, line);
 		ft_putendl_fd(line, here_doc_fd);
 		free(line);
 	}
