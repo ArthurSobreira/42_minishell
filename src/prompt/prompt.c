@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/13 16:49:41 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:59:26 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	prompt_process(t_minishell *core)
 		return ;
 	if (execution())
 		return ;
+	capture_heredoc();
 	handle_redirects();
 	if (ft_strcmp(core->input, "exit") == 0)
 		exit_shell();

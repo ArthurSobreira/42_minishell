@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 18:30:43 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:11:47 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ typedef struct s_var
 
 typedef struct s_cmd
 {
-	char				*executable;
-	char				**arguments;
+	char				*cmd;
+	char				**args;
+	char				**envp;
+	pid_t				pid;
+	t_bool				is_builtin;
 	t_redir_in			*redir_in;
 	t_redir_out			*redir_out;
 }						t_cmd;
@@ -81,7 +84,7 @@ typedef struct s_minishell
 {
 	t_token				*token_list;
 	t_var				*env_vars;
-	t_cmd				*cmd_list;
+	t_cmd				*cmd_table;
 	t_error				error_check;
 	int					env_vars_size;
 	int					exit_status;

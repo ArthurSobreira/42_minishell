@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 18:31:16 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:51:19 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,11 @@ void		remove_unnecessary_redir_in(t_redir_in **redir_in);
 void		remove_redir_token(t_token **token_list, t_token *target_tkn);
 
 // Here_doc functions
-void		capture_heredoc(t_token *current_tkn);
+void		capture_heredoc(void);
 void		here_doc_loop(char *hd_limiter, int here_doc_fd);
+char		*search_for_expansions(t_var *env_vars, char *line);
+char		*get_var(t_var *env_vars, char *line, size_t *l_index);
+size_t		get_var_len(char *line, size_t l_index);
 
 // Expansion functions
 
