@@ -35,8 +35,8 @@ void	handle_redirects(t_cmd *cmd)
 				current_tkn->type == TOKEN_APPEND)
 				handle_redir_out(&cmd->redir_out, current_tkn);
 			next_tkn = current_tkn->next->next;
-			remove_redir_token(&get_core()->token_list, current_tkn->next);
-			remove_redir_token(&get_core()->token_list, current_tkn);
+			remove_token(&get_core()->token_list, current_tkn->next);
+			remove_token(&get_core()->token_list, current_tkn);
 		}
 		current_tkn = next_tkn;
 	}

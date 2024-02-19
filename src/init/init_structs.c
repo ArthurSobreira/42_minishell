@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/15 18:31:01 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:30:02 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_minishell(t_minishell *core)
 	core->env_vars = NULL;
 	core->cmd_table = NULL;
 	core->env_vars_size = 0;
+	core->pipe_count = 0;
 	core->exit_status = EXIT_SUCCESS;
 	core->error_check.file_error = FALSE;
 	core->input = NULL;
@@ -28,13 +29,13 @@ t_cmd	*init_cmd(void)
 	t_cmd	*cmd;
 
 	cmd = malloc(sizeof(t_cmd));
-	cmd->cmd = NULL;
-	cmd->args = NULL;
-	cmd->envp = NULL;
 	cmd->pid = -1;
 	cmd->is_builtin = FALSE;
 	cmd->redir_in = NULL;
 	cmd->redir_out = NULL;
+	cmd->cmd = NULL;
+	cmd->args = NULL;
+	cmd->envp = NULL;
 	return (cmd);
 }
 
