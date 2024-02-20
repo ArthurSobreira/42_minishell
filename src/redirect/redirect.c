@@ -40,6 +40,8 @@ void	handle_redirects(t_cmd *cmd)
 		}
 		current_tkn = next_tkn;
 	}
+	if (current_tkn && current_tkn->type == TOKEN_PIPE)
+		remove_token(&get_core()->token_list, current_tkn);
 }
 
 static void	handle_here_doc(t_redir_in **redir_list, t_token *current_tkn)
