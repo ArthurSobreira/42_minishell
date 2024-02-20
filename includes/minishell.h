@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/19 17:30:04 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:31:20 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		init_minishell(t_minishell *core);
 void		get_env_vars(t_minishell *core);
 t_var		*create_var(char *key, char *value);
 t_var		*find_last_var(t_var *var);
-t_cmd		*init_cmd(void);
+t_cmd		*init_cmd_table(void);
 t_prompt	init_prompt(void);
 void		print_ascii(void);
 void		clear_prompt(void);
