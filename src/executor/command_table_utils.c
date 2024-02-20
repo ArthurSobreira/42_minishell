@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:39:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/20 17:47:13 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:00:53 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	count_args(t_token *token_list)
 		args_count++;
 		current_tkn = current_tkn->next;
 	}
-	printf("args_count: %d\n", args_count);
 	return (args_count);
 }
 
