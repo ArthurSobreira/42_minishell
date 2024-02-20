@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/20 12:31:20 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:49:09 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ size_t		get_var_len(char *line, size_t l_index);
 void		print_token(t_token *token);
 void		print_redir_in(t_redir_in *redir_list);
 void		print_redir_out(t_redir_out *redir_list);
+void		print_cmd_table(t_cmd *cmd_table);
 
 // Error functions
 t_bool		is_redir_token(t_token *token);
@@ -129,11 +130,17 @@ void		splited_add_back(t_token **head, t_token *new);
 t_token		*new_token(char *str);
 t_bool		lexer_and_format_prompt(void);
 
-// Executor functinos
-void		command_executor(void);
-int			count_pipes(void);
+// Command Table functinos
+void		create_cmd_table(void);
 char		*get_command(void);
+char		**get_arguments(void);
 char		*validate_cmd_path(char *cmd_name);
 char		**get_split_path(void);
+int			count_pipes(void);
+int			count_args(t_token *token_list);
+t_bool		is_builtin(char *cmd);
+
+// Executor functions
+void		command_executor(void);
 
 #endif
