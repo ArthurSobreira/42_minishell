@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:39:32 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 18:31:39 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:37:56 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	print_redir_out(t_redir_out *redir_list)
 	t_redir_out *current_redir;
 
 	current_redir = redir_list;
+	if (redir_list == NULL)
+	{
+		printf("redir_out: NULL\n");
+		return ;
+	}
 	while (current_redir)
 	{
 		printf("\nr_type: %d\n", current_redir->r_type);
@@ -44,6 +49,11 @@ void	print_redir_in(t_redir_in *redir_list)
 	t_redir_in *current_redir;
 
 	current_redir = redir_list;
+	if (redir_list == NULL)
+	{
+		printf("redir_in: NULL\n");
+		return ;
+	}
 	while (current_redir)
 	{
 		printf("\nr_type: %d\n", current_redir->r_type);
