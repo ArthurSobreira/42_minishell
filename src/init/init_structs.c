@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/19 15:30:02 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:31:36 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,29 @@ void	init_minishell(t_minishell *core)
 	core->input = NULL;
 }
 
-t_cmd	*init_cmd(void)
+t_cmd	*init_cmd_table(void)
 {
-	t_cmd	*cmd;
+	t_minishell	*core;
+	t_cmd		*cmd_table;
+	size_t		index;
 
-	cmd = malloc(sizeof(t_cmd));
-	cmd->pid = -1;
-	cmd->is_builtin = FALSE;
-	cmd->redir_in = NULL;
-	cmd->redir_out = NULL;
-	cmd->cmd = NULL;
-	cmd->args = NULL;
-	cmd->envp = NULL;
-	return (cmd);
+	core = get_core();
+	cmd_table = malloc(sizeof(t_cmd) * (core->pipe_count + 1));
+	if (cmd_table == NULL)
+		return (NULL);
+	index = 0;
+	while (index <= core->pipe_count)
+	{
+		cmd_table[index].pid = -1;
+		cmd_table[index].is_builtin = FALSE;
+		cmd_table[index].redir_in = NULL;
+		cmd_table[index].redir_out = NULL;
+		cmd_table[index].cmd = NULL;
+		cmd_table[index].args = NULL;
+		cmd_table[index].envp = NULL;
+		index++;
+	}
+	return (cmd_table);
 }
 
 t_prompt	init_prompt(void)
