@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:05:43 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/15 17:25:15 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:41:02 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,8 @@ size_t				ft_strcspn(const char *s, const char *reject);
 char				*ft_strstr_quotes(const char *big, const char *little);
 char				*ft_replace_quotes(char *str, char *old, char *new);
 char				*ft_strjoin_free(char *s1, char *s2);
-char				*ft_replace_true(char *str, char *old, char *new,
+char				*ft_replace_small(char *str, char *old, char *new,
 						t_replace *rp);
+char				*ft_strnew(size_t size);
 
 #endif
