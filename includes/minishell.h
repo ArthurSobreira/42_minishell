@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/19 14:14:22 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:31:16 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,15 @@ void		here_doc_loop(char *hd_limiter, int here_doc_fd);
 // Expansion functions
 
 void		check_variables(void);
+char		*process_variable(char *str, int i, t_bool *in_quote);
+char		*handle_var_value(char *var_name, char *var_value);
+char		*replace_or_treat_quotes(char *str, char *var_name, char *var_value,
+				t_bool *in_quote);
+char		*tratament_quotes(char *str, char *var_name, char *var_value);
+char		*look_for_variable(char *str);
+char		*get_var_value(char *var_name);
+int			where_is_dollar(char *str, t_bool *in_quote);
+void		skip_squote(char *str, int *i);
 
 // Debug functions
 void		print_token(t_token *token);
@@ -124,7 +133,6 @@ void		split_input(char *str);
 void		splited_add_back(t_token **head, t_token *new);
 t_token		*new_token(char *str);
 t_bool		lexer_and_format_prompt(void);
-char		*ft_strstr_true(const char *big, const char *little);
 t_bool		parser(void);
 
 #endif
