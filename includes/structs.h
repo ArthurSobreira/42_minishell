@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/19 17:22:15 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:54:57 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,16 @@ typedef struct s_cmd
 typedef struct s_error
 {
 	t_bool				file_error;
+	t_bool				cmd_error;
 }						t_error;
 
 typedef struct s_minishell
 {
 	t_token				*token_list;
 	t_var				*env_vars;
-	t_cmd				**cmd_table;
+	t_cmd				*cmd_table;
 	t_error				error_check;
-	int					pipe_count;
+	size_t				pipe_count;
 	int					env_vars_size;
 	int					exit_status;
 	char				*built_in[8];
