@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strstr_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 09:07:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/20 17:40:35 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:41:02 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	skip_quotes(char *str, size_t *i)
 		(*i)++;
 }
 
-char	*ft_strstr(const char *big, const char *little)
+char	*ft_strstr_quotes(const char *big, const char *little)
 {
 	size_t	counter;
 	size_t	index;
@@ -32,7 +32,7 @@ char	*ft_strstr(const char *big, const char *little)
 		return ((char *)big);
 	while (big[counter])
 	{
-		if (big[counter] == '\"' || big[counter] == '\'')
+		if (big[counter] == '\'')
 			skip_quotes((char *)big, &counter);
 		if (!big[counter])
 			break ;

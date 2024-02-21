@@ -1,16 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_replace.c                                       :+:      :+:    :+:   */
+/*   ft_replace_true.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/11 08:48:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/21 14:49:08 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/02/20 18:06:09 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/02/21 11:29:52 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static char	*ft_strstr_true(const char *big, const char *little)
+{
+	size_t	counter;
+	size_t	index;
+
+	counter = 0;
+	if (!*little)
+		return ((char *)big);
+	while (big[counter])
+	{
+		if (!big[counter])
+			break ;
+		index = 0;
+		while (big[counter + index] && little[index] && big[counter
+				+ index] == little[index])
+			index++;
+		if (!little[index])
+			return ((char *)&big[counter]);
+		counter++;
+	}
+	return (NULL);
+}
 
 static char	*replace_occurrence(char *result, char *ptr, char *old, char *new)
 {
@@ -28,7 +51,7 @@ static char	*replace_occurrence(char *result, char *ptr, char *old, char *new)
 	return (subtemp);
 }
 
-char	*ft_replace(char *str, char *old, char *new)
+char	*ft_replace_true(char *str, char *old, char *new)
 {
 	char	*result;
 	char	*ptr;
@@ -39,11 +62,11 @@ char	*ft_replace(char *str, char *old, char *new)
 	ptr = result;
 	while (*ptr)
 	{
-		ptr = ft_strstr(ptr, old);
+		ptr = ft_strstr_true(ptr, old);
 		if (!ptr)
 			break ;
 		result = replace_occurrence(result, ptr, old, new);
-		ptr = result + ft_strlen(new);
+		ptr = result + ft_strlen(new) + 1;
 	}
 	free(str);
 	return (result);
