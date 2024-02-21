@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_coisas.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:39:32 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 18:31:39 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:18:35 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_token(t_token *token)
 
 void	print_redir_out(t_redir_out *redir_list)
 {
-	t_redir_out *current_redir;
+	t_redir_out	*current_redir;
 
 	current_redir = redir_list;
 	while (current_redir)
@@ -41,7 +41,7 @@ void	print_redir_out(t_redir_out *redir_list)
 
 void	print_redir_in(t_redir_in *redir_list)
 {
-	t_redir_in *current_redir;
+	t_redir_in	*current_redir;
 
 	current_redir = redir_list;
 	while (current_redir)
