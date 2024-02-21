@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/15 17:59:26 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:10:46 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ void	prompt_process(t_minishell *core)
 		return ;
 	if (parser())
 		return ;
-	if (execution())
-		return ;
 	capture_heredoc();
-	handle_redirects();
+	command_executor();
 	if (ft_strcmp(core->input, "exit") == 0)
 		exit_shell();
 	if (ft_strcmp(core->input, "pwd") == 0)
@@ -45,7 +43,7 @@ void	prompt_loop(t_minishell *core)
 	using_history();
 	while (TRUE)
 	{
-		core->error_check.file_error = FALSE;
+		ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
 		garbage_add(core->input = readline(get_prompt_text()));
 		add_history(core->input);
 		ft_strip(core->input);
@@ -54,6 +52,7 @@ void	prompt_loop(t_minishell *core)
 		prompt_process(core);
 		clear_garbage();
 		ft_clear_token();
+		ft_clear_cmd_table();
 	}
 	rl_clear_history();
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_split.c                                      :+:      :+:    :+:   */
+/*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 15:16:30 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:59:33 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ void	split_input(char *str)
 		token = ft_strtok(NULL, tmp);
 	}
 	get_core()->token_list = splited;
-	ft_printf("---------------\n");
-	print_token(get_core()->token_list);
+	// ft_printf("---------------\n");
+	// print_token(get_core()->token_list);
 }

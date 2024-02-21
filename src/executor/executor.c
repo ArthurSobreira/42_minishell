@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/20 12:35:18 by arsobrei         ###   ########.fr       */
+/*   Created: 2024/02/20 17:45:51 by arsobrei          #+#    #+#             */
+/*   Updated: 2024/02/20 17:46:05 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_minishell	*get_core(void)
-{
-	static t_minishell	core;
-
-	return (&core);
-}
-
-int	main(int argc, char *argv[], char *envp[])
+void	command_executor(void)
 {
 	t_minishell	*core;
 
-	(void)argv;
-	core = NULL;
-	if (argc == 1)
-	{
-		core = get_core();
-		core->envp = envp;
-		clear_prompt();
-		print_ascii();
-		init_minishell(core);
-		get_env_vars(core);
-		prompt_loop(core);
-	}
-	return (core->exit_status);
+	core = get_core();
+	create_cmd_table();
 }
