@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/20 11:31:16 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:11:48 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,33 @@ void		init_minishell(t_minishell *core);
 void		get_env_vars(t_minishell *core);
 t_var		*create_var(char *key, char *value);
 t_var		*find_last_var(t_var *var);
+t_cmd		*init_cmd_table(void);
 t_prompt	init_prompt(void);
 void		print_ascii(void);
 void		clear_prompt(void);
 
 // Clear functions
 void		ft_error(char *str, int status);
-void		ft_file_error(char *file_name, char *str, int status);
+void		ft_file_error(char *file_name, char *str, int status, size_t index);
 void		ft_clear_token(void);
 void		ft_clear_env_vars(void);
+void		ft_clear_cmd_table(void);
+void		free_variables(char *var, char **split_var);
 void		ft_clear_redir_in(t_redir_in **redir_in);
 void		ft_clear_redir_out(t_redir_out **redir_out);
 
 // Redirect functions
-void		handle_redirects(void);
+void		handle_redirects(t_cmd *cmd, size_t index);
+void		handle_here_doc(t_redir_in **redir_list, t_token *tkn,
+				size_t index);
+void		handle_redir_in(t_redir_in **redir_list, t_token *tkn,
+				size_t index);
+void		handle_redir_out(t_redir_out **redir_list, t_token *tkn,
+				size_t index);
 void		open_in_files(t_redir_in *redir_in);
 void		open_create_out_files(t_redir_out *redir_out);
-t_bool		validate_input_file(t_token *current_tkn);
-t_bool		validate_output_file(t_token *current_tkn);
+t_bool		validate_input_file(t_token *current_tkn, size_t index);
+t_bool		validate_output_file(t_token *current_tkn, size_t index);
 t_bool		check_file_exists(char *file_name);
 t_bool		check_file_readable(char *file_name);
 t_bool		check_file_writable(char *file_name);
@@ -87,11 +96,14 @@ t_redir_out	*create_redir_out(t_tkn_type r_type, char *file_name);
 t_redir_out	*find_last_redir_out(t_redir_out *redir);
 void		remove_unnecessary_redir_out(t_redir_out **redir_out);
 void		remove_unnecessary_redir_in(t_redir_in **redir_in);
-void		remove_redir_token(t_token **token_list, t_token *target_tkn);
+void		remove_token(t_token **token_list, t_token *target_tkn);
 
 // Here_doc functions
-void		capture_heredoc(t_token *current_tkn);
+void		capture_heredoc(void);
 void		here_doc_loop(char *hd_limiter, int here_doc_fd);
+char		*search_for_expansions(t_var *env_vars, char *line);
+char		*get_var(t_var *env_vars, char *line, size_t *l_index);
+size_t		get_var_len(char *line, size_t l_index);
 
 // Expansion functions
 
@@ -110,6 +122,7 @@ void		skip_squote(char *str, int *i);
 void		print_token(t_token *token);
 void		print_redir_in(t_redir_in *redir_list);
 void		print_redir_out(t_redir_out *redir_list);
+void		print_cmd_table(t_cmd *cmd_table);
 
 // Error functions
 t_bool		is_redir_token(t_token *token);
@@ -133,6 +146,19 @@ void		split_input(char *str);
 void		splited_add_back(t_token **head, t_token *new);
 t_token		*new_token(char *str);
 t_bool		lexer_and_format_prompt(void);
-t_bool		parser(void);
+
+// Command Table functinos
+void		create_cmd_table(void);
+char		*get_command(void);
+char		**get_arguments(char *cmd_name);
+char		*validate_cmd_path(char *cmd_name);
+char		**get_split_path(void);
+int			count_pipes(void);
+int			count_args(t_token *token_list);
+t_bool		is_builtin(char *cmd);
+
+// Executor functions
+void		command_executor(void);
+t_bool		parse(void);
 
 #endif

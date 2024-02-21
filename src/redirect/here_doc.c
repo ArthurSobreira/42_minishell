@@ -6,94 +6,121 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:33:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/13 19:35:07 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:29:15 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	capture_heredoc(t_token *current_tkn)
+void	capture_heredoc(void)
 {
-	t_token		*current_cpy;
+	t_token		*current_tkn;
 	char		*hd_limiter;
 	int			here_doc_fd;
 
-	current_cpy = current_tkn;
-	while (current_cpy)
+	current_tkn = get_core()->token_list;
+	while (current_tkn)
 	{
-		if ((current_cpy->type == TOKEN_HERE_DOC) && \
-			(current_cpy->next->type == TOKEN_WORD))
+		if ((current_tkn->type == TOKEN_HERE_DOC) && \
+			(current_tkn->next->type == TOKEN_WORD))
 		{
 			here_doc_fd = open(HERE_DOC_FILE, \
 				O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			hd_limiter = current_cpy->next->value;
+			hd_limiter = current_tkn->next->value;
 			here_doc_loop(hd_limiter, here_doc_fd);
 		}
-		current_cpy = current_cpy->next;
+		current_tkn = current_tkn->next;
+	}
+}
+
+void	here_doc_loop(char *hd_limiter, int here_doc_fd)
+{
+	t_var	*env_vars;
+	char	*line;
+
+	env_vars = get_core()->env_vars;
+	while (TRUE)
+	{
+		line = readline("> ");
+		if (!line || !ft_strcmp(line, hd_limiter))
+		{
+			free(line);
+			close(here_doc_fd);
+			break ;
+		}
+		if (ft_strcmp(line, "$"))
+			line = search_for_expansions(env_vars, line);
+		ft_putendl_fd(line, here_doc_fd);
+		free(line);
 	}
 }
 
 char	*search_for_expansions(t_var *env_vars, char *line)
 {
 	char	expanded_line[MAX_VAR_LEN];
-	char	*result_line;
-	t_var	*temp_var;
-	size_t	line_index;
-	size_t	e_line_index;
+	char	*result_var;
+	size_t	l_index;
+	size_t	e_index;
+	t_var	*temp_env;
 
-	if (!ft_strchr(line, '$'))
+	if (ft_strchr(line, '$') == NULL)
 		return (line);
-	temp_var = env_vars;
-	line_index = 0;
-	e_line_index = 0;
-	while (line[line_index])
+	l_index = 0;
+	e_index = 0;
+	temp_env = env_vars;
+	ft_bzero(expanded_line, MAX_VAR_LEN);
+	while (line[l_index])
 	{
-		if (line[line_index] == '$')
+		if (line[l_index] == '$')
 		{
-			line_index++;
-			while (ft_isalnum(line[line_index]))
-				expanded_line[e_line_index++] = line[line_index++];
-			expanded_line[e_line_index] = '\0';
-			while (temp_var)
-			{
-				if (!ft_strcmp(expanded_line, temp_var->key))
-				{
-					ft_strlcat(expanded_line, temp_var->value, MAX_VAR_LEN);
-					break ;
-				}
-				temp_var = temp_var->next;
-			}
+			result_var = get_var(temp_env, line, &l_index);
+			ft_strlcat(expanded_line, result_var, MAX_VAR_LEN);
+			e_index += ft_strlen(result_var);
+			free(result_var);
 		}
 		else
-			expanded_line[e_line_index++] = line[line_index++];
+			expanded_line[e_index++] = line[l_index++];
 	}
-	expanded_line[e_line_index] = '\0';
-	line_index = 0;
-	while (expanded_line[line_index])
-		line_index++;
-	result_line = (char *)malloc(sizeof(char) * (line_index + 1));
-	if (!result_line)
-		return (NULL);
-	ft_strlcpy(result_line, expanded_line, line_index + 1);
-	free(line);
-	return (result_line);
+	return (ft_strdup(expanded_line));
 }
 
-void	here_doc_loop(char *hd_limiter, int here_doc_fd)
+char	*get_var(t_var *env_vars, char *line, size_t *l_index)
 {
-	char	*line;
+	size_t	temp_var_len;
+	char	*temp_var;
+	char	*var;
 
-	while (TRUE)
+	*l_index += 1;
+	temp_var_len = get_var_len(line, *l_index);
+	temp_var = ft_substr(line, *l_index, temp_var_len);
+	while (env_vars)
 	{
-		line = readline("> ");
-		if (!ft_strcmp(line, hd_limiter))
+		if (!ft_strcmp(temp_var, "?") || \
+			!ft_strcmp(env_vars->key, temp_var))
 		{
-			free(line);
-			close(here_doc_fd);
-			break ;
+			if (!ft_strcmp(temp_var, "?"))
+				var = ft_itoa(get_core()->exit_status);
+			else
+				var = ft_strdup(env_vars->value);
+			free(temp_var);
+			*l_index += temp_var_len;
+			return (var);
 		}
-		search_for_expansions(get_core()->env_vars, line);
-		ft_putendl_fd(line, here_doc_fd);
-		free(line);
+		env_vars = env_vars->next;
 	}
+	free(temp_var);
+	*l_index += temp_var_len;
+	return (ft_strdup(""));
+}
+
+size_t	get_var_len(char *line, size_t l_index)
+{
+	size_t	len;
+
+	len = 0;
+	while (line[l_index + len] && \
+		line[l_index + len] != ' ' && \
+		line[l_index + len] != '$')
+		len++;
+	return (len);
 }

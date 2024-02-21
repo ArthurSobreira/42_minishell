@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/21 18:51:56 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:17:19 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ void	prompt_process(t_minishell *core)
 {
 	if (lexer_and_format_prompt())
 		return ;
-	if (parser())
-		return ;
-	if (execution())
-		return ;
-	handle_redirects();
+	capture_heredoc();
+	command_executor();
 	if (ft_strcmp(core->input, "exit") == 0)
 		exit_shell();
 	if (ft_strcmp(core->input, "pwd") == 0)
@@ -39,7 +36,7 @@ void	prompt_loop(t_minishell *core)
 	using_history();
 	while (TRUE)
 	{
-		core->error_check.file_error = FALSE;
+		ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
 		garbage_add(core->input = readline(get_prompt_text()));
 		if (!core->input)
 			exit_shell();
@@ -50,6 +47,7 @@ void	prompt_loop(t_minishell *core)
 		prompt_process(core);
 		clear_garbage();
 		ft_clear_token();
+		ft_clear_cmd_table();
 	}
 	rl_clear_history();
 }

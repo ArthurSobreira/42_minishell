@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/19 17:31:00 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:04:04 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,28 @@ typedef struct s_var
 
 typedef struct s_cmd
 {
-	char				*executable;
-	char				**arguments;
+	pid_t				pid;
+	t_bool				is_builtin;
 	t_redir_in			*redir_in;
 	t_redir_out			*redir_out;
+	char				*cmd;
+	char				**args;
+	char				**envp;
 }						t_cmd;
 
 typedef struct s_error
 {
-	t_bool				file_error;
+	t_bool				file_error[MAX_PIPELINES];
+	t_bool				cmd_error;
 }						t_error;
 
 typedef struct s_minishell
 {
 	t_token				*token_list;
 	t_var				*env_vars;
-	t_cmd				*cmd_list;
+	t_cmd				*cmd_table;
 	t_error				error_check;
+	size_t				pipe_count;
 	int					env_vars_size;
 	int					exit_status;
 	char				*built_in[8];

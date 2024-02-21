@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:05:43 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/21 14:59:25 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:04:46 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ t_bool				ft_isalpha(int c);
 t_bool				ft_isascii(int c);
 t_bool				ft_isatty(int fd);
 t_bool				ft_isdigit(int c);
-// t_bool	ft_isbackground(int c);
-// t_bool	ft_ispipe(int c);
-// t_bool	ft_isprint(int c);
-// t_bool	ft_isredir(int c);
-// t_bool	ft_issemicolon(int c);
+t_bool				ft_isbackground(int c);
+t_bool				ft_ispipe(int c);
+t_bool				ft_isprint(int c);
+t_bool				ft_isredir(int c);
+t_bool				ft_issemicolon(int c);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
