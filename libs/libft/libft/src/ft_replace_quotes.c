@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_replace.c                                       :+:      :+:    :+:   */
+/*   ft_replace_quotes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 08:48:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/21 14:49:08 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:32:39 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*replace_occurrence(char *result, char *ptr, char *old, char *new)
 	return (subtemp);
 }
 
-char	*ft_replace(char *str, char *old, char *new)
+char	*ft_replace_quotes(char *str, char *old, char *new)
 {
 	char	*result;
 	char	*ptr;
@@ -39,7 +39,7 @@ char	*ft_replace(char *str, char *old, char *new)
 	ptr = result;
 	while (*ptr)
 	{
-		ptr = ft_strstr(ptr, old);
+		ptr = ft_strstr_quotes(ptr, old);
 		if (!ptr)
 			break ;
 		result = replace_occurrence(result, ptr, old, new);

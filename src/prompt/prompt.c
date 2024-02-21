@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/21 18:10:46 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:17:19 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_bool	parser(void)
-{
-	return (FALSE);
-}
 
 t_bool	execution(void)
 {
@@ -25,8 +20,6 @@ t_bool	execution(void)
 void	prompt_process(t_minishell *core)
 {
 	if (lexer_and_format_prompt())
-		return ;
-	if (parser())
 		return ;
 	capture_heredoc();
 	command_executor();
@@ -45,10 +38,12 @@ void	prompt_loop(t_minishell *core)
 	{
 		ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
 		garbage_add(core->input = readline(get_prompt_text()));
-		add_history(core->input);
+		if (!core->input)
+			exit_shell();
 		ft_strip(core->input);
 		if (core->input[0] == '\0')
 			continue ;
+		add_history(core->input);
 		prompt_process(core);
 		clear_garbage();
 		ft_clear_token();

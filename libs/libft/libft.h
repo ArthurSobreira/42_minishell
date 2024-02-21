@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:05:43 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/21 18:49:43 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:04:46 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct s_replace
+{
+	int				end;
+	int				start;
+}					t_replace;
 
 // Part 1 - Libc Functions
 
@@ -116,5 +122,13 @@ char				*ft_strtok(char *str, const char *delim);
 size_t				ft_strncpy(char *dst, const char *src, size_t len);
 size_t				ft_strspn(const char *s, const char *accept);
 size_t				ft_strcspn(const char *s, const char *reject);
+char				*ft_strstr_quotes(const char *big, const char *little);
+char				*ft_replace_quotes(char *str, char *old, char *new);
+char				*ft_strjoin_free(char *s1, char *s2);
+char				*ft_replace_small(char *str, char *old, char *new,
+						t_replace *rp);
+char				*ft_strnew(size_t size);
+char				*ft_replace_true(char *str, char *old, char *new);
+char				*ft_replace_dquotes(char *str, char *old, char *new);
 
 #endif

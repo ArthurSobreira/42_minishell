@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/21 18:51:08 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:11:48 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,17 @@ size_t		get_var_len(char *line, size_t l_index);
 
 // Expansion functions
 
+void		check_variables(void);
+char		*process_variable(char *str, int i, t_bool *in_quote);
+char		*handle_var_value(char *var_name, char *var_value);
+char		*replace_or_treat_quotes(char *str, char *var_name, char *var_value,
+				t_bool *in_quote);
+char		*tratament_quotes(char *str, char *var_name, char *var_value);
+char		*look_for_variable(char *str);
+char		*get_var_value(char *var_name);
+int			where_is_dollar(char *str, t_bool *in_quote);
+void		skip_squote(char *str, int *i);
+
 // Debug functions
 void		print_token(t_token *token);
 void		print_redir_in(t_redir_in *redir_list);
@@ -148,5 +159,6 @@ t_bool		is_builtin(char *cmd);
 
 // Executor functions
 void		command_executor(void);
+t_bool		parse(void);
 
 #endif

@@ -48,6 +48,10 @@ LIB_SOURCES = \
 	ft_putnbr_fd.c \
 	ft_putstr_fd.c \
 	ft_replace.c \
+	ft_replace_quotes.c \
+	ft_replace_dquotes.c \
+	ft_replace_small.c \
+	ft_replace_true.c \
 	ft_split.c \
 	ft_strchr.c \
 	ft_strcmp.c \
@@ -56,6 +60,7 @@ LIB_SOURCES = \
 	ft_strduplicate_char.c \
 	ft_strip.c \
 	ft_striteri.c \
+	ft_strjoin_free.c \
 	ft_strjoin_three.c \
 	ft_strjoin.c \
 	ft_strlcat.c \
@@ -64,10 +69,12 @@ LIB_SOURCES = \
 	ft_strmapi.c \
 	ft_strncmp.c \
 	ft_strncpy.c \
+	ft_strnew.c \
 	ft_strnstr.c \
 	ft_strrchr.c \
 	ft_strspn.c \
 	ft_strstr.c \
+	ft_strstr_quotes.c \
 	ft_strtok.c \
 	ft_strtrim.c \
 	ft_substr.c \

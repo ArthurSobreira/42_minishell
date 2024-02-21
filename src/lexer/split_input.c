@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:14:00 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 16:59:04 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:06:29 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,17 @@ char	*insert_spaces(char *str)
 {
 	char	*tmp;
 	char	*tmp2;
+	char	c;
+	char	d;
 
-	tmp = "\n";
-	tmp2 = "\a";
+	c = -1;
+	d = -2;
+	garbage_add(tmp = ft_strnew(1));
+	garbage_add(tmp2 = ft_strnew(1));
+	tmp[0] = c;
+	tmp2[0] = d;
+	str = ft_replace_quotes(str, "\"\"", "");
+	str = ft_replace_dquotes(str, "\'\'", "");
 	str = ft_replace(str, ">>", tmp);
 	str = ft_replace(str, ">", tmp2);
 	str = ft_replace(str, tmp2, " > ");
@@ -64,11 +72,10 @@ t_bool	lexer_and_format_prompt(void)
 		return (TRUE);
 	}
 	str = ft_strdup(get_core()->input);
-	// printf("str_error: %s\n", str_error);
 	str = insert_spaces(str);
 	garbage_add(str);
-	// printf("str: %s\n", str);
 	split_input(str);
+	check_variables();
 	return (FALSE);
 }
 // return (NULL);
