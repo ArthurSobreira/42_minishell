@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:15:36 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 18:50:11 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:06:52 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ t_token	*new_token(char *str)
 
 t_bool	is_redir_token(t_token *token)
 {
-	if (token->type == TOKEN_REDIRECT || \
-	token->type == TOKEN_APPEND || \
-	token->type == TOKEN_REDIRECT_REVERSE || \
-	token->type == TOKEN_HERE_DOC)
+	if (token->type == TOKEN_REDIRECT || token->type == TOKEN_APPEND
+		|| token->type == TOKEN_REDIRECT_REVERSE
+		|| token->type == TOKEN_HERE_DOC)
 		return (TRUE);
 	return (FALSE);
 }
@@ -74,16 +73,19 @@ void	splited_add_back(t_token **head, t_token *new)
 void	split_input(char *str)
 {
 	t_token	*splited;
-	char	*token;
-	char	*tmp;
+	char	**token;
+	char	c;
+	size_t	i;
 
-	tmp = "\n";
+	c = -1;
 	splited = NULL;
-	token = ft_strtok(str, tmp);
-	while (token)
+	token = ft_split(str, c);
+	i = 0;
+	while (i < ft_matrix_len(token))
 	{
-		splited_add_back(&splited, new_token(token));
-		token = ft_strtok(NULL, tmp);
+		splited_add_back(&splited, new_token(token[i]));
+		i++;
 	}
+	free(token);
 	get_core()->token_list = splited;
 }
