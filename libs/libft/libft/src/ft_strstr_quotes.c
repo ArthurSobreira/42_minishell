@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 09:07:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/14 10:23:07 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:41:02 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static void	skip_quotes(char *str, size_t *i)
 	quote = str[*i];
 	(*i)++;
 	while (str[*i] && str[*i] != quote)
-		(*i)++;
-	if (str[*i] == quote)
 		(*i)++;
 }
 

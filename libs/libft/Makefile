@@ -49,7 +49,9 @@ LIB_SOURCES = \
 	ft_putstr_fd.c \
 	ft_replace.c \
 	ft_replace_quotes.c \
+	ft_replace_dquotes.c \
 	ft_replace_small.c \
+	ft_replace_true.c \
 	ft_split.c \
 	ft_strchr.c \
 	ft_strcmp.c \

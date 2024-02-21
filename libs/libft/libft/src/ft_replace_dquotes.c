@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_replace_small.c                                 :+:      :+:    :+:   */
+/*   ft_replace_dquotes.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 08:48:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/20 15:55:26 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:09:09 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strstr_true(const char *big, const char *little, t_replace *rp)
+static void	skip_quotes(char *str, size_t *i)
 {
-	int	counter;
-	int	index;
+	char	quote;
 
-	counter = rp->start;
+	quote = str[*i];
+	(*i)++;
+	while (str[*i] && str[*i] != quote)
+		(*i)++;
+}
+
+static char	*ft_strstr_dquotes(const char *big, const char *little)
+{
+	size_t	counter;
+	size_t	index;
+
+	counter = 0;
 	if (!*little)
 		return ((char *)big);
-	while (big[counter] && counter < rp->end)
+	while (big[counter])
 	{
+		if (big[counter] == '\"')
+			skip_quotes((char *)big, &counter);
 		if (!big[counter])
 			break ;
 		index = 0;
@@ -29,10 +41,7 @@ static char	*ft_strstr_true(const char *big, const char *little, t_replace *rp)
 				+ index] == little[index])
 			index++;
 		if (!little[index])
-		{
-			rp->start += counter;
 			return ((char *)&big[counter]);
-		}
 		counter++;
 	}
 	return (NULL);
@@ -54,20 +63,18 @@ static char	*replace_occurrence(char *result, char *ptr, char *old, char *new)
 	return (subtemp);
 }
 
-char	*ft_replace_small(char *str, char *old, char *new, t_replace *rp)
+char	*ft_replace_dquotes(char *str, char *old, char *new)
 {
 	char	*result;
 	char	*ptr;
 
 	if (ft_strlen(old) == 0)
 		return (ft_strdup(str));
-	if (rp->end == rp->start)
-		return (ft_strdup(str));
 	result = ft_strdup(str);
 	ptr = result;
 	while (*ptr)
 	{
-		ptr = ft_strstr_true(ptr, old, rp);
+		ptr = ft_strstr_dquotes(ptr, old);
 		if (!ptr)
 			break ;
 		result = replace_occurrence(result, ptr, old, new);
