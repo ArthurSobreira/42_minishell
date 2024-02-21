@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/20 12:31:36 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:21:25 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	init_minishell(t_minishell *core)
 {
+	ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
 	core->token_list = NULL;
 	core->env_vars = NULL;
 	core->cmd_table = NULL;
 	core->env_vars_size = 0;
 	core->pipe_count = 0;
 	core->exit_status = EXIT_SUCCESS;
-	core->error_check.file_error = FALSE;
 	core->input = NULL;
 }
 
