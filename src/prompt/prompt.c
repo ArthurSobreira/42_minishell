@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/15 18:28:59 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:51:56 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ void	prompt_loop(t_minishell *core)
 	{
 		core->error_check.file_error = FALSE;
 		garbage_add(core->input = readline(get_prompt_text()));
-		add_history(core->input);
+		if (!core->input)
+			exit_shell();
 		ft_strip(core->input);
 		if (core->input[0] == '\0')
 			continue ;
+		add_history(core->input);
 		prompt_process(core);
 		clear_garbage();
 		ft_clear_token();
