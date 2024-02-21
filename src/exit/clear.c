@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 14:16:52 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/20 11:59:14 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:14:29 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	ft_clear_cmd_table(void)
 
 	core = get_core();
 	index = 0;
+	if (core->cmd_table == NULL)
+		return ;
 	while (index <= core->pipe_count)
 	{
 		ft_free(core->cmd_table[index].cmd);
