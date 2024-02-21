@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/20 17:49:09 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:51:08 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void		clear_prompt(void);
 
 // Clear functions
 void		ft_error(char *str, int status);
-void		ft_file_error(char *file_name, char *str, int status);
+void		ft_file_error(char *file_name, char *str, int status, size_t index);
 void		ft_clear_token(void);
 void		ft_clear_env_vars(void);
 void		ft_clear_cmd_table(void);
@@ -75,11 +75,17 @@ void		ft_clear_redir_in(t_redir_in **redir_in);
 void		ft_clear_redir_out(t_redir_out **redir_out);
 
 // Redirect functions
-void		handle_redirects(t_cmd *cmd);
+void		handle_redirects(t_cmd *cmd, size_t index);
+void		handle_here_doc(t_redir_in **redir_list, t_token *tkn,
+				size_t index);
+void		handle_redir_in(t_redir_in **redir_list, t_token *tkn,
+				size_t index);
+void		handle_redir_out(t_redir_out **redir_list, t_token *tkn,
+				size_t index);
 void		open_in_files(t_redir_in *redir_in);
 void		open_create_out_files(t_redir_out *redir_out);
-t_bool		validate_input_file(t_token *current_tkn);
-t_bool		validate_output_file(t_token *current_tkn);
+t_bool		validate_input_file(t_token *current_tkn, size_t index);
+t_bool		validate_output_file(t_token *current_tkn, size_t index);
 t_bool		check_file_exists(char *file_name);
 t_bool		check_file_readable(char *file_name);
 t_bool		check_file_writable(char *file_name);
@@ -133,7 +139,7 @@ t_bool		lexer_and_format_prompt(void);
 // Command Table functinos
 void		create_cmd_table(void);
 char		*get_command(void);
-char		**get_arguments(void);
+char		**get_arguments(char *cmd_name);
 char		*validate_cmd_path(char *cmd_name);
 char		**get_split_path(void);
 int			count_pipes(void);
