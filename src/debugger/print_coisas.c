@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:39:32 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/20 16:41:20 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:35:50 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_token(t_token *token)
 
 void	print_redir_out(t_redir_out *redir_list)
 {
-	t_redir_out *current_redir;
+	t_redir_out	*current_redir;
 
 	current_redir = redir_list;
 	if (redir_list == NULL)
@@ -47,7 +47,7 @@ void	print_redir_out(t_redir_out *redir_list)
 
 void	print_redir_in(t_redir_in *redir_list)
 {
-	t_redir_in *current_redir;
+	t_redir_in	*current_redir;
 
 	current_redir = redir_list;
 	if (redir_list == NULL)
@@ -75,25 +75,25 @@ void	print_cmd_table(t_cmd *cmd_table)
 	size_t	args_index;
 
 	index = 0;
-	args_index = 0;
 	while (index <= get_core()->pipe_count)
 	{
 		printf("\npid: %d\n", cmd_table[index].pid);
 		printf("cmd: %s\n", cmd_table[index].cmd);
-		printf("is_builtin: %d\n", \
-			cmd_table[index].is_builtin);
-		if (cmd_table[index].args)
+		printf("is_builtin: %d\n", cmd_table[index].is_builtin);
+		if (cmd_table[index].args != NULL)
 		{
-			printf("args: ");
-			while (cmd_table[index].args[args_index])
-				printf("[%s] ", cmd_table[index].args[args_index++]);
-			printf("\n");
+			args_index = 0;
+			while (cmd_table[index].args[args_index] != NULL)
+			{
+				printf("arg[%zu] = %s\n", args_index, \
+					cmd_table[index].args[args_index]);
+				args_index++;
+			}
 		}
 		else
 			printf("args: NULL\n");
 		print_redir_in(cmd_table[index].redir_in);
 		print_redir_out(cmd_table[index].redir_out);
-		printf("======================\n");
 		index++;
 	}
 }
