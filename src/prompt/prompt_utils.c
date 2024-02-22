@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:10 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/01 23:45:54 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:29:17 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ char	*get_current_dir(void)
 	char	**cwd_split;
 	char	*current_dir;
 
-	current_dir = get_working_directory();
+	current_dir = get_var_value("PWD");
+	if (current_dir == NULL)
+		return (ft_strdup("."));
 	cwd_split = ft_split(current_dir, '/');
 	ft_free(current_dir);
 	current_dir = cwd_split[ft_matrix_len(cwd_split) - 1];
