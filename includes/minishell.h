@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/21 19:11:48 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:26:27 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ t_minishell	*get_core(void);
 
 // Built-in functions
 char		*get_working_directory(void);
-void		print_working_directory(void);
-void		print_env_variables(void);
+void		print_working_directory(t_cmd *command);
+void		print_env_variables(t_cmd *command);
 
 void		unset(t_minishell *core);
-void		change_directory(t_minishell *core);
-void		echo(void);
-void		exit_shell(void);
+void		change_directory(t_cmd *command);
+void		echo(t_cmd *command);
+void		exit_shell(t_cmd *command);
 void		export_variables(t_minishell *core);
 void		unset(t_minishell *core);
 
