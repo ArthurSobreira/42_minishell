@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:10 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/22 11:29:17 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:37:34 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_hostname(void)
 	path = "/etc/hostname";
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		ft_error("Cannot open /etc/hostname", EXIT_FAILURE);
+		return (ft_strdup("minishell"));
 	bytes_read = read(fd, hostname, MAX_HOSTNAME_LEN);
 	if (bytes_read < 0)
 		ft_error("Cannot read /etc/hostname", EXIT_FAILURE);
