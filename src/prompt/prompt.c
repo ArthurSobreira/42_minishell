@@ -6,16 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/21 19:17:19 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:41:43 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_bool	execution(void)
-{
-	return (FALSE);
-}
 
 void	prompt_process(t_minishell *core)
 {
@@ -23,12 +18,16 @@ void	prompt_process(t_minishell *core)
 		return ;
 	capture_heredoc();
 	command_executor();
-	if (ft_strcmp(core->input, "exit") == 0)
-		exit_shell();
-	if (ft_strcmp(core->input, "pwd") == 0)
-		print_working_directory();
-	if (ft_strcmp(core->input, "env") == 0)
-		print_env_variables();
+	if (ft_strcmp(core->cmd_table->cmd, "exit") == 0)
+		exit_shell(core->cmd_table);
+	if (ft_strcmp(core->cmd_table->cmd, "pwd") == 0)
+		print_working_directory(core->cmd_table);
+	if (ft_strcmp(core->cmd_table->cmd, "env") == 0)
+		print_env_variables(core->cmd_table);
+	if (ft_strcmp(core->cmd_table->cmd, "echo") == 0)
+		echo(core->cmd_table);
+	if (ft_strcmp(core->cmd_table->cmd, "cd") == 0)
+		change_directory(core->cmd_table);
 }
 
 void	prompt_loop(t_minishell *core)
@@ -39,7 +38,7 @@ void	prompt_loop(t_minishell *core)
 		ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
 		garbage_add(core->input = readline(get_prompt_text()));
 		if (!core->input)
-			exit_shell();
+			exit_shell(core->cmd_table);
 		ft_strip(core->input);
 		if (core->input[0] == '\0')
 			continue ;
