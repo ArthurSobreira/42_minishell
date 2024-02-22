@@ -42,6 +42,7 @@ SOURCES = main.c \
 	$(DEBUG_PATH)print_coisas.c \
 	$(EXECUTOR_PATH)command_table_utils.c \
 	$(EXECUTOR_PATH)command_table.c \
+	$(EXECUTOR_PATH)command_utils.c \
 	$(EXECUTOR_PATH)executor.c \
 	$(EXIT_PATH)clear_redir.c \
 	$(EXIT_PATH)clear.c \
