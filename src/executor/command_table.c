@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:03:22 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/21 16:46:31 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:11:18 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	create_cmd_table(void)
 				core->cmd_table[index].cmd = get_command();
 			core->cmd_table[index].args = \
 				get_arguments(core->cmd_table[index].cmd);
-			// core->cmd_table[index].envp = NULL;
+			core->cmd_table[index].envp = get_envp(core->env_vars);
 		}
 	}
 	print_cmd_table(core->cmd_table);
@@ -114,4 +114,29 @@ char	**get_arguments(char *cmd_name)
 	}
 	args[index] = NULL;
 	return (args);
+}
+
+char	**get_envp(t_var *env_vars)
+{
+	t_var		*current_var;
+	size_t		index;
+	char		**envp;
+	char		*key;
+
+	current_var = env_vars;
+	index = 0;
+	envp = malloc(sizeof(char *) * (get_core()->env_vars_size + 1));
+	while (current_var != NULL)
+	{
+		key = ft_strjoin(current_var->key, "=");
+		if (current_var->value)
+			envp[index] = ft_strjoin(key, current_var->value);
+		else
+			envp[index] = ft_strdup(key);
+		free(key);
+		current_var = current_var->next;
+		index++;
+	}
+	envp[index] = NULL;
+	return (envp);
 }
