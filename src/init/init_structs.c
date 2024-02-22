@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/21 12:21:25 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/22 10:55:06 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_cmd	*init_cmd_table(void)
 		cmd_table[index].cmd = NULL;
 		cmd_table[index].args = NULL;
 		cmd_table[index].envp = NULL;
+		cmd_table[index].cmd_pos = index + 1;
 		index++;
 	}
 	return (cmd_table);
