@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 14:16:52 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/21 11:14:29 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:07:23 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	ft_clear_cmd_table(void)
 		ft_free(core->cmd_table[index].cmd);
 		if (core->cmd_table[index].args != NULL)
 			ft_free_matrix(core->cmd_table[index].args);
+		if (core->cmd_table[index].envp != NULL)
+			ft_free_matrix(core->cmd_table[index].envp);
 		ft_clear_redir_in(&core->cmd_table[index].redir_in);
 		ft_clear_redir_out(&core->cmd_table[index].redir_out);
 		index++;
