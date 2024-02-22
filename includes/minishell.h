@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/22 10:39:09 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:45:49 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ t_bool		lexer_and_format_prompt(void);
 void		create_cmd_table(void);
 char		*get_command(void);
 char		**get_arguments(char *cmd_name);
+char		**get_envp(t_var *env_vars);
 char		*validate_cmd_path(char *cmd_name);
 char		**get_split_path(void);
 int			count_pipes(void);
