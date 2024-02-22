@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:39:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/22 12:48:56 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:39:25 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ int	count_args(t_token *token_list)
 		current_tkn = current_tkn->next;
 	}
 	return (args_count);
+}
+
+void	remove_token_and_redir(t_token *token, size_t index)
+{
+	t_minishell	*core;
+
+	core = get_core();
+	remove_token(&core->token_list, token);
+	ft_clear_redir_in(&core->cmd_table[index].redir_in);
+	ft_clear_redir_out(&core->cmd_table[index].redir_out);
 }
 
 t_bool	is_builtin(char *cmd)
