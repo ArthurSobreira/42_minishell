@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:45:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/22 10:48:00 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:18:20 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	command_executor(void)
 	{
 		if (core->cmd_table[0].pid == 0)
 		{
-			if (execve(core->cmd_table[0].cmd, core->cmd_table[0].args, NULL) == -1)
+			if (execve(core->cmd_table[0].cmd, \
+				core->cmd_table[0].args, NULL) == -1)
 				perror("minishell");
 		}
 	}
