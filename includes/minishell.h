@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/23 12:09:25 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:58:49 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char		*format_hostname(char *hostname);
 char		*get_username(void);
 char		*get_current_dir(void);
 char		*format_prompt(t_prompt *prompt);
+t_bool		is_only_spaces(char *str);
 
 // Token functions
 t_tkn_type	set_tkn_type(char *str);
@@ -163,6 +164,5 @@ t_bool		is_builtin(char *cmd);
 
 // Executor functions
 void		command_executor(void);
-t_bool		parse(void);
 
 #endif

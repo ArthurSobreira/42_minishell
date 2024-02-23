@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/23 12:09:53 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:16:51 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ typedef struct s_minishell
 	t_cmd				*cmd_table;
 	t_error				error_check;
 	size_t				pipe_count;
+	int					default_fds[2];
 	int					env_vars_size;
 	int					exit_status;
-	char				*built_in[8];
 	char				*input;
 	char				**envp;
 	t_list				*gc;
