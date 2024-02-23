@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/23 11:07:08 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:52:24 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	prompt_loop(t_minishell *core)
 		ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
 		garbage_add(core->input = readline(get_prompt_text()));
 		if (!core->input)
-			exit_shell(core->cmd_table);
+			exit_shell(NULL);
 		ft_strip(core->input);
 		if (core->input[0] == '\0')
 			continue ;
