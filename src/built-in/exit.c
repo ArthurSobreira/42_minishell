@@ -3,19 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/20 11:58:43 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:10:11 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exit_shell(void)
+void	exit_shell(t_cmd *command)
 {
 	t_minishell	*core;
 
+	if (ft_matrix_len(command->args) > 1)
+	{
+		ft_putendl_fd("exit: too many arguments", STDERR_FILENO);
+		return ;
+	}
 	core = get_core();
 	if (core->token_list != NULL)
 		ft_clear_token();

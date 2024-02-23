@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:46 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/01 12:01:40 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:05:30 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,16 @@ static void	print_var(char *key, char *value)
 		ft_putchar_fd('\n', STDOUT_FILENO);
 }
 
-void	print_env_variables(void)
+void	print_env_variables(t_cmd *command)
 {
 	t_minishell	*core;
 	t_var		*current_var;
 
+	if (ft_matrix_len(command->args) > 1)
+	{
+		ft_putendl_fd("Env: too many arguments", STDERR_FILENO);
+		return ;
+	}
 	core = get_core();
 	current_var = core->env_vars;
 	while (current_var != NULL)
