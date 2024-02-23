@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/22 12:41:43 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:07:08 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	prompt_process(t_minishell *core)
 		echo(core->cmd_table);
 	if (ft_strcmp(core->cmd_table->cmd, "cd") == 0)
 		change_directory(core->cmd_table);
+	if (ft_strcmp(core->cmd_table->cmd, "export") == 0)
+		export_variables(core->cmd_table);
+	if (ft_strcmp(core->cmd_table->cmd, "unset") == 0)
+		unset(core->cmd_table);
 }
 
 void	prompt_loop(t_minishell *core)
