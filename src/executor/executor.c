@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:45:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/22 18:18:20 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:26:33 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	command_executor(void)
 	core = get_core();
 	create_cmd_table();
 	core->cmd_table[0].pid = fork();
-	if (!core->error_check.file_error[0])
+	if (!core->error_check.file_error[0] && !core->cmd_table[0].is_builtin)
 	{
 		if (core->cmd_table[0].pid == 0)
 		{
