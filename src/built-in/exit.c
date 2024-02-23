@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/22 12:10:11 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:59:37 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	exit_shell(t_cmd *command)
 {
 	t_minishell	*core;
 
-	if (ft_matrix_len(command->args) > 1)
+	if (command && ft_matrix_len(command->args) > 1)
 	{
 		ft_putendl_fd("exit: too many arguments", STDERR_FILENO);
 		return ;
