@@ -6,65 +6,104 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:53 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/23 11:54:35 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:25:38 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	ft_lstlen_var(t_var *var)
-{
-	size_t	len;
-	t_var	*tmp;
-
-	tmp = var;
-	len = 0;
-	while (tmp)
-	{
-		len++;
-		tmp = tmp->next;
-	}
-	return (len);
-}
-
-void	bubblesort(char **arr, size_t size)
+t_bool	is_bigger(char *s1, char *s2)
 {
 	size_t	i;
-	size_t	j;
-	char	*temp;
 
 	i = 0;
-	while (i < size - 1)
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	if (s1[i] > s2[i])
+		return (TRUE);
+	return (FALSE);
+}
+
+char	**ft_insert_str(char **arr, char *str, size_t index)
+{
+	size_t	i;
+	size_t	len;
+	char	**new_arr;
+
+	len = ft_matrix_len(arr);
+	new_arr = ft_calloc(len + 2, sizeof(char *));
+	if (!new_arr)
+		ft_error("export: malloc failed", 1);
+	i = 0;
+	while (i < index)
 	{
-		j = 0;
-		while (j < size - i - 1)
-		{
-			if (arr[j][0] > arr[j + 1][0])
-			{
-				temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
-			j++;
-		}
+		new_arr[i] = arr[i];
 		i++;
 	}
-	ft_print_matrix(arr);
+	new_arr[i] = str;
+	i++;
+	while (arr[i - 1])
+	{
+		new_arr[i] = arr[i - 1];
+		i++;
+	}
+	free(arr);
+	return (new_arr);
+}
+
+void	get_value(char *key)
+{
+	t_var	*tmp;
+
+	tmp = get_core()->env_vars;
+	while (tmp)
+	{
+		if (ft_strcmp(tmp->key, key) == 0)
+		{
+			printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
+			return ;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	insert_sort(char **arr)
+{
+	int		i;
+	int		j;
+	char	**ordened;
+
+	i = 1;
+	ordened = ft_calloc(get_core()->env_vars_size + 1, sizeof(char *));
+	if (!ordened)
+		ft_error("export: malloc failed", 1);
+	ordened[0] = arr[0];
+	while (i < get_core()->env_vars_size)
+	{
+		j = 0;
+		while (ordened[j] && is_bigger(arr[i], ordened[j]))
+			j++;
+		ordened = ft_insert_str(ordened, arr[i], j);
+		i++;
+	}
+	i = 0;
+	while (ordened[i] != NULL)
+	{
+		get_value(ordened[i]);
+		i++;
+	}
+	free(ordened);
 }
 
 void	matrix_build(t_var *var)
 {
 	char	**sorted_vars;
-	size_t	size;
 	t_var	*current;
-	char	*msg;
 	size_t	i;
 
 	i = 0;
 	current = var;
-	msg = "declare -x ";
-	size = ft_lstlen_var(var);
-	sorted_vars = ft_calloc(size + 1, sizeof(char *));
+	sorted_vars = ft_calloc(get_core()->env_vars_size + 1, sizeof(char *));
 	if (!sorted_vars)
 		ft_error("export: malloc failed", 1);
 	while (current)
@@ -73,18 +112,28 @@ void	matrix_build(t_var *var)
 		current = current->next;
 		i++;
 	}
-	bubblesort(sorted_vars, size);
 	sorted_vars[i] = NULL;
+	insert_sort(sorted_vars);
 	free(sorted_vars);
 }
 
-// while (tmp)
-// {
-// 	printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
-// 	tmp = tmp->next;
-// }
 void	export_variables(t_cmd *command)
 {
+	size_t	len;
+	size_t	i;
+	char	**split;
+
+	i = 0;
+	len = ft_matrix_len(command->args);
 	if (ft_matrix_len(command->args) == 1)
 		matrix_build(get_core()->env_vars);
+	else
+	{
+		while (++i < len)
+		{
+			split = ft_split(command->args[i], '=');
+			print_matrix(split);
+			ft_free_matrix(split);
+		}
+	}
 }
