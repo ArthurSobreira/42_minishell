@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/23 12:09:25 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:27:24 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void		print_token(t_token *token);
 void		print_redir_in(t_redir_in *redir_list);
 void		print_redir_out(t_redir_out *redir_list);
 void		print_cmd_table(t_cmd *cmd_table);
-void		ft_print_matrix(char **matrix);
+void		print_matrix(char **matrix);
 
 // Error functions
 t_bool		is_redir_token(t_token *token);
