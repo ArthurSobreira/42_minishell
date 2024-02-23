@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/23 11:20:48 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:09:25 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,12 +149,16 @@ t_bool		lexer_and_format_prompt(void);
 
 // Command Table functinos
 void		create_cmd_table(void);
+t_bool		check_for_inconsistencies(t_token *current_tkn, size_t index);
+void		fill_command_node(t_token *current_tkn, size_t index);
 char		*get_command(void);
 char		**get_arguments(char *cmd_name);
+char		**get_envp(t_var *env_vars);
 char		*validate_cmd_path(char *cmd_name);
 char		**get_split_path(void);
 int			count_pipes(void);
 int			count_args(t_token *token_list);
+void		remove_token_and_redir(t_token *token, size_t index);
 t_bool		is_builtin(char *cmd);
 
 // Executor functions

@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/22 12:41:58 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:09:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_cmd
 	char				*cmd;
 	char				**args;
 	char				**envp;
+	int					cmd_pos;
 }						t_cmd;
 
 typedef struct s_error
