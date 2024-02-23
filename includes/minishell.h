@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/22 12:26:27 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:20:48 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,11 @@ char		*get_working_directory(void);
 void		print_working_directory(t_cmd *command);
 void		print_env_variables(t_cmd *command);
 
-void		unset(t_minishell *core);
 void		change_directory(t_cmd *command);
 void		echo(t_cmd *command);
 void		exit_shell(t_cmd *command);
-void		export_variables(t_minishell *core);
-void		unset(t_minishell *core);
+void		export_variables(t_cmd *command);
+void		unset(t_cmd *command);
 
 // Prompt functions
 void		prompt_loop(t_minishell *core);
@@ -123,6 +122,7 @@ void		print_token(t_token *token);
 void		print_redir_in(t_redir_in *redir_list);
 void		print_redir_out(t_redir_out *redir_list);
 void		print_cmd_table(t_cmd *cmd_table);
+void		ft_print_matrix(char **matrix);
 
 // Error functions
 t_bool		is_redir_token(t_token *token);
