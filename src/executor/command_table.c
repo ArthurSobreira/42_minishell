@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:03:22 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/22 18:14:05 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:51:27 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	create_cmd_table(void)
 		if (current_tkn != NULL)
 			fill_command_node(current_tkn, index);
 	}
-	print_cmd_table(core->cmd_table);
 }
 
 t_bool	check_for_inconsistencies(t_token *current_tkn, size_t index)
