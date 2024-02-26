@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:58 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/23 12:35:09 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:34:08 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	unset(t_cmd *command)
 	int	i;
 
 	i = 1;
+	get_core()->exit_status = EXIT_SUCCESS;
 	while (command->args[i])
 	{
 		del_var(command->args[i]);
