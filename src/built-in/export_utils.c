@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 10:51:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 14:53:15 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:40:02 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,6 @@ void	print_ordened_values(char *key)
 		}
 		tmp = tmp->next;
 	}
-}
-
-t_bool	is_bigger(char *s1, char *s2)
-{
-	size_t	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	if (s1[i] > s2[i])
-		return (TRUE);
-	return (FALSE);
 }
 
 char	*return_key(char *str)
@@ -106,4 +94,24 @@ void	add_end_var(t_var **var, t_var *new_var)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new_var;
+}
+
+t_bool	is_valide_argument(char *arg)
+{
+	size_t	i;
+
+	i = 0;
+	while (arg[i])
+	{
+		if (!ft_isalnum(arg[i]) && arg[i] != '_')
+		{
+			if (arg[i] == '=')
+				break ;
+			ft_putendl_fd("export: not a valid identifier", STDERR_FILENO);
+			get_core()->exit_status = EXIT_FAILURE;
+			return (FALSE);
+		}
+		i++;
+	}
+	return (TRUE);
 }
