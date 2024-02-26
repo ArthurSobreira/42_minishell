@@ -6,23 +6,11 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:53 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/23 18:25:38 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:18:26 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_bool	is_bigger(char *s1, char *s2)
-{
-	size_t	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	if (s1[i] > s2[i])
-		return (TRUE);
-	return (FALSE);
-}
 
 char	**ft_insert_str(char **arr, char *str, size_t index)
 {
@@ -51,22 +39,6 @@ char	**ft_insert_str(char **arr, char *str, size_t index)
 	return (new_arr);
 }
 
-void	get_value(char *key)
-{
-	t_var	*tmp;
-
-	tmp = get_core()->env_vars;
-	while (tmp)
-	{
-		if (ft_strcmp(tmp->key, key) == 0)
-		{
-			printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
-			return ;
-		}
-		tmp = tmp->next;
-	}
-}
-
 void	insert_sort(char **arr)
 {
 	int		i;
@@ -89,7 +61,7 @@ void	insert_sort(char **arr)
 	i = 0;
 	while (ordened[i] != NULL)
 	{
-		get_value(ordened[i]);
+		print_ordened_values(ordened[i]);
 		i++;
 	}
 	free(ordened);
@@ -117,23 +89,51 @@ void	matrix_build(t_var *var)
 	free(sorted_vars);
 }
 
+t_bool	set_value_on_existing_key(char *key, char *value)
+{
+	t_var	*tmp;
+
+	tmp = get_core()->env_vars;
+	if (!key)
+		return (FALSE);
+	while (tmp)
+	{
+		if (ft_strcmp(tmp->key, key) == 0)
+		{
+			free(tmp->value);
+			if (!value)
+				tmp->value = NULL;
+			else
+				tmp->value = ft_strdup(value);
+			return (TRUE);
+		}
+		tmp = tmp->next;
+	}
+	return (FALSE);
+}
+
 void	export_variables(t_cmd *command)
 {
-	size_t	len;
 	size_t	i;
-	char	**split;
+	char	*key;
+	char	*value;
 
 	i = 0;
-	len = ft_matrix_len(command->args);
 	if (ft_matrix_len(command->args) == 1)
 		matrix_build(get_core()->env_vars);
 	else
 	{
-		while (++i < len)
+		while (++i < ft_matrix_len(command->args))
 		{
-			split = ft_split(command->args[i], '=');
-			print_matrix(split);
-			ft_free_matrix(split);
+			key = return_key(command->args[i]);
+			value = return_value(command->args[i]);
+			if (!set_value_on_existing_key(key, value))
+			{
+				add_end_var(&get_core()->env_vars, create_var(key, value));
+				get_core()->env_vars_size++;
+			}
+			free(key);
+			free(value);
 		}
 	}
 }
