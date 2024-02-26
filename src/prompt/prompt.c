@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/23 18:06:34 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/26 11:06:17 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	prompt_loop(t_minishell *core)
 	{
 		ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
 		garbage_add(core->input = readline(get_prompt_text()));
+		if (!is_only_spaces(core->input))
+			add_history(core->input);
 		if (!core->input)
 			exit_shell(NULL);
 		if (core->input[0] == '\0')
 			continue ;
-		if (is_only_spaces(core->input) == FALSE)
-			add_history(core->input);
 		prompt_process();
 		clear_garbage();
 		ft_clear_token();
@@ -59,6 +59,8 @@ char	*get_prompt_text(void)
 
 t_bool	is_only_spaces(char *str)
 {
+	if (!str)
+		return (TRUE);
 	while (*str)
 	{
 		if (!ft_isspace(*str))
