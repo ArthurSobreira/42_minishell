@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/23 17:58:49 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/26 10:58:39 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,6 @@ t_bool		is_builtin(char *cmd);
 
 // Executor functions
 void		command_executor(void);
+void		execute_builtin(t_cmd *command);
 
 #endif
