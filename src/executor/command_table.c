@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_table.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:03:22 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/22 18:14:05 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:08:09 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	create_cmd_table(void)
 		if (current_tkn != NULL)
 			fill_command_node(current_tkn, index);
 	}
-	print_cmd_table(core->cmd_table);
 }
 
 t_bool	check_for_inconsistencies(t_token *current_tkn, size_t index)
