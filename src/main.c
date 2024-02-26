@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/20 12:35:18 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:04:28 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		core = get_core();
 		core->envp = envp;
-		clear_prompt();
-		print_ascii();
+		// clear_prompt();
+		// print_ascii();
 		init_minishell(core);
 		get_env_vars(core);
 		prompt_loop(core);
