@@ -31,6 +31,7 @@ LIB_SOURCES = \
 	ft_isatty.c \
 	ft_isbackground.c \
 	ft_isdigit.c \
+	ft_isnumber.c \
 	ft_ispipe.c \
 	ft_isprint.c \
 	ft_isredir.c \

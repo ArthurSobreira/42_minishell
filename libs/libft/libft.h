@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:05:43 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/21 19:04:46 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:36:24 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ t_bool				ft_isalnum(int c);
 t_bool				ft_isalpha(int c);
 t_bool				ft_isascii(int c);
 t_bool				ft_isatty(int fd);
-t_bool				ft_isdigit(int c);
 t_bool				ft_isbackground(int c);
+t_bool				ft_isdigit(int c);
+t_bool				ft_isnumber(char *str);
 t_bool				ft_ispipe(int c);
 t_bool				ft_isprint(int c);
 t_bool				ft_isredir(int c);
