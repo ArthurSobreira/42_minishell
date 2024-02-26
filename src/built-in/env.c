@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:46 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 16:55:20 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:34:26 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ void	print_env_variables(t_cmd *command)
 	t_var		*current_var;
 	int			fd_out;
 
+	core = get_core();
+	core->exit_status = EXIT_SUCCESS;
 	fd_out = STDOUT_FILENO;
 	if (command->redir_out)
 		fd_out = command->redir_out->fd_out;
-	core = get_core();
 	current_var = core->env_vars;
 	while (current_var != NULL)
 	{
