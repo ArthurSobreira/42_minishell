@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/23 17:52:24 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:36:38 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	prompt_process(t_minishell *core)
 {
 	if (lexer_and_format_prompt())
+		return ;
+	if (parser())
 		return ;
 	capture_heredoc();
 	command_executor();
