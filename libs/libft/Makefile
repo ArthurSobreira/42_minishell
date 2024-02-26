@@ -30,6 +30,7 @@ LIB_SOURCES = \
 	ft_isascii.c \
 	ft_isatty.c \
 	ft_isbackground.c \
+	ft_isbigger.c \
 	ft_isdigit.c \
 	ft_isnumber.c \
 	ft_ispipe.c \

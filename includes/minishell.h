@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 16:33:24 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:35:39 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 # include "defines.h"
 # include "structs.h"
 # include <dirent.h>
+# include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
 # include <stdio.h>
-# include <errno.h>
 # include <stdlib.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -173,5 +173,6 @@ t_bool		is_builtin(char *cmd);
 void		command_executor(void);
 t_bool		parser(void);
 void		execute_builtin(t_cmd *command);
+t_bool		is_valide_argument(char *arg);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:53 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 17:33:39 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:39:30 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ void	export_variables(t_cmd *command)
 	{
 		while (++i < ft_matrix_len(command->args))
 		{
+			if (!is_valide_argument(command->args[i]))
+				return ;
 			key = return_key(command->args[i]);
 			value = return_value(command->args[i]);
 			if (!set_value_on_existing_key(key, value))
