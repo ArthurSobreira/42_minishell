@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/23 18:27:24 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:36:57 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,14 @@ void		print_env_variables(t_cmd *command);
 void		change_directory(t_cmd *command);
 void		echo(t_cmd *command);
 void		exit_shell(t_cmd *command);
-void		export_variables(t_cmd *command);
 void		unset(t_cmd *command);
+// export functions
+void		export_variables(t_cmd *command);
+void		print_ordened_values(char *key);
+t_bool		is_bigger(char *s1, char *s2);
+char		*return_value(char *str);
+char		*return_key(char *str);
+void		add_end_var(t_var **var, t_var *new_var);
 
 // Prompt functions
 void		prompt_loop(t_minishell *core);
@@ -163,6 +169,6 @@ t_bool		is_builtin(char *cmd);
 
 // Executor functions
 void		command_executor(void);
-t_bool		parse(void);
+t_bool		parser(void);
 
 #endif
