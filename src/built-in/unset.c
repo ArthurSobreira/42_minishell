@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:58 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/22 15:59:21 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:35:09 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	del_var(char *key)
 			free(var->key);
 			free(var->value);
 			free(var);
+			get_core()->env_vars_size--;
 			return ;
 		}
 		prev = var;

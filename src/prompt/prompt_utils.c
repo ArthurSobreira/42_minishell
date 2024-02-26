@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:10 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/22 11:37:34 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:43:17 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ char	*get_current_dir(void)
 	current_dir = get_var_value("PWD");
 	if (current_dir == NULL)
 		return (ft_strdup("."));
+	if (!ft_strcmp(current_dir, "/"))
+	{
+		ft_free(current_dir);
+		return (ft_strjoin_three(COLOR_CYAN, "/", COLOR_RESET));
+	}
 	cwd_split = ft_split(current_dir, '/');
 	ft_free(current_dir);
 	current_dir = cwd_split[ft_matrix_len(cwd_split) - 1];

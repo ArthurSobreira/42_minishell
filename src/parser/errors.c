@@ -6,11 +6,27 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:09:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/15 18:30:50 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:43:38 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_bool	export_error(void)
+{
+	t_token	*tmp;
+
+	tmp = get_core()->token_list;
+	while (tmp)
+	{
+		if (tmp->prev && !ft_strcmp(tmp->prev->value, "export")
+			&& tmp->type == TOKEN_WORD && (!ft_isalpha(tmp->value[0])
+				&& tmp->value[0] != '_'))
+			return (TRUE);
+		tmp = tmp->next;
+	}
+	return (FALSE);
+}
 
 t_bool	operators_after_operators(void)
 {
@@ -35,6 +51,8 @@ char	*check_parser_errors(void)
 {
 	if (operators_after_operators())
 		return ("syntax error: unexpected token after operator");
+	if (export_error())
+		return (EXPORT_ERROR);
 	return (NULL);
 }
 
