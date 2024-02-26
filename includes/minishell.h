@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 10:58:39 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:33:24 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <readline/readline.h>
 # include <signal.h>
 # include <stdio.h>
+# include <errno.h>
 # include <stdlib.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -38,8 +39,14 @@ void		print_env_variables(t_cmd *command);
 void		change_directory(t_cmd *command);
 void		echo(t_cmd *command);
 void		exit_shell(t_cmd *command);
-void		export_variables(t_cmd *command);
 void		unset(t_cmd *command);
+// export functions
+void		export_variables(t_cmd *command);
+void		print_ordened_values(char *key);
+t_bool		is_bigger(char *s1, char *s2);
+char		*return_value(char *str);
+char		*return_key(char *str);
+void		add_end_var(t_var **var, t_var *new_var);
 
 // Prompt functions
 void		prompt_loop(t_minishell *core);
@@ -123,7 +130,7 @@ void		print_token(t_token *token);
 void		print_redir_in(t_redir_in *redir_list);
 void		print_redir_out(t_redir_out *redir_list);
 void		print_cmd_table(t_cmd *cmd_table);
-void		ft_print_matrix(char **matrix);
+void		print_matrix(char **matrix);
 
 // Error functions
 t_bool		is_redir_token(t_token *token);
@@ -164,6 +171,7 @@ t_bool		is_builtin(char *cmd);
 
 // Executor functions
 void		command_executor(void);
+t_bool		parser(void);
 void		execute_builtin(t_cmd *command);
 
 #endif

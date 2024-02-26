@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:39:32 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/23 11:25:25 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:28:09 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,14 @@ void	print_cmd_table(t_cmd *cmd_table)
 	}
 }
 
-void	ft_print_matrix(char **matrix)
+void	print_matrix(char **matrix)
 {
-	size_t	index;
+	size_t	i;
 
-	index = 0;
-	while (matrix[index] != NULL)
+	i = 0;
+	while (matrix[i] != NULL)
 	{
-		printf("matrix[%zu] = %s\n", index, matrix[index]);
-		index++;
+		printf("matrix[%zu] = %s\n", i, matrix[i]);
+		i++;
 	}
 }

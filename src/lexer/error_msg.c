@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:13:35 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 15:06:15 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:04:25 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,18 @@ t_bool	exit_status_2(char *error_msg)
 	return (FALSE);
 }
 
+t_bool	exit_status_1(char *error_msg)
+{
+	if (ft_strcmp(error_msg, EXPORT_ERROR) == 0)
+		return (TRUE);
+	return (FALSE);
+}
+
 void	set_exit_status(char *error_msg)
 {
 	if (exit_status_2(error_msg))
 		get_core()->exit_status = 2;
+	else if (exit_status_1(error_msg))
+		get_core()->exit_status = 1;
 	ft_error(error_msg, get_core()->exit_status);
 }
