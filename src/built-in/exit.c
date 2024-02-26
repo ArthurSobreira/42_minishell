@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 16:56:29 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:14:05 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 static t_bool	validate_args(t_minishell *core, t_cmd *command)
 {
-	if (command && ft_isdigit(command->args[1][0]))
+	if (command && ft_matrix_len(command->args) > 2)
 	{
-		core->exit_status = ft_atoi(command->args[1]);
-		printf("%d\n", core->exit_status);
+		ft_putendl_fd("minishell: exit: too many arguments", STDERR_FILENO);
+		core->exit_status = EXIT_FAILURE;
+		return (FALSE);
 	}
+	else if (command && ft_isdigit(command->args[1][0]))
+		core->exit_status = ft_atoi(command->args[1]);
 	else if (command && !ft_isdigit(command->args[1][0]))
 	{
 		ft_putendl_fd("minishell: exit: numeric argument required",

@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:41 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 16:46:59 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:32:05 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	change_directory(t_cmd *command)
 	char	*new_dir;
 	char	*current_dir;
 
+	get_core()->exit_status = EXIT_SUCCESS;
 	if (!validate_args(get_core(), command))
 		return ;
 	if (ft_matrix_len(command->args) == 1)
