@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:23:02 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/21 17:12:42 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:08:05 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char	*process_variable(char *str, int i, t_bool *in_quote)
 	if (str[j - 1] == '$' && str[j] == '$')
 		j++;
 	var_name = ft_substr(str, i, j - i);
+	printf("var_name: %s\n", var_name);
 	var_value = get_var_value(var_name + 1);
 	var_value = handle_var_value(var_name, var_value);
 	str = replace_or_treat_quotes(str, var_name, var_value, in_quote);

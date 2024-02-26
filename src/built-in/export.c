@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:53 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 12:18:26 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:33:39 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void	export_variables(t_cmd *command)
 	char	*value;
 
 	i = 0;
+	get_core()->exit_status = EXIT_SUCCESS;
 	if (ft_matrix_len(command->args) == 1)
 		matrix_build(get_core()->env_vars);
 	else
