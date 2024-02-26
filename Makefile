@@ -37,6 +37,7 @@ SOURCES = main.c \
 	$(BUILTINS_PATH)env.c \
 	$(BUILTINS_PATH)exit.c \
 	$(BUILTINS_PATH)export.c \
+	$(BUILTINS_PATH)export_utils.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
 	$(DEBUG_PATH)print_coisas.c \
