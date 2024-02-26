@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:05:43 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/26 19:36:24 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:45:45 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,6 @@ char				*ft_replace_small(char *str, char *old, char *new,
 char				*ft_strnew(size_t size);
 char				*ft_replace_true(char *str, char *old, char *new);
 char				*ft_replace_dquotes(char *str, char *old, char *new);
+t_bool				is_bigger(char *s1, char *s2);
 
 #endif
