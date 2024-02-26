@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 15:14:30 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:33:24 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <readline/readline.h>
 # include <signal.h>
 # include <stdio.h>
+# include <errno.h>
 # include <stdlib.h>
 # include <sys/stat.h>
 # include <sys/types.h>
