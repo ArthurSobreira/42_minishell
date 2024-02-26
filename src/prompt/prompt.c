@@ -6,13 +6,13 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/26 12:36:38 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:17:51 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	prompt_process(t_minishell *core)
+void	prompt_process(void)
 {
 	if (lexer_and_format_prompt())
 		return ;
@@ -20,20 +20,6 @@ void	prompt_process(t_minishell *core)
 		return ;
 	capture_heredoc();
 	command_executor();
-	if (ft_strcmp(core->cmd_table->cmd, "exit") == 0)
-		exit_shell(core->cmd_table);
-	if (ft_strcmp(core->cmd_table->cmd, "pwd") == 0)
-		print_working_directory(core->cmd_table);
-	if (ft_strcmp(core->cmd_table->cmd, "env") == 0)
-		print_env_variables(core->cmd_table);
-	if (ft_strcmp(core->cmd_table->cmd, "echo") == 0)
-		echo(core->cmd_table);
-	if (ft_strcmp(core->cmd_table->cmd, "cd") == 0)
-		change_directory(core->cmd_table);
-	if (ft_strcmp(core->cmd_table->cmd, "export") == 0)
-		export_variables(core->cmd_table);
-	if (ft_strcmp(core->cmd_table->cmd, "unset") == 0)
-		unset(core->cmd_table);
 }
 
 void	prompt_loop(t_minishell *core)
@@ -43,20 +29,19 @@ void	prompt_loop(t_minishell *core)
 	{
 		ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
 		garbage_add(core->input = readline(get_prompt_text()));
+		if (!is_only_spaces(core->input))
+			add_history(core->input);
 		if (!core->input)
 			exit_shell(NULL);
-		ft_strip(core->input);
 		if (core->input[0] == '\0')
 			continue ;
-		add_history(core->input);
-		prompt_process(core);
+		prompt_process();
 		clear_garbage();
 		ft_clear_token();
 		ft_clear_cmd_table();
 	}
 	rl_clear_history();
 }
-// tokenization();
 
 char	*get_prompt_text(void)
 {
@@ -72,4 +57,17 @@ char	*get_prompt_text(void)
 	free(prompt_data.current_dir);
 	garbage_add(prompt_data.prompt);
 	return (prompt_data.prompt);
+}
+
+t_bool	is_only_spaces(char *str)
+{
+	if (!str)
+		return (TRUE);
+	while (*str)
+	{
+		if (!ft_isspace(*str))
+			return (FALSE);
+		str++;
+	}
+	return (TRUE);
 }

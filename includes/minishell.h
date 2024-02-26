@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 12:36:57 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:14:30 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char		*format_hostname(char *hostname);
 char		*get_username(void);
 char		*get_current_dir(void);
 char		*format_prompt(t_prompt *prompt);
+t_bool		is_only_spaces(char *str);
 
 // Token functions
 t_tkn_type	set_tkn_type(char *str);
@@ -170,5 +171,6 @@ t_bool		is_builtin(char *cmd);
 // Executor functions
 void		command_executor(void);
 t_bool		parser(void);
+void		execute_builtin(t_cmd *command);
 
 #endif
