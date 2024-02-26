@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:05:43 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/26 19:41:47 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:45:45 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ t_bool				ft_isalnum(int c);
 t_bool				ft_isalpha(int c);
 t_bool				ft_isascii(int c);
 t_bool				ft_isatty(int fd);
-t_bool				ft_isdigit(int c);
 t_bool				ft_isbackground(int c);
+t_bool				ft_isdigit(int c);
+t_bool				ft_isnumber(char *str);
 t_bool				ft_ispipe(int c);
 t_bool				ft_isprint(int c);
 t_bool				ft_isredir(int c);

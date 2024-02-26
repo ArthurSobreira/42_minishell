@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 19:23:09 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:46:38 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_bool	validate_args(t_minishell *core, t_cmd *command)
 		core->exit_status = EXIT_FAILURE;
 		return (FALSE);
 	}
-	else if (command && ft_isdigit(command->args[1][0]))
+	else if (command && ft_isnumber(command->args[1]))
 		core->exit_status = ft_atoi(command->args[1]);
 	else if (command && !ft_isdigit(command->args[1][0]))
 	{
