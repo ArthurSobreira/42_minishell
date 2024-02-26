@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:05:43 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/21 19:04:46 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:41:47 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,6 @@ char				*ft_replace_small(char *str, char *old, char *new,
 char				*ft_strnew(size_t size);
 char				*ft_replace_true(char *str, char *old, char *new);
 char				*ft_replace_dquotes(char *str, char *old, char *new);
+t_bool				is_bigger(char *s1, char *s2);
 
 #endif
