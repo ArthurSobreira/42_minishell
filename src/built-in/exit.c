@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 18:14:05 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:23:09 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	exit_shell(t_cmd *command)
 	if (core->cmd_table != NULL)
 		ft_clear_cmd_table();
 	clear_garbage();
-	ft_error("bye bye", core->exit_status);
+	if (!command)
+		ft_putendl_fd("exit", STDOUT_FILENO);
 	exit(core->exit_status);
 }
