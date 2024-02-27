@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:03:22 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/27 15:27:21 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:14:03 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_bool	check_for_inconsistencies(t_token *current_tkn, size_t index)
 	}
 	if (core->error_check.file_error[index])
 	{
-		core->error_check.cmd_error = TRUE;
+		core->error_check.cmd_error[index] = TRUE;
 		while (current_tkn && current_tkn->type != TOKEN_PIPE)
 		{
 			remove_token_and_redir(current_tkn, index);
