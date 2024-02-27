@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:48:00 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/26 12:37:45 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/27 19:03:14 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
 # define SYNTAX_ERROR 2
-# define PERMISSION_ERROR 126
 
 # define MAX_PATH_LEN 4096
 # define MAX_HOSTNAME_LEN 256
