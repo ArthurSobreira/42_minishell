@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:48:21 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/22 18:14:58 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:52:13 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ char	**get_split_path(void)
 		if (!ft_strcmp(env_vars->key, "PATH"))
 		{
 			split_path = ft_split(env_vars->value, ':');
-			break ;
+			return (split_path);
 		}
 		env_vars = env_vars->next;
 	}
-	return (split_path);
+	return (ft_split("/tmp", ' '));
 }
