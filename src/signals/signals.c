@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/27 16:27:50 by phenriq2         ###   ########.fr       */
+/*   Created: 2024/02/28 11:50:03 by phenriq2          #+#    #+#             */
+/*   Updated: 2024/02/28 12:16:32 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_minishell	*get_core(void)
+void	ctrl_c(int sig)
 {
-	static t_minishell	core;
-
-	return (&core);
-}
-
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_minishell	*core;
-
-	(void)argv;
-	core = NULL;
-	if (argc == 1)
+	if (sig == SIGINT)
 	{
-		core = get_core();
-		core->envp = envp;
-		init_minishell(core);
-		get_env_vars(core);
-		prompt_loop(core);
+		get_core()->exit_status = 130;
+		ft_putchar_fd('\n', STDOUT_FILENO);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
 	}
-	return (core->exit_status);
 }
 
-		// clear_prompt();
-		// print_ascii();
+void	ctrl_inverse_slash(int sig)
+{
+	if (sig == SIGQUIT)
+	{
+		ft_putstr_fd("Quit (core dumped)\n", STDOUT_FILENO);
+		get_core()->exit_status = 131;
+		ft_putchar_fd('\n', STDOUT_FILENO);
+	}
+}
