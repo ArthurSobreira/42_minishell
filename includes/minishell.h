@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 19:35:39 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:55:22 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libs/libft/libft.h"
 # include "defines.h"
 # include "structs.h"
-# include <dirent.h>
+// # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
@@ -24,6 +24,7 @@
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -174,5 +175,9 @@ void		command_executor(void);
 t_bool		parser(void);
 void		execute_builtin(t_cmd *command);
 t_bool		is_valide_argument(char *arg);
+
+// Signal functions
+void		ctrl_c(int sig);
+void		ctrl_inverse_slash(int sig);
 
 #endif
