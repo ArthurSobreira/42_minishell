@@ -29,6 +29,7 @@ PARSER_PATH = parser/
 LEXER_PATH = lexer/
 PROMPT_PATH = prompt/
 REDIRECT_PATH = redirect/
+SIGNALS_PATH = signals/
 TOKENIZER_PATH = tokenizer/
 
 SOURCES = main.c \
@@ -66,6 +67,7 @@ SOURCES = main.c \
 	$(REDIRECT_PATH)redirect.c \
 	$(REDIRECT_PATH)validate_files.c \
 	$(REDIRECT_PATH)validate_utils.c \
+	$(SIGNALS_PATH)signals.c \
 	$(TOKENIZER_PATH)tokenizer.c \
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
@@ -107,6 +109,7 @@ $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)$(PARSER_PATH)
 	@mkdir -p $(BIN_PATH)$(PROMPT_PATH)
 	@mkdir -p $(BIN_PATH)$(REDIRECT_PATH)
+	@mkdir -p $(BIN_PATH)$(SIGNALS_PATH)
 	@mkdir -p $(BIN_PATH)$(TOKENIZER_PATH)
 
 clean:
