@@ -30,6 +30,7 @@ void	prompt_loop(t_minishell *core)
 		signal(SIGINT, ctrl_c);
 		signal(SIGQUIT, SIG_IGN);
 		ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
+		ft_bzero(&core->error_check.cmd_error, MAX_PIPELINES);
 		garbage_add(core->input = readline(get_prompt_text()));
 		if (!is_only_spaces(core->input))
 			add_history(core->input);
