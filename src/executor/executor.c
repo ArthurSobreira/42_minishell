@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:45:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/27 17:11:07 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:48:12 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ void	command_executor(void)
 	{
 		if (core->cmd_table[0].is_builtin)
 			execute_builtin(&core->cmd_table[0]);
+		else
+			execute_single_command(&core->cmd_table[0]);
 	}
+	// else
+		// execute_pipelines();
 }
-		// else
-		// 	execute_single_command(&core->cmd_table[0]);
 
 void	execute_builtin(t_cmd *command)
 {

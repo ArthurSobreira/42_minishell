@@ -46,6 +46,7 @@ SOURCES = main.c \
 	$(EXECUTOR_PATH)command_table.c \
 	$(EXECUTOR_PATH)command_utils.c \
 	$(EXECUTOR_PATH)executor.c \
+	$(EXECUTOR_PATH)single_command.c \
 	$(EXIT_PATH)clear_redir.c \
 	$(EXIT_PATH)clear.c \
 	$(EXIT_PATH)error.c \
@@ -131,7 +132,7 @@ make_temp:
 	@mkdir -p $(TEMP_PATH)
 
 valgrind: make_temp all
-	@valgrind -s -q --leak-check=full \
+	@valgrind -s --leak-check=full \
 	--show-reachable=yes \
 	--show-leak-kinds=all \
 	--track-origins=yes \

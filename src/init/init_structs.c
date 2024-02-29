@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/27 17:11:33 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:49:02 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_minishell(t_minishell *core)
 	core->cmd_table = NULL;
 	core->env_vars_size = 0;
 	core->pipe_count = 0;
+	core->pipe_fd[0] = -1;
+	core->pipe_fd[1] = -1;
 	core->exit_status = EXIT_SUCCESS;
 	core->input = NULL;
 }
