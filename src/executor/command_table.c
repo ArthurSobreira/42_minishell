@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:03:22 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/27 17:14:03 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/27 19:45:37 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	create_cmd_table(void)
 		return ;
 	while (++index <= core->pipe_count)
 	{
+		if (core->token_list->value[0] == '\0')
+			remove_token(&core->token_list, core->token_list);
 		handle_redirects(&core->cmd_table[index], index);
 		remove_unnecessary_redir_in(&core->cmd_table[index].redir_in);
 		remove_unnecessary_redir_out(&core->cmd_table[index].redir_out);
