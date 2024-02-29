@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   single_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:59:17 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/29 15:29:38 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:29:23 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,20 @@ void	handle_execve_error(t_cmd *command)
 
 	cmd_error = NULL;
 	exit_status = CMD_NOT_FOUND;
-	if (!check_file_exists(command->cmd) && ft_strchr(command->cmd, '/'))
-		cmd_error = ft_strjoin(command->cmd, ": No such file or directory");
-	else if (check_file_executable(command->cmd) && ft_strchr(command->cmd, '/'))
+	if (ft_strchr(command->cmd, '/') || ft_strchr(command->cmd, '.'))
 	{
-		cmd_error = ft_strjoin(command->cmd, ": Is a directory");
-		exit_status = IS_A_DIRECTORY;
-	}
-	else if (!check_file_executable(command->cmd) && ft_strchr(command->cmd, '/'))
-	{
-		cmd_error = ft_strjoin(command->cmd, ": Permission denied");
-		exit_status = IS_A_DIRECTORY;
+		if (!check_file_exists(command->cmd))
+			cmd_error = ft_strjoin(command->cmd, ": No such file or directory");
+		else if (check_file_executable(command->cmd))
+		{
+			cmd_error = ft_strjoin(command->cmd, ": Is a directory");
+			exit_status = IS_A_DIRECTORY;
+		}
+		else if (!check_file_executable(command->cmd))
+		{
+			cmd_error = ft_strjoin(command->cmd, ": Permission denied");
+			exit_status = IS_A_DIRECTORY;
+		}
 	}
 	else
 		cmd_error = ft_strjoin(command->cmd, ": command not found");
