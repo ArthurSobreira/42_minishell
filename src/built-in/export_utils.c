@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 10:51:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 19:40:02 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:05:18 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	add_end_var(t_var **var, t_var *new_var)
 	tmp->next = new_var;
 }
 
-t_bool	is_valide_argument(char *arg)
+t_bool	is_valid_argument(char *arg)
 {
 	size_t	i;
 
