@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 15:45:17 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:46:28 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,10 @@ typedef struct s_minishell
 	char				**envp;
 	int					env_vars_size;
 	int					exit_status;
+	int					pipe_fd[2];
 	size_t				pipe_count;
 	t_cmd				*cmd_table;
 	t_error				error_check;
-	size_t				pipe_count;
-	int					pipe_fd[2];
-	int					env_vars_size;
-	int					exit_status;
-	char				*input;
-	char				**envp;
 	t_list				*gc;
 	t_token				*token_list;
 	t_var				*env_vars;
