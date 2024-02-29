@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:03:22 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/27 19:45:37 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:26:20 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ void	fill_command_node(t_token *current_tkn, size_t index)
 	core->cmd_table[index].args = \
 		get_arguments(core->cmd_table[index].cmd);
 	core->cmd_table[index].envp = get_envp(core->env_vars);
+	if (index == 0)
+		core->cmd_table[index].proc_type = INITIAL;
+	else if (index == core->pipe_count)
+		core->cmd_table[index].proc_type = FINAL;
+	else
+		core->cmd_table[index].proc_type = INTERMEDIATE;
 }
 
 char	**get_arguments(char *cmd_name)
