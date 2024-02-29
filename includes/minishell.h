@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 15:09:42 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:44:11 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libs/libft/libft.h"
 # include "defines.h"
 # include "structs.h"
-# include <dirent.h>
+// # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
@@ -24,6 +24,7 @@
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -178,5 +179,9 @@ void		execute_builtin(t_cmd *command);
 void		execute_single_command(t_cmd *command);
 void		exec_single_child(t_cmd *command);
 void		handle_execve_error(t_cmd *command);
+
+// Signal functions
+void		ctrl_c(int sig);
+void		ctrl_inverse_slash(int sig);
 
 #endif

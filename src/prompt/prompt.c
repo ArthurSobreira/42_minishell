@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/29 15:50:08 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:49:25 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	prompt_loop(t_minishell *core)
 	using_history();
 	while (TRUE)
 	{
+		signal(SIGINT, ctrl_c);
+		signal(SIGQUIT, SIG_IGN);
 		ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
 		ft_bzero(&core->error_check.cmd_error, MAX_PIPELINES);
 		garbage_add(core->input = readline(get_prompt_text()));
