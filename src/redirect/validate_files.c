@@ -60,8 +60,7 @@ void	open_in_files(t_redir_in *redir_in)
 	if (redir_in->r_type == TOKEN_HERE_DOC)
 	{
 		redir_in->here_doc = TRUE;
-		redir_in->fd_in = open(HERE_DOC_FILE, \
-			O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		redir_in->fd_in = open(HERE_DOC_FILE, O_RDONLY);
 	}
 	else if (redir_in->r_type == TOKEN_REDIRECT_REVERSE)
 	{
