@@ -25,7 +25,7 @@ t_bool	validate_input_file(t_token *current_tkn, size_t index)
 		else if (!check_file_readable(current_tkn->next->value))
 		{
 			ft_file_error(current_tkn->next->value, "Permission denied\n",
-				PERMISSION_ERROR, index);
+				EXIT_FAILURE, index);
 			return (FALSE);
 		}
 	}
@@ -39,7 +39,7 @@ t_bool	validate_output_file(t_token *current_tkn, size_t index)
 		if (!check_file_writable(current_tkn->next->value))
 		{
 			ft_file_error(current_tkn->next->value, "Permission denied\n",
-				PERMISSION_ERROR, index);
+				EXIT_FAILURE, index);
 			return (FALSE);
 		}
 	}

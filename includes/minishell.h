@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 19:35:39 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:09:42 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@
 t_minishell	*get_core(void);
 
 // Built-in functions
-char		*get_working_directory(void);
-void		print_working_directory(t_cmd *command);
-void		print_env_variables(t_cmd *command);
-
 void		change_directory(t_cmd *command);
 void		echo(t_cmd *command);
+void		print_env_variables(t_cmd *command);
 void		exit_shell(t_cmd *command);
-void		unset(t_cmd *command);
-// export functions
 void		export_variables(t_cmd *command);
+void		print_working_directory(t_cmd *command);
+char		*get_working_directory(void);
+void		unset(t_cmd *command);
+
+// export functions
 void		print_ordened_values(char *key);
 t_bool		is_bigger(char *s1, char *s2);
 char		*return_value(char *str);
@@ -169,10 +169,14 @@ int			count_args(t_token *token_list);
 void		remove_token_and_redir(t_token *token, size_t index);
 t_bool		is_builtin(char *cmd);
 
+t_bool		parser(void);
+t_bool		is_valid_argument(char *arg);
+
 // Executor functions
 void		command_executor(void);
-t_bool		parser(void);
 void		execute_builtin(t_cmd *command);
-t_bool		is_valide_argument(char *arg);
+void		execute_single_command(t_cmd *command);
+void		exec_single_child(t_cmd *command);
+void		handle_execve_error(t_cmd *command);
 
 #endif

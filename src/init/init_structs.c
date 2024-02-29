@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/22 10:55:06 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:51:15 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_minishell(t_minishell *core)
 	core->cmd_table = NULL;
 	core->env_vars_size = 0;
 	core->pipe_count = 0;
+	core->pipe_fd[0] = -1;
+	core->pipe_fd[1] = -1;
 	core->exit_status = EXIT_SUCCESS;
 	core->input = NULL;
 }

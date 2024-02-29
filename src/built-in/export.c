@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:53 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 19:39:30 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:05:18 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	export_variables(t_cmd *command)
 	{
 		while (++i < ft_matrix_len(command->args))
 		{
-			if (!is_valide_argument(command->args[i]))
+			if (!is_valid_argument(command->args[i]))
 				return ;
 			key = return_key(command->args[i]);
 			value = return_value(command->args[i]);
