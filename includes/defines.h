@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:48:00 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/29 15:42:04 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:37:58 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@
 # define FORBIDDEN_REDIR_REVERSE "syntax error: unexpected token `<'"
 # define OPERATORS_ERROR "syntax error: unexpected token after operator"
 # define EXPORT_ERROR "export: not a valid identifier"
+
+# define NO_SUCH_CMD ": command not found"
+# define NO_SUCH_FILE ": No such file or directory"
+# define NO_PERMISSION ": Permission denied"
+# define NOT_A_FILE ": Is a directory"
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
