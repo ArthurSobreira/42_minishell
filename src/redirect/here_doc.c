@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:33:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/15 18:29:15 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:08:15 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,36 @@ void	capture_heredoc(void)
 {
 	t_token		*current_tkn;
 	char		*hd_limiter;
-	int			here_doc_fd;
+	pid_t		pid;
+	int			status;
 
-	current_tkn = get_core()->token_list;
-	while (current_tkn)
+	signal(SIGINT, SIG_IGN);
+	pid = fork();
+	if (pid == 0)
 	{
-		if ((current_tkn->type == TOKEN_HERE_DOC) && \
-			(current_tkn->next->type == TOKEN_WORD))
+		signal(SIGINT, ctrl_c_here_doc);
+		signal(SIGQUIT, SIG_IGN);
+		current_tkn = get_core()->token_list;
+		while (current_tkn)
 		{
-			here_doc_fd = open(HERE_DOC_FILE, \
-				O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			hd_limiter = current_tkn->next->value;
-			here_doc_loop(hd_limiter, here_doc_fd);
+			if ((current_tkn->type == TOKEN_HERE_DOC) && \
+				(current_tkn->next->type == TOKEN_WORD))
+			{
+				get_core()->here_doc_fd = open(HERE_DOC_FILE, \
+					O_WRONLY | O_CREAT | O_TRUNC, 0644);
+				hd_limiter = current_tkn->next->value;
+				here_doc_loop(hd_limiter, get_core()->here_doc_fd);
+			}
+			current_tkn = current_tkn->next;
 		}
-		current_tkn = current_tkn->next;
+		exit_shell(NULL);
+	}
+	else
+	{
+		waitpid(pid, &status, 0);
+		signal(SIGINT, ctrl_c);
+		if (WIFSIGNALED(status))
+			get_core()->exit_status = 128 + WTERMSIG(status);
 	}
 }
 
