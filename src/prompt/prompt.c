@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/29 15:49:25 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:43:52 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ void	prompt_loop(t_minishell *core)
 		if (!is_only_spaces(core->input))
 			add_history(core->input);
 		if (!core->input)
+		{
+			ft_putendl_fd("exit", STDOUT_FILENO);
 			exit_shell(NULL);
+		}
 		if (core->input[0] == '\0')
 			continue ;
 		prompt_process();
