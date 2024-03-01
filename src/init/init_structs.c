@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:31:03 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/29 15:49:02 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:29:05 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_cmd	*init_cmd_table(void)
 	while (index <= core->pipe_count)
 	{
 		cmd_table[index].pid = -1;
+		cmd_table[index].proc_type = -1;
 		cmd_table[index].is_builtin = FALSE;
 		cmd_table[index].redir_in = NULL;
 		cmd_table[index].redir_out = NULL;

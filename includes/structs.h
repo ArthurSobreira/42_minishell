@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 18:34:49 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:53:02 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ typedef enum e_tkn_type
 	TOKEN_APPEND,
 	TOKEN_HERE_DOC
 }						t_tkn_type;
+
+typedef enum e_proc
+{
+	INITIAL,
+	INTERMEDIATE,
+	FINAL,
+}		t_proc;
 
 typedef struct s_redir_in
 {
@@ -70,6 +77,7 @@ typedef struct s_cmd
 	t_bool				is_builtin;
 	t_redir_in			*redir_in;
 	t_redir_out			*redir_out;
+	t_proc				proc_type;
 	char				*cmd;
 	char				**args;
 	char				**envp;
