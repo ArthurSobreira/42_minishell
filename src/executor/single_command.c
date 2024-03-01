@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   single_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:59:17 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/29 17:36:49 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:49:32 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,20 @@ void	handle_execve_error(t_cmd *command)
 	if (ft_strchr(command->cmd, '/') || ft_strstr(command->cmd, "./"))
 	{
 		if (!check_file_exists(command->cmd))
-			cmd_error = ft_strjoin(command->cmd, ": No such file or directory");
+			cmd_error = ft_strjoin(command->cmd, NO_SUCH_FILE);
 		else if (check_file_executable(command->cmd))
 		{
-			cmd_error = ft_strjoin(command->cmd, ": Is a directory");
+			cmd_error = ft_strjoin(command->cmd, NOT_A_FILE);
 			exit_status = IS_A_DIRECTORY;
 		}
 		else if (!check_file_executable(command->cmd))
 		{
-			cmd_error = ft_strjoin(command->cmd, ": Permission denied");
+			cmd_error = ft_strjoin(command->cmd, NO_PERMISSION);
 			exit_status = IS_A_DIRECTORY;
 		}
 	}
 	else
-		cmd_error = ft_strjoin(command->cmd, ": command not found");
+		cmd_error = ft_strjoin(command->cmd, NO_SUCH_CMD);
 	ft_error(cmd_error, exit_status);
 	free(cmd_error);
 	exit_shell(command);
