@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 15:46:28 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:34:49 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_minishell
 	t_list				*gc;
 	t_token				*token_list;
 	t_var				*env_vars;
+	int					here_doc_fd;
 
 }						t_minishell;
 

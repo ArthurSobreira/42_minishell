@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 15:44:11 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:17:36 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,5 +183,8 @@ void		handle_execve_error(t_cmd *command);
 // Signal functions
 void		ctrl_c(int sig);
 void		ctrl_inverse_slash(int sig);
+void		ctrl_c_here_doc(int sig);
+void		sigquit_f(int sig);
+void		ctrl_c_child(int sig);
 
 #endif
