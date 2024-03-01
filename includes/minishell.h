@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 15:44:11 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:58:20 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ t_bool		is_valid_argument(char *arg);
 void		command_executor(void);
 void		execute_builtin(t_cmd *command);
 void		execute_single_command(t_cmd *command);
-void		exec_single_child(t_cmd *command);
+void		execute_single_child(t_cmd *command);
 void		handle_execve_error(t_cmd *command);
 
 // Signal functions
