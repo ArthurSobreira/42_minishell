@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:45:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/29 15:48:52 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:06:59 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ void	command_executor(void)
 		else
 			execute_single_command(&core->cmd_table[0]);
 	}
+	else
+		execute_pipelines(core->cmd_table);
+	ft_putstr_fd("teste in\n", STDIN_FILENO);
+	ft_putstr_fd("teste out\n", STDOUT_FILENO);
 }
-	// else
-		// execute_pipelines();
 
 void	execute_builtin(t_cmd *command)
 {
