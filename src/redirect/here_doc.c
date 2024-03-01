@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:33:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/29 19:08:15 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:35:37 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	capture_heredoc(void)
 {
-	t_token		*current_tkn;
-	char		*hd_limiter;
-	pid_t		pid;
-	int			status;
+	t_token	*current_tkn;
+	char	*hd_limiter;
+	pid_t	pid;
+	int		status;
 
 	signal(SIGINT, SIG_IGN);
 	pid = fork();
@@ -28,10 +28,10 @@ void	capture_heredoc(void)
 		current_tkn = get_core()->token_list;
 		while (current_tkn)
 		{
-			if ((current_tkn->type == TOKEN_HERE_DOC) && \
+			if ((current_tkn->type == TOKEN_HERE_DOC) &&
 				(current_tkn->next->type == TOKEN_WORD))
 			{
-				get_core()->here_doc_fd = open(HERE_DOC_FILE, \
+				get_core()->here_doc_fd = open(HERE_DOC_FILE,
 					O_WRONLY | O_CREAT | O_TRUNC, 0644);
 				hd_limiter = current_tkn->next->value;
 				here_doc_loop(hd_limiter, get_core()->here_doc_fd);
@@ -58,7 +58,13 @@ void	here_doc_loop(char *hd_limiter, int here_doc_fd)
 	while (TRUE)
 	{
 		line = readline("> ");
-		if (!line || !ft_strcmp(line, hd_limiter))
+		if (!line)
+		{
+			ft_printf("minishell: %s (wanted `%s')\n", HD_ERROR, hd_limiter);
+			close(here_doc_fd);
+			exit_shell(NULL);
+		}
+		else if (!ft_strcmp(line, hd_limiter))
 		{
 			free(line);
 			close(here_doc_fd);
@@ -111,7 +117,7 @@ char	*get_var(t_var *env_vars, char *line, size_t *l_index)
 	temp_var = ft_substr(line, *l_index, temp_var_len);
 	while (env_vars)
 	{
-		if (!ft_strcmp(temp_var, "?") || \
+		if (!ft_strcmp(temp_var, "?") ||
 			!ft_strcmp(env_vars->key, temp_var))
 		{
 			if (!ft_strcmp(temp_var, "?"))
@@ -134,9 +140,9 @@ size_t	get_var_len(char *line, size_t l_index)
 	size_t	len;
 
 	len = 0;
-	while (line[l_index + len] && \
-		line[l_index + len] != ' ' && \
-		line[l_index + len] != '$')
+	while (line[l_index + len] &&
+			line[l_index + len] != ' ' &&
+			line[l_index + len] != '$')
 		len++;
 	return (len);
 }
