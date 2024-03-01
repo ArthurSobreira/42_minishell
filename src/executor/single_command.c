@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:59:17 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/01 10:49:32 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/01 11:01:25 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	execute_single_command(t_cmd *command)
 	if (command->pid < 0)
 		return ;
 	if (command->pid == 0)
-		exec_single_child(command);
+		execute_single_child(command);
 	else
 	{
 		waitpid(command->pid, &status, 0);
@@ -35,11 +35,8 @@ void	execute_single_command(t_cmd *command)
 	}
 }
 
-void	exec_single_child(t_cmd *command)
+void	execute_single_child(t_cmd *command)
 {
-	t_minishell	*core;
-
-	core = get_core();
 	if (command->redir_in)
 	{
 		dup2(command->redir_in->fd_in, STDIN_FILENO);
@@ -50,7 +47,7 @@ void	exec_single_child(t_cmd *command)
 		dup2(command->redir_out->fd_out, STDOUT_FILENO);
 		close(command->redir_out->fd_out);
 	}
-	if (execve(command->cmd, command->args, core->envp) < 0)
+	if (execve(command->cmd, command->args, command->envp) < 0)
 		handle_execve_error(command);
 }
 
