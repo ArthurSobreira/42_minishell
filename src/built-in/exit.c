@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 15:46:49 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:43:33 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,5 @@ void	exit_shell(t_cmd *command)
 		ft_clear_cmd_table();
 	clear_garbage();
 	rl_clear_history();
-	if (!command)
-		ft_putendl_fd("exit", STDOUT_FILENO);
 	exit(core->exit_status);
 }
