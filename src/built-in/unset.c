@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:58 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 17:34:08 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/03 18:33:01 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	del_var(char *key)
 
 	var = get_core()->env_vars;
 	prev = NULL;
+	if (get_core()->env_vars_size == 0)
+		return ;
 	while (var)
 	{
 		if (ft_strcmp(var->key, key) == 0)
