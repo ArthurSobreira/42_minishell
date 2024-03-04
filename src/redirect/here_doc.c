@@ -6,48 +6,83 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:33:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/01 16:35:37 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:30:48 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	capture_heredoc(void)
-{
-	t_token	*current_tkn;
-	char	*hd_limiter;
-	pid_t	pid;
-	int		status;
+// void	capture_heredoc(void)
+// {
+// 	t_token	*current_tkn;
+// 	char	*hd_limiter;
+// 	pid_t	pid;
+// 	int		status;
 
-	signal(SIGINT, SIG_IGN);
-	pid = fork();
-	if (pid == 0)
-	{
-		signal(SIGINT, ctrl_c_here_doc);
-		signal(SIGQUIT, SIG_IGN);
-		current_tkn = get_core()->token_list;
-		while (current_tkn)
-		{
-			if ((current_tkn->type == TOKEN_HERE_DOC) &&
-				(current_tkn->next->type == TOKEN_WORD))
-			{
-				get_core()->here_doc_fd = open(HERE_DOC_FILE,
-					O_WRONLY | O_CREAT | O_TRUNC, 0644);
-				hd_limiter = current_tkn->next->value;
-				here_doc_loop(hd_limiter, get_core()->here_doc_fd);
-			}
-			current_tkn = current_tkn->next;
-		}
-		exit_shell(NULL);
-	}
-	else
-	{
-		waitpid(pid, &status, 0);
-		signal(SIGINT, ctrl_c);
-		if (WIFSIGNALED(status))
-			get_core()->exit_status = 128 + WTERMSIG(status);
-	}
+// 	signal(SIGINT, SIG_IGN);
+// 	pid = fork();
+// 	if (pid == 0)
+// 	{
+// 		signal(SIGINT, ctrl_c_here_doc);
+// 		signal(SIGQUIT, SIG_IGN);
+// 		current_tkn = get_core()->token_list;
+// 		while (current_tkn)
+// 		{
+// 			if ((current_tkn->type == TOKEN_HERE_DOC) &&
+// 				(current_tkn->next->type == TOKEN_WORD))
+// 			{
+// 				get_core()->here_doc_fd = open(HERE_DOC_FILE,
+// 						O_WRONLY | O_CREAT | O_TRUNC, 0644);
+// 				hd_limiter = current_tkn->next->value;
+// 				here_doc_loop(hd_limiter, get_core()->here_doc_fd);
+// 			}
+// 			current_tkn = current_tkn->next;
+// 		}
+// 		exit_shell(NULL);
+// 	}
+// 	else
+// 	{
+// 		waitpid(pid, &status, 0);
+// 		signal(SIGINT, ctrl_c);
+// 		if (WIFSIGNALED(status))
+// 			get_core()->exit_status = 128 + WTERMSIG(status);
+// 	}
+// }
+
+void handle_child_process() {
+    signal(SIGINT, ctrl_c_here_doc);
+    signal(SIGQUIT, SIG_IGN);
+    t_token *current_tkn = get_core()->token_list;
+    while (current_tkn) {
+        if ((current_tkn->type == TOKEN_HERE_DOC) && (current_tkn->next->type == TOKEN_WORD)) {
+            get_core()->here_doc_fd = open(HERE_DOC_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+            char *hd_limiter = current_tkn->next->value;
+            here_doc_loop(hd_limiter, get_core()->here_doc_fd);
+        }
+        current_tkn = current_tkn->next;
+    }
+    exit_shell(NULL);
 }
+
+void handle_parent_process(pid_t pid) {
+    int status;
+    waitpid(pid, &status, 0);
+    signal(SIGINT, ctrl_c);
+    if (WIFSIGNALED(status)) {
+        get_core()->exit_status = 128 + WTERMSIG(status);
+    }
+}
+
+void capture_heredoc() {
+    signal(SIGINT, SIG_IGN);
+    pid_t pid = fork();
+    if (pid == 0) {
+        handle_child_process();
+    } else {
+        handle_parent_process(pid);
+    }
+}
+
 
 void	here_doc_loop(char *hd_limiter, int here_doc_fd)
 {
@@ -60,7 +95,8 @@ void	here_doc_loop(char *hd_limiter, int here_doc_fd)
 		line = readline("> ");
 		if (!line)
 		{
-			ft_printf("minishell: %s (wanted `%s')\n", HD_ERROR, hd_limiter);
+			ft_printf_fd(2, "minishell: %s (wanted `%s')\n", HD_ERROR,
+					hd_limiter);
 			close(here_doc_fd);
 			exit_shell(NULL);
 		}
