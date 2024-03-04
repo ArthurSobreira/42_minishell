@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/04 11:16:28 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:21:05 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static void	print_error(t_cmd *command, char *message)
 {
-	t_minishell	*core;
-
-	core = get_core();
 	if (!ft_strcmp(command->cmd, "exit"))
 		ft_putendl_fd(message, STDERR_FILENO);
 }

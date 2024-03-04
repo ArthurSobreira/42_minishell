@@ -26,11 +26,12 @@ EXIT_PATH = exit/
 EXPANSION_PATH = expansion/
 INIT_PATH = init/
 PARSER_PATH = parser/
-LEXER_PATH = lexer/
+LEXER_PATH = lexer_and_tokenizer/
 PROMPT_PATH = prompt/
 REDIRECT_PATH = redirect/
 SIGNALS_PATH = signals/
 TOKENIZER_PATH = tokenizer/
+TOOLBOX_PATH = toolbox/
 
 SOURCES = main.c \
 	$(BUILTINS_PATH)cd.c \
@@ -38,7 +39,6 @@ SOURCES = main.c \
 	$(BUILTINS_PATH)env.c \
 	$(BUILTINS_PATH)exit.c \
 	$(BUILTINS_PATH)export.c \
-	$(BUILTINS_PATH)export_utils.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
 	$(DEBUG_PATH)print_coisas.c \
@@ -58,10 +58,11 @@ SOURCES = main.c \
 	$(INIT_PATH)init_structs.c \
 	$(INIT_PATH)init_stuff.c \
 	$(LEXER_PATH)error_msg.c \
+	$(LEXER_PATH)errors.c \
 	$(LEXER_PATH)input_check.c \
 	$(LEXER_PATH)input_handling.c \
 	$(LEXER_PATH)split_input.c \
-	$(PARSER_PATH)errors.c \
+	$(LEXER_PATH)tokenizer.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
 	$(REDIRECT_PATH)here_doc.c \
@@ -70,7 +71,11 @@ SOURCES = main.c \
 	$(REDIRECT_PATH)validate_files.c \
 	$(REDIRECT_PATH)validate_utils.c \
 	$(SIGNALS_PATH)signals.c \
-	$(TOKENIZER_PATH)tokenizer.c \
+	$(TOOLBOX_PATH)ft_printf_fd.c \
+	$(TOOLBOX_PATH)ft_putnbr_base_fd.c \
+	$(TOOLBOX_PATH)ft_putptr_fd.c \
+	$(TOOLBOX_PATH)export_utils.c \
+	$(TOOLBOX_PATH)export_utils2.c \
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
 
@@ -113,6 +118,7 @@ $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)$(REDIRECT_PATH)
 	@mkdir -p $(BIN_PATH)$(SIGNALS_PATH)
 	@mkdir -p $(BIN_PATH)$(TOKENIZER_PATH)
+	@mkdir -p $(BIN_PATH)$(TOOLBOX_PATH)
 
 clean:
 	@echo $(RED)[Removing Objects]$(COLOR_LIMITER)
@@ -141,4 +147,8 @@ valgrind: make_temp all
 	--suppressions=./suppresion.supp \
 	--log-file=$(TEMP_PATH)valgrind.log ./$(NAME)
 
-.PHONY: all clean fclean re libft make_temp valgrind
+f:
+	exit 0
+	make valgrind
+
+.PHONY: all clean fclean re libft make_temp valgrind makef

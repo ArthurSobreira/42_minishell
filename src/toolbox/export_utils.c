@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 10:51:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 15:05:18 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/03 18:28:24 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_ordened_values(char *key)
+void	print_ordened_values(char *key, int fd)
 {
 	t_var	*tmp;
 
@@ -22,9 +22,9 @@ void	print_ordened_values(char *key)
 		if (ft_strcmp(tmp->key, key) == 0)
 		{
 			if (tmp->value)
-				printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
+				ft_printf_fd(fd, "declare -x %s=\"%s\"\n", tmp->key, tmp->value);
 			else
-				printf("declare -x %s\n", tmp->key);
+				ft_printf_fd(fd, "declare -x %s\n", tmp->key);
 			return ;
 		}
 		tmp = tmp->next;

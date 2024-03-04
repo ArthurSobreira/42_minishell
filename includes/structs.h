@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/04 10:39:21 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:14:13 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef enum e_tkn_type
 	TOKEN_APPEND,
 	TOKEN_HERE_DOC
 }						t_tkn_type;
-
 
 typedef enum e_proc
 {
@@ -105,7 +104,7 @@ typedef struct s_minishell
 	t_list				*gc;
 	t_token				*token_list;
 	t_var				*env_vars;
-
+	int					here_doc_fd;
 }						t_minishell;
 
 #endif
