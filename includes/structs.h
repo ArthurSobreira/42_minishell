@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 16:14:56 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:39:21 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_minishell
 	int					env_vars_size;
 	int					exit_status;
 	int					pipe_fd[2];
+	int					fd_backup[2];
 	size_t				pipe_count;
 	t_cmd				*cmd_table;
 	t_error				error_check;
