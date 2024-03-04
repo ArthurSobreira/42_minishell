@@ -3,71 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:53 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 15:05:18 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/03 18:31:25 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_insert_str(char **arr, char *str, size_t index)
-{
-	size_t	i;
-	size_t	len;
-	char	**new_arr;
-
-	len = ft_matrix_len(arr);
-	new_arr = ft_calloc(len + 2, sizeof(char *));
-	if (!new_arr)
-		ft_error("export: malloc failed", 1);
-	i = 0;
-	while (i < index)
-	{
-		new_arr[i] = arr[i];
-		i++;
-	}
-	new_arr[i] = str;
-	i++;
-	while (arr[i - 1])
-	{
-		new_arr[i] = arr[i - 1];
-		i++;
-	}
-	free(arr);
-	return (new_arr);
-}
-
-void	insert_sort(char **arr)
-{
-	int		i;
-	int		j;
-	char	**ordened;
-
-	i = 1;
-	ordened = ft_calloc(get_core()->env_vars_size + 1, sizeof(char *));
-	if (!ordened)
-		ft_error("export: malloc failed", 1);
-	ordened[0] = arr[0];
-	while (i < get_core()->env_vars_size)
-	{
-		j = 0;
-		while (ordened[j] && is_bigger(arr[i], ordened[j]))
-			j++;
-		ordened = ft_insert_str(ordened, arr[i], j);
-		i++;
-	}
-	i = 0;
-	while (ordened[i] != NULL)
-	{
-		print_ordened_values(ordened[i]);
-		i++;
-	}
-	free(ordened);
-}
-
-void	matrix_build(t_var *var)
+void	matrix_build(t_var *var, int fd)
 {
 	char	**sorted_vars;
 	t_var	*current;
@@ -85,7 +30,7 @@ void	matrix_build(t_var *var)
 		i++;
 	}
 	sorted_vars[i] = NULL;
-	insert_sort(sorted_vars);
+	insert_sort(sorted_vars, fd);
 	free(sorted_vars);
 }
 
@@ -112,7 +57,7 @@ t_bool	set_value_on_existing_key(char *key, char *value)
 	return (FALSE);
 }
 
-void	export_variables(t_cmd *command)
+static void	process_arguments(t_cmd *command)
 {
 	size_t	i;
 	char	*key;
@@ -120,23 +65,31 @@ void	export_variables(t_cmd *command)
 
 	i = 0;
 	get_core()->exit_status = EXIT_SUCCESS;
-	if (ft_matrix_len(command->args) == 1)
-		matrix_build(get_core()->env_vars);
-	else
+	while (++i < ft_matrix_len(command->args))
 	{
-		while (++i < ft_matrix_len(command->args))
+		if (!is_valid_argument(command->args[i]))
+			return ;
+		key = return_key(command->args[i]);
+		value = return_value(command->args[i]);
+		if (!set_value_on_existing_key(key, value))
 		{
-			if (!is_valid_argument(command->args[i]))
-				return ;
-			key = return_key(command->args[i]);
-			value = return_value(command->args[i]);
-			if (!set_value_on_existing_key(key, value))
-			{
-				add_end_var(&get_core()->env_vars, create_var(key, value));
-				get_core()->env_vars_size++;
-			}
-			free(key);
-			free(value);
+			add_end_var(&get_core()->env_vars, create_var(key, value));
+			get_core()->env_vars_size++;
 		}
+		free(key);
+		free(value);
 	}
+}
+
+void	export_variables(t_cmd *command)
+{
+	int	fd_out;
+
+	fd_out = STDOUT_FILENO;
+	if (command->redir_out)
+		fd_out = command->redir_out->fd_out;
+	if (ft_matrix_len(command->args) == 1)
+		matrix_build(get_core()->env_vars, fd_out);
+	else
+		process_arguments(command);
 }

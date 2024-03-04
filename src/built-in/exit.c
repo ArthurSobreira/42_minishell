@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 15:46:49 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/03 09:56:25 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static void	print_error(t_cmd *command, char *message)
 {
-	t_minishell	*core;
-
-	core = get_core();
 	if (!ft_strcmp(command->cmd, "exit"))
 		ft_putendl_fd(message, STDERR_FILENO);
 }
@@ -60,7 +57,5 @@ void	exit_shell(t_cmd *command)
 		ft_clear_cmd_table();
 	clear_garbage();
 	rl_clear_history();
-	if (!command)
-		ft_putendl_fd("exit", STDOUT_FILENO);
 	exit(core->exit_status);
 }

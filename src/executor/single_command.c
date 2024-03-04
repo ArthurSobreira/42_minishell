@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:59:17 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/29 17:36:49 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:17:56 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	execute_single_command(t_cmd *command)
 		return ;
 	status = 0;
 	command->pid = fork();
+	signal(SIGINT, ctrl_c_child);
+	signal(SIGQUIT, sigquit_f);
 	if (command->pid < 0)
 		return ;
 	if (command->pid == 0)
