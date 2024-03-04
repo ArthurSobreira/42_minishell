@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/03 18:29:38 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/04 11:55:41 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ char		*return_key(char *str);
 void		add_end_var(t_var **var, t_var *new_var);
 char		**ft_insert_str(char **arr, char *str, size_t index);
 void		insert_sort(char **arr, int fd);
-
-
 
 // Prompt functions
 void		prompt_loop(t_minishell *core);
@@ -193,8 +191,12 @@ void		ctrl_c_child(int sig);
 
 // Toolbox functions
 
-void	ft_printf_fd(int fd, const char *format, ...);
-void	ft_putptr_fd(unsigned long number, char *base, int fd);
-void	ft_putnbr_base_fd(long int number, char *base, int fd);
+void		ft_printf_fd(int fd, const char *format, ...);
+void		ft_putptr_fd(unsigned long number, char *base, int fd);
+void		ft_putnbr_base_fd(long int number, char *base, int fd);
+
+// Wildcard functions
+
+void		expand_wildcard(void);
 
 #endif
