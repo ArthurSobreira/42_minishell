@@ -32,6 +32,7 @@ REDIRECT_PATH = redirect/
 SIGNALS_PATH = signals/
 TOKENIZER_PATH = tokenizer/
 TOOLBOX_PATH = toolbox/
+WILDCARD_PATH = wildcard/
 
 SOURCES = main.c \
 	$(BUILTINS_PATH)cd.c \
@@ -75,6 +76,7 @@ SOURCES = main.c \
 	$(TOOLBOX_PATH)ft_putptr_fd.c \
 	$(TOOLBOX_PATH)export_utils.c \
 	$(TOOLBOX_PATH)export_utils2.c \
+	$(WILDCARD_PATH)wildcard.c
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
 
@@ -118,6 +120,7 @@ $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)$(SIGNALS_PATH)
 	@mkdir -p $(BIN_PATH)$(TOKENIZER_PATH)
 	@mkdir -p $(BIN_PATH)$(TOOLBOX_PATH)
+	@mkdir -p $(BIN_PATH)$(WILDCARD_PATH)
 
 clean:
 	@echo $(RED)[Removing Objects]$(COLOR_LIMITER)
