@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:45:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/04 10:41:53 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:35:14 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	execute_single_command(t_cmd *command)
 		return ;
 	status = 0;
 	command->pid = fork();
+	signal(SIGINT, ctrl_c_child);
+	signal(SIGQUIT, sigquit_f);
 	if (command->pid < 0)
 		return ;
 	if (command->pid == 0)
