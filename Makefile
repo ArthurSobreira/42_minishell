@@ -26,7 +26,7 @@ EXIT_PATH = exit/
 EXPANSION_PATH = expansion/
 INIT_PATH = init/
 PARSER_PATH = parser/
-LEXER_PATH = lexer_and_tokenizer/
+LEXER_PATH = lexer/
 PROMPT_PATH = prompt/
 REDIRECT_PATH = redirect/
 SIGNALS_PATH = signals/
@@ -45,8 +45,9 @@ SOURCES = main.c \
 	$(EXECUTOR_PATH)command_table_utils.c \
 	$(EXECUTOR_PATH)command_table.c \
 	$(EXECUTOR_PATH)command_utils.c \
+	$(EXECUTOR_PATH)executor_utils.c \
 	$(EXECUTOR_PATH)executor.c \
-	$(EXECUTOR_PATH)single_command.c \
+	$(EXECUTOR_PATH)multiple_commands.c \
 	$(EXIT_PATH)clear_redir.c \
 	$(EXIT_PATH)clear.c \
 	$(EXIT_PATH)error.c \
