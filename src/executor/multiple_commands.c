@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:04:26 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/04 11:55:25 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:39:54 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	execute_pipelines(t_cmd *cmd_table)
 			continue ;
 		pipe(core->pipe_fd);
 		cmd_table[index].pid = fork();
+		signal(SIGINT, ctrl_c_child);
+		signal(SIGQUIT, sigquit_f);
 		if (cmd_table[index].pid < 0)
 			return ;
 		if (cmd_table[index].pid == 0)
