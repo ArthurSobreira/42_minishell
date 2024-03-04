@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/01 11:24:52 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/04 11:47:06 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,14 +177,18 @@ t_bool		is_valid_argument(char *arg);
 void		command_executor(void);
 void		execute_builtin(t_cmd *command);
 void		execute_single_command(t_cmd *command);
-void		execute_single_child(t_cmd *command);
+void		handle_fds(t_cmd *command);
 void		handle_execve_error(t_cmd *command);
+void		wait_all_childs(t_cmd *cmd_table);
 
 void		execute_pipelines(t_cmd *cmd_table);
 void		execute_multiple_child(t_cmd *command);
 void		handle_initial_proc(t_minishell *core, t_cmd *command);
+void		handle_intermediate_proc(t_minishell *core, t_cmd *command);
 void		handle_final_proc(t_minishell *core, t_cmd *command);
 t_bool		validate_empty_cmd(t_cmd *cmd, size_t *index);
+void		backup_fd_in_out(int fd_backup[2]);
+void		restore_fd_in_out(void);
 
 // Signal functions
 void		ctrl_c(int sig);
