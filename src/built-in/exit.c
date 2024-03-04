@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 15:46:49 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/04 11:16:28 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	exit_shell(t_cmd *command)
 		ft_clear_cmd_table();
 	clear_garbage();
 	rl_clear_history();
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
 	if (!command)
 		ft_putendl_fd("exit", STDOUT_FILENO);
 	exit(core->exit_status);
