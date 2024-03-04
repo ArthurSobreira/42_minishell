@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:45:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/01 15:06:59 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:41:53 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	command_executor(void)
 	}
 	else
 		execute_pipelines(core->cmd_table);
-	ft_putstr_fd("teste in\n", STDIN_FILENO);
-	ft_putstr_fd("teste out\n", STDOUT_FILENO);
 }
 
 void	execute_builtin(t_cmd *command)
@@ -47,4 +45,31 @@ void	execute_builtin(t_cmd *command)
 		print_working_directory(command);
 	else if (!ft_strcmp(command->cmd, "unset"))
 		unset(command);
+}
+
+void	execute_single_command(t_cmd *command)
+{
+	t_minishell	*core;
+	int			status;
+
+	core = get_core();
+	if (command->cmd == NULL || command->cmd[0] == '\0' || \
+		core->error_check.cmd_error[command->cmd_pos])
+		return ;
+	status = 0;
+	command->pid = fork();
+	if (command->pid < 0)
+		return ;
+	if (command->pid == 0)
+	{
+		handle_fds(command);
+		if (execve(command->cmd, command->args, command->envp) < 0)
+			handle_execve_error(command);
+	}
+	else
+	{
+		waitpid(command->pid, &status, 0);
+		if (WIFEXITED(status))
+			core->exit_status = WEXITSTATUS(status);
+	}
 }
