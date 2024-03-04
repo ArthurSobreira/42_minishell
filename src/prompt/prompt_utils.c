@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:10 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/27 19:35:08 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/03 10:06:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*format_hostname(char *hostname)
 	}
 	c_hostname = ft_strjoin_three(COLOR_RED, hostname, COLOR_RESET);
 	formatted_hostname = ft_strjoin(c_hostname, " ");
+	formatted_hostname = ft_replace(formatted_hostname, "\n", "");
 	ft_free(hostname);
 	ft_free(c_hostname);
 	return (formatted_hostname);

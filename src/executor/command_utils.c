@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:48:21 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/27 19:45:08 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/03 17:40:20 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 char	*get_command(void)
 {
 	t_token		*current_tkn;
-	t_token		*next_tkn;
 	char		*cmd_name;
 	char		*cmd_path;
 
 	current_tkn = get_core()->token_list;
-	next_tkn = current_tkn->next;
 	cmd_name = ft_strdup(current_tkn->value);
 	if (access(cmd_name, F_OK | X_OK) == 0)
 	{
