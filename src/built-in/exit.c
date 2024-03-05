@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/04 12:21:05 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:40:20 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	exit_shell(t_cmd *command)
 	t_minishell	*core;
 
 	core = get_core();
-	if (command && command->args[1])
+	if (command->cmd && !ft_strcmp(command->cmd, "exit") && command->args[1])
 		if (!validate_args(core, command))
 			return ;
 	if (core->token_list != NULL)

@@ -139,7 +139,7 @@ make_temp:
 	@mkdir -p $(TEMP_PATH)
 
 valgrind: make_temp all
-	@valgrind -s --leak-check=full \
+	@valgrind -s -q --leak-check=full \
 	--show-reachable=yes \
 	--show-leak-kinds=all \
 	--track-origins=yes \
@@ -147,8 +147,4 @@ valgrind: make_temp all
 	--suppressions=./suppresion.supp \
 	--log-file=$(TEMP_PATH)valgrind.log ./$(NAME)
 
-f:
-	exit 0
-	make valgrind
-
-.PHONY: all clean fclean re libft make_temp valgrind makef
+.PHONY: all clean fclean re libft make_temp valgrind
