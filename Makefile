@@ -147,8 +147,4 @@ valgrind: make_temp all
 	--suppressions=./suppresion.supp \
 	--log-file=$(TEMP_PATH)valgrind.log ./$(NAME)
 
-f:
-	exit 0
-	make valgrind
-
-.PHONY: all clean fclean re libft make_temp valgrind makef
+.PHONY: all clean fclean re libft make_temp valgrind
