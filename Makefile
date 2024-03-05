@@ -139,7 +139,7 @@ make_temp:
 	@mkdir -p $(TEMP_PATH)
 
 valgrind: make_temp all
-	@valgrind -s --leak-check=full \
+	@valgrind -s -q --leak-check=full \
 	--show-reachable=yes \
 	--show-leak-kinds=all \
 	--track-origins=yes \
