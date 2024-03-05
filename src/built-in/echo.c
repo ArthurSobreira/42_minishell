@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:50:48 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/05 10:53:36 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:51:18 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void	echo(t_cmd *command)
 	}
 	if (!n_flag)
 		ft_putchar_fd('\n', fd_out);
+	get_core()->exit_status = EXIT_SUCCESS;
 }
