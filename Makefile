@@ -31,7 +31,7 @@ PROMPT_PATH = prompt/
 REDIRECT_PATH = redirect/
 SIGNALS_PATH = signals/
 TOKENIZER_PATH = tokenizer/
-TOOLBOX_PATH = toolbox/
+UTILS_PATH = utils/
 
 SOURCES = main.c \
 	$(BUILTINS_PATH)cd.c \
@@ -72,11 +72,11 @@ SOURCES = main.c \
 	$(REDIRECT_PATH)validate_files.c \
 	$(REDIRECT_PATH)validate_utils.c \
 	$(SIGNALS_PATH)signals.c \
-	$(TOOLBOX_PATH)ft_printf_fd.c \
-	$(TOOLBOX_PATH)ft_putnbr_base_fd.c \
-	$(TOOLBOX_PATH)ft_putptr_fd.c \
-	$(TOOLBOX_PATH)export_utils.c \
-	$(TOOLBOX_PATH)export_utils2.c \
+	$(UTILS_PATH)ft_printf_fd.c \
+	$(UTILS_PATH)ft_putnbr_base_fd.c \
+	$(UTILS_PATH)ft_putptr_fd.c \
+	$(UTILS_PATH)export_utils.c \
+	$(UTILS_PATH)export_utils2.c \
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
 
@@ -119,7 +119,7 @@ $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)$(REDIRECT_PATH)
 	@mkdir -p $(BIN_PATH)$(SIGNALS_PATH)
 	@mkdir -p $(BIN_PATH)$(TOKENIZER_PATH)
-	@mkdir -p $(BIN_PATH)$(TOOLBOX_PATH)
+	@mkdir -p $(BIN_PATH)$(UTILS_PATH)
 
 clean:
 	@echo $(RED)[Removing Objects]$(COLOR_LIMITER)
