@@ -48,6 +48,7 @@ SOURCES = main.c \
 	$(EXECUTOR_PATH)executor_utils.c \
 	$(EXECUTOR_PATH)executor.c \
 	$(EXECUTOR_PATH)multiple_commands.c \
+	$(EXECUTOR_PATH)redirect_utils.c \
 	$(EXIT_PATH)clear_redir.c \
 	$(EXIT_PATH)clear.c \
 	$(EXIT_PATH)error.c \
