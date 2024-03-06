@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:42:44 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/04 12:06:44 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:11:06 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	expand_wildcard(void)
 
 	path = getcwd(NULL, 0);
 	tkn = find_wild();
+	free(path);
 	if (tkn)
 	{
 		print_token(tkn);
