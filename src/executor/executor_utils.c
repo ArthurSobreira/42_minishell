@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:09:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/05 15:21:44 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:12:45 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,24 @@ void	wait_all_childs(t_cmd *cmd_table)
 	}
 }
 
-void	handle_child_fds(t_cmd *command)
+t_bool	is_empty_cmd(t_cmd *cmd)
 {
-	if (command->is_builtin)
-		return ;
-	if (command->redir_in)
-	{
-		dup2(command->redir_in->fd_in, STDIN_FILENO);
-		close(command->redir_in->fd_in);
-	}
-	if (command->redir_out)
-	{
-		dup2(command->redir_out->fd_out, STDOUT_FILENO);
-		close(command->redir_out->fd_out);
-	}
+	if (cmd->cmd == NULL || cmd->cmd[0] == '\0')
+		return (TRUE);
+	return (FALSE);
+}
+
+void	clear_child(t_minishell *core)
+{
+	if (core->token_list != NULL)
+		ft_clear_token();
+	if (core->env_vars != NULL)
+		ft_clear_env_vars();
+	if (core->cmd_table != NULL)
+		ft_clear_cmd_table();
+	clear_garbage();
+	rl_clear_history();
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	exit(core->exit_status);
 }

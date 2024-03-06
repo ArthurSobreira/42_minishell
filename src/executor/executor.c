@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:45:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/05 16:12:39 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:42:13 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ void	execute_builtin(t_cmd *command, t_bool is_child)
 	else if (!ft_strcmp(command->cmd, "unset"))
 		unset(command);
 	if (is_child)
-		exit_shell(command);
+	{
+		close(get_core()->fd_backup[0]);
+		close(get_core()->fd_backup[1]);
+		clear_child(get_core());
+	}
 }
 
 void	execute_single_command(t_cmd *command)

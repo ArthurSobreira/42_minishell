@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/05 16:46:29 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:51:10 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ char		*return_key(char *str);
 void		add_end_var(t_var **var, t_var *new_var);
 char		**ft_insert_str(char **arr, char *str, size_t index);
 void		insert_sort(char **arr, int fd);
-
-
 
 // Prompt functions
 void		prompt_loop(t_minishell *core);
@@ -184,7 +182,6 @@ void		execute_single_command(t_cmd *command);
 void		handle_child_fds(t_cmd *command);
 void		handle_execve_error(t_cmd *command);
 void		wait_all_childs(t_cmd *cmd_table);
-
 void		execute_pipelines(t_cmd *cmd_table);
 void		execute_multiple_child(t_cmd *command);
 void		handle_initial_proc(t_minishell *core, t_cmd *command);
@@ -192,6 +189,9 @@ void		handle_intermediate_proc(t_minishell *core, t_cmd *command);
 void		handle_final_proc(t_minishell *core, t_cmd *command);
 void		backup_fd_in_out(int fd_backup[2]);
 void		restore_fd_in_out(void);
+void		backup_pipe_fd(void);
+void		clear_child(t_minishell *core);
+void		close_all_fds(void);
 t_bool		is_empty_cmd(t_cmd *cmd);
 
 // Signal functions
