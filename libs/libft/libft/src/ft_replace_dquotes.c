@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 08:48:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/21 18:09:09 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:02:11 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ char	*ft_replace_dquotes(char *str, char *old, char *new)
 {
 	char	*result;
 	char	*ptr;
+	int		i;
 
+	i = 0;
 	if (ft_strlen(old) == 0)
 		return (ft_strdup(str));
 	result = ft_strdup(str);
@@ -77,8 +79,9 @@ char	*ft_replace_dquotes(char *str, char *old, char *new)
 		ptr = ft_strstr_dquotes(ptr, old);
 		if (!ptr)
 			break ;
+		i = ptr - result;
 		result = replace_occurrence(result, ptr, old, new);
-		ptr = result + ft_strlen(new);
+		ptr = result + ft_strlen(new) + i;
 	}
 	free(str);
 	return (result);
