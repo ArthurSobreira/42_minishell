@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:09:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/05 19:12:45 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:37:01 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ void	clear_child(t_minishell *core)
 	rl_clear_history();
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
+	close_all_fds();
 	exit(core->exit_status);
 }
