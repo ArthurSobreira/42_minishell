@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/27 16:27:50 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:09:56 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ int	main(int argc, char *argv[], char *envp[])
 	return (core->exit_status);
 }
 
-		// clear_prompt();
-		// print_ascii();
+// clear_prompt();
+// print_ascii();
