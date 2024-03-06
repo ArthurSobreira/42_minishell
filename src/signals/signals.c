@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 11:50:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/06 11:25:26 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:03:03 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ctrl_c_here_doc(int sig)
 	{
 		get_core()->exit_status = 130;
 		ft_putchar_fd('\n', STDOUT_FILENO);
+		get_core()->flag = 0;
 	}
 }
 
