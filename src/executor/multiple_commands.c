@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:04:26 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/05 16:49:34 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:58:54 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ void	execute_pipelines(t_cmd *cmd_table)
 		if (cmd_table[index].pid == 0)
 			execute_multiple_child(&cmd_table[index]);
 		else
-		{
-			dup2(core->pipe_fd[0], STDIN_FILENO);
-			close(core->pipe_fd[0]);
-			close(core->pipe_fd[1]);
-		}
+			backup_pipe_fd();
 		index++;
 	}
 	wait_all_childs(cmd_table);
@@ -49,14 +45,12 @@ void	execute_multiple_child(t_cmd *command)
 	core = get_core();
 	if (is_empty_cmd(command))
 	{
+		close_all_fds();
 		if (core->error_check.file_error[command->cmd_pos])
-		{
 			core->exit_status = EXIT_FAILURE;
-			exit(core->exit_status);
-		}
-		exit(core->exit_status);
+		clear_child(core);
 	}
-	if (command->proc_type == INITIAL)
+	else if (command->proc_type == INITIAL)
 		handle_initial_proc(core, command);
 	else if (command->proc_type == INTERMEDIATE)
 		handle_intermediate_proc(core, command);
@@ -135,28 +129,4 @@ void	handle_final_proc(t_minishell *core, t_cmd *command)
 		if (execve(command->cmd, command->args, command->envp) < 0)
 			handle_execve_error(command);
 	}
-}
-
-void	backup_fd_in_out(int fd_backup[2])
-{
-	fd_backup[0] = dup(STDIN_FILENO);
-	fd_backup[1] = dup(STDOUT_FILENO);
-}
-
-void	restore_fd_in_out(void)
-{
-	t_minishell	*core;
-
-	core = get_core();
-	dup2(core->fd_backup[0], STDIN_FILENO);
-	dup2(core->fd_backup[1], STDOUT_FILENO);
-	close(core->fd_backup[0]);
-	close(core->fd_backup[1]);
-}
-
-t_bool	is_empty_cmd(t_cmd *cmd)
-{
-	if (cmd->cmd == NULL || cmd->cmd[0] == '\0')
-		return (TRUE);
-	return (FALSE);
 }
