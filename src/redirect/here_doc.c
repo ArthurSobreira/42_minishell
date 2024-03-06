@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:33:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/06 13:04:06 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:28:32 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ void	capture_heredoc(void)
 	current_tkn = get_core()->token_list;
 	while (current_tkn)
 	{
-		if ((current_tkn->type == TOKEN_HERE_DOC) &&
+		if ((current_tkn->type == TOKEN_HERE_DOC) && \
 			(current_tkn->next->type == TOKEN_WORD))
 		{
 			here_doc_fd = open(HERE_DOC_FILE,
-								O_WRONLY | O_CREAT | O_TRUNC,
-								0644);
+					O_WRONLY | O_CREAT | O_TRUNC, 0644);
 			hd_limiter = current_tkn->next->value;
 			here_doc_loop(hd_limiter, here_doc_fd);
 		}
