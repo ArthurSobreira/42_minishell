@@ -54,12 +54,3 @@ void	ctrl_c(int sig)
 	}
 }
 
-void	ctrl_inverse_slash(int sig)
-{
-	if (sig == SIGQUIT)
-	{
-		// ft_putstr_fd("Quit (core dumped)\n", STDOUT_FILENO);
-		get_core()->exit_status = 131;
-		ft_putchar_fd('\n', STDOUT_FILENO);
-	}
-}
