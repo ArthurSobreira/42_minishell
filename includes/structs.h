@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/04 12:14:13 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:19:09 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef enum e_proc
 	INITIAL,
 	INTERMEDIATE,
 	FINAL,
-}		t_proc;
+}						t_proc;
 
 typedef struct s_redir_in
 {
@@ -104,7 +104,6 @@ typedef struct s_minishell
 	t_list				*gc;
 	t_token				*token_list;
 	t_var				*env_vars;
-	int					here_doc_fd;
 }						t_minishell;
 
 #endif
