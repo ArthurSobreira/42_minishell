@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 11:50:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/06 13:03:03 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:45:24 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sigquit_f(int sig)
 {
 	if (sig == SIGQUIT)
 	{
-		ft_putstr_fd("Quit (core dumped)\n", STDOUT_FILENO);
+		ft_putstr_fd("Quit (core dumped)", STDOUT_FILENO);
 		get_core()->exit_status = 131;
 		ft_putchar_fd('\n', STDOUT_FILENO);
 		rl_replace_line("", 0);
@@ -58,7 +58,7 @@ void	ctrl_inverse_slash(int sig)
 {
 	if (sig == SIGQUIT)
 	{
-		ft_putstr_fd("Quit (core dumped)\n", STDOUT_FILENO);
+		// ft_putstr_fd("Quit (core dumped)\n", STDOUT_FILENO);
 		get_core()->exit_status = 131;
 		ft_putchar_fd('\n', STDOUT_FILENO);
 	}

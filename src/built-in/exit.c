@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/05 18:27:41 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:03:21 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static t_bool	validate_args(t_minishell *core, t_cmd *command)
 	}
 	else if (command && ft_isnumber(command->args[1]))
 		core->exit_status = ft_atoi(command->args[1]);
-	else if (command && !ft_isdigit(command->args[1][0]))
+	else if ((command && !ft_isdigit(command->args[1][0])) || \
+		(ft_atol(command->args[1]) > __LONG_MAX__))
 	{
 		print_error(command, "minishell: exit: numeric argument required");
 		core->exit_status = SYNTAX_ERROR;
@@ -59,6 +60,7 @@ void	exit_shell(t_cmd *command)
 	rl_clear_history();
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
+	close_all_fds();
 	if (!command)
 		ft_putendl_fd("exit", STDOUT_FILENO);
 	exit(core->exit_status);
