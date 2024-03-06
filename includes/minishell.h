@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/06 11:29:07 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:34:08 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libs/libft/libft.h"
 # include "defines.h"
 # include "structs.h"
-// # include <dirent.h>
+# include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
@@ -201,10 +201,11 @@ void		ctrl_c_here_doc(int sig);
 void		sigquit_f(int sig);
 void		ctrl_c_child(int sig);
 
-// Toolbox functions
+// Utils functions
 
 void		ft_printf_fd(int fd, const char *format, ...);
 void		ft_putptr_fd(unsigned long number, char *base, int fd);
 void		ft_putnbr_base_fd(long int number, char *base, int fd);
+void		expand_wildcard(void);
 
 #endif
