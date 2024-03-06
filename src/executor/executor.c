@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:45:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/04 12:35:14 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:42:13 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	command_executor(void)
 	if (!core->pipe_count)
 	{
 		if (core->cmd_table[0].is_builtin)
-			execute_builtin(&core->cmd_table[0]);
+			execute_builtin(&core->cmd_table[0], FALSE);
 		else
 			execute_single_command(&core->cmd_table[0]);
 	}
@@ -29,7 +29,7 @@ void	command_executor(void)
 		execute_pipelines(core->cmd_table);
 }
 
-void	execute_builtin(t_cmd *command)
+void	execute_builtin(t_cmd *command, t_bool is_child)
 {
 	if (!ft_strcmp(command->cmd, "cd"))
 		change_directory(command);
@@ -45,6 +45,12 @@ void	execute_builtin(t_cmd *command)
 		print_working_directory(command);
 	else if (!ft_strcmp(command->cmd, "unset"))
 		unset(command);
+	if (is_child)
+	{
+		close(get_core()->fd_backup[0]);
+		close(get_core()->fd_backup[1]);
+		clear_child(get_core());
+	}
 }
 
 void	execute_single_command(t_cmd *command)
@@ -64,7 +70,7 @@ void	execute_single_command(t_cmd *command)
 		return ;
 	if (command->pid == 0)
 	{
-		handle_fds(command);
+		handle_child_fds(command);
 		if (execve(command->cmd, command->args, command->envp) < 0)
 			handle_execve_error(command);
 	}

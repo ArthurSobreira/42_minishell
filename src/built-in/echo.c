@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:50:48 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 17:32:57 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:51:18 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	echo(t_cmd *command)
 	int	n_flag;
 	int	fd_out;
 
-	get_core()->exit_status = EXIT_SUCCESS;
 	i = 1;
 	n_flag = 0;
 	fd_out = STDOUT_FILENO;
@@ -39,4 +38,5 @@ void	echo(t_cmd *command)
 	}
 	if (!n_flag)
 		ft_putchar_fd('\n', fd_out);
+	get_core()->exit_status = EXIT_SUCCESS;
 }

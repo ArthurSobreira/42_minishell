@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/05 19:37:00 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:29:07 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,20 +177,22 @@ t_bool		is_valid_argument(char *arg);
 
 // Executor functions
 void		command_executor(void);
-void		execute_builtin(t_cmd *command);
+void		execute_builtin(t_cmd *command, t_bool is_child);
 void		execute_single_command(t_cmd *command);
-void		handle_fds(t_cmd *command);
+void		handle_child_fds(t_cmd *command);
 void		handle_execve_error(t_cmd *command);
 void		wait_all_childs(t_cmd *cmd_table);
-
 void		execute_pipelines(t_cmd *cmd_table);
 void		execute_multiple_child(t_cmd *command);
 void		handle_initial_proc(t_minishell *core, t_cmd *command);
 void		handle_intermediate_proc(t_minishell *core, t_cmd *command);
 void		handle_final_proc(t_minishell *core, t_cmd *command);
-t_bool		validate_empty_cmd(t_cmd *cmd, size_t *index);
 void		backup_fd_in_out(int fd_backup[2]);
 void		restore_fd_in_out(void);
+void		backup_pipe_fd(void);
+void		clear_child(t_minishell *core);
+void		close_all_fds(void);
+t_bool		is_empty_cmd(t_cmd *cmd);
 
 // Signal functions
 void		ctrl_c(int sig);
@@ -204,10 +206,5 @@ void		ctrl_c_child(int sig);
 void		ft_printf_fd(int fd, const char *format, ...);
 void		ft_putptr_fd(unsigned long number, char *base, int fd);
 void		ft_putnbr_base_fd(long int number, char *base, int fd);
-t_bool		set_value_on_existing_key(char *key, char *value);
-
-// Wildcard functions
-
-void		expand_wildcard(void);
 
 #endif

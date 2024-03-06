@@ -31,8 +31,7 @@ PROMPT_PATH = prompt/
 REDIRECT_PATH = redirect/
 SIGNALS_PATH = signals/
 TOKENIZER_PATH = tokenizer/
-TOOLBOX_PATH = toolbox/
-WILDCARD_PATH = wildcard/
+UTILS_PATH = utils/
 
 SOURCES = main.c \
 	$(BUILTINS_PATH)cd.c \
@@ -49,6 +48,7 @@ SOURCES = main.c \
 	$(EXECUTOR_PATH)executor_utils.c \
 	$(EXECUTOR_PATH)executor.c \
 	$(EXECUTOR_PATH)multiple_commands.c \
+	$(EXECUTOR_PATH)redirect_utils.c \
 	$(EXIT_PATH)clear_redir.c \
 	$(EXIT_PATH)clear.c \
 	$(EXIT_PATH)error.c \
@@ -72,12 +72,11 @@ SOURCES = main.c \
 	$(REDIRECT_PATH)validate_files.c \
 	$(REDIRECT_PATH)validate_utils.c \
 	$(SIGNALS_PATH)signals.c \
-	$(TOOLBOX_PATH)ft_printf_fd.c \
-	$(TOOLBOX_PATH)ft_putnbr_base_fd.c \
-	$(TOOLBOX_PATH)ft_putptr_fd.c \
-	$(TOOLBOX_PATH)export_utils.c \
-	$(TOOLBOX_PATH)export_utils2.c \
-	$(WILDCARD_PATH)wildcard.c
+	$(UTILS_PATH)ft_printf_fd.c \
+	$(UTILS_PATH)ft_putnbr_base_fd.c \
+	$(UTILS_PATH)ft_putptr_fd.c \
+	$(UTILS_PATH)export_utils.c \
+	$(UTILS_PATH)export_utils2.c \
 
 OBJECTS = $(addprefix $(BIN_PATH), $(SOURCES:%.c=%.o))
 
@@ -120,8 +119,7 @@ $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)$(REDIRECT_PATH)
 	@mkdir -p $(BIN_PATH)$(SIGNALS_PATH)
 	@mkdir -p $(BIN_PATH)$(TOKENIZER_PATH)
-	@mkdir -p $(BIN_PATH)$(TOOLBOX_PATH)
-	@mkdir -p $(BIN_PATH)$(WILDCARD_PATH)
+	@mkdir -p $(BIN_PATH)$(UTILS_PATH)
 
 clean:
 	@echo $(RED)[Removing Objects]$(COLOR_LIMITER)
@@ -142,7 +140,7 @@ make_temp:
 	@mkdir -p $(TEMP_PATH)
 
 valgrind: make_temp all
-	@valgrind -s --leak-check=full \
+	@valgrind -s -q --leak-check=full \
 	--show-reachable=yes \
 	--show-leak-kinds=all \
 	--track-origins=yes \
@@ -150,8 +148,4 @@ valgrind: make_temp all
 	--suppressions=./suppresion.supp \
 	--log-file=$(TEMP_PATH)valgrind.log ./$(NAME)
 
-f:
-	exit 0
-	make valgrind
-
-.PHONY: all clean fclean re libft make_temp valgrind makef
+.PHONY: all clean fclean re libft make_temp valgrind
