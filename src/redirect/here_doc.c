@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:33:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/06 17:28:32 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:45:25 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,9 @@ size_t	get_var_len(char *line, size_t l_index)
 	len = 0;
 	while (line[l_index + len] &&
 			line[l_index + len] != ' ' &&
-			line[l_index + len] != '$')
+			line[l_index + len] != '$' &&
+			line[l_index + len] != '\'' &&
+			line[l_index + len] != '\"')
 		len++;
 	return (len);
 }
