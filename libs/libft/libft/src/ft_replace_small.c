@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 08:48:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/20 15:55:26 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:02:02 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ char	*ft_replace_small(char *str, char *old, char *new, t_replace *rp)
 {
 	char	*result;
 	char	*ptr;
+	int		i;
 
+	i = 0;
 	if (ft_strlen(old) == 0)
 		return (ft_strdup(str));
 	if (rp->end == rp->start)
@@ -70,8 +72,9 @@ char	*ft_replace_small(char *str, char *old, char *new, t_replace *rp)
 		ptr = ft_strstr_true(ptr, old, rp);
 		if (!ptr)
 			break ;
+		i = ptr - result;
 		result = replace_occurrence(result, ptr, old, new);
-		ptr = result + ft_strlen(new);
+		ptr = result + ft_strlen(new) + i;
 	}
 	free(str);
 	return (result);
