@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:41 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 17:32:05 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:14:23 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ void	change_directory(t_cmd *command)
 	else
 		garbage_add(new_dir = ft_strdup(command->args[1]));
 	current_dir = getcwd(NULL, 0);
+	if (!new_dir)
+	{
+		ft_putendl_fd("minishell: cd: HOME not set", STDERR_FILENO);
+		get_core()->exit_status = EXIT_FAILURE;
+		free(current_dir);
+		return ;
+	}
 	if (chdir(new_dir) == -1)
 	{
 		ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
