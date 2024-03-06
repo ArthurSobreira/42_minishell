@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/04 12:53:07 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:37:00 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ void		ctrl_c_child(int sig);
 void		ft_printf_fd(int fd, const char *format, ...);
 void		ft_putptr_fd(unsigned long number, char *base, int fd);
 void		ft_putnbr_base_fd(long int number, char *base, int fd);
+t_bool		set_value_on_existing_key(char *key, char *value);
 
 // Wildcard functions
 
