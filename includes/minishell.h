@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/05 19:14:28 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:51:10 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ void		backup_fd_in_out(int fd_backup[2]);
 void		restore_fd_in_out(void);
 void		backup_pipe_fd(void);
 void		clear_child(t_minishell *core);
+void		close_all_fds(void);
 t_bool		is_empty_cmd(t_cmd *cmd);
 
 // Signal functions
