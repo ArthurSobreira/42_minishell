@@ -55,6 +55,7 @@ SOURCES = main.c \
 	$(EXIT_PATH)garbage.c \
 	$(EXPANSION_PATH)expand_variables.c \
 	$(EXPANSION_PATH)look_for_variable.c \
+	$(EXPANSION_PATH)wildcard.c \
 	$(INIT_PATH)init_env.c \
 	$(INIT_PATH)init_structs.c \
 	$(INIT_PATH)init_stuff.c \
@@ -139,7 +140,7 @@ re: fclean
 make_temp:
 	@mkdir -p $(TEMP_PATH)
 
-valgrind: make_temp all
+valgrind: all make_temp 
 	@valgrind -s -q --leak-check=full \
 	--show-reachable=yes \
 	--show-leak-kinds=all \
