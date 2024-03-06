@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/03 10:05:48 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:38:59 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	prompt_process(void)
 {
+	if (is_only_spaces(get_core()->input))
+		return ;
 	if (lexer_and_format_prompt())
 		return ;
 	if (parser())
@@ -31,7 +33,7 @@ void	prompt_loop(t_minishell *core)
 		signal(SIGQUIT, SIG_IGN);
 		ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
 		ft_bzero(&core->error_check.cmd_error, MAX_PIPELINES);
-		garbage_add(core->input = readline(get_prompt_text()));
+		core->input = readline(get_prompt_text());
 		if (!is_only_spaces(core->input))
 			add_history(core->input);
 		if (!core->input)
@@ -39,6 +41,8 @@ void	prompt_loop(t_minishell *core)
 			ft_putendl_fd("exit", STDOUT_FILENO);
 			exit_shell(NULL);
 		}
+		core->input = ft_replace_quotes(core->input, "\"\"", "");
+		garbage_add(core->input = ft_replace_dquotes(core->input, "\'\'", ""));
 		if (core->input[0] == '\0')
 			continue ;
 		prompt_process();

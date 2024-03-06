@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/06 11:29:36 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:02:17 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_minishell
 	int					fd_backup[2];
 	int					here_doc_fd;
 	int					exit_status;
+	int					flag;
 }						t_minishell;
 
 #endif

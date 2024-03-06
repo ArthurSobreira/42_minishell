@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:41 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 17:32:05 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:58:05 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ static void	set_var(char *key, char *value)
 	}
 }
 
+static void	cd_error_process(char *current_dir)
+{
+	ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
+	ft_putendl_fd(strerror(errno), STDERR_FILENO);
+	free(current_dir);
+	get_core()->exit_status = EXIT_FAILURE;
+}
+
 void	change_directory(t_cmd *command)
 {
 	char	*new_dir;
@@ -53,13 +61,15 @@ void	change_directory(t_cmd *command)
 	else
 		garbage_add(new_dir = ft_strdup(command->args[1]));
 	current_dir = getcwd(NULL, 0);
-	if (chdir(new_dir) == -1)
+	if (!new_dir)
 	{
-		ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
-		ft_putendl_fd(strerror(errno), STDERR_FILENO);
-		free(current_dir);
+		ft_putendl_fd("minishell: cd: HOME not set", STDERR_FILENO);
 		get_core()->exit_status = EXIT_FAILURE;
+		free(current_dir);
+		return ;
 	}
+	if (chdir(new_dir) == -1)
+		cd_error_process(current_dir);
 	else
 	{
 		set_var("OLDPWD", current_dir);

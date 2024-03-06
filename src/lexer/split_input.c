@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:14:00 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/06 16:18:24 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:44:43 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ char	*insert_spaces(char *str)
 	garbage_add(tmp2 = ft_strnew(1));
 	tmp[0] = c;
 	tmp2[0] = d;
-	str = ft_replace_quotes(str, "\"\"", "");
-	str = ft_replace_dquotes(str, "\'\'", "");
 	str = ft_replace(str, ">>", tmp);
 	str = ft_replace(str, ">", tmp2);
 	str = ft_replace(str, tmp2, " > ");
@@ -65,6 +63,8 @@ t_bool	lexer_and_format_prompt(void)
 	char	*str_error;
 	char	*str;
 
+	if (get_core()->input[0] == '\0')
+		return (FALSE);
 	str_error = check_first_errors();
 	if (str_error)
 	{
@@ -76,7 +76,7 @@ t_bool	lexer_and_format_prompt(void)
 	garbage_add(str);
 	split_input(str);
 	check_variables();
-	// expand_wildcard();
 	return (FALSE);
 }
+	// expand_wildcard();
 // return (NULL);

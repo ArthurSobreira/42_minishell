@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:42:44 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/05 19:11:06 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:40:40 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,37 @@ t_token	*find_wild(void)
 	return (NULL);
 }
 
+void	list_files(void)
+{
+	DIR				*dir;
+	struct dirent	*entry;
+	t_token			*tkn;
+
+	dir = opendir(".");
+	if (!dir)
+	{
+		perror("diropen");
+		return ;
+	}
+	while (1)
+	{
+		entry = readdir(dir);
+		if (!entry)
+			break ;
+		splited_add_back(&tkn, new_token(ft_strdup(entry->d_name)));
+	}
+	closedir(dir);
+}
+
 void	expand_wildcard(void)
 {
 	t_token	*tkn;
-	char	*path;
+	t_token	*next_token;
 
-	path = getcwd(NULL, 0);
 	tkn = find_wild();
-	free(path);
-	if (tkn)
-	{
-		print_token(tkn);
-		printf("path: %s\n", path);
-	}
+	if (!tkn)
+		return ;
+	next_token = tkn->next;
+	tkn->next = NULL;
+	list_files();
 }
