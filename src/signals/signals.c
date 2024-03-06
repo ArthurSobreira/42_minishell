@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 11:50:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/29 19:19:36 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:25:26 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	sigquit_f(int sig)
 		ft_putstr_fd("Quit (core dumped)\n", STDOUT_FILENO);
 		get_core()->exit_status = 131;
 		ft_putchar_fd('\n', STDOUT_FILENO);
+		rl_replace_line("", 0);
 	}
 }
 
@@ -26,9 +27,8 @@ void	ctrl_c_here_doc(int sig)
 {
 	if (sig == SIGINT)
 	{
-		close(get_core()->here_doc_fd);
+		get_core()->exit_status = 130;
 		ft_putchar_fd('\n', STDOUT_FILENO);
-		exit_shell(NULL);
 	}
 }
 
