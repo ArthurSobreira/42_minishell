@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/06 17:39:43 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:17:32 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	prompt_process(void)
 	if (parser())
 		return ;
 	capture_heredoc();
+	if (get_core()->here_doc_flag)
+		return ;
 	command_executor();
 }
 
@@ -31,6 +33,7 @@ void	prompt_loop(t_minishell *core)
 	{
 		signal(SIGINT, ctrl_c);
 		signal(SIGQUIT, SIG_IGN);
+		core->here_doc_flag = FALSE;
 		ft_bzero(&core->error_check.file_error, MAX_PIPELINES);
 		ft_bzero(&core->error_check.cmd_error, MAX_PIPELINES);
 		garbage_add(core->input = readline(get_prompt_text()));

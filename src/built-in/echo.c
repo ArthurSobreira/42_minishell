@@ -3,40 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:50:48 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/06 16:46:10 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:58:19 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static t_bool	verify_flag(t_cmd *command, int *index)
+{
+	t_bool	n_flag;
+	size_t	arg_index;
+	char	**args;
+
+	n_flag = FALSE;
+	args = command->args;
+	while (args[*index] && args[*index][0] == '-')
+	{
+		arg_index = 1;
+		while (args[*index][arg_index] == 'n')
+		{
+			arg_index++;
+			n_flag = TRUE;
+		}
+		if (args[*index][arg_index] != '\0')
+			return (n_flag);
+		(*index)++;
+	}
+	return (n_flag);
+}
+
 void	echo(t_cmd *command)
 {
-	int	i;
-	int	n_flag;
-	int	fd_out;
+	t_bool	n_flag;
+	int		index;
+	int		fd_out;
 
-	i = 1;
-	n_flag = 0;
+	index = 1;
+	n_flag = TRUE;
 	fd_out = STDOUT_FILENO;
 	if (command->redir_out)
 		fd_out = command->redir_out->fd_out;
-	if (ft_matrix_len(command->args) > 1 && ft_strcmp(command->args[1],
-			"-n") == 0)
+	if (verify_flag(command, &index))
+		n_flag = FALSE;
+	while (command->args[index])
 	{
-		n_flag = 1;
-		i++;
-	}
-	while (command->args[i])
-	{
-		ft_putstr_fd(command->args[i], fd_out);
-		if (command->args[i + 1])
+		ft_putstr_fd(command->args[index], fd_out);
+		if (command->args[index + 1])
 			ft_putchar_fd(' ', fd_out);
-		i++;
+		index++;
 	}
-	if (!n_flag)
+	if (n_flag)
 		ft_putchar_fd('\n', fd_out);
 	get_core()->exit_status = EXIT_SUCCESS;
 }
