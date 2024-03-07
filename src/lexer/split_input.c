@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:14:00 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/07 16:06:53 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:17:08 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,19 @@ char	*insert_spaces(char *str)
 	str = ft_replace(str, "|", tmp);
 	str = ft_replace(str, tmp, " | ");
 	str = ft_replace(str, " ", tmp);
-	str = ft_replace_dquotes(str, "\'\'", "' '");
-	str = ft_replace_quotes(str, "\"\"", "\" \"");
+	str = check_empty_quotes(str);
+	return (str);
+}
+
+char	*check_empty_quotes(char *str)
+{
+	if (((str[0] == '\'' && str[1] == '\'') || \
+		(str[0] == '\"' && str[1] == '\"')) && \
+		((ft_isspace(str[2])) || (str[2] == '\0')))
+	{
+		str = ft_replace_dquotes(str, "\'\'", "' '");
+		str = ft_replace_quotes(str, "\"\"", "\" \"");
+	}
 	return (str);
 }
 
@@ -81,4 +92,3 @@ t_bool	lexer_and_format_prompt(void)
 	check_variables();
 	return (FALSE);
 }
-// return (NULL);

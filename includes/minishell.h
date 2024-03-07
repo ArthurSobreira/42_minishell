@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/06 13:34:08 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:14:12 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,14 @@ void		remove_token(t_token **token_list, t_token *target_tkn);
 
 // Here_doc functions
 void		capture_heredoc(void);
-void		here_doc_loop(char *hd_limiter, int here_doc_fd);
+void		here_doc_child(char *hd_limiter, int here_doc_fd);
+void		here_doc_loop(char *hd_limiter, int here_doc_fd, t_var *env_vars);
+void		wait_here_doc_child(pid_t pid);
 char		*search_for_expansions(t_var *env_vars, char *line);
 char		*get_var(t_var *env_vars, char *line, size_t *l_index);
 size_t		get_var_len(char *line, size_t l_index);
 
 // Expansion functions
-
 void		check_variables(void);
 char		*process_variable(char *str, int i, t_bool *in_quote);
 char		*handle_var_value(char *var_name, char *var_value);
@@ -174,6 +175,7 @@ t_bool		is_builtin(char *cmd);
 
 t_bool		parser(void);
 t_bool		is_valid_argument(char *arg);
+char		*check_empty_quotes(char *str);
 
 // Executor functions
 void		command_executor(void);
@@ -196,13 +198,11 @@ t_bool		is_empty_cmd(t_cmd *cmd);
 
 // Signal functions
 void		ctrl_c(int sig);
-void		ctrl_inverse_slash(int sig);
 void		ctrl_c_here_doc(int sig);
 void		sigquit_f(int sig);
 void		ctrl_c_child(int sig);
 
 // Utils functions
-
 void		ft_printf_fd(int fd, const char *format, ...);
 void		ft_putptr_fd(unsigned long number, char *base, int fd);
 void		ft_putnbr_base_fd(long int number, char *base, int fd);

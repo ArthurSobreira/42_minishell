@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/06 16:03:21 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:12:41 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	exit_shell(t_cmd *command)
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	close_all_fds();
-	if (!command)
-		ft_putendl_fd("exit", STDOUT_FILENO);
+	unlink(HERE_DOC_FILE);
 	exit(core->exit_status);
 }
