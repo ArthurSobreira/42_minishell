@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:20:22 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/26 15:17:19 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:00:44 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	check_variables(void)
 				continue ;
 			}
 			token->value = look_for_variable(token->value);
+			token->value = ft_replace_true(token->value, "\n", "$");
 			remove_quote(token->value);
 		}
 		token = token->next;

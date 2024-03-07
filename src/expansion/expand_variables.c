@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:23:02 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/06 13:33:50 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/07 10:49:28 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*handle_var_value(char *var_name, char *var_value)
 	if (var_name[1] == '?' && var_name[0] == '$')
 		var_value = ft_itoa(get_core()->exit_status);
 	if (var_name[1] == '$' && var_name[0] == '$')
-		var_value = ft_strdup("$");
+		var_value = ft_strdup("\n");
 	else if (!var_value)
 		var_value = ft_strdup("");
 	return (var_value);
