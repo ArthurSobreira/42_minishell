@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:33:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/07 11:50:35 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:13:07 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	here_doc_child(char *hd_limiter, int here_doc_fd)
 {
 	t_var	*env_vars;
 	pid_t	pid;
-	int		status;
 
 	env_vars = get_core()->env_vars;
 	pid = fork();
@@ -50,15 +49,7 @@ void	here_doc_child(char *hd_limiter, int here_doc_fd)
 		here_doc_loop(hd_limiter, here_doc_fd, env_vars);
 	}
 	else
-	{
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-		{
-			get_core()->exit_status = WEXITSTATUS(status);
-			if (get_core()->exit_status == 130)
-				get_core()->here_doc_flag = TRUE;
-		}
-	}
+		wait_here_doc_child(pid);
 }
 
 void	here_doc_loop(char *hd_limiter, int here_doc_fd, t_var *env_vars)
@@ -87,4 +78,24 @@ void	here_doc_loop(char *hd_limiter, int here_doc_fd, t_var *env_vars)
 	}
 	close(here_doc_fd);
 	clear_child(get_core());
+}
+
+void	wait_here_doc_child(pid_t pid)
+{
+	int		status_addr;
+	int		status;
+
+	waitpid(pid, &status_addr, 0);
+	if (WIFEXITED(status_addr))
+	{
+		status = WEXITSTATUS(status_addr);
+		if (status == 130)
+		{
+			if (get_core()->exit_status != 130)
+				get_core()->here_doc_flag = TRUE;
+			get_core()->exit_status = status;
+		}
+		else
+			get_core()->exit_status = EXIT_SUCCESS;
+	}
 }
