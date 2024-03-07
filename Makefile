@@ -67,6 +67,7 @@ SOURCES = main.c \
 	$(LEXER_PATH)tokenizer.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
+	$(REDIRECT_PATH)here_doc_utils.c \
 	$(REDIRECT_PATH)here_doc.c \
 	$(REDIRECT_PATH)redirect_utils.c \
 	$(REDIRECT_PATH)redirect.c \
