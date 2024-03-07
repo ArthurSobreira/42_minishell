@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/07 11:55:32 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:16:28 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ t_bool		is_builtin(char *cmd);
 
 t_bool		parser(void);
 t_bool		is_valid_argument(char *arg);
+char		*check_empty_quotes(char *str);
 
 // Executor functions
 void		command_executor(void);
