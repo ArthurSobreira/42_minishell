@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:14:00 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/08 10:20:00 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:31:47 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ char	*insert_spaces(char *str)
 
 char	*check_empty_quotes(char *str)
 {
-	if (((str[0] == '\'' && str[1] == '\'') ||
-			(str[0] == '\"' && str[1] == '\"')) &&
+	if (((str[0] == '\'' && str[1] == '\'') || \
+			(str[0] == '\"' && str[1] == '\"')) && \
 		((ft_isspace(str[2])) || (str[2] == '\0')))
 	{
 		str = ft_replace_dquotes(str, "\'\'", "' '");
@@ -96,7 +96,7 @@ t_bool	lexer_and_format_prompt(void)
 	str = insert_spaces(str);
 	garbage_add(str);
 	split_input(str);
-	// expand_wildcard();
 	check_variables();
 	return (FALSE);
 }
+	// expand_wildcard();
