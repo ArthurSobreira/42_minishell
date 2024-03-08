@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:14:00 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/07 16:17:08 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:31:47 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,8 @@ char	*check_first_errors(void)
 	return (NULL);
 }
 
-char	*insert_spaces(char *str)
+char	*replace(char *str, char *tmp, char *tmp2)
 {
-	char	*tmp;
-	char	*tmp2;
-	char	c;
-	char	d;
-
-	c = -1;
-	d = -2;
-	garbage_add(tmp = ft_strnew(1));
-	garbage_add(tmp2 = ft_strnew(1));
-	tmp[0] = c;
-	tmp2[0] = d;
 	str = ft_replace(str, ">>", tmp);
 	str = ft_replace(str, ">", tmp2);
 	str = ft_replace(str, tmp2, " > ");
@@ -59,10 +48,29 @@ char	*insert_spaces(char *str)
 	return (str);
 }
 
+char	*insert_spaces(char *str)
+{
+	char	*tmp;
+	char	*tmp2;
+	char	c;
+	char	d;
+
+	c = -1;
+	d = -2;
+	tmp = ft_strnew(1);
+	tmp2 = ft_strnew(1);
+	tmp[0] = c;
+	tmp2[0] = d;
+	str = replace(str, tmp, tmp2);
+	free(tmp);
+	free(tmp2);
+	return (str);
+}
+
 char	*check_empty_quotes(char *str)
 {
 	if (((str[0] == '\'' && str[1] == '\'') || \
-		(str[0] == '\"' && str[1] == '\"')) && \
+			(str[0] == '\"' && str[1] == '\"')) && \
 		((ft_isspace(str[2])) || (str[2] == '\0')))
 	{
 		str = ft_replace_dquotes(str, "\'\'", "' '");
@@ -88,7 +96,7 @@ t_bool	lexer_and_format_prompt(void)
 	str = insert_spaces(str);
 	garbage_add(str);
 	split_input(str);
-	expand_wildcard();
 	check_variables();
 	return (FALSE);
 }
+	// expand_wildcard();

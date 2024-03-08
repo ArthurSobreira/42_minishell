@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:20:22 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/07 11:00:44 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:50:24 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	where_is_dollar(char *str, t_bool *in_quote)
 		if (str[i] == '\'' && !*in_quote)
 			skip_squote(str, &i);
 		if (str[i] == '$' && str[i + 1] && (ft_isalnum(str[i + 1]) || str[i
-					+ 1] == '_' || str[i + 1] == '?' || str[i + 1] == '$'))
+				+ 1] == '_' || str[i + 1] == '?' || str[i + 1] == '$'))
 			return (i);
 		i++;
 	}
@@ -90,6 +90,7 @@ void	check_variables(void)
 		{
 			if (token->prev && token->prev->type == TOKEN_HERE_DOC)
 			{
+				remove_quote(token->value);
 				token = token->next;
 				continue ;
 			}
