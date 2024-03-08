@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:52:05 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/05 19:09:56 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:24:29 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char *argv[], char *envp[])
 		core->envp = envp;
 		init_minishell(core);
 		get_env_vars(core);
+		
 		prompt_loop(core);
 	}
 	return (core->exit_status);

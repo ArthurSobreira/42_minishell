@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:42:44 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/07 15:54:15 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:48:25 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,33 +96,80 @@ t_token	*initial_wildcard(char *wildcard, t_token *files)
 	return (new);
 }
 
+t_token	*end_wildcard(char *wildcard, t_token *files)
+{
+	char	*temp;
+	t_token	*new;
+
+	temp = ft_substr(wildcard, 0, ft_strlen(wildcard) - 1);
+	new = NULL;
+	if (ft_strlen(temp) == 0)
+		return (NULL);
+	while (files->next)
+	{
+		if (ft_strncmp(files->value, temp, ft_strlen(temp)) == 0)
+			splited_add_back(&new, new_token(files->value));
+		files = files->next;
+	}
+	free(temp);
+	return (new);
+}
+
+t_token	*tlist_compare(t_token *last, t_token *first)
+{
+	t_token	*temp;
+	t_token	*current1;
+	t_token	*current2;
+
+	temp = NULL;
+	current1 = first;
+	while (current1)
+	{
+		current2 = last;
+		while (current2)
+		{
+			if (ft_strncmp(current1->value, current2->value,
+					ft_strlen(current1->value)) == 0)
+				splited_add_back(&temp, new_token(current1->value));
+			current2 = current2->next;
+		}
+		current1 = current1->next;
+	}
+	return (temp);
+}
+
 t_token	*analize_wildcard(t_token *files, char *wildcard)
 {
 	t_token	*temp;
+	t_token	*first;
+	t_token	*last;
 
 	temp = NULL;
+	first = NULL;
+	last = NULL;
 	if (wildcard[0] == '*')
-		splited_add_back(&temp, initial_wildcard(wildcard, files));
+		first = initial_wildcard(wildcard, files);
+	if (wildcard[ft_strlen(wildcard) - 1] == '*')
+		last = end_wildcard(wildcard, files);
+	temp = tlist_compare(last, first);
 	print_token(temp);
-	// else if (wildcard[ft_strlen(wildcard) - 1] == '*')
-	// 	end_wildcard(wildcard, files);
 	return (NULL);
 }
 
 void	expand_wildcard(void)
 {
 	t_token	*tkn;
-	// t_token	*next_token;
-	// t_token	*files;
 	char	**oi;
 
+	t_token	*next_token;
+	t_token	*files;
 	tkn = find_wild();
 	if (!tkn)
 		return ;
 	oi = ft_split(tkn->value, '*');
 	print_matrix(oi);
-	// next_token = tkn->next;
-	// tkn->next = NULL;
-	// files = list_files();
-	// analize_wildcard(files, tkn->value);
+	next_token = tkn->next;
+	tkn->next = NULL;
+	files = list_files();
+	analize_wildcard(files, tkn->value);
 }

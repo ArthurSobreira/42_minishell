@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt_handling.c                                  :+:      :+:    :+:   */
+/*   input_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 08:55:45 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/13 14:49:29 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:42:33 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,3 @@ t_bool	check_spaces_between_heredoc(void)
 	}
 	return (TRUE);
 }
-
-// if (check_spaces_between_redirections() == FALSE)
-// 	return ("syntax error: unexpected token `>'");
-// if (check_spaces_between_heredoc() == FALSE)
-// 	return ("syntax error: unexpected token `<'");
