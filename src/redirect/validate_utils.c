@@ -12,6 +12,28 @@
 
 #include "minishell.h"
 
+t_bool	validate_directory_exists(char *path)
+{
+	struct stat	statbuf;
+	char		*last_slash;
+	int			i;
+
+	i = ft_strrchr(path, '/') - path;
+	last_slash = ft_substr(path, 0, i);
+	if (stat(last_slash, &statbuf) == -1)
+	{
+		free(last_slash);
+		return (FALSE);
+	}
+	if (S_ISDIR(statbuf.st_mode))
+	{
+		free(last_slash);
+		return (TRUE);
+	}
+	free(last_slash);
+	return (FALSE);
+}
+
 t_bool	check_file_exists(char *file_name)
 {
 	if (access(file_name, F_OK) == -1)
