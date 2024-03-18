@@ -54,7 +54,5 @@ dkms.conf
 minishell
 temp/
 *.log
-sup/
-*.supp
 tests/
 minishell_tester/
