@@ -28,3 +28,15 @@ $> git clone git@github.com:ArthurSobreira/42_minishell.git
 ```bash
 $> make / make bonus
 ```
+
+<br>
+
+## The Project
+
+<br>
+<div align="center">
+   <a href="https://github.com/ArthurSobreira/42_minishell/blob/master/minishell.gif" target="_blank">
+      <img height=550 src="minishell.gif">
+   </a>
+</div>
+<br>
