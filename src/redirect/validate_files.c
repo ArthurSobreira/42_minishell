@@ -24,7 +24,7 @@ t_bool	validate_input_file(t_token *current_tkn, size_t index)
 		}
 		else if (!check_file_readable(current_tkn->next->value))
 		{
-			ft_file_error(current_tkn->next->value, "Permission denied\n",
+			ft_file_error(current_tkn->next->value, "Permission denied\n", \
 				EXIT_FAILURE, index);
 			return (FALSE);
 		}
@@ -34,6 +34,13 @@ t_bool	validate_input_file(t_token *current_tkn, size_t index)
 
 t_bool	validate_output_file(t_token *current_tkn, size_t index)
 {
+	if (ft_strchr(current_tkn->next->value, '/') && \
+		!validate_directory_exists(current_tkn->next->value))
+	{
+		ft_file_error(current_tkn->next->value, "No such file or directory\n",
+			EXIT_FAILURE, index);
+		return (FALSE);
+	}
 	if (check_file_exists(current_tkn->next->value))
 	{
 		if (!check_file_writable(current_tkn->next->value))
