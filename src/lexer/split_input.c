@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:14:00 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/08 10:31:47 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:09:49 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_bool	lexer_and_format_prompt(void)
 	str = insert_spaces(str);
 	garbage_add(str);
 	split_input(str);
+	expand_wildcard();
 	check_variables();
 	return (FALSE);
 }
-	// expand_wildcard();
