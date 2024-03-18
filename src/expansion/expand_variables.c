@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:23:02 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/07 10:49:28 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:31:42 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*tratament_quotes(char *str, char *var_name, char *var_value)
 	t_replace	rp;
 	int			i;
 
-	i = 0;
+	i = get_core()->pos;
 	rp.start = 0;
 	while (str[i])
 	{
@@ -41,11 +41,13 @@ char	*look_for_variable(char *str)
 	int		i;
 	t_bool	in_quote;
 
-	i = where_is_dollar(str, &in_quote);
-	while (i != -1)
+	i = where_is_dollar(str, &in_quote, 0);
+	while (i < (int)ft_strlen(str))
 	{
 		str = process_variable(str, i, &in_quote);
-		i = where_is_dollar(str, &in_quote);
+		if (str[i] == '$')
+			i++;
+		i = where_is_dollar(str, &in_quote, i);
 	}
 	return (str);
 }
@@ -75,11 +77,15 @@ char	*process_variable(char *str, int i, t_bool *in_quote)
 char	*handle_var_value(char *var_name, char *var_value)
 {
 	if (var_name[1] == '?' && var_name[0] == '$')
+	{
+		free(var_value);
 		var_value = ft_itoa(get_core()->exit_status);
+	}
 	if (var_name[1] == '$' && var_name[0] == '$')
+	{
+		free(var_value);
 		var_value = ft_strdup("\n");
-	else if (!var_value)
-		var_value = ft_strdup("");
+	}
 	return (var_value);
 }
 
