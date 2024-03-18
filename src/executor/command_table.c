@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:03:22 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/02/29 18:26:20 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:38:00 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ char	**get_envp(t_var *env_vars)
 	envp = malloc(sizeof(char *) * (get_core()->env_vars_size + 1));
 	while (current_var != NULL)
 	{
+		if (current_var->key == NULL)
+			current_var->key = ft_strdup("");
 		key = ft_strjoin(current_var->key, "=");
 		if (current_var->value)
 			envp[index] = ft_strjoin(key, current_var->value);
