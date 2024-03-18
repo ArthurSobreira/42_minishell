@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:06 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/08 10:30:27 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:36:46 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ typedef enum e_proc
 	INTERMEDIATE,
 	FINAL,
 }						t_proc;
+
+enum	e_wildcard
+{
+	NONE,
+	START,
+	END,
+	BOTH
+};
 
 typedef struct s_redir_in
 {
@@ -105,6 +113,7 @@ typedef struct s_minishell
 	int					pipe_fd[2];
 	int					fd_backup[2];
 	int					exit_status;
+	int					pos;
 }						t_minishell;
 
 #endif
