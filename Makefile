@@ -1,4 +1,5 @@
 NAME = minishell
+NAME_BONUS = minishell_bonus
 LIBFT = libs/libft/libft.a
 CFLAGS = -Wall -Wextra -Werror -O3 -g3
 RFLAGS = -lreadline -lhistory
@@ -20,7 +21,6 @@ HEADER_PATH = ./includes
 BIN_PATH = ./bin/
 SOURCES_PATH = ./src/
 BUILTINS_PATH = built-in/
-DEBUG_PATH = debugger/
 EXECUTOR_PATH = executor/
 EXIT_PATH = exit/
 EXPANSION_PATH = expansion/
@@ -41,7 +41,6 @@ SOURCES = main.c \
 	$(BUILTINS_PATH)export.c \
 	$(BUILTINS_PATH)pwd.c \
 	$(BUILTINS_PATH)unset.c \
-	$(DEBUG_PATH)print_coisas.c \
 	$(EXECUTOR_PATH)command_table_utils.c \
 	$(EXECUTOR_PATH)command_table.c \
 	$(EXECUTOR_PATH)command_utils.c \
@@ -56,6 +55,7 @@ SOURCES = main.c \
 	$(EXPANSION_PATH)expand_variables.c \
 	$(EXPANSION_PATH)look_for_variable.c \
 	$(EXPANSION_PATH)wildcard.c \
+	$(EXPANSION_PATH)wildcard_utils.c \
 	$(INIT_PATH)init_env.c \
 	$(INIT_PATH)init_structs.c \
 	$(INIT_PATH)init_stuff.c \
@@ -64,6 +64,7 @@ SOURCES = main.c \
 	$(LEXER_PATH)input_check.c \
 	$(LEXER_PATH)input_handling.c \
 	$(LEXER_PATH)split_input.c \
+	$(LEXER_PATH)token_utils.c \
 	$(LEXER_PATH)tokenizer.c \
 	$(PROMPT_PATH)prompt_utils.c \
 	$(PROMPT_PATH)prompt.c \
@@ -110,7 +111,6 @@ $(NAME): $(OBJECTS)
 $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)
 	@mkdir -p $(BIN_PATH)$(BUILTINS_PATH)
-	@mkdir -p $(BIN_PATH)$(DEBUG_PATH)
 	@mkdir -p $(BIN_PATH)$(EXECUTOR_PATH)
 	@mkdir -p $(BIN_PATH)$(EXIT_PATH)
 	@mkdir -p $(BIN_PATH)$(EXPANSION_PATH)
@@ -133,6 +133,7 @@ fclean: clean
 	@echo $(RED)[Removing $(TEMP_PATH)]$(COLOR_LIMITER)
 	@make fclean -C $(LIB_PATH) --no-print-directory
 	@rm -rf $(NAME)
+	@rm -rf $(NAME_BONUS)
 	@rm -rf $(TEMP_PATH)
 
 re: fclean
@@ -149,5 +150,8 @@ valgrind: all make_temp
 	--track-fds=yes \
 	--suppressions=./suppresion.supp \
 	--log-file=$(TEMP_PATH)valgrind.log ./$(NAME)
+
+bonus: libft $(BIN_PATH) $(NAME)
+	@make --no-print-directory NAME=$(NAME_BONUS)
 
 .PHONY: all clean fclean re libft make_temp valgrind
