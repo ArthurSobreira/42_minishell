@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:13:42 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/07 14:14:12 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:53:07 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <termios.h>
 
 t_minishell	*get_core(void);
 
@@ -42,7 +43,7 @@ void		print_working_directory(t_cmd *command);
 char		*get_working_directory(void);
 void		unset(t_cmd *command);
 
-// export functions
+// Export functions
 void		print_ordened_values(char *key, int fd);
 t_bool		is_bigger(char *s1, char *s2);
 char		*return_value(char *str);
@@ -63,6 +64,31 @@ t_bool		is_only_spaces(char *str);
 
 // Token functions
 t_tkn_type	set_tkn_type(char *str);
+void		set_exit_status(char *error_msg);
+void		skip_quotes(char *str, int *i);
+void		split_input(char *str);
+void		splited_add_back(t_token **head, t_token *new);
+t_token		*new_token(char *str);
+t_bool		lexer_and_format_prompt(void);
+t_bool		parser(void);
+t_bool		is_valid_argument(char *arg);
+char		*check_empty_quotes(char *str);
+t_bool		is_redir_token(t_token *token);
+void		clear_garbage(void);
+void		free_token(t_token *token);
+void		free_token_wildcard(t_token *token);
+void		garbage_add(void *ptr);
+size_t		count_tokens(t_token *token);
+t_bool		check_start_pipe(void);
+t_bool		check_end_operators(void);
+t_bool		check_spaces_between_redirections(void);
+t_bool		check_spaces_between_heredoc(void);
+t_bool		check_forbidden_background(void);
+t_bool		check_forbidden_semicolon(void);
+t_bool		check_forbidden_or(void);
+t_bool		check_forbidden_and(void);
+t_bool		check_close_quotes(void);
+t_bool		exit_status_2(char *error_msg);
 
 // Start functions
 void		init_minishell(t_minishell *core);
@@ -94,6 +120,7 @@ void		handle_redir_out(t_redir_out **redir_list, t_token *tkn,
 				size_t index);
 void		open_in_files(t_redir_in *redir_in);
 void		open_create_out_files(t_redir_out *redir_out);
+t_bool		validate_directory_exists(char *path);
 t_bool		validate_input_file(t_token *current_tkn, size_t index);
 t_bool		validate_output_file(t_token *current_tkn, size_t index);
 t_bool		check_file_exists(char *file_name);
@@ -126,38 +153,10 @@ char		*replace_or_treat_quotes(char *str, char *var_name, char *var_value,
 char		*tratament_quotes(char *str, char *var_name, char *var_value);
 char		*look_for_variable(char *str);
 char		*get_var_value(char *var_name);
-int			where_is_dollar(char *str, t_bool *in_quote);
+int			where_is_dollar(char *str, t_bool *in_quote, int i);
 void		skip_squote(char *str, int *i);
-
-// Debug functions
-void		print_token(t_token *token);
-void		print_redir_in(t_redir_in *redir_list);
-void		print_redir_out(t_redir_out *redir_list);
-void		print_cmd_table(t_cmd *cmd_table);
-void		print_matrix(char **matrix);
-
-// Error functions
-t_bool		is_redir_token(t_token *token);
-
-// tester functions
-void		clear_garbage(void);
-void		garbage_add(void *ptr);
-t_bool		check_start_pipe(void);
-t_bool		check_end_operators(void);
-t_bool		check_spaces_between_redirections(void);
-t_bool		check_spaces_between_heredoc(void);
-t_bool		check_forbidden_background(void);
-t_bool		check_forbidden_semicolon(void);
-t_bool		check_forbidden_or(void);
-t_bool		check_forbidden_and(void);
-t_bool		check_close_quotes(void);
-t_bool		exit_status_2(char *error_msg);
-void		set_exit_status(char *error_msg);
-void		skip_quotes(char *str, int *i);
-void		split_input(char *str);
-void		splited_add_back(t_token **head, t_token *new);
-t_token		*new_token(char *str);
-t_bool		lexer_and_format_prompt(void);
+t_bool		check_ambiguous(t_token *current_tkn, t_token *wd_list, size_t i);
+t_bool		verify_here_doc(t_token **token, t_token *next_tmp);
 
 // Command Table functinos
 void		create_cmd_table(void);
@@ -172,10 +171,6 @@ int			count_pipes(void);
 int			count_args(t_token *token_list);
 void		remove_token_and_redir(t_token *token, size_t index);
 t_bool		is_builtin(char *cmd);
-
-t_bool		parser(void);
-t_bool		is_valid_argument(char *arg);
-char		*check_empty_quotes(char *str);
 
 // Executor functions
 void		command_executor(void);
@@ -207,5 +202,11 @@ void		ft_printf_fd(int fd, const char *format, ...);
 void		ft_putptr_fd(unsigned long number, char *base, int fd);
 void		ft_putnbr_base_fd(long int number, char *base, int fd);
 void		expand_wildcard(void);
+void		define_substrings(char ***substrings, const char *wildcard,
+				int *comp_type);
+int			comparison(const char *word, const char **substrings,
+				int comp_type);
+int			end(const char *word, const char *subwildcard);
+void		save_tty(int tty_fd);
 
 #endif
