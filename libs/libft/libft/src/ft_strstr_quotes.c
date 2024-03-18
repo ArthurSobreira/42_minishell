@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 09:07:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/02/21 17:41:02 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/10 11:51:53 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,17 @@ char	*ft_strstr_quotes(const char *big, const char *little)
 {
 	size_t	counter;
 	size_t	index;
+	t_bool	in_quote;
 
 	counter = 0;
+	in_quote = FALSE;
 	if (!*little)
 		return ((char *)big);
 	while (big[counter])
 	{
-		if (big[counter] == '\'')
+		if (big[counter] == '\"')
+			in_quote = !in_quote;
+		if (big[counter] == '\'' && !in_quote)
 			skip_quotes((char *)big, &counter);
 		if (!big[counter])
 			break ;
