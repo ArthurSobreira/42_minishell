@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   look_for_variable.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:20:22 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/07 16:50:24 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:16:57 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,38 +22,43 @@ void	skip_squote(char *str, int *i)
 		(*i)++;
 }
 
-int	where_is_dollar(char *str, t_bool *in_quote)
+int	where_is_dollar(char *str, t_bool *in_quote, int i)
 {
-	int	i;
-
 	*in_quote = FALSE;
-	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '\"')
+		{
+			get_core()->pos = i;
 			*in_quote = !*in_quote;
+		}
 		if (str[i] == '\'' && !*in_quote)
 			skip_squote(str, &i);
-		if (str[i] == '$' && str[i + 1] && (ft_isalnum(str[i + 1]) || str[i
-				+ 1] == '_' || str[i + 1] == '?' || str[i + 1] == '$'))
+		if (str[i] && str[i] == '$' && str[i + 1] && (ft_isalnum(str[i + 1])
+				|| str[i + 1] == '_' || str[i + 1] == '?' || str[i + 1] == '$'))
 			return (i);
+		if (!str[i])
+			break ;
 		i++;
 	}
-	return (-1);
+	return (ft_strlen(str));
 }
 
 char	*get_var_value(char *var_name)
 {
 	t_var	*var;
+	char	c[2];
 
 	var = get_core()->env_vars;
+	c[0] = '\t';
+	c[1] = '\0';
 	while (var)
 	{
 		if (ft_strcmp(var->key, var_name) == 0)
 			return (ft_strdup(var->value));
 		var = var->next;
 	}
-	return (NULL);
+	return (ft_strdup(c));
 }
 
 void	remove_quote(char *str)
@@ -96,6 +101,7 @@ void	check_variables(void)
 			}
 			token->value = look_for_variable(token->value);
 			token->value = ft_replace_true(token->value, "\n", "$");
+			token->value = ft_replace_true(token->value, "\t", "");
 			remove_quote(token->value);
 		}
 		token = token->next;
