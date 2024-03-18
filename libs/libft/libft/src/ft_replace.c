@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 08:48:26 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/07 16:38:31 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:02:27 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@ static void	skip_quotes(char *str, size_t *i)
 	while (str[*i] && str[*i] != quote)
 		(*i)++;
 }
-	// (*i)++;
 
 static char	*ft_strstr_q(const char *big, const char *little)
 {
 	size_t		counter;
 	size_t		index;
-	static int	i;
 
-	i = 0;
 	counter = 0;
 	if (!*little)
 		return ((char *)big);
