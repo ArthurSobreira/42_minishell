@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:42:44 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/07 18:48:25 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:53:15 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,136 +40,75 @@ t_token	*find_wild(void)
 	return (NULL);
 }
 
-t_token	*list_files(void)
+t_token	*wild_exec(char *str, t_token *new, DIR *dir, char **substrings)
 {
-	DIR				*dir;
 	struct dirent	*entry;
-	t_token			*tkn;
+	const char		*compare;
+	int				comp_type;
 
+	compare = str;
 	dir = opendir(".");
-	tkn = NULL;
 	if (!dir)
-	{
-		perror("diropen");
 		return (NULL);
-	}
-	while (1)
+	define_substrings(&substrings, compare, &comp_type);
+	if (!substrings)
+		return (NULL);
+	entry = readdir(dir);
+	while (entry)
 	{
+		if (*(char *)entry->d_name != '.' && \
+			comparison(((const char *)entry->d_name), (const char **)substrings,
+				comp_type))
+			splited_add_back(&new, new_token(ft_strdup(entry->d_name)));
 		entry = readdir(dir);
-		if (!entry)
-			break ;
-		splited_add_back(&tkn, new_token(ft_strdup(entry->d_name)));
 	}
 	closedir(dir);
-	return (tkn);
-}
-
-t_bool	last_ocurrence(char *str, char *delimiter)
-{
-	int	index;
-
-	index = ft_strlen(str) - ft_strlen(delimiter);
-	if (ft_strncmp(str + index, delimiter, ft_strlen(delimiter)) == 0)
-		return (TRUE);
-	return (FALSE);
-}
-
-t_token	*initial_wildcard(char *wildcard, t_token *files)
-{
-	char	*temp;
-	t_token	*new;
-
-	temp = ft_substr(wildcard, 1, ft_strlen(wildcard));
-	new = NULL;
-	if (ft_strlen(temp) == 0)
-		return (NULL);
-	while (files->next)
-	{
-		if (last_ocurrence(files->value, temp) == TRUE)
-		{
-			splited_add_back(&new, new_token(files->value));
-			files = files->next;
-		}
-		files = files->next;
-	}
-	free(temp);
+	ft_free_matrix(substrings);
+	if (!new)
+		splited_add_back(&new, new_token(ft_strdup(compare)));
 	return (new);
 }
 
-t_token	*end_wildcard(char *wildcard, t_token *files)
+void	handle_wd_list(t_token *token, t_token *nxt, t_token *new_list, \
+	t_token *temp)
 {
-	char	*temp;
-	t_token	*new;
-
-	temp = ft_substr(wildcard, 0, ft_strlen(wildcard) - 1);
-	new = NULL;
-	if (ft_strlen(temp) == 0)
-		return (NULL);
-	while (files->next)
+	if (nxt)
+		splited_add_back(&new_list, nxt);
+	if (token->prev)
 	{
-		if (ft_strncmp(files->value, temp, ft_strlen(temp)) == 0)
-			splited_add_back(&new, new_token(files->value));
-		files = files->next;
+		token->prev->next = new_list;
+		new_list->prev = token->prev;
 	}
-	free(temp);
-	return (new);
-}
-
-t_token	*tlist_compare(t_token *last, t_token *first)
-{
-	t_token	*temp;
-	t_token	*current1;
-	t_token	*current2;
-
-	temp = NULL;
-	current1 = first;
-	while (current1)
-	{
-		current2 = last;
-		while (current2)
-		{
-			if (ft_strncmp(current1->value, current2->value,
-					ft_strlen(current1->value)) == 0)
-				splited_add_back(&temp, new_token(current1->value));
-			current2 = current2->next;
-		}
-		current1 = current1->next;
-	}
-	return (temp);
-}
-
-t_token	*analize_wildcard(t_token *files, char *wildcard)
-{
-	t_token	*temp;
-	t_token	*first;
-	t_token	*last;
-
-	temp = NULL;
-	first = NULL;
-	last = NULL;
-	if (wildcard[0] == '*')
-		first = initial_wildcard(wildcard, files);
-	if (wildcard[ft_strlen(wildcard) - 1] == '*')
-		last = end_wildcard(wildcard, files);
-	temp = tlist_compare(last, first);
-	print_token(temp);
-	return (NULL);
+	else
+		get_core()->token_list = new_list;
+	free_token(temp);
 }
 
 void	expand_wildcard(void)
 {
-	t_token	*tkn;
-	char	**oi;
+	t_token	*token;
+	t_token	*new_list;
+	t_token	*next_tmp;
+	t_token	*tmp;
+	size_t	pipe_count;
 
-	t_token	*next_token;
-	t_token	*files;
-	tkn = find_wild();
-	if (!tkn)
-		return ;
-	oi = ft_split(tkn->value, '*');
-	print_matrix(oi);
-	next_token = tkn->next;
-	tkn->next = NULL;
-	files = list_files();
-	analize_wildcard(files, tkn->value);
+	token = get_core()->token_list;
+	pipe_count = 0;
+	while (token)
+	{
+		if (token->type == TOKEN_PIPE)
+			pipe_count++;
+		next_tmp = token->next;
+		if (has_wildcard(token->value))
+		{
+			if (verify_here_doc(&token, next_tmp))
+				continue ;
+			tmp = token;
+			new_list = wild_exec(token->value, NULL, NULL, NULL);
+			if (check_ambiguous(token, new_list, pipe_count))
+				return ;
+			handle_wd_list(token, next_tmp, new_list, tmp);
+		}
+		token = next_tmp;
+	}
 }

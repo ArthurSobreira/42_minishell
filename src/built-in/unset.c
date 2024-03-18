@@ -6,11 +6,41 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:22:58 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/03 18:33:01 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:33:55 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static t_bool	is_only_alpha(char *arg)
+{
+	size_t	i;
+
+	i = 0;
+	if (arg[0] == '_' && ft_isalnum(arg[1]))
+		return (TRUE);
+	while (arg[i])
+	{
+		if (!ft_isalnum(arg[i]))
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
+static t_bool	is_valid_unset_argument(char *arg)
+{
+	if ((arg[0] != '_' && !ft_isalnum(arg[0])) || \
+		!is_only_alpha(arg))
+	{
+		ft_putstr_fd("minishell: export: `", STDERR_FILENO);
+		ft_putstr_fd(arg, STDERR_FILENO);
+		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+		get_core()->exit_status = EXIT_FAILURE;
+		return (FALSE);
+	}
+	return (TRUE);
+}
 
 void	del_var(char *key)
 {
@@ -48,6 +78,11 @@ void	unset(t_cmd *command)
 	get_core()->exit_status = EXIT_SUCCESS;
 	while (command->args[i])
 	{
+		if (!is_valid_unset_argument(command->args[i]))
+		{
+			i++;
+			continue ;
+		}
 		del_var(command->args[i]);
 		i++;
 	}

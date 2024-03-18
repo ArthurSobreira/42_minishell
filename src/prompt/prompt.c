@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:09:31 by arsobrei          #+#    #+#             */
-/*   Updated: 2024/03/07 16:17:35 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:41:51 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	prompt_loop(t_minishell *core)
 	using_history();
 	while (TRUE)
 	{
+		save_tty(1);
 		signal(SIGINT, ctrl_c);
 		signal(SIGQUIT, SIG_IGN);
 		core->here_doc_flag = FALSE;

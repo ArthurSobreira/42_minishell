@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:35:52 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/07 14:12:41 by arsobrei         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:20:03 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,52 @@ static void	print_error(t_cmd *command, char *message)
 		ft_putendl_fd(message, STDERR_FILENO);
 }
 
-static t_bool	validate_args(t_minishell *core, t_cmd *command)
+static t_bool	verify_long_max(t_minishell *core, t_cmd *command)
 {
-	if (command && ft_matrix_len(command->args) > 2)
+	if (ft_isnumber(command->args[1]) && \
+		((command->args[1][0] == '-' && ft_strlen(command->args[1]) <= 20) || \
+		(command->args[1][0] != '-' && ft_strlen(command->args[1]) <= 19)))
 	{
-		print_error(command, "minishell: exit: too many arguments");
-		core->exit_status = EXIT_FAILURE;
-		return (FALSE);
-	}
-	else if (command && ft_isnumber(command->args[1]))
+		if ((ft_strlen(command->args[1]) == 19 && \
+			ft_strcmp(command->args[1], "9223372036854775807") > 0) || \
+			(ft_strlen(command->args[1]) == 20 && \
+			ft_strcmp(command->args[1], "-9223372036854775808") > 0))
+		{
+			print_error(command, "minishell: exit: numeric argument required");
+			core->exit_status = SYNTAX_ERROR;
+			return (TRUE);
+		}
 		core->exit_status = ft_atoi(command->args[1]);
-	else if ((command && !ft_isdigit(command->args[1][0])) || \
-		(ft_atol(command->args[1]) > __LONG_MAX__))
+	}
+	else if (command && (!ft_isnumber(command->args[1]) || \
+		(command->args[1][0] == '-' && ft_strlen(command->args[1]) > 20) || \
+		(command->args[1][0] != '-' && ft_strlen(command->args[1]) > 19)))
 	{
 		print_error(command, "minishell: exit: numeric argument required");
 		core->exit_status = SYNTAX_ERROR;
 	}
-	else if (command && ft_matrix_len(command->args) > 2)
+	return (TRUE);
+}
+
+static t_bool	validate_args(t_minishell *core, t_cmd *command)
+{
+	if (command && ft_matrix_len(command->args) > 2)
 	{
-		print_error(command, "minishell: exit: too many arguments");
+		if (!ft_isnumber(command->args[1]))
+		{
+			print_error(command, "minishell: exit: numeric argument required");
+			core->exit_status = SYNTAX_ERROR;
+			return (TRUE);
+		}
+		else
+			print_error(command, "minishell: exit: too many arguments");
+		core->exit_status = EXIT_FAILURE;
 		return (FALSE);
+	}
+	if (command && ft_matrix_len(command->args) == 2)
+	{
+		if (!verify_long_max(core, command))
+			return (FALSE);
 	}
 	return (TRUE);
 }
