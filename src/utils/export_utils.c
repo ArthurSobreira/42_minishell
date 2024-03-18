@@ -6,7 +6,7 @@
 /*   By: phenriq2 <phenriq2@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 10:51:03 by phenriq2          #+#    #+#             */
-/*   Updated: 2024/03/03 18:28:24 by phenriq2         ###   ########.fr       */
+/*   Updated: 2024/03/10 11:29:00 by phenriq2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	print_ordened_values(char *key, int fd)
 		if (ft_strcmp(tmp->key, key) == 0)
 		{
 			if (tmp->value)
-				ft_printf_fd(fd, "declare -x %s=\"%s\"\n", tmp->key, tmp->value);
+				ft_printf_fd(fd, "declare -x %s=\"%s\"\n", tmp->key,
+					tmp->value);
 			else
 				ft_printf_fd(fd, "declare -x %s\n", tmp->key);
 			return ;
@@ -98,20 +99,29 @@ void	add_end_var(t_var **var, t_var *new_var)
 
 t_bool	is_valid_argument(char *arg)
 {
-	size_t	i;
+	char	**split;
+	char	*key;
 
-	i = 0;
-	while (arg[i])
+	if (ft_strcmp(arg, "=") == 0 || arg[0] == '=' || ft_isdigit(arg[0]))
 	{
-		if (!ft_isalnum(arg[i]) && arg[i] != '_')
-		{
-			if (arg[i] == '=')
-				break ;
-			ft_putendl_fd("export: not a valid identifier", STDERR_FILENO);
-			get_core()->exit_status = EXIT_FAILURE;
-			return (FALSE);
-		}
-		i++;
+		ft_putstr_fd("minishell: export: `", STDERR_FILENO);
+		ft_putstr_fd(arg, STDERR_FILENO);
+		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+		get_core()->exit_status = EXIT_FAILURE;
+		return (FALSE);
 	}
+	split = ft_split(arg, '=');
+	key = split[0];
+	if ((key[0] == '_' && !ft_isalnum(key[1])) || \
+		ft_strchr(key, '-'))
+	{
+		ft_putstr_fd("minishell: export: `", STDERR_FILENO);
+		ft_putstr_fd(arg, STDERR_FILENO);
+		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+		get_core()->exit_status = EXIT_FAILURE;
+		ft_free_matrix(split);
+		return (FALSE);
+	}
+	ft_free_matrix(split);
 	return (TRUE);
 }
