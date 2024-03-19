@@ -158,7 +158,7 @@ void		skip_squote(char *str, int *i);
 t_bool		check_ambiguous(t_token *current_tkn, t_token *wd_list, size_t i);
 t_bool		verify_here_doc(t_token **token, t_token *next_tmp);
 
-// Command Table functinos
+// Command Table functions
 void		create_cmd_table(void);
 t_bool		check_for_inconsistencies(t_token *current_tkn, size_t index);
 void		fill_command_node(t_token *current_tkn, size_t index);
