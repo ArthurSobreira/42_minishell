@@ -35,8 +35,14 @@ $> make / make bonus
 
 <br>
 <div align="center">
-   <a href="https://github.com/ArthurSobreira/42_minishell/blob/master/minishell.gif" target="_blank">
-      <img height=550 src="minishell.gif">
-   </a>
+   <table>
+     <tr>
+       <td style="border: 5px solid darkgray;">
+         <a href="https://github.com/ArthurSobreira/42_minishell/blob/master/minishell.gif" target="_blank">
+            <img height=550 src="minishell.gif">
+         </a>
+       </td>
+     </tr>
+   </table>
 </div>
 <br>
